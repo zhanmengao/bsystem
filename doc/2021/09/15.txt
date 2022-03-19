@@ -1,0 +1,3 @@
+周一：ftssrv架构文档，微信、脸书SDK
+周二：微信、阿里SDK，谷歌、苹果、阿里SDK
+周三：取消订阅SDK，华为、oppo SDK

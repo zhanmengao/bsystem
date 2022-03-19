@@ -1,0 +1,5 @@
+周一：部署ftssrv：整理配置文件生成python脚本，整理和生成ftssrv配置表
+周二：部署ftssrv和猪来了alipay服务，调试ftssrv配置文件加载，编写ftssrv客户端配置文件。
+周三：部署猪来了繁体服务，调试ftssrv登录：微信、支付宝、fb已成功；增加每个平台User缓存开关：当关闭开关时，每次UserInfo都会向SDK请求。
+周四：调试google支付；调试apple登录；增加PING PONG消息；增加协议版本兼容支持：当搜索不到当前版本方法，则向前一个版本搜索；整理代码结构。
+周五：调试apple支付，协议结构体增加版本号

@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.28307.1231
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "HookCreateProcess", "HookCreateProcess.vcxproj", "{0D14C136-10E7-4160-AAD4-9850BBF86C40}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|x86 = Debug|x86
+		Release|x86 = Release|x86
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{0D14C136-10E7-4160-AAD4-9850BBF86C40}.Debug|x86.ActiveCfg = Debug|Win32
+		{0D14C136-10E7-4160-AAD4-9850BBF86C40}.Debug|x86.Build.0 = Debug|Win32
+		{0D14C136-10E7-4160-AAD4-9850BBF86C40}.Release|x86.ActiveCfg = Release|Win32
+		{0D14C136-10E7-4160-AAD4-9850BBF86C40}.Release|x86.Build.0 = Release|Win32
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {454A0F0B-AAB3-444E-BE67-9E8E43156C3F}
+	EndGlobalSection
+EndGlobal

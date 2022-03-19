@@ -1,0 +1,36 @@
+@startuml
+'https://plantuml.com/class-diagram
+
+
+interface wantedType
+
+wantedTypeNormal --|> wantedType
+wantedTypeBig --|>  wantedType
+
+interface wantedType{
+该类型是否还可以再通缉
+检查每个通缉令是否过期
+获取通缉令类型
+获取物品ID
+push一条新通缉令数据
+}
+
+class wantedTypeNormal {
+实现接口
+小通缉令数据
+}
+
+class wantedTypeBig {
+实现接口
+大通缉令数据
+}
+
+class wantedList{
+通过pb数据的构造函数
+返回原生pb数据
+map[通缉令类型]通缉令Type 被通缉的数据
+map[通缉令类型]通缉令Type 通缉别人的数据
+新增通缉我的数据
+新增我通缉的数据
+}
+@enduml

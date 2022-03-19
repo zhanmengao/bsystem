@@ -1,0 +1,28 @@
+@startuml
+'https://plantuml.com/component-diagram
+
+
+package "Server集群" {
+  [GateSrv] -> [GameSrv]
+  [UserSrv] <- [GameSrv]
+}
+
+
+
+database "Redis" {
+  folder "UserMajorData" {
+    [用户数据]
+  }
+  folder "Cache" {
+    [活跃用户集]
+  }
+}
+
+
+[GameSrv] --> [用户数据]
+
+[UserSrv] <-- [用户数据]
+
+[UserSrv] <--> [活跃用户集]
+
+@enduml

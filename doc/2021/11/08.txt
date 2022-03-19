@@ -1,0 +1,4 @@
+周一：fts新运营中心-界面
+周二：fim代码阅读和整理，fimsrv引入base_server
+周三：fts运维需求沟通，fim：网关、服务基础代码，网关封装ws client，client v1实现内外网协议适配器
+周四：fim引入自动生成db代码，网关、服务rpc打通

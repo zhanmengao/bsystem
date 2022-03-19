@@ -1,0 +1,3 @@
+周一：wxapp合入userinfo缓存机制，ftssrv技术文档、uml编写，微信支付和业务对齐，订阅功能和业务对齐，
+周二：ftssrv服务修改为rest风格，base_server中实现fts客户端，猪来了实现调用fts登录，看猪来了老go代码的google、apple支付，定义支付通用返回值
+周三：看apple、google、华为支付SDK返回值，ftssrv服务日志打点，猪来了老go代码支付调用fts，

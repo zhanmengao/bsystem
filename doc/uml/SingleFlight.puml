@@ -1,0 +1,21 @@
+@startuml
+'https://plantuml.com/activity-diagram-beta
+
+start
+if (map里有对该key正在调用的call) then (true)
+    :WaitGroup.Wait();
+    :返回map里的结果;
+    stop
+else (false)
+    :WaitGroup.Add(1) 后进的请求阻塞;
+    :向map中插入一条数据;
+    :调用回调函数();
+    :给map中的call指针赋值;
+    :WaitGroup.Done() 后进的请求解锁;
+
+    :delete map里的数据;
+endif
+
+stop
+
+@enduml

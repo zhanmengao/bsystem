@@ -1,0 +1,48 @@
+<html>
+<body>
+<pre>
+<h1>Build Log</h1>
+<h3>
+--------------------Configuration: HookTest - Win32 Debug--------------------
+</h3>
+<h3>Command Lines</h3>
+Creating temporary file "C:\DOCUME~1\jester\LOCALS~1\Temp\RSP545.tmp" with contents
+[
+/nologo /MDd /W3 /Gm /GX /ZI /Od /D "WIN32" /D "_DEBUG" /D "_WINDOWS" /D "_AFXDLL" /D "_MBCS" /Fp"Debug/HookTest.pch" /Yu"stdafx.h" /Fo"Debug/" /Fd"Debug/" /FD /GZ /c 
+"E:\我的文档\菜鸟进化——踏入黑客编程之门\chapter5\KeyBoradHookTest\HookTest\HookTest.cpp"
+"E:\我的文档\菜鸟进化——踏入黑客编程之门\chapter5\KeyBoradHookTest\HookTest\HookTestDlg.cpp"
+]
+Creating command line "cl.exe @C:\DOCUME~1\jester\LOCALS~1\Temp\RSP545.tmp" 
+Creating temporary file "C:\DOCUME~1\jester\LOCALS~1\Temp\RSP546.tmp" with contents
+[
+/nologo /MDd /W3 /Gm /GX /ZI /Od /D "WIN32" /D "_DEBUG" /D "_WINDOWS" /D "_AFXDLL" /D "_MBCS" /Fp"Debug/HookTest.pch" /Yc"stdafx.h" /Fo"Debug/" /Fd"Debug/" /FD /GZ /c 
+"E:\我的文档\菜鸟进化——踏入黑客编程之门\chapter5\KeyBoradHookTest\HookTest\StdAfx.cpp"
+]
+Creating command line "cl.exe @C:\DOCUME~1\jester\LOCALS~1\Temp\RSP546.tmp" 
+Creating temporary file "C:\DOCUME~1\jester\LOCALS~1\Temp\RSP547.tmp" with contents
+[
+/nologo /subsystem:windows /incremental:yes /pdb:"Debug/HookTest.pdb" /debug /machine:I386 /out:"Debug/HookTest.exe" /pdbtype:sept 
+".\Debug\HookTest.obj"
+".\Debug\HookTestDlg.obj"
+".\Debug\StdAfx.obj"
+".\Debug\HookTest.res"
+".\KeyBoradHookTest.lib"
+]
+Creating command line "link.exe @C:\DOCUME~1\jester\LOCALS~1\Temp\RSP547.tmp"
+<h3>Output Window</h3>
+Compiling...
+StdAfx.cpp
+Compiling...
+HookTest.cpp
+HookTestDlg.cpp
+E:\我的文档\菜鸟进化——踏入黑客编程之门\chapter5\KeyBoradHookTest\HookTest\HookTestDlg.cpp(176) : warning C4083: expected 'string'; found identifier 'KeyBoradHookTest'
+Generating Code...
+Linking...
+
+
+
+<h3>Results</h3>
+HookTest.exe - 0 error(s), 1 warning(s)
+</pre>
+</body>
+</html>

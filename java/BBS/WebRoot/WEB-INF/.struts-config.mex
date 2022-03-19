@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<FlowViewLayout Version="1.2">
+  <StrutsActivity path="/test.do" location="285,30" dimension="244,84" />
+  <StrutsActivity path="/WEB-INF/test.jsp" location="120,15" dimension="150,100" />
+  <StrutsActivity path="/WEB-INF/testok.jsp" location="585,30" dimension="150,100" />
+  <StrutsActivity path="/WEB-INF/login.jsp" location="105,105" dimension="150,100" />
+  <StrutsActivity path="/login.do" location="135,225" dimension="150,100" />
+  <StrutsActivity path="/WEB-INF/publish.jsp" location="345,225" dimension="150,100" />
+  <StrutsActivity path="/content.do" location="555,225" dimension="150,100" />
+  <StrutsActivity path="/WEB-INF/showContent.jsp" location="419,363" dimension="150,100" />
+  <StrutsTransition id="/content.do,goShowContent,/WEB-INF/showContent.jsp,1" routingType="0">
+    <AutomaticBendpoints>
+      <AbsolutePoint location="630,325" />
+      <AbsolutePoint location="630,413" />
+      <AbsolutePoint location="569,413" />
+    </AutomaticBendpoints>
+  </StrutsTransition>
+  <StrutsTransition id="/WEB-INF/publish.jsp,null,/content.do,2" routingType="0">
+    <AutomaticBendpoints>
+      <AbsolutePoint location="495,275" />
+      <AbsolutePoint location="555,275" />
+    </AutomaticBendpoints>
+  </StrutsTransition>
+  <StrutsTransition id="/login.do,goPublish,/WEB-INF/publish.jsp,1" routingType="0">
+    <AutomaticBendpoints>
+      <AbsolutePoint location="285,275" />
+      <AbsolutePoint location="345,260" />
+    </AutomaticBendpoints>
+  </StrutsTransition>
+  <StrutsTransition id="/WEB-INF/login.jsp,null,/login.do,2" routingType="0">
+    <AutomaticBendpoints>
+      <AbsolutePoint location="180,205" />
+      <AbsolutePoint location="180,225" />
+    </AutomaticBendpoints>
+  </StrutsTransition>
+  <StrutsTransition id="/WEB-INF/test.jsp,null,/test.do,2" routingType="0">
+    <AutomaticBendpoints>
+      <AbsolutePoint location="270,65" />
+      <AbsolutePoint location="285,65" />
+    </AutomaticBendpoints>
+  </StrutsTransition>
+</FlowViewLayout>
+

@@ -1,0 +1,11 @@
+﻿  StdAfx.cpp
+  _WIN32_WINNT not defined. Defaulting to _WIN32_WINNT_MAXVER (see WinSDKVer.h)
+  PeParseDlg.cpp
+f:\book\c++黑客编程揭秘与防范(第二版)\第六章\source\addsection - 副本\peparsedlg.cpp(673): warning C4996: 'strncpy': This function or variable may be unsafe. Consider using strncpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+          d:\program files (x86)\microsoft visual studio 11.0\vc\include\string.h(191) : 参见“strncpy”的声明
+  PeParse.cpp
+f:\book\c++黑客编程揭秘与防范(第二版)\第六章\source\addsection - 副本\peparse.cpp(52): warning C4996: 'CWinApp::Enable3dControls': CWinApp::Enable3dControls is no longer needed. You should remove this call.
+          d:\program files (x86)\microsoft visual studio 11.0\vc\atlmfc\include\afxwin.h(5361) : 参见“CWinApp::Enable3dControls”的声明
+  正在生成代码...
+PeParse.obj : warning LNK4075: 忽略“/EDITANDCONTINUE”(由于“/SAFESEH”规范)
+  PeParse.vcxproj -> F:\book\c++黑客编程揭秘与防范(第二版)\第六章\source\AddSection - 副本\.\Debug\PeParse.exe

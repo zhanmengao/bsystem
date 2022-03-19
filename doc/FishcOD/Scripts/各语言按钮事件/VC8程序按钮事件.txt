@@ -1,0 +1,17 @@
+var Addr 
+mov Addr,401000 
+loop: 
+find Addr,#83F80B560F87????????FF24??????????FF5514# 
+cmp $RESULT,0 
+je Exit 
+add $RESULT,0A 
+bp $RESULT 
+add $RESULT,1 
+mov Addr,$RESULT 
+jmp loop 
+Exit:
+MSG "VC8按钮事件查找完毕!" 
+ret
+err: 
+MSG "VC8按纽事件脚本运行错误!" 
+ret 

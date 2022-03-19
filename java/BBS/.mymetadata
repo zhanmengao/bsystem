@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project-module
+  type="WEB"
+  name="publicbbs"
+  id="myeclipse.1308121627015"
+  context-root="/publicbbs"
+  j2ee-spec="5.0"
+  archive="publicbbs.war">
+  <attributes>
+    <attribute name="webrootdir" value="WebRoot" />
+  </attributes>
+</project-module>
+

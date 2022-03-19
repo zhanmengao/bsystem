@@ -1,0 +1,4 @@
+周一：编写ftssrv接入文档；fts客户端从框架抽离，方便进行ftssrv压测；fts中http客户端使用对象池管理；
+周二：ftssrv内部评审；ftssrv压测；
+周三：SDK平台错误码整理；ftssrv错误码统一；
+周四：grpc TPS压测；猪来了 登陆前灰度方案

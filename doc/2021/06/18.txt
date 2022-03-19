@@ -1,0 +1,11 @@
+复盘：
+设计usersrv DB结构，实现活跃列表加载、更新
+usersrv并发安全代码检查
+迭代server架构文档
+研究go代码检查工具gometalinter
+
+计划：
+usersrv代码调优，增加一些无锁操作替代掉Mutex，进一步提高并发
+对接usersrv的RPC接口
+review框架的RPC request/response 同步机制
+

@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="src" path="src"/>
+	<classpathentry kind="lib" path="H:/Java的jar/hibernate/hibernate3.3.1min/slf4j-simple-1.5.10.jar" sourcepath="lib/hibernate3.3.1min"/>
+	<classpathentry kind="lib" path="H:/Java的jar/hibernate/hibernate3.3.1min/antlr-2.7.6.jar" sourcepath="D:/外功1-Java/JavaEE(高级）框架部分/SSH框架/韩顺平 struts1+hibernate3.2+spring视频/第16部分 Hibernate视频教程链接 httpspan.baidu.coms1bpKS2dx 密码 dxr8/资料/hibernate-distribution-3.3.1.GA-dist.zip"/>
+	<classpathentry kind="lib" path="H:/Java的jar/hibernate/hibernate3.3.1min/commons-collections-3.1.jar"/>
+	<classpathentry kind="lib" path="H:/Java的jar/hibernate/hibernate3.3.1min/dom4j-1.6.1.jar"/>
+	<classpathentry kind="lib" path="H:/Java的jar/hibernate/hibernate3.3.1min/hibernate3.jar" sourcepath="H:/Java的jar/hibernate/hibernate-distribution-3.3.1.GA-dist.zip"/>
+	<classpathentry kind="lib" path="H:/Java的jar/hibernate/hibernate3.3.1min/javassist-3.4.GA.jar"/>
+	<classpathentry kind="lib" path="H:/Java的jar/hibernate/hibernate3.3.1min/jta-1.1.jar"/>
+	<classpathentry kind="lib" path="H:/Java的jar/hibernate/hibernate3.3.1min/slf4j-api-1.5.10.jar"/>
+	<classpathentry kind="lib" path="H:/Java的jar/oracle12c jdbc/ojdbc7.jar"/>
+	<classpathentry kind="lib" path="H:/Java的jar/mysql/mysql-connector-java-5.1.6-bin.jar"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry kind="output" path="bin"/>
+</classpath>

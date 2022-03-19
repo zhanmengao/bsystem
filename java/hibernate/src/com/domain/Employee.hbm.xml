@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+	"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+	"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping package="com.domain">
+	<class name="Employee" table="employee">
+	<!-- mysql没有序列这个说法，故我们需要略微修改 -->
+	<id name="myid" column="id" type="java.lang.Integer">
+	<generator class="increment"></generator>
+	</id>
+	<!-- 对其它属性还有配置 -->
+	<property name="myname" type="java.lang.String">
+	<column name="myname" not-null="false"  />
+	</property>
+	<property name="email" type="java.lang.String" >
+	<column name="email" not-null="false"/>
+	</property>
+	<property name="hiredate" type="java.util.Date">
+	<column name="hiredate" not-null="false" />
+	</property>
+	</class>
+	
+</hibernate-mapping>

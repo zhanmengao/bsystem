@@ -1,0 +1,9 @@
+复盘：
+阅读整理dbsrv模块，理解其内部工作机制
+试玩Pig，理解交互需求：使用WebSocket实现的意义
+go学习：go的工程方式go module和GoPath导入外部lib，工作中所有组件：go + Redis，实现module方式调用go redis工程，实现go module方式引入protobuf
+沟通当前重构任务和进度、已经解决的技术难点，理解消息中心重构需求以及未来两周对好友系统的设计需求
+
+计划：
+梳理消息中心重构需求
+实现邮件系统原型

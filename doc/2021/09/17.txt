@@ -1,0 +1,2 @@
+周四：ftssrv 各SDK接口注册方式内聚，usersrv技术沉淀总结，开发后台框架RequestToSrv发给自己，开发 GetWithCtx接口：从DB读数据缓存到上下文
+周五：读表器、单元测试技术沉淀，ftssrv客户端

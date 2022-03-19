@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts-config PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 1.3//EN" "http://struts.apache.org/dtds/struts-config_1_3.dtd">
+
+<struts-config>
+  <form-beans >
+    <form-bean name="userForm" type="com.sina.struts.form.UserForm" />
+    <form-bean name="contentForm" type="com.sina.struts.form.ContentForm" />
+
+  </form-beans>
+
+  <global-exceptions />
+  <global-forwards />
+  <action-mappings >
+    <action
+      input="/WEB-INF/test.jsp"
+      parameter="flag"
+      path="/test"
+      validate="false">
+      <forward name="ok" path="/WEB-INF/testok.jsp" />
+    </action>
+    <action
+      attribute="userForm"
+      input="/WEB-INF/login.jsp"
+      name="userForm"
+      parameter="flag"
+      path="/login"
+ 	  scope="session"
+      validate="false">
+      <forward name="goPublish" path="/WEB-INF/publish.jsp" />
+    </action>
+    <action
+      attribute="contentForm"
+      input="/WEB-INF/publish.jsp"
+      name="contentForm"
+      parameter="flag"
+      path="/content"
+      scope="request"
+      validate="false">
+      <forward name="goShowContent" path="/WEB-INF/showContent.jsp" />
+    </action>
+
+
+
+
+  </action-mappings>
+  <!-- 配置代理请求处理器 -->
+ 	<controller>
+ 	<set-property property="processorClass" value="org.springframework.web.struts.DelegatingRequestProcessor"/>
+	</controller> 
+  <message-resources parameter="com.sina.struts.ApplicationResources" />
+
+</struts-config>
+

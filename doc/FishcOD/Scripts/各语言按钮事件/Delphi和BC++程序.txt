@@ -1,0 +1,13 @@
+var Addr
+mov Addr,401000
+loop:
+find Addr,#740E8BD38B83????????FF93????????#
+cmp $RESULT,0
+je Exit
+add $RESULT,0A
+bp $RESULT
+add $RESULT,1
+mov Addr,$RESULT
+jmp loop
+Exit:
+ret

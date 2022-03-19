@@ -1,0 +1,2 @@
+昨天：读表器go文件模板增加Mock方式注入表格，试用Monkey，usersrv单元测试，重构消息中心系统奖励102、103号
+今天：usersrv使用Monkey单元测试

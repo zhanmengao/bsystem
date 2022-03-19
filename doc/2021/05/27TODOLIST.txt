@@ -1,0 +1,11 @@
+复盘：
+实名认证idcard模块review完成
+代码整体架构整理完成（概述，目录结构，C/S通信，P2P服务期间消息转发，存储系统）
+阅读整理gatesvr
+go学习：select，并发遍历目录
+
+计划：
+阅读整理dbsvr
+试玩Pig，理解需求
+参加Pig项目”偷功能”需求评审，和Yison哥沟通实现方案
+go学习：sync.Mutex，sync.RWMutex

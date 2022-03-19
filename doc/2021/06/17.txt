@@ -1,0 +1,12 @@
+复盘：
+设计usersrv RPC结构，实现usersrv RPC机制和消息处理
+研究Redis Hash类型，Set类型，做1千万条long longs数据读写的压力测试。
+
+计划：
+设计usersrv DB结构，实现活跃列表读写、持久化
+研究go redis操作
+
+db方案：初始时，将数据load出来。数据类型采用hash。使用hkeys。
+每发生一次增、删事件时，检查内存容器，确实是发生数据变更的，同步到服务器（像Redis 命令传播机制）。使用hset和hdel
+研究Redis List类型，实现读写API。
+

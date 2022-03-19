@@ -1,0 +1,2 @@
+1>warnings in directory l:\我的文件夹\编程\第四章\source\fileopt
+1>l:\我的文件夹\编程\第四章\source\fileopt\fileopt.c(107) : warning C4996: 'ExAllocatePool': was d1>l:\我的文件夹\编程\第四章\source\fileopt\fileopt.c(147) : warning C4242: 'function' : conversion from 'LONGLONG' to 'SIZE_T', possible loss1>l:\我的文件夹\编程\第四章\source\fileopt\fileopt.c(147) : warning C4996: 'ExAllocatePool': was declared de

@@ -1,0 +1,61 @@
+病毒分析报告
+
+病毒介绍
+
+病毒特征：
+运行症状：
+
+病毒工作流程：
+
+病毒解决方案
+批处理清除病毒
+
+附录
+
+病毒调试环境
+病毒分析
+
+作者：
+联系：
+邮箱：
+日期：
+
+
+病毒介绍
+
+病毒特征
+病毒名称：mirwzntk.exe
+加壳方式：UPX 0.89.6 - 1.02 / 1.05 - 1.24 -> Markus & Laszlo(PEID查壳)
+病毒大小：12,288 字节(脱壳前)，67,072 字节(脱壳后)
+病毒类型：
+运行系统：win32
+病毒描述：
+
+运行状况：
+RegMon
+监视到
+动作：SetValue
+位置：HKLM\SOFTWARE\MICROSOFT\WINDOWSNT\CURRENTVERSION\WINDOWS\APPINIT_DLLS
+添加键值:mirwznt.dll
+
+FileMon
+监视到
+动作：Create、Write
+位置：C:\windows\system32\mirwznt.dll
+
+动作Create、Write
+位置：C:\windows\system32\mirwzntk.exe
+
+动作：Create、Write
+位置：病毒当前目录下创建一个bat文件
+
+bat文件内容
+
+:try
+del "D:\病毒样本\分析\a2.exe"
+if exist "D:\病毒样本\分析\a2.exe" goto try
+del %0
+
+运行Cmd执行bat文件，删除病毒自身
+
+mirwzntk.exe运行

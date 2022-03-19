@@ -1,0 +1,40 @@
+<html>
+<body>
+<pre>
+<h1>Build Log</h1>
+<h3>
+--------------------Configuration: Server - Win32 Release--------------------
+</h3>
+<h3>Command Lines</h3>
+Creating command line "rc.exe /l 0x804 /fo"Release/Server.res" /d "NDEBUG" /d "_AFXDLL" "J:\我的文件夹\编程\第二章\source\Server\Server.rc"" 
+Creating temporary file "C:\DOCUME~1\jester\LOCALS~1\Temp\RSP42A.tmp" with contents
+[
+/nologo /MD /W3 /GX /O2 /D "WIN32" /D "NDEBUG" /D "_WINDOWS" /D "_AFXDLL" /D "_MBCS" /Fp"Release/Server.pch" /Yu"stdafx.h" /Fo"Release/" /Fd"Release/" /FD /c 
+"J:\我的文件夹\编程\第二章\source\Server\Server.cpp"
+"J:\我的文件夹\编程\第二章\source\Server\ServerDlg.cpp"
+]
+Creating command line "cl.exe @C:\DOCUME~1\jester\LOCALS~1\Temp\RSP42A.tmp" 
+Creating temporary file "C:\DOCUME~1\jester\LOCALS~1\Temp\RSP42B.tmp" with contents
+[
+/nologo /MD /W3 /GX /O2 /D "WIN32" /D "NDEBUG" /D "_WINDOWS" /D "_AFXDLL" /D "_MBCS" /Fp"Release/Server.pch" /Yc"stdafx.h" /Fo"Release/" /Fd"Release/" /FD /c 
+"J:\我的文件夹\编程\第二章\source\Server\StdAfx.cpp"
+]
+Creating command line "cl.exe @C:\DOCUME~1\jester\LOCALS~1\Temp\RSP42B.tmp" 
+Creating command line "link.exe /nologo /subsystem:windows /incremental:no /pdb:"Release/Server.pdb" /machine:I386 /out:"Release/Server.exe"  ".\Release\Server.obj" ".\Release\ServerDlg.obj" ".\Release\StdAfx.obj" ".\Release\Server.res" "
+<h3>Output Window</h3>
+Compiling resources...
+Compiling...
+StdAfx.cpp
+Compiling...
+Server.cpp
+ServerDlg.cpp
+Generating Code...
+Linking...
+
+
+
+<h3>Results</h3>
+Server.exe - 0 error(s), 0 warning(s)
+</pre>
+</body>
+</html>

@@ -1,0 +1,23 @@
+@startuml
+'https://plantuml.com/class-diagram
+
+
+
+class UserCache {
+UID
+上次登录时间
+金钱
+岛屿
+偷数据
+炮数据
+盾牌情况
+通缉令情况：我当前正在通缉谁
+
+检查我是否可以被偷()
+检查我是否可以被打()
+返回我通缉了谁()
+}
+
+
+
+@enduml

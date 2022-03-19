@@ -1,0 +1,10 @@
+复盘：
+滤清筛选逻辑，完成Record模块接口
+梳理EnemyList逻辑，确定技术方案
+
+计划：
+完成EnemyList开发。自行代码检查MsgCenter，Record，EnemyList
+连入测试服务器进行自测
+帮忙设计玩家服务器，目前想象类似LRU的筛选算法，用户表记录上次活跃时间（取LRU？），像redis刷新数据库一样每次更新一部分玩家
+
+

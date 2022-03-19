@@ -1,0 +1,15 @@
+var Addr
+mov Addr,401000
+loop:
+find Addr,#816C2404??000000#
+cmp $RESULT,0
+je Exit
+add $RESULT,08
+bp $RESULT
+add $RESULT,1
+mov Addr,$RESULT
+jmp loop
+Exit:
+eval "按纽事件查找完毕!"
+msg $RESULT
+ret

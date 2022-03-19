@@ -1,0 +1,2 @@
+1>warnings in directory l:\我的文件夹\编程\第四章\source\regopt
+1>l:\我的文件夹\编程\第四章\source\regopt\regopt.c(78) : warning C4047: 'function' : 'ULONG' differs in levels of indirec1>l:\我的文件夹\编程\第四章\source\regopt\regopt.c(78) : warning C4024: 'ZwQueryValueKey' : different types for formal and actual par1>l:\我的文件夹\编程\第四章\source\regopt\regopt.c(84) : warning C4996: 'ExAllocatePool': was declared de

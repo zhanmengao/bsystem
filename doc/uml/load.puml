@@ -1,0 +1,22 @@
+@startuml
+'https://plantuml.com/activity-diagram-beta
+
+start
+if (内存数据未命中) then (true)
+    if (用户不活跃) then(false)
+    else (true)
+        :返回空和error;
+        stop
+    endif
+:调用回调函数();
+:从DB中把数据load出来;
+endif
+
+if (LRU队列满) then(true)
+:将表头数据移除;
+endif
+:将数据插入到LRU表尾;
+:返回数据;
+stop
+
+@enduml

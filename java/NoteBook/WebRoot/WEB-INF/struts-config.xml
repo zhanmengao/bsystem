@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts-config PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 1.3//EN" "http://struts.apache.org/dtds/struts-config_1_3.dtd">
+
+<struts-config>
+  <form-beans >
+    <form-bean name="userForm" type="com.sina.struts.form.UserForm" />
+    <form-bean name="messageForm" type="com.sina.struts.form.MessageForm" />
+
+  </form-beans>
+
+  <global-exceptions />
+  <global-forwards >
+    <forward name="ok" path="/WEB-INF/ok.jsp" />
+
+  </global-forwards>
+
+  <action-mappings >
+    <action
+      attribute="userForm"
+      input="/WEB-INF/login.jsp"
+      name="userForm"
+      parameter="flag"
+      path="/login"
+      scope="request"
+      type="com.sina.struts.action.LoginAction"
+      validate="false" >
+      <forward name="loginok" path="/goMessageUi.do" />
+      <forward name="goLoginUi" path="/WEB-INF/login.jsp" />
+    </action>
+
+    <action
+      parameter="flag"
+      path="/goMessageUi"
+      type="com.sina.struts.action.GoMessageUiAction"
+      validate="false" >
+      <forward name="goMessageUi" path="/WEB-INF/showMessage.jsp" />
+    </action>
+    <action
+      attribute="messageForm"
+      input="/WEB-INF/publishMessage.jsp"
+      name="messageForm"
+      parameter="flag"
+      path="/goPublishMessageUI"
+      scope="request"
+      type="com.sina.struts.action.GoPublishMessageUIAction"
+      validate="false">
+      <forward name="goPublishMessageUi" path="/WEB-INF/publishMessage.jsp" />
+    </action>
+
+
+
+  </action-mappings>
+
+  <message-resources parameter="com.sina.struts.ApplicationResources" />
+</struts-config>
+

@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping package="com.sina.domain">
+<class name="Message">
+<!-- 主键属性 -->
+<id name="mesId" type="java.lang.Integer">
+<generator class="sequence">
+<param name="sequence">mes_seq</param>
+</generator>
+</id>
+<!-- 普通属性 -->
+<property name="content" type="java.lang.String">
+<column name="content" length="2000"/>
+</property>
+<property name="mesTime" type="java.util.Date">
+<column name="mesTime" />
+</property>
+<!-- 配置getter属性 -->
+<many-to-one name="getter" column="getter_id"  />
+<!-- 配置sendder -->
+<many-to-one name="sender" column="sender_id"  />
+</class>
+</hibernate-mapping>
