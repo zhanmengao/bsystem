@@ -1,0 +1,20 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/mnt/hgfs/Space/System/Signal/kill/sigqueue.c
+stdio.h
+-
+signal.h
+-
+stdlib.h
+-
+unistd.h
+-
+string.h
+-
+

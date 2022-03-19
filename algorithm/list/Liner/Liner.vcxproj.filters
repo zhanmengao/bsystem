@@ -1,0 +1,91 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="源文件">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="Array">
+      <UniqueIdentifier>{e630448a-0e40-4cac-bac8-53cdc6f01a8c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="C">
+      <UniqueIdentifier>{0bee88ed-e42c-4e22-b4c9-96b4ba70381a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Java">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="Old">
+      <UniqueIdentifier>{7e1ef699-706a-4dee-b52a-0d7da00c9bf5}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="main.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="seqlist.c">
+      <Filter>C</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\stb\LinerList.h">
+      <Filter>Array</Filter>
+    </ClInclude>
+    <ClInclude Include="..\stb\vector.hpp">
+      <Filter>Array</Filter>
+    </ClInclude>
+    <ClInclude Include="..\stb\array.hpp">
+      <Filter>Array</Filter>
+    </ClInclude>
+    <ClInclude Include="..\stb\List.hpp">
+      <Filter>Array</Filter>
+    </ClInclude>
+    <ClInclude Include="seqlist.h">
+      <Filter>C</Filter>
+    </ClInclude>
+    <ClInclude Include="linearList.Hpp">
+      <Filter>Old</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\..\Java\com\xianxingbiao\Array.java">
+      <Filter>Java</Filter>
+    </None>
+    <None Include="..\..\Java\com\xianxingbiao\DoubleLinkList.java">
+      <Filter>Java</Filter>
+    </None>
+    <None Include="..\..\Java\com\xianxingbiao\DyyArray.java">
+      <Filter>Java</Filter>
+    </None>
+    <None Include="..\..\Java\com\xianxingbiao\IsRing.java">
+      <Filter>Java</Filter>
+    </None>
+    <None Include="..\..\Java\com\xianxingbiao\LaDing.java">
+      <Filter>Java</Filter>
+    </None>
+    <None Include="..\..\Java\com\xianxingbiao\LinkList.java">
+      <Filter>Java</Filter>
+    </None>
+    <None Include="..\..\Java\com\xianxingbiao\LoopList.java">
+      <Filter>Java</Filter>
+    </None>
+    <None Include="..\..\Java\com\xianxingbiao\Magic.java">
+      <Filter>Java</Filter>
+    </None>
+    <None Include="..\..\Java\com\xianxingbiao\MD5_password.java">
+      <Filter>Java</Filter>
+    </None>
+    <None Include="..\..\Java\com\xianxingbiao\Password.java">
+      <Filter>Java</Filter>
+    </None>
+    <None Include="..\..\Java\com\xianxingbiao\Select_Middle.java">
+      <Filter>Java</Filter>
+    </None>
+    <None Include="..\..\Java\com\xianxingbiao\Yuesefu.java">
+      <Filter>Java</Filter>
+    </None>
+    <None Include="..\..\Java\com\xianxingbiao\Yuesefu2.java">
+      <Filter>Java</Filter>
+    </None>
+  </ItemGroup>
+</Project>

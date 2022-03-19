@@ -1,0 +1,70 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="源文件">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="头文件">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hh;hpp;hxx;hm;inl;inc;xsd</Extensions>
+    </Filter>
+    <Filter Include="资源文件">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="Day3_多级指针">
+      <UniqueIdentifier>{bca4ff95-2107-4314-834d-24a2237dcdc8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Day4_数组">
+      <UniqueIdentifier>{9d3a6f2b-7b33-49c1-8834-1996284b2053}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\C_Point\Day4\多级指针相关\dm01_数组基础概念.c">
+      <Filter>Day4_数组</Filter>
+    </ClCompile>
+    <ClCompile Include="..\C_Point\Day4\多级指针相关\dm02_多维数组本质.c">
+      <Filter>Day4_数组</Filter>
+    </ClCompile>
+    <ClCompile Include="..\C_Point\Day4\多级指针相关\dm03_多维数组内存存储是线性的.c">
+      <Filter>Day4_数组</Filter>
+    </ClCompile>
+    <ClCompile Include="..\C_Point\Day4\多级指针相关\dm04_指针数组的应用场景.c">
+      <Filter>Day4_数组</Filter>
+    </ClCompile>
+    <ClCompile Include="..\C_Point\Day4\多级指针相关\dm08_二级指针作业强化训练.c">
+      <Filter>Day4_数组</Filter>
+    </ClCompile>
+    <ClCompile Include="..\C_Point\Day4\多级指针相关\dm09_二级指针作业强化训练2.c">
+      <Filter>Day4_数组</Filter>
+    </ClCompile>
+    <ClCompile Include="..\C_Point\Day3\dm01_指针的输入和输出特性.c">
+      <Filter>Day3_多级指针</Filter>
+    </ClCompile>
+    <ClCompile Include="..\C_Point\Day3\dm02_二级指针做输入_第1种内存模型.c">
+      <Filter>Day3_多级指针</Filter>
+    </ClCompile>
+    <ClCompile Include="..\C_Point\Day3\dm03_二级指针做输入_第2种内存模型.c">
+      <Filter>Day3_多级指针</Filter>
+    </ClCompile>
+    <ClCompile Include="..\C_Point\Day3\dm04_二级指针做输入_第3种内存模型.c">
+      <Filter>Day3_多级指针</Filter>
+    </ClCompile>
+    <ClCompile Include="..\C_Point\Day3\dm05_二级指针内存模型.c">
+      <Filter>Day3_多级指针</Filter>
+    </ClCompile>
+    <ClCompile Include="..\C_Point\Day3\dm06_玩转多级指针.c">
+      <Filter>Day3_多级指针</Filter>
+    </ClCompile>
+    <ClCompile Include="..\C_Point\Day3\dm07_两个辅助指针变量挖字符串.c">
+      <Filter>Day3_多级指针</Filter>
+    </ClCompile>
+    <ClCompile Include="..\C_Point\Day4\指针总结\dm10_指针的其他用法.c">
+      <Filter>Day3_多级指针</Filter>
+    </ClCompile>
+    <ClCompile Include="..\C_Point\Day4\指针总结\dm11_再谈多级指针强化.c">
+      <Filter>Day3_多级指针</Filter>
+    </ClCompile>
+  </ItemGroup>
+</Project>

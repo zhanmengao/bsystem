@@ -1,0 +1,13 @@
+Id	matchStyle	Str
+#		
+#唯一ID，不可重复，从1开始	匹配方式 1模式查找 2全匹配	描述
+1	1	Unknown
+2	2	*
+3	2	0
+4	1	Default
+5	1	unknown
+6	1	default
+7	2	无
+8	1	未知
+9	2	<N/A>
+10	1	即插即用监视器

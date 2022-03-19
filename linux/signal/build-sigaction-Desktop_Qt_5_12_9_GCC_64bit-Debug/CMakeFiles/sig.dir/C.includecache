@@ -1,0 +1,28 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/mnt/hgfs/Space/System/Signal/sigaction/sigaction.c
+stdio.h
+-
+stdlib.h
+-
+unistd.h
+-
+signal.h
+-
+
+/mnt/hgfs/Space/System/Signal/sigaction/sigset.c
+stdlib.h
+-
+stdio.h
+-
+unistd.h
+-
+signal.h
+-
+

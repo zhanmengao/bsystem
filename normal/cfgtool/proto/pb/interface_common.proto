@@ -1,0 +1,1072 @@
+syntax = "proto3";
+package pb;
+
+import "rpc.proto";
+import "struct.proto";
+import "struct_action.proto";
+import "db_old.proto";
+import "db_action.proto";
+import "enum.proto";
+import "table.proto";
+import "table_action.proto";
+import "struct_other.proto";
+import "table_paycenter.proto";
+
+// 转盘事件积分类型
+
+// 哈米基本信息接口请求
+message HammyInfoReq {
+}
+// 哈米基本信息接口响应
+message HammyInfoRsp {
+    RpcRspHead                Head         = 1;
+    int64                     cake         = 2;  // 当前用户的蛋糕数
+    int64                     lotteryTimes = 3;  // 已经抽奖的次数
+    repeated HammyLottery     lottery      = 4;  // 抽奖配置
+    repeated HammyBoard       broad        = 5;  // 公告板数据
+    repeated HammyTableReward tableReward  = 6;  // 转盘奖励
+    repeated HammyStageReward stageReward  = 7;  // 阶段奖励
+    repeated HammyProduct     product      = 8;  // 商品
+}
+
+// 哈米转盘奖励
+message HammyTableReward {
+    int64                     id         = 1;
+    int64                     level      = 2;  // 等级
+    repeated CommonRewardItem reward     = 3;  // 奖励
+    bool                      canReplace = 4;  // 是否能够被替换
+}
+
+// 哈米阶段奖励
+message HammyStageReward {
+    int64                     id       = 1;  // id
+    int64                     num      = 2;  // 需要达成的数量条件
+    repeated CommonRewardItem reward   = 3;  // 奖励
+    bool                      received = 4;  // 是否领取
+}
+
+message HammyProduct {
+    int64  sort      = 1;  // 排序
+    string productID = 2;  // 产品id
+}
+
+// 哈米抽奖请求
+message HammyLotteryReq {
+    int64 multiPle = 1;  // 倍数
+    enum HammyScene {
+        Cake = 0;  // 蛋糕抽奖
+        Ads  = 1;  // 广告
+    }
+    HammyScene scene = 2;  // 场景
+}
+
+// 哈米抽奖响应
+message HammyLotteryRsp {
+    RpcRspHead                Head          = 1;
+    int64                     cake          = 2;  // 当前蛋糕数
+    int64                     lotteryTimes  = 3;  // 当前抽奖次数
+    CommonRewardData          reward        = 4;  // 奖励
+    repeated int64            lotterySteps  = 5;  // 抽奖步数
+    repeated HammyTableReward replaceReward = 6;  // 替换的奖励
+    bool                      isBigPrize    = 7;  // 是否有大奖
+}
+
+// 哈米派对领取阶段奖励
+message HammyStageRewardReq {
+    int64 stage = 1;  // 领取的阶段
+}
+
+// 哈米阶段奖励领取响应
+message HammyStageRewardRsp {
+    RpcRspHead       Head   = 1;
+    CommonRewardData reward = 2;  // 领取的奖励
+}
+
+/////////////////////////////////////////////////////////////////////////// 公会种树
+//公会种树详情
+message FamilyTreeInfoRpcReq {
+}
+
+message FamilyTreeStageRewardItem {
+    int64                     stage        = 1;
+    repeated CommonRewardItem commonReward = 2;  // 奖励通用, 后端注意不要修改全局的配置
+    repeated CommonRewardItem lockReward   = 3;  // 锁定奖励
+    RewardStatus              commonStatus = 5;  // 阶段领奖状态1
+    RewardStatus              lockStatus   = 6;  // 阶段领奖状态2
+}
+
+message FamilyTreeInfoRpcRsp {
+    RpcRspHead Head = 1;
+    // 档位配置 (前端/后端 金币系数? 锁定岛屿信息)
+    // 公会当前浇水
+    int64 score = 2;
+    // 档位为map的key
+    repeated FamilyTreeStageRewardItem stagesReward = 3;
+}
+
+//公会种树领奖
+message FamilyTreeRewardRpcReq {
+    // stage
+    int64 stage = 1;
+    // 位置
+    bool isLock = 2;
+    // 是否批量领取阶段奖
+    bool isBulk = 3;
+}
+
+message FamilyTreeRewardRpcRsp {
+    RpcRspHead       Head   = 1;
+    CommonRewardData reward = 2;
+    int64            score  = 3;
+}
+
+//公会种树排行榜
+message FamilyTreeRankRpcReq {
+}
+
+message FamilyTreeRankItem {
+    int64  uid     = 1;
+    string name    = 2;
+    int64  star    = 3;
+    int64  score   = 4;
+    bool   isLeave = 5;  // 离开公会
+    string fbPic   = 6;  // 头像
+    int64  CurPic  = 7;  // 默认头像
+}
+
+message FamilyTreeRankRpcRsp {
+    RpcRspHead                  Head = 1;
+    repeated FamilyTreeRankItem list = 2;
+}
+
+//公会种树积分广播 通用奖励结构
+//message FamilyTreeScoreBroadcast {
+//    // 通用奖励结构
+//}
+
+/////////////////////////////////////////////////////////////////////////// 转盘事件
+// 转盘事件 活动详情 请求
+message WheelEventDetailRpcReq {
+    string Mode = 1;  // 活动模式：空-正常活动，newbie-新手活动
+}
+
+// 转盘事件 活动详情 响应
+message WheelEventDetailRpcRsp {
+    RpcRspHead  Head          = 1;
+    int64       SID           = 2;  // 活动SID
+    string      ConfigID      = 3;  // 分层配置ID（房间ID）
+    int64       Score         = 4;  // 积分数量
+    bool        HasReward     = 5;  // 是否有未领取的奖励
+    int64       ClaimedVIP    = 6;  // 已领取的VIP奖励档位
+    PlanetRange PlanetLimit   = 7;  // 岛屿区间
+    int64       RemainSeconds = 8;  // 活动剩余秒数
+    bool        HideLimit     = 9;  // 隐藏限时活动
+}
+
+// 转盘事件 活动领奖 请求
+message WheelEventRewardRpcReq {
+    string Mode = 1;  // 活动模式：空-正常活动，newbie-新手活动
+}
+
+// 转盘事件 活动领奖 响应
+message WheelEventRewardRpcRsp {
+    RpcRspHead                     Head    = 1;
+    int64                          Score   = 2;  // 积分数量
+    repeated WheelEventLevelReward Rewards = 3;  // 所有能领取的奖励
+}
+
+// 转盘事件 VIP额外奖励领奖 请求
+message WheelEventVIPRewardRpcReq {
+    string Mode = 1;  // 活动模式：空-正常活动，newbie-新手活动
+}
+
+// 转盘事件 VIP额外奖励领奖 响应
+message WheelEventVIPRewardRpcRsp {
+    RpcRspHead       Head    = 1;
+    int64            Score   = 2;  // 积分数量
+    CommonRewardData Rewards = 3;  // 所有能领取的奖励
+}
+
+// earningOnline
+message EarningOnlineInfoRpcReq {
+}
+
+message EarningOnlineInfoRpcRsp {
+    RpcRspHead Head = 1;
+    // 奖励配置 前端读配置文件
+    // 个人数据
+    // 当前红包币
+    int64 Coin = 2;
+    // 已领奖信息
+    EarningOnlineRewardedInfo RewardedInfo = 3;
+    // 提现申请档位信息
+    repeated EarningOnlineWithdrawInfo Withdraws     = 4;
+    EarningOnlineSignInfo              SingInfo      = 5;  // 签到信息
+    CommonRewardItem                   LotteryReward = 6;  // 抽奖中奖类型
+}
+
+message EarningOnlineRewardedInfo {
+    // 观看广告次数 读广告接口
+    int32 FBSendNum        = 1;  //今天fb发送领奖次数
+    int32 MsSendNum        = 2;  //今天ms发送领奖次数
+    int32 SuccessRewardNum = 3;  //今天领取邀请成功奖励次数
+    // 邀请成功领奖档位列表, 包括邀请人信息
+    repeated EarningOnlineInviteInfo Invites      = 4;
+    int32                            LocalSendNum = 5;  // 本地分享领奖次数
+}
+
+message EarningOnlineWithdrawInfo {
+    int32 Stage              = 1;
+    int32 Num                = 2;  // 本人次数
+    int32 TodayTotalApplyNum = 3;  // 每天所有人的次数限制
+}
+
+message EarningOnlineInviteInfo {
+    int32         Stage    = 1;
+    userInfoBasic UserInfo = 2;  //头像
+    bool          IsReward = 3;  //是否已领奖
+}
+
+// 发送邀请
+message EarningOnlineInviteRpcReq {
+    repeated string Siteuids = 1;  //邀请siteuid
+}
+
+message EarningOnlineInviteRpcRsp {
+    RpcRspHead Head = 1;
+}
+
+// 在登陆设置邀请成功的时候, 更新邀请成功的数据
+
+// 领奖
+message EarningOnlineRewardRpcReq {
+    EarningOnlineRewardType Type = 1;
+    // type = 1, subType=1为fb, subType=2为messager
+    // type = 2, subType为档位
+    // type = 3, subType为档位
+    int32 SubType = 2;
+    int32 ApplyID = 3;  // 申请ID,作用提现分享
+}
+
+message EarningOnlineRewardRpcRsp {
+    RpcRspHead       Head   = 1;
+    CommonRewardData Reward = 2;
+    // 已领奖信息
+    EarningOnlineRewardedInfo RewardedInfo = 3;
+}
+
+// 反馈及提现记录
+// 需要结合反馈考虑
+message EarningOnlineApplyListRpcReq {
+}
+
+message EarningOnlineApplyListRpcRsp {
+    RpcRspHead                      Head = 1;
+    repeated EarningOnlineApplyInfo List = 2;
+}
+
+message EarningOnlineApplyInfo {
+    string                      Channel                   = 1;   // 银行卡名称或者电子钱包名称
+    string                      ChannelNum                = 2;   // 银行卡号或者电子钱包名称
+    string                      Name                      = 3;   // 姓名
+    int32                       WithDrawAmount            = 4;   // 提现金额
+    int64                       ApplyTime                 = 5;   // 申请时间
+    EarningOnlineAuditStatus    AuditStatus               = 6;   // 审核
+    int32                       Stage                     = 7;   // 阶段
+    int64                       FinishTime                = 8;   // 完成时间
+    int32                       ApplyID                   = 9;   // 申请ID
+    int64                       UpdateTime                = 10;  // 更新时间
+    EarningOnlineChannelType    ChannelType               = 11;  // 提现类型
+    string                      Country                   = 12;  // 国家
+    EarningOnlineApplyPhoneInfo PhoneInfo                 = 13;  // 电话卡信息
+    int32                       ApplyType                 = 14;  // 0 是普通提取 1 重复提取 2 抽奖
+    int32                       WithdrawShareCount        = 15;  // 提现分享次数
+    int32                       WithdrawSuccessShareCount = 16;  // 提现成功后的分享次数
+}
+
+// 申请记录
+message EarningOnlineApplyRpcReq {
+    string                   Channel     = 1;  // 银行卡名称或者电子钱包名称或者电话卡运营商
+    string                   ChannelNum  = 2;  // 银行卡号或者电子钱包卡号
+    string                   Name        = 3;  // 姓名
+    int32                    Stage       = 4;  // 申请挡位
+    int32                    ApplyType   = 5;  // 申请类型 0 普通提取 1 重新提取 2 抽奖
+    int32                    ApplyID     = 6;  // 重新提取申请ID
+    EarningOnlineChannelType ChannelType = 7;  // 提现类型
+}
+
+message EarningOnlineApplyRpcRsp {
+    RpcRspHead                  Head      = 1;
+    int32                       Coin      = 2;  // 当前红包币
+    EarningOnlineApplyPhoneInfo PhoneInfo = 3;  // 电话卡信息
+    int64                       ApplyID   = 4;  // 申请ID
+}
+
+// 网赚电话卡信息
+message EarningOnlineApplyPhoneInfo {
+    string Serial       = 1;  // 卡号
+    string Pin          = 2;  // 密码
+    string Exp          = 3;  // 过期时间
+    string Product      = 4;  // 运营商
+    int32  Denomination = 5;  // 面额
+}
+
+// 提现检测
+message EarningOnlineCheckRpcReq {
+}
+
+message EarningOnlineCheckRpcRsp {
+    RpcRspHead                         Head      = 1;
+    repeated EarningOnlineWithdrawInfo Withdraws = 2;
+}
+
+// 签到信息
+message EarningOnlineSignInfo {
+    int32 SignNum    = 1;  // 签到次数
+    int32 SignStatus = 2;  // 签到状态 0 没有 1 是有
+}
+
+// 抽奖转盘
+message EarningOnlineWheelRpcReq {
+}
+
+message EarningOnlineWheelRpcRsp {
+    RpcRspHead       Head   = 1;
+    int32            Case   = 2;
+    CommonRewardData Reward = 3;
+    int64            Coin   = 4;
+}
+
+// 数据
+// key1 用户活动数据, 加锁修改防止并发问题?
+// key2 活动总提现次数限制
+// mysql 提现及反馈数据
+
+message GetActivityDataReq {
+}
+
+message GetActivityDataRsp {
+    RpcRspHead       Head         = 1;
+    repeated ActData activityList = 2;
+}
+
+message ActData {
+    string                id                 = 1;   // 活动ID
+    int32                 stay               = 2;   // 永久活动-1 普通-0
+    int32                 redStatus          = 3;   // 红点状态 1-有红点 2-没有红点
+    int32                 done               = 4;   // 活动是否已结束 0-未结束 1-已结束
+    int32                 unlockPlanet       = 5;   // 开启岛屿
+    int32                 closePlanet        = 6;   // 关闭岛屿 0-无限制
+    int32                 sid                = 7;   // 活动副id
+    ActivityStatus        status             = 8;   // 活动状态
+    string                mode               = 9;   // 活动模式（如新手模式Newbie），用于请求action/detail时透传后台
+    string                skinName           = 10;  // 皮肤名字
+    int64                 startTime          = 11;  // 活动开始时间
+    int64                 endTime            = 12;  // 活动结束时间
+    int32                 needShowRemainTime = 14;  // 是否展示剩余时间
+    string                location           = 15;  // 活动位置，多个用'|'隔开
+    int32                 priority           = 16;  // 优先级，决定位置是否靠前
+    ActivityOperationType operate            = 17;  // 活动跳转类型
+    string                jumpOrText         = 18;  // 跳转ID或者链接
+    bytes                 detailData         = 19;  // 活动自身的额外类型
+    string                content            = 20;
+}
+
+/****         各个活动独有的数据  开始   ******/
+// 多充礼包活动数据
+message ActMultiPayData {
+    int64             maxTime  = 1;
+    int32             inCycle  = 2;
+    ProductInfoConfig product  = 3;
+    int32             times    = 4;
+    int32             modelID  = 5;
+    int32             popLevel = 6;
+}
+
+// 超级礼包活动数据
+message ActBigItemData {
+    ProductInfoConfig product        = 1;
+    int32             modeID         = 2;  // 模型ID
+    int32             remainBuy      = 3;  //
+    int32             dailyMaxCount  = 4;  //
+    int64             remainTime     = 5;  // 剩余展示时间 单位：秒
+    string            skinBundleName = 6;  // 皮肤名，前端使用
+}
+
+message ActSlingshotData {
+    bool IsShot      = 1;  // 能否射击
+    bool IsTradeMsg  = 2;  // 是否有交易消息
+    bool IsStealGift = 3;  // 是否有偷礼盒的消息
+    bool IsExchange  = 4;  // 是否可以兑换
+}
+
+// 成长宝箱
+message ActStarBoxData {
+    int32 isTrigger = 1;  // 是否触发统计
+}
+
+// 卡牌多送
+message ActCardPresentData {
+    repeated ActCardPresentInfo present = 1;  // 多送的
+    repeated ActCardPresentInfo origin  = 2;  // 原来的
+}
+
+message ActCardPresentInfo {
+    int32 cardBoxId = 1;  // 宝箱id
+    int32 num       = 2;  // 数量
+}
+
+// 钻石制造机
+message ActDiamondMakerData {
+    ActDiamondMakerOpt          optInfo = 1;
+    repeated ActDiamondMakerCfg cfg     = 2;
+}
+
+message ActDiamondMakerOpt {
+    int32 freeTimes      = 1;  // 免费次数
+    int32 onePayAddTimes = 2;  // 最多制造多少钻石
+}
+
+message ActDiamondMakerCfg {
+    int32 diamond = 1;
+    int32 min     = 2;
+    int32 max     = 3;
+}
+
+// 皮肤
+message ActSkinData {
+    repeated ActSkinInfo wear = 1;  // 穿戴的皮肤
+}
+
+message ActSkinInfo {
+    string type = 1;  // 皮肤类型
+    int32  id   = 2;  // 穿戴的id
+}
+
+// 砸蛋活动
+message ActGuessData {
+    int32 hasData = 1;
+}
+
+// 金卡交换活动
+message ActLegendaryGuard {
+    repeated GuardCardItem cardInfo = 1;
+}
+
+/****         各个活动独有的数据  结束   ******/
+
+/********************活动卡组 *****************/
+message ActionCardInfoRsp {
+    int32                   ret               = 1;  // 错误码 0 正确 >0 有错
+    repeated ActionCardItem cardList          = 2;  // 拥有卡片列表
+    repeated int32          completeGroupList = 3;  // 已集齐并领奖卡组
+    int32                   openGroup         = 4;  // 开放的卡组
+}
+
+message ActionCardFinishRewardRsp {
+    int32            ret  = 1;  // 错误码 0 正确 >0 有错
+    CommonRewardData data = 2;  // 奖励信息
+}
+
+message ActionCardCombineCfg {
+    repeated ActionCardConfig cardCfg = 1;  // 主题卡组信息
+}
+
+message ActionCardConfigRsp {
+    int32                ret  = 1;  // 错误码 0 正确 >0 有错
+    ActionCardCombineCfg data = 2;  // 配置信息
+}
+/********************活动卡组 *****************/
+
+//*****************************请求协议 start************************************//
+// 副本入口信息
+message DungeonEntranceReq {
+}
+
+message DungeonEntranceRsp {
+    RpcRspHead                Head          = 1;
+    DungeonFailed             Failed        = 2;   // 副本击败信息
+    string                    MyDungeon     = 3;   // 副本ID
+    int32                     AttackNum     = 4;   // 攻击次数
+    int32                     RemainAttack  = 5;   // 剩余炮弹数
+    int64                     DungeonExpire = 6;   // 副本过期时间
+    int32                     CallNum       = 7;   // 免费召回石的数量
+    int32                     CallLimit     = 8;   // 召唤上限
+    int32                     SummonNum     = 9;   // 需要召唤石数量
+    int32                     PopsSummon    = 10;  // 召唤石道具的数量
+    int32                     HasReward     = 11;  // 是否有奖励领取
+    int32                     HasInvite     = 12;  // 是否邀请
+    int64                     GetCallTime   = 13;  // 召唤时间
+    repeated DungeonRewardMsg DungeonInfo   = 14;  // 玩家的副本信息
+    AttackInfo                AttackInfo    = 15;  // 攻击信息
+    RewardTips                RewardTips    = 16;  // 帮助里面tips信息
+    string                    PlatFriend    = 17;  // 平台好友
+    bool                      IsGuide       = 18;  // 是否新手
+    map<int64, int32>         AddRate       = 19;  // 增加概率
+    int32                     RemainHp      = 20;  // 剩余血量
+    int32                     Hp            = 21;  // 血量
+    int64                     DownTime      = 22;  // 剩余时间
+}
+
+// 副本创建
+message DungeonCreateReq {
+    int32 BossID = 1;  // 副本配置的ID
+}
+
+message DungeonCreateRsp {
+    RpcRspHead Head            = 1;
+    string     DungeonID       = 2;   // 副本ID
+    int32      PropsSummon     = 3;   // 召唤石道具的数量
+    int32      Hp              = 4;   // 血量
+    int32      RemainHp        = 5;   // 剩余血量
+    int32      RemainTime      = 6;   // 剩余时间
+    bool       DunGuide        = 7;   // 新手
+    int32      AddRate         = 8;   // 奖励概率
+    int32      CallNum         = 10;  // 免费召唤石
+    int32      AttackNum       = 11;  // 攻击次数
+    int32      RemainAttackNum = 12;  // 剩余炮弹个数
+}
+
+// 副本进入
+message DungeonJoinReq {
+    string DungeonID = 1;  //
+}
+
+message DungeonJoinRsp {
+    RpcRspHead              Head            = 1;
+    int32                   AddRate         = 2;
+    int32                   AttackNum       = 3;   // 攻击次数
+    int32                   CurPic          = 4;   // 当前头像框
+    string                  FbPic           = 5;   // FB头像
+    int32                   Hp              = 6;   // boss血量
+    int32                   RemainHp        = 7;   // 剩余血量
+    int32                   RemainAttackNum = 8;   // 剩余炮弹数量
+    int64                   RemainTime      = 9;   // 剩余时间
+    BOSS_STATUS             BossStatus      = 10;  // 副本状态
+    repeated DamageRankInfo RankList        = 11;  // 伤害列表
+    string                  DungeonID       = 12;  // 副本id
+}
+
+// 副本攻击
+message DungeonAttackReq {
+    int32  Double    = 1;  // 倍数
+    int32  Damage    = 2;  // 伤害
+    string DungeonID = 3;  // 副本ID
+}
+
+message DungeonAttackRsp {
+    RpcRspHead              Head         = 1;
+    int32                   AddRate      = 2;
+    int32                   Hp           = 3;   // 血量
+    int32                   RemainHp     = 4;   // 剩余血量
+    int32                   Damage       = 5;   // 伤害
+    int32                   AttackNum    = 6;   // 攻击次数
+    int32                   RemainAttack = 7;   // 剩余炮弹数
+    BOSS_STATUS             BossStatus   = 8;   // boss状态
+    int32                   WeakTime     = 9;   // 虚弱时间
+    int32                   DoubleTime   = 10;  // 双倍时间
+    repeated DamageRankInfo RankList     = 11;  // 伤害列表
+    DungeonInfo             DungeonInfo  = 12;  // 击败后的副本信息
+    int32                   DunGuide     = 13;  // 是否完成新手
+}
+
+// 副本好友信息
+message DungeonFriendReq {
+    repeated int64 FUID = 1;
+}
+
+message DungeonFriendRsp {
+    RpcRspHead                 Head              = 1;
+    repeated DungeonFriendInfo DungeonFriendInfo = 2;
+}
+
+// 副本奖励列表
+message DungeonRewardListReq {
+}
+
+message DungeonRewardListRsp {
+    RpcRspHead                 Head       = 1;
+    repeated DungeonRewardList RewardList = 2;
+}
+
+// 副本详情
+message DungeonDetailReq {
+    string DungeonID = 1;
+}
+
+message DungeonDetailRsp {
+    RpcRspHead              Head     = 1;
+    repeated DamageRankInfo RankList = 2;  // 伤害列表
+}
+
+// 副本发送邀请
+message DungeonInviteReq {
+    repeated int64 UID  = 1;  // 邀请的uid列表
+    bool           All  = 2;  // 是否是一键邀请
+    repeated int64 FUID = 3;  // 好友UID
+}
+
+message DungeonInviteRsp {
+    RpcRspHead Head = 1;
+}
+
+// 副本领奖
+message DungeonRewardReq {
+    string DungeonID = 1;  // 副本ID
+    bool   All       = 2;  // 是否一键领奖
+}
+
+message DungeonRewardRsp {
+    RpcRspHead       Head       = 1;
+    CommonRewardData RewardData = 2;
+}
+
+// 副本奖励和邀请标志
+message DungeonRewardAndInviteReq {
+}
+
+message DungeonRewardAndInviteRsp {
+    RpcRspHead Head     = 1;
+    bool       invited  = 2;  // 邀请
+    bool       isReward = 3;  // 奖励
+}
+
+//*****************************请求协议 end************************************//
+
+//抽奖宝箱奖励
+message ChestBoxInfoReq {
+    int32 chestID = 1;  // 抽奖宝箱ID
+}
+
+message SpecialReward {
+    CommonRewardItem reward = 1;  // 额外特殊奖励
+    int64            num    = 2;  // 道具一个轮次发放次数
+    int64            winNum = 3;  // 道具必出特殊奖励数量
+}
+
+message ChestBoxInfoRsp {
+    RpcRspHead                Head          = 1;
+    string                    sourceID      = 2;  // 资源ID
+    SpecialReward             specialReward = 3;  // 特殊奖励
+    repeated CommonRewardItem reward        = 4;  // 普通奖励
+}
+
+// 竞标赛检测
+message StarCompCheckReq {
+}
+
+message StarCompCheckRsp {
+    RpcRspHead                       Head            = 1;
+    int32                            Status          = 2;  // 玩家比赛状态
+    int32                            MaxRewardRank   = 3;  // 排名前多少可以领奖
+    int32                            MaxRewardTime   = 4;  // 活动下线后多长时间内允许领奖
+    repeated SavingRewardCfg         SavingRewardCfg = 5;  // 阶段奖励配置
+    int32                            TotalScore      = 6;  // 总分数
+    repeated StarCompRewardNewConfig CompRewardCfg   = 7;  // 房间排名的奖励
+    int32                            Rank            = 8;  // 玩家排名
+    int32                            RemainNotAllow  = 9;  // 活动下线前多少时间不允许加入活动,单位分钟
+}
+
+// 竞标赛领奖
+message StarCompRewardReq {
+}
+
+message StarCompRewardRsp {
+    RpcRspHead       Head   = 1;
+    CommonRewardData Reward = 2;
+}
+
+// 锦标赛阶段领奖
+message StarCompStageRewardReq {
+    int32 Stage = 1;  // 阶段
+}
+
+message StarCompStageRewardRsp {
+    RpcRspHead               Head            = 1;
+    CommonRewardData         Reward          = 2;
+    repeated SavingRewardCfg SavingRewardCfg = 3;  // 阶段奖励配置
+}
+
+// 竞标赛排行榜
+message StarCompRankListReq {
+}
+
+message StarCompRankListRsp {
+    RpcRspHead            Head         = 1;
+    repeated StarCompRank StarCompRank = 2;
+}
+
+message LimitCardBoxReq {
+}
+
+// 查询次数接口回包
+message LimitCardBoxRsp {
+    RpcRspHead                 Head     = 1;  // 错误码
+    repeated LimitCardBoxCount buyCount = 2;  // 宝箱相关信息
+}
+
+message LimitCardBoxCount {
+    int32 boxId    = 1;  // 宝箱id
+    int32 cardNum  = 2;  // 可以开出的卡片数
+    int32 curCount = 3;  // 当前已购买的数量
+}
+
+// 获取露娜寻宝配置接口
+message LunaConfigReq {
+}
+
+message LunaConfigRsp {
+    RpcRspHead                     Head            = 1;  // 返回头
+    repeated LunaRewardConfig      lunaReward      = 2;  // 格子奖励
+    LunaBaseConfig                 baseConfig      = 3;  // 基础配置
+    repeated LunaStageRewardConfig lunaStageReward = 4;  // 阶段奖励
+}
+
+// 获取露娜寻宝信息接口
+message LunaInfoReq {
+}
+
+message LunaInfoRsp {
+    RpcRspHead Head = 1;  // 返回头
+    LunaData   data = 2;  // 用户寻宝数据
+}
+
+// 露娜寻宝play接口
+message LunaPlayReq {
+    int32        bet  = 1;  // 倍数
+    LunaPlayType type = 2;  // 游玩类型
+}
+
+message LunaPlayRsp {
+    RpcRspHead       Head   = 1;  // 返回头
+    CommonRewardData reward = 2;  // 奖励信息
+    int32            gridID = 3;  // 抽中格子ID
+}
+
+// 领取露娜寻宝阶段奖励接口
+message LunaStageRewardReq {
+    int32 levelID = 1;  // 档位ID
+}
+
+message LunaStageRewardRsp {
+    RpcRspHead       Head   = 1;  // 返回头
+    CommonRewardData reward = 2;  // 奖励信息
+}
+
+// 挖矿用户信息接口
+message MineInfoReq {
+}
+
+message MineInfoRsp {
+    RpcRspHead                Head      = 1;  // 返回头
+    MineData                  data      = 2;
+    repeated CommonRewardItem reward    = 3;  // 最终大奖
+    int32                     mapRowNum = 4;  // 生成地图层数
+}
+
+// 挖矿用户随机地图接口
+message MineRandMapReq {
+}
+
+message MineRandMapRsp {
+    RpcRspHead             Head = 1;  // 返回头
+    repeated MineMapColumn map  = 2;  // 挖矿地图
+}
+
+// 挖矿发奖接口
+message MineRewardReq {
+    repeated CommonRewardItem consumeItem = 1;  // 消耗道具
+    repeated MineGridStatus   grid        = 2;  // 矿场格子
+}
+
+message MineGridStatus {
+    int32 row          = 1;  // 行
+    int32 column       = 2;  // 列
+    int32 consumeBlood = 3;  // 消耗的血量
+}
+
+message MineRewardRsp {
+    RpcRspHead       Head         = 1;  // 返回头
+    CommonRewardData reward       = 2;  // 奖励信息
+    int64            remainTime   = 3;  // 剩余秒数
+    int64            refreshPrice = 4;  // 刷新地图价格
+}
+
+// 完成挖矿后，钻石或过时刷新地图接口
+message MineRefreshMapReq {
+    MapRefreshType type = 1;  // 刷新类型
+}
+
+message MineRefreshMapRsp {
+    RpcRspHead             Head         = 1;  // 返回头
+    repeated MineMapColumn map          = 2;  // 挖矿地图
+    int64                  refreshPrice = 3;  // 刷新地图价格
+}
+
+// 新手领奖接口
+message MineNewcomerRewardReq {
+}
+
+message MineNewcomerRewardRsp {
+    RpcRspHead       Head   = 1;  // 返回头
+    CommonRewardData reward = 2;  // 奖励信息
+}
+
+// 宝贝兑换宝箱接口
+message MineExchangeBoxReq {
+    string exchangeID = 1;
+}
+
+message MineExchangeBoxRsp {
+    RpcRspHead                 Head   = 1;  // 返回头
+    CommonRewardData           reward = 2;  // 奖励信息
+    MinePieceExchangeCountData count  = 3;  // 兑奖信息
+}
+
+// 多段礼包详情
+message MultiStagePackInfoReq {
+}
+
+message MultiStagePackInfoRsp {
+    RpcRspHead Head     = 1;
+    int32      modelID  = 2;  // 模型id
+    int32      curStage = 3;  // 玩家当前所在挡位
+    int32      buyTimes = 4;  // 当前挡位已购买次数
+}
+
+message GetGiftModeIDReq {
+}
+
+message GetGiftModeIDRsp {
+    RpcRspHead     Head    = 1;
+    repeated int32 modelID = 2;
+}
+
+// 多充礼包详情
+message multiPayPackInfoItem {
+    int32             modelID        = 1;  // 玩家当前所在分层
+    ProductInfoConfig payInfo        = 2;  // 当前推送的商品信息
+    int32             remainLimit    = 3;  // 剩余能买的次数
+    int64             remainTime     = 4;  // 剩余能展示的时间
+    string            skinBundleName = 5;  // 皮肤名
+}
+
+message MultiPayPackFlushReq {
+}
+
+message MultiPayPackFlushRsp {
+    RpcRspHead           Head         = 1;
+    multiPayPackInfoItem multiPayInfo = 2;
+}
+
+message MultiPayPackInfoReq {
+}
+
+message MultiPayPackInfoRsp {
+    RpcRspHead           Head         = 1;
+    multiPayPackInfoItem multiPayInfo = 2;
+}
+
+// 马来本地支付额外字段
+message myOrderExtra {
+    int64 txnId = 1;
+}
+
+message IdOrderExtra {
+    int64 txnId = 1;
+}
+
+// 本地支付发奖广播
+message LocalPayBroadcastReward {
+    CommonRewardData data      = 1;  //
+    int64            payStatus = 2;  // 0 刚好 1 小于支付面额 2 大于支付面额
+}
+
+// 冰封转盘信息
+message SealInfoRsp {
+    int32             ret      = 1;  // 错误码
+    SealZhuanPan      zhuanpan = 2;  // 转盘信息
+    repeated skinList wear     = 3;  // 转盘皮肤
+}
+
+message skinList {
+    string type = 1;  // 类型
+    int32  id   = 2;  // 编号
+}
+
+// 冲岛活动活动配置精简
+message PlanetUpgradeActCfg {
+    string Name          = 1;
+    int64  Stay          = 2;
+    string Version       = 3;
+    int64  Position      = 4;
+    int64  Order         = 5;
+    int64  Sid           = 6;
+    string PosAndOrder   = 7;
+    int64  Operate       = 8;
+    int64  ShowCountdown = 9;
+    string Location      = 10;
+    int64  Priority      = 11;
+    string Mode          = 12;
+    int32  ShowPlanet    = 13;
+    string SkinName      = 14;
+}
+
+// 冲岛活动
+message PlanetUpgradeCheckReq {
+}
+
+message PlanetUpgradeCheckRsp {
+    RpcRspHead                Head                = 1;
+    PlanetUpgradeConfig       Cfg                 = 2;  // 活动配置表
+    int32                     Count               = 3;  // 领奖标志
+    int64                     RemainTime          = 4;  // 剩余时间
+    repeated CommonRewardItem RewardList          = 5;  // 奖励列表
+    PlanetUpgradeActCfg       PlanetUpgradeActCfg = 6;
+}
+
+message PlanetUpgradeRewardReq {
+}
+
+message PlanetUpgradeRewardRsp {
+    RpcRspHead                Head       = 1;
+    CommonRewardData          data       = 2;  //
+    repeated CommonRewardItem NextReward = 3;
+}
+
+// 成就礼包
+message AchievePackageInfoReq {
+    int32 Scene = 1;
+}
+
+message AchievePackageInfoRsp {
+    RpcRspHead            Head   = 1;
+    int32                 DiaLog = 2;
+    ActAchievePackageData Detail = 3;
+}
+
+message ActAchievePackageData {
+    int32             remainShowTime = 1;  // 弹出的剩余时间
+    int32             remainTimes    = 2;  // 剩余次数
+    int32             isLimitTimes   = 3;  // 是否达到上限
+    ProductInfoConfig product        = 4;  // 商品
+    int32             limit          = 5;  // 当天次数限制
+}
+
+// 设置功能解锁
+message FuncUnlockSetReq {
+    string ID = 1;  // 功能ID
+}
+
+message FuncUnlockSetRsp {
+    RpcRspHead       Head    = 1;
+    CommonRewardData Rewards = 2;
+}
+
+// 获取已经解锁的功能
+message FuncUnlockGetReq {
+}
+
+message FuncUnlockGetRsp {
+    RpcRspHead Head       = 1;
+    FuncUnlock FuncUnlock = 2;
+}
+
+message GetBigItemStatusReq {
+}
+
+message GetBigItemStatusRsp {
+    RpcRspHead     Head        = 1;
+    ActBigItemData BigItemData = 2;
+}
+
+// 邀请活动信息
+message UserInviteInfoReq {
+}
+
+message UserInviteInfoRsp {
+    RpcRspHead               Head             = 1;
+    int32                    SendFbTimes      = 2;  // 发送FB邀请的次数
+    int32                    SendMessageTimes = 3;  // 发送message邀请的次数
+    int32                    TotalInviteNum   = 4;  // 共邀请了多少人
+    repeated UserProfileInfo Invites          = 5;  // 新晋邀请的人
+    int32                    InviteNum        = 6;  // 已经邀请的人
+}
+
+// 用户邀请领奖
+message UserInviteRewardReq {
+}
+
+message UserInviteRewardRsp {
+    RpcRspHead       Head        = 1;
+    CommonRewardData TotalReward = 2;  //
+}
+
+// 发送邀请领奖
+message SendInviteRewardReq {
+    int32 SendInviteType = 1;  // 发送邀请类型 详见 enum.proto SendInviteType 类型
+}
+
+message SendInviteRewardRsp {
+    RpcRspHead       Head             = 1;
+    CommonRewardData RewardList       = 2;  //
+    int32            SendFBTimes      = 3;  // 发送FB邀请的次数
+    int32            SendMessageTimes = 4;  // 发送message邀请的次数
+}
+
+// 用户邀请,新晋被邀请进来的用户
+message UserInviteReq {
+    int32  LoginType = 1;  // 登陆类型 详见 enum.proto LoginType类型
+    string DeepLink  = 2;  // 邀请的客户端带的DeepLink参数
+}
+
+message UserInviteRsp {
+    RpcRspHead Head = 1;
+}
+
+// 冲岛不限时活动触发上报
+message PlanetUpgradeUnlimitedReportReq {
+}
+
+message PlanetUpgradeUnlimitedReportRsp {
+    RpcRspHead Head = 1;
+}
+
+//*******************************守护神卡片相关***************************//
+// 标识卡牌宝箱能开出多少张卡
+message GuardCardBoxNumItem {
+    int32 cardBoxId = 1;  // 配置表的卡片宝箱Id
+    int32 getNum    = 2;  // 原始宝箱能开出多少张卡
+}
+
+message GetGuardCardInfoReq {
+}
+
+message GetGuardCardInfoRsp {
+    RpcRspHead                   Head                 = 1;
+    repeated GuardCardItem       cardList             = 2;   // 拥有卡片列表
+    repeated uint32              completeGroupList    = 3;   // 哪些卡组已经凑齐领奖了
+    uint32                       sendMax              = 4;   // 卡片当天赠送上限
+    uint32                       sendTimes            = 5;   // 当天赠送的次数
+    uint32                       showPlanet           = 6;   // 解锁岛屿
+    string                       sendFrdType          = 7;   // 可以赠送的好友类型
+    repeated GuardCardSendItem   sendCntList          = 8;   // 好友赠送次数列表
+    int32                        sendStartTime        = 9;   // 赠送开启时间倒计时
+    int32                        sendEndTime          = 10;  // 赠送结束倒计时
+    int32                        openGroup            = 11;  // 告知前段开放的卡组
+    int32                        godCardNum           = 12;  // 万能卡片数量
+    int32                        ext                  = 13;  // 扩展标志字段，1：卡片系统升级补偿可领取
+    repeated GuardCardBoxNumItem cardBoxItem          = 14;  // 标识卡牌宝箱能开出多少张卡
+    int32                        godCardRemainTime    = 15;  // 万能卡剩余倒计时，没有-1
+    int32                        offlineGodCardExpire = 16;  // 离线期间万能卡失效传1，其他传0
+}
+
+message GuardCardCompleteRewardReq {
+    int32 GroupID = 1;
+}
+
+message GuardCardCompleteRewardRsp {
+    RpcRspHead       Head       = 1;
+    CommonRewardData RewardList = 2;
+}
+//*******************************守护神卡片相关***************************//

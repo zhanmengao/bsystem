@@ -1,0 +1,456 @@
+syntax = "proto3";
+package pb;
+
+enum TagOpType {
+    TagOpTypeNone = 0;
+    TagOpTypeGet  = 1;
+    TagOpTypeSet  = 2;
+    TagOpTypeDel  = 3;
+}
+
+// 宠物id
+enum PetID {
+    PetIDNone        = 0;
+    PetIDGoldfish    = 1;  // 金鱼
+    PetIDElectricEel = 2;  // 电鳗
+    PetIDTortoise    = 3;  // 乌龟
+    PetIDOctopus     = 4;  // 章鱼
+    PetIDStarfish    = 5;  // 海星
+    PetIDShark       = 6;  // 鲨鱼
+    PetIDSnowball    = 7;  // 雪球
+}
+
+// 宠物发放场景
+enum PetGrantCond {
+    PetGrantCondNone      = 0;
+    PetGrantCondPlanet    = 1;  // 岛屿数
+    PetGrantCondGuardCard = 2;  // 守护神卡组集齐
+    PetGrantCondUnlock    = 3;  // 宠物解锁
+    PetGrantCondOther     = 4;  // 其他
+}
+
+// 宠物喂养类型
+enum PetFeedType {
+    PetFeedTypeNone        = 0;
+    PetFeedTypeFreeMagic   = 1;  // 免费魔力瓶喂养
+    PetFeedTypeNormalMagic = 2;  // 普通魔力瓶喂养
+    PetFeedTypeExp         = 3;  // 宠物经验喂养
+}
+
+// 标签使用场景
+enum TagMod {
+    TagModNone           = 0;
+    TagModStarCompRoom   = 1;  // 錦標賽分房間
+    TagModWheelEventRoom = 2;  // 轉盤事件分房間
+}
+
+// 触发标签的场景
+enum TriggerType {
+    TriggerTypeNone        = 0;
+    TriggerTypeNextPlanet  = 1;  // 过岛场景
+    TriggerTypeLogin       = 2;  // 登录场景
+    TriggerTypeStarCompEnd = 3;  // 锦标赛结束场景
+    TriggerTypeTiliGrant   = 4;  // 体力发放场景
+}
+// 标签条件
+enum TagCondition {
+    TagConditionNone                    = 0;
+    TagConditionStarCompAfterTopTenNums = 1;  // 连续获得锦标赛十名之后的次数
+    TagConditionFirstReachedPlanetLevel = 2;  // 第一次到达岛屿数
+    TagConditionBackFlowDays            = 3;  // 回流天数
+    TagConditionProbability             = 4;  // 触发概率
+}
+// 黑名单条件
+enum TagBlackCondition {
+    TagBlackConditionNone                      = 0;
+    TagBlackConditionLastTriggerStarCompDays   = 1;  // 近xx期触发过锦标赛保护 大于
+    TagBlackConditionLast7DaysTiliGrant        = 2;  // 近七天体力发放总数 大于
+    TagBlackConditionTiliTotal                 = 3;  // 体力存量大于
+    TagBlackConditionLast7DaysCash             = 4;  // 近七日付费金额大于
+    TagBlackConditionLastTriggerWheelEventDays = 5;  // 近xx期触发过转盘事件保护 大于
+}
+
+// 交易来源类型，用于具体业务模块（如家族处理帮助请求）
+enum TradeMsgSrcType {
+    TradeMsgSrcTypeDefault = 0;
+    TradeMsgSrcTypeFamily  = 1;
+}
+
+// 交易状态
+enum TradeStatus {
+    TradeStatusPending  = 0;  // 待处理
+    TradeStatusAccepted = 1;  // 已接受
+    TradeStatusRefused  = 2;  // 已拒绝
+    TradeStatusCanceled = 3;  // 已取消
+}
+
+// 交易场景，用Trade于交易系统自身归类交易信息
+enum TradeScene {
+    TradeSceneDefault   = 0;
+    TradeSceneFruit     = 1;  // 水果场景
+    TradeSceneSlingShot = 2;  // 小鸟弹弓场景
+    TradeSceneGuardCard = 3;  // 守护神卡片
+    TradeScenePicture   = 4;  // 拼图活动
+}
+
+enum ClientDataSubType {
+    ClientDataSubTypeNone  = 0;
+    ClientDataSubTypeLogin = 1;  //登录的时候拉取
+}
+
+enum SceneId {
+    SceneIDNone             = 0;
+    SceneFirstTiLiNotEnough = 1;  // 首次体力不足
+    SceneMallGuardCardBox   = 2;  // 商城守护神宝箱
+    SceneLottery            = 3;  // 抽奖
+    SceneGuessReceive       = 4;  // 砸蛋复活
+    SceneShopADGiftBox1     = 5;  // 广告礼盒1
+    SceneShopADGiftBox2     = 6;  // 广告礼盒2
+    SceneEarningOnline      = 7;  // 网赚
+    SceneSuperGuardCardBox  = 8;  // 超级守护神宝箱
+}
+
+enum PassType {
+    PassTypeInit = 0;
+    PassTypeFree = 1;  // 免费通行证
+    PassTypePay  = 2;  // 付费通行证
+}
+
+enum MapGridType {
+    MapGridNone   = 0;  // 非法
+    MapGridEmpty  = 1;  // 白块
+    MapGridCement = 2;  // 水泥
+    MapGridNormal = 3;  // 普通
+}
+
+enum MapRefreshType {
+    MapRefreshNormal  = 0;  // 间隔时间已到刷新
+    MapRefreshDiamond = 1;  // 钻石刷新
+}
+
+enum MineRewardType {
+    MineRewardTypeNone  = 0;  // 无
+    MineRewardTypeNew   = 1;  // 新手奖励
+    MineRewardTypeFinal = 2;  // 最终大奖
+}
+// 奖励状态
+enum RewardStatus {
+    RewardStatusDefault  = 0;  // 默认
+    RewardStatusRewarded = 1;  // 已领奖
+    RewardStatusSkip     = 2;  // 跳过
+}
+
+// 数据状态
+enum DataStatus {
+    DataStatusNormal   = 0;  // 正常
+    DataStatusDeleting = 1;  // 待删除(无效, 中间状态)
+    DataStatusDeleted  = 2;  // 已删除
+}
+
+enum OnlineStatus {
+    OnlineStatusOffline = 0;
+    OnlineStatusOnline  = 1;
+}
+
+enum RewardTypeEnum {
+    RewardTypeEnumNone = 0;
+
+    // 基础类型0-1000
+    RewardTypeEnumMoney   = 1;
+    RewardTypeEnumTili    = 2;
+    RewardTypeEnumDiamond = 3;
+
+    // 活动类型
+    RewardTypeEnumRedCoin   = 1001;  //红包币
+    RewardTypeEnumTHB       = 1002;  //泰铢
+    RewardTypeEnumTWD       = 1003;  //台币
+    RewardTypeEnumPhoneCard = 1004;  //电话卡
+    RewardTypeEnumMYR       = 1005;  //马来币
+}
+
+// 活动状态
+enum ActivityStatus {
+    ActivityStatusInit          = 0;
+    ActivityStatusLock          = 1;  // 未解锁
+    ActivityStatusNew           = 2;  // 第一天上线
+    ActivityStatusActive        = 3;  // 活动中
+    ActivityStatusOverButReward = 4;  // 结束但有奖励未领取
+    ActivityStatusWaitingOnline = 5;  // 等待上线
+    ActivityStatusFinished      = 6;  // 活动结束，且领奖完成。
+    ActivityStatusFirst         = 7;  // 第一个值
+}
+
+// 活动icon位置
+enum ActivityPosition {
+    ActivityPositionCustom          = 0;  // 自定义
+    ActivityPositionMainTopLeft     = 1;  // 主界面位置（左下指海上模型）
+    ActivityPositionMainTopRight    = 2;
+    ActivityPositionMainBottomRight = 3;
+    ActivityPositionMainBottomLeft  = 4;
+    ActivityPositionActivityPanel   = 5;    // 活动面板内
+    ActivityPositionMissionPanel    = 6;    // 任务面板内
+    ActivityPositionBulletin        = 7;    // 公告大图
+    ActivityPositionIslandTopLeft   = 8;    // 岛屿左上角
+    ActivityPositionMenu            = 100;  // 菜单
+}
+
+// 点击操作类型
+enum ActivityOperationType {
+    ActivityOperationTypeInit = 0;
+    ActivityOperationTypeJump = 1;  // 跳转
+    ActivityOperationTypeDrop = 2;  // 下拉，
+    ActivityOperationTypeURL  = 3;  // 外链，下拉和外链需要确认是否还有使用
+}
+
+//// 奖励元结构
+//message RewardMeta {
+//    RewardTypeEnum Type  = 1;    // 配置中心enum功能映射
+//    int64   Num          = 2;   // 增量
+//    int64   Total        = 3;   // 全量
+//    int32   Param        = 4;   // 头像框ID、道具ID
+//    //	int32   IsLimit  = 5;   // 体力等有限制
+//    //	int64   Expire   = 4;   // 过期时间
+//    //	int32   VerSeq   = 5;   // 修改版本，用于给客户端返回
+//}
+//
+//// 新奖励单元
+//message NewRewardItem {
+//    RewardMeta          Reward = 1; // 奖励
+//    repeated RewardMeta Inners = 2; // 内嵌
+//}
+
+enum ConditionType {
+    ConditionTypeInit = 0;
+    ConditionTypeAll  = 1;  //任何条件都满足
+
+    ConditionTypeUidInArray  = 100;  //UID在名单中
+    ConditionTypeUidEndsWith = 101;  //UID尾号
+    ConditionTypePlanet      = 102;  //岛屿x-y, 闭区间
+    ConditionTypeInCountry   = 103;  //国家
+
+    ConditionTypeVersionLT = 104;  //版本低于
+    ConditionTypeVersionGT = 105;  //版本高于
+    ConditionTypeVersionEQ = 106;  //版本等于
+}
+
+enum GiftModeConditionType {
+    GiftModeConditionTypeInvalid           = 0;   // 无效
+    GiftModeConditionTypeIsOpen            = 1;   // 是否使用该模型
+    GiftModeConditionTypeFirstPay          = 2;   // 是否首冲, 0- 非首冲 1- 首冲
+    GiftModeConditionTypePlanet            = 3;   // 岛屿, 左闭右开区间 x-y
+    GiftModeConditionTypeWeekNum           = 4;   // 周日均支付次数, 左闭右开区间 x-y
+    GiftModeConditionTypeWeekTotal         = 5;   // 周次总付费, 左闭右开区间 x-y
+    GiftModeConditionTypeWeekMax           = 6;   // 周单次付费最大值, 左闭右开区间 x-y
+    GiftModeConditionTypeLastThreeAvg      = 7;   // 最近三次支付的平均支付金额, 左闭右开区间 x-y
+    GiftModeConditionTypeLast30DayNum      = 8;   // 从昨天向前30天内支付次数, 左闭右开区间 x-y
+    GiftModeConditionTypeLast30DayTotal    = 9;   // 从昨天向前30天内支付总付费, 左闭右开区间 x-y
+    GiftModeConditionTypeSilentPay         = 10;  // 沉默付费天数, 左闭右开区间 x-y, 从1开始
+    GiftModeConditionTypeLastSevenDayNum   = 11;  // 从昨天向前7天内支付次数, 左闭右开区间 x-y
+    GiftModeConditionTypeLastSevenDayTotal = 12;  // 从昨天向前7天内支付总付费, 左闭右开区间 x-y
+    GiftModeConditionTypeLast15DayNum      = 13;  // 从昨天向前15天内支付次数, 左闭右开区间 x-y
+    GiftModeConditionTypeLast15DayTotal    = 14;  // 从昨天向前15天内支付总付费, 左闭右开区间 x-y
+}
+
+enum CommonActionToolType {
+    CommonActionToolTypeZero  = 0;
+    CommonActionToolTypeClear = 1;
+    CommonActionToolTypeScore = 2;
+    // 公会种树专用
+    CommonActionToolTypeFamilyTreeDeleting = 3;  // 修改数据未待删除状态
+    CommonActionToolTypeFamilyTreeJoin     = 4;  // 加入公会事件 (php)
+    // 网赚
+    CommonActionToolTypeEarningOnlineInviteSuccess = 5;   // 网赚邀请成功通知
+    CommonActionToolTypeEarningOnlineDelete        = 6;   // 网赚删除数据
+    CommonActionToolTypeEarningOnlineIncrRedCoin   = 7;   // 网赚增加红包币
+    CommonActionToolTypeEarningOnlineLotteryMust   = 8;   // 网赚抽奖必中
+    CommonActionToolTypeStarCompStageDel           = 9;   // 竞标赛清除阶段任务
+    CommonActionToolTypeChangeInfo                 = 10;  // 多段礼包修改数据
+    CommonActionToolTypeAddInviteUser              = 11;  // 添加邀请活动的人
+    CommonActionToolTypeDelInvite                  = 12;  // 删除邀请活动数据
+    CommonActionToolTypeDelSendInvite              = 13;  // 删除发送邀请数据
+
+    // 砸蛋
+    CommonActionToolTypeGuessReviveCalc = 20;  // 砸蛋
+}
+
+// 玩家竞标赛的状态
+enum STAR_COMP_STATUS {
+    STAR_COMP_STATUS_INIT       = 0;  // 还未参赛
+    STAR_COMP_STATUS_JOIN       = 1;  // 已经加入比赛
+    STAR_COMP_STATUS_HAS_REWARD = 2;  // 比赛完未领奖
+    STAR_COMP_STATUS_REWARD     = 3;  // 已经领完奖
+}
+
+enum BehaviorType {
+    BehaviorTypeInit          = 0;
+    BehaviorTypeFireDestroy   = 1;   // 炮伤害建筑
+    BehaviorTypeFireShield    = 2;   // 炮未伤害建筑
+    BehaviorTypeStealCashKing = 3;   // 偷中Cash king
+    BehaviorTypeStealFailed   = 4;   // 偷取失败
+    BehaviorTypeScore         = 5;   // 转到积分
+    BehaviorTypeFireSimple    = 6;   // 转到炮
+    BehaviorTypeStealSimple   = 7;   // 转到偷
+    BehaviorTypeTili          = 8;   // 转到体力
+    BehaviorTypeSingleIcon    = 20;  // 转到一个图标
+    BehaviorTypeDoubleIcon    = 21;  // 转到两个图标
+}
+// # 网赚
+// action/get
+// 活动配置
+// 过滤国家
+
+// 有哪些红点信息 ?
+// 有哪些倒计时时间点 暂时不管
+// 网赚发奖类型
+enum EarningOnlineRewardType {
+    EarningOnlineRewardTypeInvalid         = 0;
+    EarningOnlineRewardTypeInviteSend      = 1;  // 发送邀请
+    EarningOnlineRewardTypeInviteSuccess   = 2;  // 成功邀请
+    EarningOnlineRewardTypeVideoAD         = 3;  // 广告
+    EarningOnlineRewardTypeWithdraw        = 4;  // 提现分享
+    EarningOnlineRewardTypeWithdrawSuccess = 5;  // 提现成功分享
+    EarningOnlineRewardTypeSignReward      = 6;  // 签到领奖
+    EarningOnlineRewardTypeGuidReward      = 7;  // 网赚引导奖励
+}
+// 审核状态
+enum EarningOnlineAuditStatus {
+    EarningOnlineAuditStatusInit    = 0;  // 未开始审核
+    EarningOnlineAuditStatusSuccess = 1;  // 审核成功
+    EarningOnlineAuditStatusFailed  = 2;  // 审核失败
+    EarningOnlineAuditStatusAgain   = 3;  // 重复获取
+}
+
+// 申请渠道类型
+enum EarningOnlineChannelType {
+    EarningOnlineChannelTypeBank    = 0;  // 银行提现
+    EarningOnlineChannelTypeEWallet = 1;  // 电子钱包提现
+    EarningOnlineChannelTypePhone   = 2;  // 手机卡提现
+}
+
+// boss状态
+enum BOSS_STATUS {
+    BOSS_STATUS_INIT = 0;  // 正常
+    BOSS_STATUS_WEAK = 1;  // 虚弱
+}
+
+enum LunaPlayType {
+    LunaPlayNormal = 0;  // 花费道具
+    LunaPlayADFree = 1;  // 看广告免费
+}
+
+enum LunaRewardBroadcastType {
+    LunaRewardBroadcastOff = 0;  // 发奖不广播
+    LunaRewardBroadcastOn  = 1;  // 发奖广播
+}
+
+enum LunaPlayPropType {
+    LunaPlayPropNone    = 0;  // 错误
+    LunaPlayPropDiamond = 1;  // 钻石
+    LunaPlayPropTili    = 2;  // 体力
+    LunaPlayPropMoney   = 3;  // 金币
+}
+
+enum MAIL_TYPE {
+    MAIL_TYPE_INIT               = 0;
+    MAIL_TYPE_DUNGEON_COMPENSATE = 1;  // 副本下线补偿
+    Mail_type_CODASHOP_DELIEVER  = 2;  // codashop发货
+}
+
+// 打炮的类型
+enum SlotFireType {
+    SlotFireTypeRand    = 0;  // 随机
+    SlotFireTypeRevenge = 1;  // 复仇
+    SlotFireTypeFriend  = 2;  // 好友
+}
+
+// 打炮的结果类型
+enum SlotFireResultType {
+    SlotFireResultTypeInit   = 0;  // 初始化，不用处理
+    SlotFireResultTypeShield = 1;  // 普通盾守护
+    SlotFireResultTypeDamage = 2;  // 摧毁
+}
+
+// 建筑状态
+enum BuildingStatus {
+    BuildingStatusNormal = 0;  // 正常状态
+    BuildingStatusDamage = 1;  // 摧毁状态
+}
+
+enum PlanetOperation {
+    OperationBuild  = 0;  // 建造
+    OperationRepair = 1;  // 修复
+    OperationNext   = 2;  // 过岛
+}
+
+enum SexType {
+    SexTypeMan   = 0;  // 男
+    SexTypeWoMan = 1;  // 女
+}
+// 功能解锁状态
+enum FuncUnLockStatus {
+    FuncUnlockStatusInit   = 0;  //
+    FuncUnlockStatusLock   = 1;  //  未解锁
+    FuncUnlockStatusUnLock = 2;  //  解锁
+}
+
+// 消息中心消息类型
+enum MsgCenterType {
+    MsgCenterTypeNone         = 0;
+    MsgCenterTypeDefense      = 2;     // 防御
+    MsgCenterTypeDestroy      = 4;     // 摧毁
+    MsgCenterTypeSteal        = 5;     // 偷
+    MsgCenterTypeSelf         = 6;     // 自定义消息
+    MsgCenterTypePetRepair    = 10;    // 宠物修复建筑
+    MsgCenterTypeFamily       = 11;    // 家族
+    MsgCenterTypeInvite       = 101;   // 邀请奖励
+    MsgCenterTypeSystem       = 102;   // 系统奖励(金币，体力）
+    MsgCenterTypeSystemProps  = 103;   // 系统奖励（道具）
+    MsgCenterTypeCallBack     = 104;   // 召回奖励
+    MsgCenterTypeNewShow      = 106;   // 新奖励展示
+    MsgCenterTypeInviteReward = 108;   // 邀请活动奖励
+    MsgCenterTypeMailBoxBase  = 800;   // 邮箱消息
+    MsgCenterTypeQuestion     = 1001;  // 问卷调查
+}
+
+enum MsgCenterMailSubType {
+    MsgCenterMailSubTypeNone   = 0;
+    MsgCenterMailSubTypeCommon = 1;  // 普通邮件
+    MsgCenterMailSubTypeLink   = 2;  // 带链接邮件
+}
+
+// 发送邀请类型
+enum SendInviteType {
+    SendInviteTypeInit    = 0;
+    SendInviteTypeFB      = 1;  // FB发送邀请
+    SendInviteTypeMessage = 2;  // message发送邀请
+}
+
+enum LoginType {
+    LoginTypeGuest    = 0;
+    LoginTypeFacebook = 1;
+    LoginTypeApple    = 5;
+    LoginTypeHuaWei   = 6;
+    LoginTypeOppo     = 7;
+}
+
+// 拼图
+enum PicHoldType {
+    PicHoldTypeSelf   = 0;  // 自己的
+    PicHoldTypeFriend = 1;  // 朋友的
+}
+
+// 卡片类型
+enum CARD_TYPE {
+    CARD_TYPE_DEFAULT     = 0;
+    CARD_TYPE_NORMAL_GOLD = 1;  // 普通金卡
+    CARD_TYPE_RARE_GOLD   = 2;  // 稀有金卡
+    CARD_TYPE_NORMAL      = 3;  // 普通白卡
+    CARD_TYPE_RARE        = 4;  // 稀有白卡
+}
+
+// BOX_TYPE 宝箱类型
+enum BOX_TYPE {
+    BOX_TYPE_DEFAULT = 0;
+    BOX_TYPE_NORMAL  = 1;  // 普通宝箱
+    BOX_TYPE_SYSTEM  = 2;  // 系统宝箱
+}

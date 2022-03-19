@@ -1,0 +1,118 @@
+syntax = "proto3";
+package pb;
+
+import "rpc.proto";
+import "enum.proto";
+import "enum_other.proto";
+import "error.proto";
+
+// 通用rpc 接口req rsp
+message CommonChangeRpcReq {
+    string type  = 1;
+    string value = 2;
+    bytes  ext   = 3;
+}
+
+message CommonChangeRpcRsp {
+    RpcRspHead Head = 1;
+    bytes      data = 2;
+}
+
+enum CommonToolType {
+    CommonToolTypeZero = 0;
+
+    // 按功能分段
+    CommonToolTypeSlotClear          = 1000;  //清理老虎机数据
+    CommonToolTypeSlotMust           = 1001;
+    CommonToolTypeSlotClearCardGroup = 1002;
+    CommonToolTypeSlotSetCK          = 1003;  // 设置ck
+    CommonToolTypeSlotClearFireTimes = 1004;  // 清除用户被打数据
+    CommonToolTypeSlotWaterlineClear = 1010;  // 清除水线
+    CommonToolTypeSlotWaterlineStat  = 1011;  // 水线
+    CommonToolTypeSlotWaterlineSet   = 1012;  // 设置水量
+    CommonToolTypeSlotWaterlineGet   = 1013;  // 获取水量
+    CommonToolTypeSlotCKCardLimitClear = 1020;  // 好友ck牌组控制
+    CommonToolTypeSlotCKCardLimitStat  = 1021;  // 好友ck牌组控制
+
+    // user
+    CommonToolTypeUserPropertyAdd      = 2000;  // 增加资产
+    CommonToolTypeUserPlanetChange     = 2001;  // 修改岛屿信息
+    CommonToolTypeUserPlanetChangeTime = 2002;  // 修改岛屿变化时间
+
+    // stealpoolsrv
+    CommonToolTypeStealPoolSrvClearStolen       = 3000;  // 从池子删除
+    CommonToolTypeStealPoolSrvClearStolenStatus = 3001;  // 清空被偷状态
+
+    // login
+    CommonToolTypeLoginSetSimulation   = 4000;  // 生成模拟
+    CommonToolTypeLoginClearSimulation = 4001;  // 清除模拟
+
+    // 掉落
+    CommonToolTypeWheelCardClear = 5000;  // 掉落删除
+    CommonToolTypeWheelCardStat  = 5001;  // 掉落数据状态
+
+    // 宠物
+    CommonToolTypePetClear      = 6000;
+    CommonToolTypePetDelItem    = 6001;
+    CommonToolTypePetUpdateInfo = 6002;
+    CommonToolTypePetSp         = 6003;  //广告增加宠物魔力
+}
+
+message CommonToolRpcReq {
+    CommonToolType Type  = 1;
+    string         Value = 2;
+    bytes          Ext   = 3;
+}
+
+message CommonToolRpcRsp {
+    RpcRspHead Head = 1;
+    bytes      data = 2;
+}
+
+message CommonActionToolRpcReq {
+    CommonActionToolType type       = 1;
+    string               actionName = 2;
+    string               value      = 3;
+    bytes                ext        = 4;
+}
+
+message CommonActionToolRpcRsp {
+    RpcRspHead Head = 1;
+    bytes      data = 2;
+}
+
+// 配置传输
+message ConfigTransportRpcReq {
+    int64           Uid    = 1;
+    repeated string Sheets = 2;
+}
+
+message ConfigTransportRpcRsp {
+    RpcRspHead         Head      = 1;
+    map<string, bytes> SheetsMap = 2;
+}
+
+// 通用协议头
+message RequestHead {
+    string        mtkey    = 1;
+    string        skey     = 2;
+    uint32        uid      = 3;
+    string        version  = 4;
+    string        device   = 5;
+    string        channel  = 6;
+    LANGUAGE_TYPE language = 7;
+}
+
+// 通用协议头
+message ResponseHead {
+    int32  ret       = 1;
+    uint32 seqNumber = 2;
+}
+
+// 通用返回
+message Response {
+    SYHM_ERR Ret  = 1;  // 错误码
+    int64    time = 2;  // 时间戳
+    string   msg  = 3;  // 提示消息
+    string   Data = 4;  // 具体数据
+}

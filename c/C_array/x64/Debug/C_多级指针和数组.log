@@ -1,0 +1,15 @@
+﻿  dm02_多维数组本质.c
+d:\space\c++space\c_base\c_point\day4\多级指针相关\dm02_多维数组本质.c(70): warning C4477: “printf”: 格式字符串“%d”需要类型“int”的参数，但可变参数 1 拥有了类型“int (*)[5]”
+d:\space\c++space\c_base\c_point\day4\多级指针相关\dm02_多维数组本质.c(70): warning C4313: “printf”: 格式字符串中的“%d”与“int (*)[5]”类型的参数 1 冲突
+d:\space\c++space\c_base\c_point\day4\多级指针相关\dm02_多维数组本质.c(70): warning C4477: “printf”: 格式字符串“%d”需要类型“int”的参数，但可变参数 2 拥有了类型“int (*)[5]”
+d:\space\c++space\c_base\c_point\day4\多级指针相关\dm02_多维数组本质.c(70): warning C4313: “printf”: 格式字符串中的“%d”与“int (*)[5]”类型的参数 2 冲突
+d:\space\c++space\c_base\c_point\day4\多级指针相关\dm02_多维数组本质.c(71): warning C4477: “printf”: 格式字符串“%d”需要类型“int”的参数，但可变参数 1 拥有了类型“int (*)[3][5]”
+d:\space\c++space\c_base\c_point\day4\多级指针相关\dm02_多维数组本质.c(71): warning C4313: “printf”: 格式字符串中的“%d”与“int (*)[3][5]”类型的参数 1 冲突
+d:\space\c++space\c_base\c_point\day4\多级指针相关\dm02_多维数组本质.c(71): warning C4477: “printf”: 格式字符串“%d”需要类型“int”的参数，但可变参数 2 拥有了类型“int (*)[3][5]”
+d:\space\c++space\c_base\c_point\day4\多级指针相关\dm02_多维数组本质.c(71): warning C4313: “printf”: 格式字符串中的“%d”与“int (*)[3][5]”类型的参数 2 冲突
+d:\space\c++space\c_base\c_point\day4\多级指针相关\dm02_多维数组本质.c(106): warning C4477: “printf”: 格式字符串“%d”需要类型“int”的参数，但可变参数 1 拥有了类型“std::size_t”
+  d:\space\c++space\c_base\c_point\day4\多级指针相关\dm02_多维数组本质.c(106): note: 请考虑在格式字符串中使用“%zd”
+d:\space\c++space\c_base\c_point\day4\多级指针相关\dm02_多维数组本质.c(106): warning C4477: “printf”: 格式字符串“%d”需要类型“int”的参数，但可变参数 2 拥有了类型“std::size_t”
+  d:\space\c++space\c_base\c_point\day4\多级指针相关\dm02_多维数组本质.c(106): note: 请考虑在格式字符串中使用“%zd”
+  C_多级指针和数组.vcxproj -> D:\Space\C++space\C_Base\x64\Debug\C_多级指针和数组.exe
+  C_多级指针和数组.vcxproj -> D:\Space\C++space\C_Base\x64\Debug\C_多级指针和数组.pdb (Full PDB)

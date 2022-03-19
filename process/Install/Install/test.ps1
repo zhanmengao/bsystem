@@ -1,0 +1,1 @@
+New-NetFirewallRule -DisplayName rds-host -Direction Inbound -Action Allow -RemoteAddress Any -Protocol TCP -LocalPort 50028

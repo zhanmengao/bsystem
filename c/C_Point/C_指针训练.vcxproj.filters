@@ -1,0 +1,115 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Day1_内存四区">
+      <UniqueIdentifier>{551f5ff3-2155-41c7-8457-8d3861e9a6ff}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Day2_一级指针">
+      <UniqueIdentifier>{c2061629-f6d4-4c2e-aab0-f192ef66c47f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="数据类型">
+      <UniqueIdentifier>{a929ce04-6ddb-42e6-b231-54267528c07e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="printf">
+      <UniqueIdentifier>{d3823018-b2d3-45ad-aa75-158f28d23039}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="Day1_内存4区\dm01_测试.c">
+      <Filter>Day1_内存四区</Filter>
+    </ClCompile>
+    <ClCompile Include="Day1_内存4区\dm02_学员学习的标准.c">
+      <Filter>Day1_内存四区</Filter>
+    </ClCompile>
+    <ClCompile Include="Day1_内存4区\dm03_数据类型分析.c">
+      <Filter>Day1_内存四区</Filter>
+    </ClCompile>
+    <ClCompile Include="Day1_内存4区\dm04_变量的本质分析.c">
+      <Filter>Day1_内存四区</Filter>
+    </ClCompile>
+    <ClCompile Include="Day1_内存4区\dm05_静态存储区理解.c">
+      <Filter>Day1_内存四区</Filter>
+    </ClCompile>
+    <ClCompile Include="Day1_内存4区\dm06_堆栈区的理解.c">
+      <Filter>Day1_内存四区</Filter>
+    </ClCompile>
+    <ClCompile Include="Day1_内存4区\dm07_堆栈的属性测试.c">
+      <Filter>Day1_内存四区</Filter>
+    </ClCompile>
+    <ClCompile Include="Day1_内存4区\dm08_指针铁律1.c">
+      <Filter>Day1_内存四区</Filter>
+    </ClCompile>
+    <ClCompile Include="Day2\dm01_习题.c">
+      <Filter>Day2_一级指针</Filter>
+    </ClCompile>
+    <ClCompile Include="Day2\dm02_铁律1强化.c">
+      <Filter>Day2_一级指针</Filter>
+    </ClCompile>
+    <ClCompile Include="Day2\dm03_间接赋值的技术推演.c">
+      <Filter>Day2_一级指针</Filter>
+    </ClCompile>
+    <ClCompile Include="Day2\dm04_指针的输入和输出特性.c">
+      <Filter>Day2_一级指针</Filter>
+    </ClCompile>
+    <ClCompile Include="printf\argv.cpp">
+      <Filter>printf</Filter>
+    </ClCompile>
+    <ClCompile Include="printf\minprintf.c">
+      <Filter>printf</Filter>
+    </ClCompile>
+    <ClCompile Include="printf\minscanf.c">
+      <Filter>printf</Filter>
+    </ClCompile>
+    <ClCompile Include="printf\printFormat.c">
+      <Filter>printf</Filter>
+    </ClCompile>
+    <ClCompile Include="printf\putgetChar.c">
+      <Filter>printf</Filter>
+    </ClCompile>
+    <ClCompile Include="printf\scanf.c">
+      <Filter>printf</Filter>
+    </ClCompile>
+    <ClCompile Include="printf\strspn.c">
+      <Filter>printf</Filter>
+    </ClCompile>
+    <ClCompile Include="main.cpp" />
+    <ClCompile Include="bit\BitUtils.cpp">
+      <Filter>数据类型</Filter>
+    </ClCompile>
+    <ClCompile Include="bit\endian.c">
+      <Filter>数据类型</Filter>
+    </ClCompile>
+    <ClCompile Include="bit\main.cpp">
+      <Filter>数据类型</Filter>
+    </ClCompile>
+    <ClCompile Include="bit\showbit.c">
+      <Filter>数据类型</Filter>
+    </ClCompile>
+    <ClCompile Include="byte\convert.cpp">
+      <Filter>数据类型</Filter>
+    </ClCompile>
+    <ClCompile Include="byte\endian.c">
+      <Filter>数据类型</Filter>
+    </ClCompile>
+    <ClCompile Include="byte\showbyte.cpp">
+      <Filter>数据类型</Filter>
+    </ClCompile>
+    <ClCompile Include="byte\byte.cpp">
+      <Filter>数据类型</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="printf\SysDefine.h">
+      <Filter>printf</Filter>
+    </ClInclude>
+    <ClInclude Include="mstdio.h">
+      <Filter>printf</Filter>
+    </ClInclude>
+    <ClInclude Include="bit\BitUtils.h">
+      <Filter>数据类型</Filter>
+    </ClInclude>
+    <ClInclude Include="byte\ByteUtils.h">
+      <Filter>数据类型</Filter>
+    </ClInclude>
+  </ItemGroup>
+</Project>

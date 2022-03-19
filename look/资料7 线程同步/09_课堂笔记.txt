@@ -1,0 +1,62 @@
+同步概念：
+
+	同步
+
+	线程同步
+
+互斥量(互斥锁):
+
+	pthread_mutex_init
+
+			_destroy
+
+			_lock
+			
+			_unlock
+读写锁：
+
+	pthread_rwlock_
+
+	......
+
+条件变量：
+
+	pthread_cond_xxxx
+
+	pthread_cond_wait();函数
+
+	绝对时间：   1970/1/1  00:00:00  --- unix 计时元年。
+
+		time_t cur = time(NULL);
+
+		strcut timespec t;
+			
+		t.tv_sec = cur + 10;
+
+		pthread_cond_timedwait(&cond, &mutex, &t);
+			
+
+信号量：互斥量升级版
+
+	sem_
+
+
+进程间同步：
+
+	信号量
+
+	文件锁
+
+
+哲学家吃饭问题：
+
+	线程
+
+	进程	
+
+
+
+
+
+
+	

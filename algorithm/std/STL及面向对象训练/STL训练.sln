@@ -1,0 +1,58 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2013
+VisualStudioVersion = 12.0.21005.1
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "热身1", "热身1\热身1.vcxproj", "{42C58296-FE1E-491D-9C36-A3BEBC816E11}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "热身2", "热身2\热身2.vcxproj", "{8BBA6217-A2C4-4FD5-BE73-EF053F751579}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "热身3", "热身3\热身3.vcxproj", "{4E8E4353-3A90-4AAD-9E90-1848B57E3A8A}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "实战1", "实战1\实战1.vcxproj", "{C915BE38-A116-4136-A9E6-0D93B82195C9}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "实战2", "实战2\实战2.vcxproj", "{B23B7E6D-3C7A-4E27-A5E7-8948212F27C5}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "终极PK", "终极PK\终极PK.vcxproj", "{AFF1B71E-39BC-4F62-B945-79983560EA44}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "门电路模拟器", "门电路模拟器\门电路模拟器.vcxproj", "{C07900FC-1B2E-4FA7-828F-7EAF7C29FCDB}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Win32 = Debug|Win32
+		Release|Win32 = Release|Win32
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{42C58296-FE1E-491D-9C36-A3BEBC816E11}.Debug|Win32.ActiveCfg = Debug|Win32
+		{42C58296-FE1E-491D-9C36-A3BEBC816E11}.Debug|Win32.Build.0 = Debug|Win32
+		{42C58296-FE1E-491D-9C36-A3BEBC816E11}.Release|Win32.ActiveCfg = Release|Win32
+		{42C58296-FE1E-491D-9C36-A3BEBC816E11}.Release|Win32.Build.0 = Release|Win32
+		{8BBA6217-A2C4-4FD5-BE73-EF053F751579}.Debug|Win32.ActiveCfg = Debug|Win32
+		{8BBA6217-A2C4-4FD5-BE73-EF053F751579}.Debug|Win32.Build.0 = Debug|Win32
+		{8BBA6217-A2C4-4FD5-BE73-EF053F751579}.Release|Win32.ActiveCfg = Release|Win32
+		{8BBA6217-A2C4-4FD5-BE73-EF053F751579}.Release|Win32.Build.0 = Release|Win32
+		{4E8E4353-3A90-4AAD-9E90-1848B57E3A8A}.Debug|Win32.ActiveCfg = Debug|Win32
+		{4E8E4353-3A90-4AAD-9E90-1848B57E3A8A}.Debug|Win32.Build.0 = Debug|Win32
+		{4E8E4353-3A90-4AAD-9E90-1848B57E3A8A}.Release|Win32.ActiveCfg = Release|Win32
+		{4E8E4353-3A90-4AAD-9E90-1848B57E3A8A}.Release|Win32.Build.0 = Release|Win32
+		{C915BE38-A116-4136-A9E6-0D93B82195C9}.Debug|Win32.ActiveCfg = Debug|Win32
+		{C915BE38-A116-4136-A9E6-0D93B82195C9}.Debug|Win32.Build.0 = Debug|Win32
+		{C915BE38-A116-4136-A9E6-0D93B82195C9}.Release|Win32.ActiveCfg = Release|Win32
+		{C915BE38-A116-4136-A9E6-0D93B82195C9}.Release|Win32.Build.0 = Release|Win32
+		{B23B7E6D-3C7A-4E27-A5E7-8948212F27C5}.Debug|Win32.ActiveCfg = Debug|Win32
+		{B23B7E6D-3C7A-4E27-A5E7-8948212F27C5}.Debug|Win32.Build.0 = Debug|Win32
+		{B23B7E6D-3C7A-4E27-A5E7-8948212F27C5}.Release|Win32.ActiveCfg = Release|Win32
+		{B23B7E6D-3C7A-4E27-A5E7-8948212F27C5}.Release|Win32.Build.0 = Release|Win32
+		{AFF1B71E-39BC-4F62-B945-79983560EA44}.Debug|Win32.ActiveCfg = Debug|Win32
+		{AFF1B71E-39BC-4F62-B945-79983560EA44}.Debug|Win32.Build.0 = Debug|Win32
+		{AFF1B71E-39BC-4F62-B945-79983560EA44}.Release|Win32.ActiveCfg = Release|Win32
+		{AFF1B71E-39BC-4F62-B945-79983560EA44}.Release|Win32.Build.0 = Release|Win32
+		{C07900FC-1B2E-4FA7-828F-7EAF7C29FCDB}.Debug|Win32.ActiveCfg = Debug|Win32
+		{C07900FC-1B2E-4FA7-828F-7EAF7C29FCDB}.Debug|Win32.Build.0 = Debug|Win32
+		{C07900FC-1B2E-4FA7-828F-7EAF7C29FCDB}.Release|Win32.ActiveCfg = Release|Win32
+		{C07900FC-1B2E-4FA7-828F-7EAF7C29FCDB}.Release|Win32.Build.0 = Release|Win32
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

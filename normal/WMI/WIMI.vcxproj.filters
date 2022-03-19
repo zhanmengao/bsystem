@@ -1,0 +1,91 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="源文件">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="资源文件">
+      <UniqueIdentifier>{1e79a595-d7d7-4102-a13f-c6de1aad5597}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Utils_CtlWMI">
+      <UniqueIdentifier>{2b4554fb-4f67-4ed1-b097-4e6f0ff9ca41}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="WMIBase">
+      <UniqueIdentifier>{019655bf-6cad-42f5-8aa9-dc64d83f7f28}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="WMIGetInfo">
+      <UniqueIdentifier>{b1f7e1ba-59ae-46f8-8e78-045e428a7c30}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Define">
+      <UniqueIdentifier>{4be35cce-af8a-43f4-af15-9ce97814c3cf}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="CSyncQuery.h">
+      <Filter>WMIBase</Filter>
+    </ClInclude>
+    <ClInclude Include="CSynQueryData.h">
+      <Filter>WMIBase</Filter>
+    </ClInclude>
+    <ClInclude Include="WmiBase.h">
+      <Filter>WMIBase</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\C++space\Convert\Convert\Convert.h">
+      <Filter>资源文件</Filter>
+    </ClInclude>
+    <ClInclude Include="GetSysInfo.h">
+      <Filter>WMIGetInfo</Filter>
+    </ClInclude>
+    <ClInclude Include="CWMIInfo.h">
+      <Filter>WMIGetInfo</Filter>
+    </ClInclude>
+    <ClInclude Include="WMI.h">
+      <Filter>Utils_CtlWMI</Filter>
+    </ClInclude>
+    <ClInclude Include="CtrlWmi.h">
+      <Filter>Define</Filter>
+    </ClInclude>
+    <ClInclude Include="WMIDef.h">
+      <Filter>Define</Filter>
+    </ClInclude>
+    <ClInclude Include="WMIUtils.h">
+      <Filter>Define</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="CSyncQuery.cpp">
+      <Filter>WMIBase</Filter>
+    </ClCompile>
+    <ClCompile Include="CSynQueryData.cpp">
+      <Filter>WMIBase</Filter>
+    </ClCompile>
+    <ClCompile Include="main.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="WMIBase.cpp">
+      <Filter>WMIBase</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\C++space\Convert\Convert\Convert.cpp">
+      <Filter>资源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="OtherMemory.cpp">
+      <Filter>WMIBase</Filter>
+    </ClCompile>
+    <ClCompile Include="GetSysInfo.cpp">
+      <Filter>WMIGetInfo</Filter>
+    </ClCompile>
+    <ClCompile Include="CWMIInfo.cpp">
+      <Filter>WMIGetInfo</Filter>
+    </ClCompile>
+    <ClCompile Include="WMI.cpp">
+      <Filter>Utils_CtlWMI</Filter>
+    </ClCompile>
+    <ClCompile Include="CtrlWmi.cpp">
+      <Filter>Define</Filter>
+    </ClCompile>
+    <ClCompile Include="WMIUtils.cpp">
+      <Filter>Define</Filter>
+    </ClCompile>
+  </ItemGroup>
+</Project>

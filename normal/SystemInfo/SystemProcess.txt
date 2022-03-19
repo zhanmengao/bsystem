@@ -1,0 +1,14 @@
+Idle系统空闲进程
+System进程（内核）————pid = 4,包含大多数内核模式系统线程。	
+	Smss.exe会话管理器（用户模式进程）————主Smss管理会话，Smss副本创建并初始化会话。		
+		Wininit.exe Windows初始化进程（会话0）
+			Services.exe服务控制管理器————管理服务，与服务进程交互				
+			Lsass.exe本地安全认证子系统服务器————为登录的用户创建token
+			Lsm.exe本地会话管理器————通知Smaa会话登录/注销，Shell启动和终止，和一个会话连接、断开连接，锁屏/解锁
+		Winlogon.exe Windows登录进程————处理交互式用户的登录和注销
+			LogonUI.exe————凭证提供者和显示对话框的UI都运行在这里，在用户输入凭证或取消登录后，进程终止。
+			Userinit.exe用户环境初始化进程————运行登录脚本、应用组策略等，在启动Explorer.exe后退出
+				Explorer.exe系统定义的外壳程序
+		Csrss.exe Windows子系统进程————是基础的子系统，所有基本功能放在该子系统中。包括：进程支持，内核模式设备驱动程序，控制台宿主进程，图形设备驱动程序，子系统DLL
+	
+			

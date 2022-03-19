@@ -1,0 +1,82 @@
+syntax = "proto3";
+package pb;
+
+// --------------------------------------------------------- 系统事件
+// 一致性hash投递, 不保证安全可达
+// 通过网关投递, 投递规则见配置表
+// 具体的srv中实现事件处理器
+enum SystemEventType {
+    SystemEventTypeInvalid = 0;
+
+    SystemEventTypeUserThirdLogin       = 1;  // 第三方登录
+    SystemEventTypeUserLogin            = 2;  // 平台登录
+    SystemEventTypeUserLogout           = 3;  //用户登出
+    SystemEventTypeUserFriend           = 4;  //用户好友数据
+    SystemEventTypeUserPay              = 5;  //用户支付
+    SystemEventTypeActionOffline        = 6;  //活动下线通知
+    SystemEventTypeNewUserGuideFinished = 7;  // 新手引导完成
+    SystemEventTypeFBBind               = 8;  // FB绑定事件
+
+    //    SystemEventTypeUserAction        = 6; //用户活动
+
+    // 用户信息用户数据(按需要的业务点设置, 做成全局资产变动会造成业务量爆炸)
+    //    SystemEventTypeUserChangeInfo                   = 1000; // 基础信息修改
+    // 资产相关
+    SystemEventTypeUserChangePropertyLargeMoney   = 1101;  // 大额金币变动
+    SystemEventTypeUserChangePropertyGrantTili    = 1102;  // 发放体力
+    SystemEventTypeUserChangePropertyPlanetChange = 1103;  // 岛屿变动
+    SystemEventTypeUserChangePropertyStarChange   = 1104;  // 星星变动
+
+    // 10000
+    SystemEventTypeSlotPlay    = 10000;  //老虎机play事件
+    SystemEventTypeSlotOprMust = 10001;
+
+    SystemEventTypeSlotStolen         = 10003;  // A偷B产生B被偷事件
+    SystemEventTypeSlotStealBehavior  = 10004;  // A偷B产生, A偷行为事件
+    SystemEventTypeSlotStolenBehavior = 10005;  // 完成B被偷事件, 产生行为事件
+
+    SystemEventTypeSlotFire                       = 10006;
+    SystemEventTypeSlotBeFired                    = 10007;
+    SystemEventTypeSlotStealTriggerLockedCKChange = 10008;  // 触发已锁定ck本身的信息(非切换ck)
+    SystemEventTypeSlotFireNoShield               = 10009;  // 空盾
+    SystemEventTypeSlotFireAddShield              = 10010;  // 加盾
+
+    //交易系统事件（假定A是主动方，B是被动方）
+    SystemEventTypeTradeSend     = 10100;  // A赠送道具给B事件 -- 往B身上添加消息、给B发放道具并广播给B
+    SystemEventTypeTradeRequest  = 10101;  // A发起道具交换事件 -- 往B身上添加消息并广播给B
+    SystemEventTypeTradeCanceled = 10102;  // A主动取消道具交换事件 -- 修改B身上消息并广播给B
+    SystemEventTypeTradeAccepted = 10103;  // B接受道具交换事件 -- 给A发放道具、修改A身上消息并广播给A
+    SystemEventTypeTradeRefused  = 10104;  // B拒绝道具交换事件 -- 给A返还道具、修改A身上消息并广播给A
+
+    // php
+    SystemEventTypePhpCompatibleChangeProperty = 20000;  //PHP兼容模式修改资产
+    // 用户推送逻辑
+    SystemEventTypePushTask = 30000;
+
+    // 标签系统
+    SystemEventTypeTagStarCompTrig   = 40000;  // 标签系统锦标赛触发标签事件
+    SystemEventTypeTagWheelEventTrig = 40001;  // 标签系统转盘事件触发标签事件
+
+    // 活动业务事件
+    SystemEventTypeActionWheelEventReward = 50000;  // 转盘事件活动领奖事件
+    SystemEventTypeActionSlingshotEnter   = 50010;  // 小鸟弹弓进入
+    SystemEventTypeActionSlingshotShot    = 50011;  // 小鸟弹弓攻击
+    SystemEventTypeActionSlingshotQuit    = 50012;  // 小鸟玩家推出
+    SystemEventTypeStarCompRankSettlement = 50020;  // 锦标赛排名结算事件
+}
+
+enum GateEventType {
+    GateEventTypeInvalid = 0;
+
+    GateEventTypeLogin      = 1;
+    GateEventTypeLogout     = 2;
+    GateEventTypeNextPlanet = 3;
+}
+
+//服务器内部使用，事件异步请求
+message SystemEvent {
+    int64 Uid         = 1;  // uid
+    int32 Type        = 2;  // 系统事件类型
+    bytes Data        = 3;  // 事件所携带的数据信息,需要额外定义结构
+    int64 ExecuteTime = 4;  // 非0则表示定时事件，由tqsrv处理并触发
+}

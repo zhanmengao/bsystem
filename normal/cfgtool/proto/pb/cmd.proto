@@ -1,0 +1,503 @@
+syntax = "proto3";
+package pb;
+
+enum CMD {
+    // server common cmd not check
+    // format: 1(increased number) | 2(server module) | 01(increased number)
+    CMD_BEGIN            = 0;
+    CMD_ERR_INTERNAL_RSP = 100;  // cmd inter err, 结构RpcHead
+    CMD_DEMO_REQ         = 200;
+    CMD_DEMO_RSP         = 201;
+
+    CMD_SYSTEM_EVENT_REQ = 300;  // 系统事件
+    CMD_SYSTEM_EVENT_RSP = 301;  // 占位
+
+    // 支付 需要按规则改
+    CMD_PAY_EXCHANGE_LIST_REQ = 10000;  // 支付列表请求
+    CMD_PAY_EXCHANGE_LIST_RSP = 10001;  // 支付列表返回
+
+    // 下单
+    CMD_PAY_ORDER_REQ = 10004;  // 下单请求
+    CMD_PAY_ORDER_RSP = 10005;  // 下单响应
+
+    // ===================本地支付==========
+    CMD_LOCAL_PAY_ORDER_REQ = 10006;  // 本地支付下单
+    CMD_LOCAL_PAY_ORDER_RSP = 10007;  // 本地支付下单
+
+    CMD_LOCAL_PAY_DELIVERY_REQ = 10008;  // 本地支付发货
+    CMD_LOCAL_PAY_DELIVERY_RSP = 10009;  // 本地支付发货
+
+    CMD_LOCAL_PAY_PHP_REWARD_REQ = 10010;  // 本地支付调用php商城发奖
+    CMD_LOCAL_PAY_PHP_REWARD_RSP = 10011;  // 本地支付调用php商城发奖
+
+    CMD_LOCAL_PAY_PHP_DISCARDID_REQ = 10012;  // 调用PHP获取打折充值概率
+    CMD_LOCAL_PAY_PHP_DISCARDID_RSP = 10013;  // 调用PHP获取打折充值概率
+
+    CMD_LOCAL_PAY_TWMAIL_REWARD_REQ = 10014;  // 台湾本地支付邮箱发奖
+    CMD_LOCAL_PAY_TWMAIL_REWARD_RSP = 10015;  // 台湾本地支付邮箱发奖
+
+    // ================辅助接口====================
+    CMD_HELPER_CONFIG_TRANSPORT_REQ = 20000;  // 配置传输接口, 获取abtest后的配置
+    CMD_HELPER_CONFIG_TRANSPORT_RSP = 20001;  // 配置传输接口, 获取abtest后的配置
+
+    // {2}{00}{000}
+    // 个,十,百为 命令位
+    // 千,万为 模块位
+    // 十万及以上为 服务位
+    // ================== gatesrv ================
+
+    //    CMD_GATESRV_SYSTEM_EVENT     = 100001;
+
+    // ================== gamesrv ================
+    // pet 暂时不上线
+    //    CMD_PET_LIST_REQ = 200000;
+    //    CMD_PET_LIST_RSP = 200001;
+    //    CMD_PET_INFO_REQ = 200002;
+    //    CMD_PET_INFO_RSP = 200003;
+    //    //    CMD_PET_ADD_REQ = 200003;
+    //    //    CMD_PET_ADD_RSP = 200004;
+    //    CMD_PET_UPGRADE_REQ = 200005;
+    //    CMD_PET_UPGRADE_RSP = 200006;
+    //    CMD_PET_FEED_REQ    = 200007;
+    //    CMD_PET_FEED_RSP    = 200008;
+    //    CMD_PET_STATUS_REQ  = 200009;
+    //    CMD_PET_STATUS_RSP  = 200010;
+    //    CMD_PET_SKILL_REQ   = 200011;
+    //    CMD_PET_SKILL_RSP   = 200012;
+    //    CMD_PET_CHANGE_REQ  = 200013;
+    //    CMD_PET_CHANGE_RSP  = 200014;
+    //    CMD_PET_MIGRATE_REQ = 200015;
+    //    CMD_PET_MIGRATE_RSP = 200016;
+    //    CMD_PET_TIMER_REQ   = 200017;  // 时间轮回调
+
+    // 基本信息修改
+    CMD_USER_INFO_MODIFY_REQ = 200018;  // 修改用户基本信息请求
+    CMD_USER_INFO_MODIFY_RSP = 200019;  // 修改用户基本信息响应
+    CMD_USER_PROFILE_GET_REQ = 200020;  //名片信息请求
+    CMD_USER_PROFILE_GET_RSP = 200021;  //名片信息回复
+
+    CMD_USER_TOOL_REQ = 200100;  // 用户工具
+    CMD_USER_TOOL_RSP = 200101;
+
+    CMD_GAME_REWARD_REQ = 202000;  // 发奖请求
+    CMD_GAME_REWARD_RSP = 202001;  // 发奖返回
+
+    // 抽奖宝箱
+    CMD_CHEST_REWARD_INFO_REQ = 203000;  // 抽奖宝箱信息请求
+    CMD_CHEST_REWARD_INFO_RSP = 203001;  // 抽奖宝箱信息回复
+
+    // 登陆相关
+    CMD_ACCOUNT_CHECK_REQ     = 204000;  // 登陆前检查
+    CMD_ACCOUNT_CHECK_RSP     = 204001;  //
+    CMD_ACCOUNT_LOGIN_REQ     = 204002;  // 登陆
+    CMD_ACCOUNT_LOGIN_RSP     = 204003;  //
+    CMD_ACCOUNT_BIND_REQ      = 204004;  // 绑定FB
+    CMD_ACCOUNT_BIND_RSP      = 204005;  //
+    CMD_ACCOUNT_SYNC_DATA_REQ = 204006;  // 游戏中同步数据
+    CMD_ACCOUNT_SYNC_DATA_RSP = 204007;  //
+    CMD_ACCOUNT_TOOL_REQ      = 200200;  // 登陆工具
+    CMD_ACCOUNT_TOOL_RSP      = 200201;
+
+    // ============ 活动 ==================
+    // 哈米派对
+    CMD_ACTION_HAMMY_INFO_REQ                 = 300000;  // 基本信息
+    CMD_ACTION_HAMMY_INFO_RSP                 = 300001;
+    CMD_ACTION_HAMMY_LOTTERY_REQ              = 300002;  // 抽奖
+    CMD_ACTION_HAMMY_LOTTERY_RSP              = 300003;  // 抽奖
+    CMD_ACTION_HAMMY_STAGE_REWARD_RECEIVE_REQ = 300004;  // 阶段奖励领取
+    CMD_ACTION_HAMMY_STAGE_REWARD_RECEIVE_RSP = 300005;  // 阶段奖励领取
+    CMD_ACTION_HAMMY_TOOL_REQ                 = 300006;  // 哈米派工具
+    CMD_ACTION_HAMMY_TOOL_RSP                 = 300007;  // 哈米派工具
+
+    // 公会种树
+    CMD_ACTION_FAMILY_TREE_INFO_REQ   = 301000;  // 基本信息
+    CMD_ACTION_FAMILY_TREE_INFO_RSP   = 301001;
+    CMD_ACTION_FAMILY_TREE_REWARD_REQ = 301002;  // 奖励领取
+    CMD_ACTION_FAMILY_TREE_REWARD_RSP = 301003;
+    CMD_ACTION_FAMILY_TREE_RANK_REQ   = 301004;  // 公会成员浇水排行榜
+    CMD_ACTION_FAMILY_TREE_RANK_RSP   = 301005;
+    CMD_ACTION_FAMILY_TREE_TOOL_REQ   = 301006;  // 工具
+    CMD_ACTION_FAMILY_TREE_TOOL_RSP   = 301007;
+
+    // 活动通用
+    CMD_ACTION_TOOL_REQ        = 302002;  // 活动工具
+    CMD_ACTION_TOOL_RSP        = 302003;  // 活动工具
+    CMD_ACTION_MAIL_REWARD_REQ = 302004;  // 活动下线后的道具补偿
+    CMD_ACTION_MAIL_REWARD_RSP = 302005;  // 活动下线后的道具补偿
+    CMD_ACTION_LIST_REQ        = 302006;  //拉取活动列表
+    CMD_ACTION_LIST_RSP        = 302007;  //拉取活动列表
+    CMD_ACTION_PHP_LIST_REQ    = 302008;  //拉取活动列表
+    CMD_ACTION_PHP_LIST_RSP    = 302009;  //拉取活动列表
+
+    // 转盘事件
+    CMD_ACTION_WHEEL_EVENT_DETAIL_REQ     = 303000;  // 活动详情请求
+    CMD_ACTION_WHEEL_EVENT_DETAIL_RSP     = 303001;  // 活动详情响应
+    CMD_ACTION_WHEEL_EVENT_REWARD_REQ     = 303002;  // 活动领奖请求
+    CMD_ACTION_WHEEL_EVENT_REWARD_RSP     = 303003;  // 活动领奖响应
+    CMD_ACTION_WHEEL_EVENT_VIP_REWARD_REQ = 303004;  // 活动VIP领奖请求
+    CMD_ACTION_WHEEL_EVENT_VIP_REWARD_RSP = 303005;  // 活动VIP领奖响应
+
+    // 网赚
+    CMD_ACTION_EARNING_ONLINE_INFO_REQ       = 304000;   // 详情请求
+    CMD_ACTION_EARNING_ONLINE_INFO_RSP       = 304001;   // 详情响应
+    CMD_ACTION_EARNING_ONLINE_INVITE_REQ     = 304002;   // 邀请请求
+    CMD_ACTION_EARNING_ONLINE_INVITE_RSP     = 304003;   // 邀请响应
+    CMD_ACTION_EARNING_ONLINE_REWARD_REQ     = 304004;   // 领奖请求
+    CMD_ACTION_EARNING_ONLINE_REWARD_RSP     = 304005;   // 领奖响应
+    CMD_ACTION_EARNING_ONLINE_APPLY_LIST_REQ = 304006;   // 申请列表请求
+    CMD_ACTION_EARNING_ONLINE_APPLY_LIST_RSP = 304007;   // 申请列表响应
+    CMD_ACTION_EARNING_ONLINE_APPLY_REQ      = 304008;   // 申请请求
+    CMD_ACTION_EARNING_ONLINE_APPLY_RSP      = 304009;   // 申请响应
+                                                         //    CMD_ACTION_EARNING_ONLINE_INVITE_SUCCESS_REQ      = 304010; // 邀请成功请求
+                                                         //    CMD_ACTION_EARNING_ONLINE_INVITE_SUCCESS_RSP      = 304011; // 邀请成功响应
+    CMD_ACTION_EARNING_ONLINE_TOOL_REQ        = 304010;  // 工具请求
+    CMD_ACTION_EARNING_ONLINE_TOOL_RSP        = 304011;  // 工具响应
+    CMD_ACTION_EARNING_ONLINE_APPLY_CHECK_REQ = 304012;  // 申请检测
+    CMD_ACTION_EARNING_ONLINE_APPLY_CHECK_RSP = 304013;  // 申请检测
+    CMD_ACTION_EARNING_ONLINE_WHEEL_REQ       = 304014;  // 抽奖转盘
+    CMD_ACTION_EARNING_ONLINE_WHEEL_RSP       = 304015;  // 抽奖转盘
+
+    // 露娜寻宝
+    CMD_ACTION_LUNA_CONFIG_REQ       = 305000;  // 获取配置接口请求
+    CMD_ACTION_LUNA_CONFIG_RSP       = 305001;  // 获取配置接口响应
+    CMD_ACTION_LUNA_INFO_REQ         = 305002;  // 获取寻宝信息接口请求
+    CMD_ACTION_LUNA_INFO_RSP         = 305003;  // 获取寻宝信息接口响应
+    CMD_ACTION_LUNA_PLAY_REQ         = 305004;  // play接口请求
+    CMD_ACTION_LUNA_PLAY_RSP         = 305005;  // play接口响应
+    CMD_ACTION_LUNA_STAGE_REWARD_REQ = 305006;  // 领取阶段奖励接口请求
+    CMD_ACTION_LUNA_STAGE_REWARD_RSP = 305007;  // 领取阶段奖励接口响应
+
+    // 挖矿活动
+    CMD_ACTION_MINECRAFT_INFO_REQ            = 306000;  // 获取挖矿信息接口请求
+    CMD_ACTION_MINECRAFT_INFO_RSP            = 306001;  // 获取挖矿信息接口响应
+    CMD_ACTION_MINECRAFT_RAND_MAP_REQ        = 306002;  // 获取挖矿地图接口请求
+    CMD_ACTION_MINECRAFT_RAND_MAP_RSP        = 306003;  // 获取挖矿地图接口响应
+    CMD_ACTION_MINECRAFT_REWARD_REQ          = 306004;  // 获取挖矿奖励接口请求
+    CMD_ACTION_MINECRAFT_REWARD_RSP          = 306005;  // 获取挖矿奖励接口响应
+    CMD_ACTION_MINECRAFT_REFRESH_MAP_REQ     = 306006;  // 挖矿刷新挖矿地图接口请求
+    CMD_ACTION_MINECRAFT_REFRESH_MAP_RSP     = 306007;  // 挖矿刷新挖矿地图接口响应
+    CMD_ACTION_MINECRAFT_NEW_REWARD_REQ      = 306008;  // 挖矿新手领奖接口请求
+    CMD_ACTION_MINECRAFT_NEW_REWARD_RSP      = 306009;  // 挖矿新手领奖接口响应
+    CMD_ACTION_MINECRAFT_EXCHANGE_REWARD_REQ = 306010;  // 挖矿宝贝兑换接口请求
+    CMD_ACTION_MINECRAFT_EXCHANGE_REWARD_RSP = 306011;  // 挖矿宝贝兑换接口响应
+
+    CMD_ACTION_MINECRAFT_OFFLINE_COMPENSATE_REQ = 306012;  // 挖矿下线补偿奖励请求
+    CMD_ACTION_MINECRAFT_OFFLINE_COMPENSATE_RSP = 306013;  // 挖矿下线补偿奖励响应
+    CMD_ACTION_PHP_MAIL_REWARD_REQ              = 306014;  // PHP邮件发放奖励请求
+    CMD_ACTION_PHP_MAIL_REWARD_RSP              = 306015;  // PHP邮件发放奖励响应
+    CMD_ACTION_ADD_EVENT_REQ                    = 306016;  // 添加事件请求
+    CMD_ACTION_ADD_EVENT_RSP                    = 306017;  // 添加事件响应
+
+    //*****************************副本功能命令字 start*************/
+    CMD_ACTION_DUNGEON_ENTRANCE_REQ           = 306110;  // 副本入口信息
+    CMD_ACTION_DUNGEON_ENTRANCE_RSP           = 306111;  // 副本入口信息
+    CMD_ACTION_DUNGEON_CREATE_REQ             = 306112;  // 副本创建
+    CMD_ACTION_DUNGEON_CREATE_RSP             = 306113;  // 副本创建
+    CMD_ACTION_DUNGEON_JOIN_REQ               = 306114;  // 副本加入
+    CMD_ACTION_DUNGEON_JOIN_RSP               = 306115;  // 副本加入
+    CMD_ACTION_DUNGEON_ATTACK_REQ             = 306116;  // 副本攻击
+    CMD_ACTION_DUNGEON_ATTACK_RSP             = 306117;  // 副本攻击
+    CMD_ACTION_DUNGEON_FRIEND_REQ             = 306118;  // 副本好友
+    CMD_ACTION_DUNGEON_FRIEND_RSP             = 306119;  // 副本好友
+    CMD_ACTION_DUNGEON_REWARDS_REQ            = 306120;  // 副本奖励列表
+    CMD_ACTION_DUNGEON_REWARDS_RSP            = 306121;  // 副本奖励列表
+    CMD_ACTION_DUNGEON_DETAIL_REQ             = 306122;  // 副本详情
+    CMD_ACTION_DUNGEON_DETAIL_RSP             = 306123;  // 副本详情
+    CMD_ACTION_DUNGEON_INVITE_REQ             = 306124;  // 副本邀请
+    CMD_ACTION_DUNGEON_INVITE_RSP             = 306125;  // 副本邀请
+    CMD_ACTION_DUNGEON_REWARD_REQ             = 306126;  // 副本领奖
+    CMD_ACTION_DUNGEON_REWARD_RSP             = 306127;  // 副本领奖
+    CMD_ACTION_DUNGEON_REWARD_AND_INVITE_REQ  = 306128;  // 副本邀请和奖励标志
+    CMD_ACTION_DUNGEON_REWARD_AND_INVITE_RSP  = 306129;  // 副本邀请和奖励标志
+    CMD_ACTION_DUNGEON_OFFLINE_COMPENSATE_REQ = 306130;  // 挖矿下线补偿奖励请求
+    CMD_ACTION_DUNGEON_OFFLINE_COMPENSATE_RSP = 306131;  // 挖矿下线补偿奖励响应
+    //*****************************副本功能命令字 end*************/
+
+    //*****************************竞标赛功能命令字 start*************/
+    CMD_ACTION_STAR_COMP_CHECK_REQ           = 306200;  // 竞标赛检测
+    CMD_ACTION_STAR_COMP_CHECK_RSP           = 306201;  // 竞标赛检测
+    CMD_ACTION_STAR_COMP_REWARD_REQ          = 306202;  // 竞标赛领奖
+    CMD_ACTION_STAR_COMP_REWARD_RSP          = 306203;  // 竞标赛领奖
+    CMD_ACTION_STAR_COMP_STAGE_REWARD_REQ    = 306204;  // 竞标赛阶段领奖
+    CMD_ACTION_STAR_COMP_STAGE_REWARD_RSP    = 306205;  // 竞标赛阶段领奖
+    CMD_ACTION_STAR_COMP_RANK_LIST_REQ       = 306206;  // 竞标赛排行榜
+    CMD_ACTION_STAR_COMP_RANK_LIST_RSP       = 306207;  // 竞标赛排行榜
+    CMD_ACTION_STAR_COMP_UPDATE_SCORE_REQ    = 306208;  // 竞标赛分数更新
+    CMD_ACTION_STAR_COMP_UPDATE_SCORE_RSP    = 306209;  // 竞标赛分数更新
+    CMD_ACTION_STAR_COMP_ALLOCATION_ROOM_REQ = 306210;  // 竞标赛分配房间
+    CMD_ACTION_STAR_COMP_ALLOCATION_ROOM_RSP = 306211;  // 竞标赛分配房间
+    CMD_ACTION_STAR_COMP_ONLINE_TOOL_REQ     = 306212;  // 竞标赛活动工具
+    CMD_ACTION_STAR_COMP_ONLINE_TOOL_RSP     = 306213;  // 竞标赛活动工具
+    //*****************************竞标赛功能命令字 end*************/
+
+    //**************************** 多段礼包 *************************/
+    CMD_ACTION_MULTI_STAGE_PACK_INFO_REQ = 306300;
+    CMD_ACTION_MULTI_STAGE_PACK_INFO_RSP = 306301;
+    //**************************** 多段礼包 end *************************/
+
+    //***************************** 多充礼包 ****************************/
+    CMD_ACTION_MULTI_PAY_PACK_INFO_REQ  = 306400;
+    CMD_ACTION_MULTI_PAY_PACK_INFO_RSP  = 306401;
+    CMD_ACTION_MULTI_PAY_PACK_FLUSH_REQ = 306402;
+    CMD_ACTION_MULTI_PAY_PACK_FLUSH_RSP = 306403;
+    //***************************** 多充礼包 end ****************************/
+
+    //***************************** 获取活动状态 start ****************************/
+    CMD_ACTION_GET_ACTIVITY_DATA_REQ = 306404;
+    CMD_ACTION_GET_ACTIVITY_DATA_RSP = 306405;
+    //***************************** 获取活动状态 end ****************************/
+
+    //*******************************成就礼包**********************************/
+    CMD_ACTION_ACHIEVE_PACKAGE_INTO_REQ = 306406;
+    CMD_ACTION_ACHIEVE_PACKAGE_INTO_RSP = 306407;
+
+    //******************************超级礼包**********************************/
+    CMD_ACTION_GET_BIGITEM_STATUS_REQ = 306408;
+    CMD_ACTION_GET_BIGITEM_STATUS_RSP = 306409;
+
+    CMD_ACTION_PLANET_UPGRADE_CHECK_REQ            = 306500;  // 过岛活动检测
+    CMD_ACTION_PLANET_UPGRADE_CHECK_RSP            = 306501;  // 过岛活动检测
+    CMD_ACTION_PLANET_UPGRADE_REWARD_REQ           = 306502;  // 过岛活动领奖
+    CMD_ACTION_PLANET_UPGRADE_REWARD_RSP           = 306503;  // 过岛活动领奖
+    CMD_ACTION_PLANET_UPGRADE_UNLIMITED_REPORT_REQ = 306504;  // 不限时冲岛活动触发上报
+    CMD_ACTION_PLANET_UPGRADE_UNLIMITED_REPORT_RSP = 306505;  // 不限时冲岛活动触发上报
+
+    //*******************************小鸟弹弓*********************************/
+    CMD_ACTION_SLINGSHOT_ENTER_REQ           = 306600;
+    CMD_ACTION_SLINGSHOT_ENTER_RSP           = 306601;
+    CMD_ACTION_SLINGSHOT_OTHER_ENTER_REQ     = 306602;
+    CMD_ACTION_SLINGSHOT_OTHER_ENTER_RSP     = 306603;
+    CMD_ACTION_SLINGSHOT_SHOT_REQ            = 306604;
+    CMD_ACTION_SLINGSHOT_SHOT_RSP            = 306605;
+    CMD_ACTION_SLINGSHOT_FRIEND_REQ          = 306606;
+    CMD_ACTION_SLINGSHOT_FRIEND_RSP          = 306607;
+    CMD_ACTION_SLINGSHOT_REFRESH_REQ         = 306608;
+    CMD_ACTION_SLINGSHOT_REFRESH_RSP         = 306609;
+    CMD_ACTION_SLINGSHOT_EXCHANGE_REWARD_REQ = 306610;
+    CMD_ACTION_SLINGSHOT_EXCHANGE_REWARD_RSP = 306611;
+    CMD_ACTION_SLINGSHOT_QUIT_FRIEND_REQ     = 306612;
+    CMD_ACTION_SLINGSHOT_QUIT_FRIEND_RSP     = 306613;
+    CMD_ACTION_SLINGSHOT_SHOT_MSG_REQ        = 306614;
+    CMD_ACTION_SLINGSHOT_SHOT_MSG_RSP        = 306615;
+
+    /***************************************************************************/
+
+    /*****************************拼图相关****************************************/
+    CMD_ACTION_PIC_INFO_REQ            = 306700;  // 拼图信息
+    CMD_ACTION_PIC_INFO_RSP            = 306701;
+    CMD_ACTION_PIC_REPORT_COMPLETE_REQ = 306702;  // 上报拼图完成
+    CMD_ACTION_PIC_REPORT_COMPLETE_RSP = 306703;
+    CMD_ACTION_PIC_REWARD_REQ          = 306704;  // 拼图领奖
+    CMD_ACTION_PIC_REWARD_RSP          = 306705;
+    /****************************拼图相关*****************************************/
+
+    CMD_ACTION_BIG_PACK_INFO_REQ = 360600;  // 节日礼包信息
+    CMD_ACTION_BIG_PACK_INFO_RSP = 360601;  // 节日礼包信息
+
+    /*****************************商城相关***********************************/
+    CMD_PAY_CENTER_DELIVERY_REQ = 360701;  // 商城支付发货
+    CMD_PAY_CENTER_DELIVERY_RSP = 360702;  // 商城支付发货
+    CMD_PAY_EXCHANGE_REQ        = 360703;  // 兑换接口
+    CMD_PAY_EXCHANGE_RSP        = 360704;  // 兑换接口
+    /*****************************商城相关***********************************/
+
+    CMD_ACTION_GUESS_INFO_REQ   = 360800;  // 砸蛋信息
+    CMD_ACTION_GUESS_INFO_RSP   = 360801;  //
+    CMD_ACTION_GUESS_OPEN_REQ   = 360802;  // 砸蛋打开
+    CMD_ACTION_GUESS_OPEN_RSP   = 360803;  //
+    CMD_ACTION_GUESS_REVIVE_REQ = 360804;  // 复活
+    CMD_ACTION_GUESS_REVIVE_RSP = 360805;  //
+    CMD_ACTION_GUESS_EXIT_REQ   = 360806;  // 退出
+    CMD_ACTION_GUESS_EXIT_RSP   = 360807;  //
+
+    /******************************交易系统相关*******************************/
+    CMD_TRADE_SEND_REQ             = 360900;  // 发起赠送
+    CMD_TRADE_SEND_RSP             = 360901;
+    CMD_TRADE_REQUEST_EXCHANGE_REQ = 360902;  // 发起交易
+    CMD_TRADE_REQUEST_EXCHANGE_RSP = 360903;
+    CMD_TRADE_OPERATE_EXCHANGE_REQ = 360904;  // 操作交易
+    CMD_TRADE_OPERATE_EXCHANGE_RSP = 360905;
+    CMD_TRADE_LIST_CHECK_REQ       = 360906;  // 交易条目列表
+    CMD_TRADE_LIST_CHECK_RSP       = 360907;
+    /******************************交易系统相关*******************************/
+
+    /******************************* 岛屿相关 *******************************/
+    CMD_PLANET_OPERATION_REQ = 370000;  // 操作岛屿接口
+    CMD_PLANET_OPERATION_RSP = 370001;
+    CMD_PLANET_INFO_REQ      = 370002;  // 岛屿信息接口
+    CMD_PLANET_INFO_RSP      = 370003;
+
+    CMD_PLANET_EVALUATION_STAR_REWARD_REQ = 370010;  // 评星领奖
+    CMD_PLANET_EVALUATION_STAR_REWARD_RSP = 370011;
+
+    CMD_PLANET_SHARE_REWARD_REQ = 370020;  // 过岛分享发奖
+    CMD_PLANET_SHARE_REWARD_RSP = 370021;
+
+    /*************************** 用户模块 *********************************/
+    // 功能解锁相关
+    CMD_FUNC_UNLOCK_SET_REQ   = 3700100;  // 功能解锁
+    CMD_FUNC_UNLOCK_SET_RSP   = 3700101;  // 功能解锁
+    CMD_GET_UNLOCK_STATUS_REQ = 3700102;  // 获取功能解锁状态
+    CMD_GET_UNLOCK_STATUS_RSP = 3700103;  // 获取功能解锁状态
+    CMD_FUNC_UNLOCK_GET_REQ   = 3700104;  // 功能解锁获取
+    CMD_FUNC_UNLOCK_GET_RSP   = 3700105;  // 功能解锁获取
+
+    // 头像框
+    CMD_AVATAR_FRAME_USE_REQ  = 3700201;  // 头像框使用
+    CMD_AVATAR_FRAME_USE_RSP  = 3700202;  // 头像框使用
+    CMD_AVATAR_FRAME_LIST_REQ = 3700203;  // 头像框列表
+    CMD_AVATAR_FRAME_LIST_RSP = 3700204;  // 头像框列表
+
+    // 推送Token
+    CMD_REPORT_TOKEN_REQ = 3700300;  // 上报推送的token
+    CMD_REPORT_TOKEN_RSP = 3700301;  //
+
+    /*****************************邀请相关***********************************/
+    CMD_USER_INVITE_INFO_REQ        = 3700401;  // 邀请活动信息
+    CMD_USER_INVITE_INFO_RSP        = 3700402;  // 邀请活动信息
+    CMD_USER_INVITE_REWARD_REQ      = 3700403;  // 邀请领奖
+    CMD_USER_INVITE_REWARD_RSP      = 3700404;  // 邀请领奖
+    CMD_SEND_INVITE_REWARD_REQ      = 3700405;  // 发送邀请领奖
+    CMD_SEND_INVITE_REWARD_RSP      = 3700406;  // 发送邀请领奖
+    CMD_USER_INVITE_SUCCESS_REQ     = 3700407;  // 邀请成功
+    CMD_USER_INVITE_SUCCESS_RSP     = 3700408;  // 邀请成功
+    CMD_USER_INVITE_REQ             = 3700409;  // 用户邀请
+    CMD_USER_INVITE_RSP             = 3700410;  // 用户邀请
+    CMD_PHP_USER_INVITE_SUCCESS_REQ = 3700411;  // 旧版本玩家邀请走PHP转发
+    CMD_PHP_USER_INVITE_SUCCESS_RSP = 3700412;  //
+    /*****************************邀请相关***********************************/
+
+    /*****************************消息中心***********************************/
+    CMD_MESSAGE_CENTER_LIST_REQ               = 3700501;  // 消息列表
+    CMD_MESSAGE_CENTER_LIST_RSP               = 3700502;  //
+    CMD_MESSAGE_CENTER_REWARD_REQ             = 3700503;  // 消息领奖
+    CMD_MESSAGE_CENTER_REWARD_RSP             = 3700504;  //
+    CMD_MESSAGE_CENTER_MAIL_SEND_REQ          = 3700505;  // 发送邮件消息
+    CMD_MESSAGE_CENTER_MAIL_SEND_RSP          = 3700506;  //
+    CMD_MESSAGE_CENTER_MAIL_CHANGE_STATUS_REQ = 3700507;  // 修改邮件状态
+    CMD_MESSAGE_CENTER_MAIL_CHANGE_STATUS_RSP = 3700508;  //
+    CMD_MESSAGE_CENTER_GLOBAL_MAIL_STORE_REQ  = 3700509;  // 全员邮件存储
+    CMD_MESSAGE_CENTER_GLOBAL_MAIL_STORE_RSP  = 3700510;  //
+
+    /*****************************新手引导************************************/
+    CMD_NEW_USER_GUIDE_PROCESS_REQ = 3700600;  // 新手引导
+    CMD_NEW_USER_GUIDE_PROCESS_RSP = 3700601;
+    CMD_NEW_USER_BIND_REWARD_REQ   = 3700602;  // 新手引导绑定fb奖励
+    CMD_NEW_USER_BIND_REWARD_RSP   = 3700603;
+    /*****************************消息中心***********************************/
+
+    /***************************** 通行证 **********************************/
+    CMD_PASS_INFO_REQ   = 3700700;
+    CMD_PASS_INFO_RSP   = 3700701;
+    CMD_PASS_REWARD_REQ = 3700702;
+    CMD_PASS_REWARD_RSP = 3700703;
+    CMD_PASS_BUY_REQ    = 3700704;
+    CMD_PASS_BUY_RSP    = 3700705;
+    /**************************** 通行证 end ******************************/
+
+    /******************************掉落系统相关*******************************/
+    CMD_WHEEL_CARD_CLEAR_REQ = 3700800;
+    CMD_WHEEL_CARD_CLEAR_RSP = 3700801;
+    /******************************掉落系统相关*******************************/
+
+    //=================== share分享奖励 start ====================
+    CMD_SHARE_CHECK_REQ  = 3700900;  //分享奖励检查接口
+    CMD_SHARE_CHECK_RSP  = 3700901;  //分享奖励检查接口
+    CMD_SHARE_REWARD_REQ = 3700902;  //分享奖励领取
+    CMD_SHARE_REWARD_RSP = 3700903;  //分享奖励领取
+    //=================== share分享奖励 end   ====================
+
+    /************水果商人 begin************/
+    CMD_LIST_FRUIT_INFO_REQ      = 3701000;
+    CMD_LIST_FRUIT_INFO_RSP      = 3701001;
+    CMD_REWARD_FRUIT_ORDER_REQ   = 3701002;
+    CMD_REWARD_FRUIT_ORDER_RSP   = 3701003;
+    CMD_REWARD_FRUIT_ACTION_REQ  = 3701004;
+    CMD_REWARD_FRUIT_ACTION_RSP  = 3701005;
+    CMD_REFRESH_FRUIT_ACTION_REQ = 3701006;
+    CMD_REFRESH_FRUIT_ACTION_RSP = 3701007;
+    /************水果商人 end  ************/
+
+    /*********************守护神卡片相关*****************************/
+    CMD_GUARD_CARD_INFO_REQ            = 3702000;
+    CMD_GUARD_CARD_INFO_RSP            = 3702001;
+    CMD_GUARD_CARD_COMPLETE_REWARD_REQ = 3702002;
+    CMD_GUARD_CARD_COMPLETE_REWARD_RSP = 3702003;
+    /*********************守护神卡片相关*****************************/
+
+    /**************************** 暂存数据 ********************************/
+    CMD_CLIENT_STORAGE_DATA_GET_REQ = 3800000;
+    CMD_CLIENT_STORAGE_DATA_GET_RSP = 3800001;
+    CMD_CLIENT_STORAGE_DATA_SET_REQ = 3800002;
+    CMD_CLIENT_STORAGE_DATA_SET_RSP = 3800003;
+    /**************************** 暂存数据 ********************************/
+
+    /*********************/
+    CMD_PET_LIST_REQ = 3800100;
+    CMD_PET_LIST_RSP = 3800101;
+    CMD_PET_FEED_REQ = 3800102;
+    CMD_PET_FEED_RSP = 3800103;
+    CMD_PET_TOOL_REQ = 3800104;
+    CMD_PET_TOOL_RSP = 3800105;
+    /*********************/
+    // 运营中心工具
+    CMD_TAG_SYSTEM_TOOL_REQ = 3800110;
+    CMD_TAG_SYSTEM_TOOL_RSP = 3800111;
+
+    // =============== tqsrv =====================
+    CMD_TIMER_TASK_ADD_REQ = 400000;  // timer 任务添加
+    CMD_TIMER_TASK_ADD_RSP = 400001;  // timer 任务添加
+
+    // ================== php ================
+    CMD_PHP_REWARD_REQ        = 500000;  // 发奖请求
+    CMD_PHP_REWARD_RSP        = 500001;  // 发奖返回
+    CMD_PHP_GET_GIFT_MODE_REQ = 500002;  // 获取用户分层modelID
+    CMD_PHP_GET_GIFT_MODE_RSP = 500003;  // 返回用户分层modelID
+    CMD_PHP_CHANGE_ACTION_REQ = 500004;  // 活动修改
+    CMD_PHP_CHANGE_ACTION_RSP = 500005;  // 活动修改
+
+    // 定时推送
+    CMD_TIMER_PUSH_HANDLE_TASK_REQ = 600000;
+
+    // ================== gm ================
+    //*****************************cos日志上传命令字 start*************/
+    CMD_GM_COS_TMP_SECRET_REQ        = 700000;  // 获取cos密钥
+    CMD_GM_COS_TMP_SECRET_RSP        = 700001;  // 获取cos密钥
+    CMD_GM_COS_TMP_STATUS_REPORT_REQ = 700002;  // 日志上报后用户状态上报
+    CMD_GM_COS_TMP_STATUS_REPORT_RSP = 700003;  // 日志上报后用户状态上报
+    //*****************************cos日志上传命令字 end*************/
+    CMD_GM_COS_TOOL_REQ = 700004;  // gm工具接口, 暂时用于PHP内网调用
+    CMD_GM_COS_TOOL_RSP = 700005;  // gm工具接口, 暂时用于PHP内网调用
+
+    // ================== slot ====================
+    CMD_SLOT_DETAIL_REQ    = 800000;
+    CMD_SLOT_DETAIL_RSP    = 800001;
+    CMD_SLOT_RECOVER_REQ   = 800002;
+    CMD_SLOT_RECOVER_RSP   = 800003;
+    CMD_SLOT_PLAY_REQ      = 800004;
+    CMD_SLOT_PLAY_RSP      = 800005;
+    CMD_SLOT_STEAL_REQ     = 800006;
+    CMD_SLOT_STEAL_RSP     = 800007;
+    CMD_SLOT_FIRE_REQ      = 800008;
+    CMD_SLOT_FIRE_RSP      = 800009;
+    CMD_SLOT_TOOL_REQ      = 800010;  // 工具请求
+    CMD_SLOT_TOOL_RSP      = 800011;  // 工具响应
+    CMD_SLOT_USER_STAT_REQ = 800012;  // 用户炮偷数据查询
+    CMD_SLOT_USER_STAT_RSP = 800013;
+
+    // ================== stealpool srv ====================
+    CMD_SLOT_STEAL_POOL_SRV_LOGIN_REQ      = 900000;  // 登陆时处理
+    CMD_SLOT_STEAL_POOL_SRV_LOGIN_RSP      = 900001;
+    CMD_SLOT_STEAL_POOL_SRV_LOCK_REQ       = 900002;  // 重新锁定
+    CMD_SLOT_STEAL_POOL_SRV_LOCK_RSP       = 900003;
+    CMD_SLOT_STEAL_POOL_SRV_STEALED_REQ    = 900004;  // 偷完成
+    CMD_SLOT_STEAL_POOL_SRV_STEALED_RSP    = 900005;
+    CMD_SLOT_STEAL_POOL_SRV_TOOL_REQ       = 900006;  // 工具请求
+    CMD_SLOT_STEAL_POOL_SRV_TOOL_RSP       = 900007;  // 工具响应
+    CMD_SLOT_STEAL_POOL_SRV_STEAL_STAT_REQ = 900008;  // 获取偷实时数据
+    CMD_SLOT_STEAL_POOL_SRV_STEAL_STAT_RSP = 900009;  //
+
+    // ================== firepool srv ====================
+    CMD_SLOT_FIRE_POOL_SRV_FIRE_STAT_REQ = 1000000;  // 获取炮实时数据
+    CMD_SLOT_FIRE_POOL_SRV_FIRE_STAT_RSP = 1000001;  //
+}

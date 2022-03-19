@@ -1,0 +1,50 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hh;hpp;hxx;hm;inl;inc;xsd</Extensions>
+    </Filter>
+    <Filter Include="线程基础">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="boost">
+      <UniqueIdentifier>{f7ddf8b6-3777-4a7a-86e1-ba4d9df3cd35}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="join.cpp">
+      <Filter>线程基础</Filter>
+    </ClCompile>
+    <ClCompile Include="detach.cpp">
+      <Filter>线程基础</Filter>
+    </ClCompile>
+    <ClCompile Include="Parameter.cpp">
+      <Filter>线程基础</Filter>
+    </ClCompile>
+    <ClCompile Include="Move.cpp">
+      <Filter>线程基础</Filter>
+    </ClCompile>
+    <ClCompile Include="thread.cpp">
+      <Filter>线程基础</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Define.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="booAttr.h">
+      <Filter>boost</Filter>
+    </ClInclude>
+    <ClInclude Include="booCancel.h">
+      <Filter>boost</Filter>
+    </ClInclude>
+    <ClInclude Include="booCancel2.h">
+      <Filter>boost</Filter>
+    </ClInclude>
+    <ClInclude Include="boothread.h">
+      <Filter>boost</Filter>
+    </ClInclude>
+  </ItemGroup>
+</Project>

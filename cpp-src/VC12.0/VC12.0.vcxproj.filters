@@ -1,0 +1,5542 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="crt">
+      <UniqueIdentifier>{6d684e8e-1ac7-4f37-a7ea-17c7adef92b6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="crt\AMD64">
+      <UniqueIdentifier>{d4c48392-bfa2-4a3a-b4d3-6a79775b8893}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="crt\ARM">
+      <UniqueIdentifier>{3d8e01db-0eb5-4ae2-968c-3c67e05e3cdc}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="crt\cliext">
+      <UniqueIdentifier>{c5443c80-2e0c-4cb7-9e03-1620adebca8b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="crt\cvt">
+      <UniqueIdentifier>{2f684e7a-439c-4f76-9c23-847b99bee482}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="crt\eh">
+      <UniqueIdentifier>{293bb5bf-728b-4e7e-91d8-f8b297ee9912}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="crt\eh\amd64">
+      <UniqueIdentifier>{9d917c98-78bd-4cb6-a7c2-f73233c50407}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="crt\eh\arm">
+      <UniqueIdentifier>{795e2b89-39f3-4752-8662-bb28501a1064}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="crt\eh\i386">
+      <UniqueIdentifier>{91bbec6e-83c6-491a-b85a-c734356e2b43}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="crt\intel">
+      <UniqueIdentifier>{4c486b75-e6d5-4b04-9f9a-549e2ad84e50}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="crt\msclr">
+      <UniqueIdentifier>{754d2c92-d640-4ae8-853d-565535baab97}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="crt\msclr\com">
+      <UniqueIdentifier>{4b93bec0-3336-4918-91c6-cb78fac25699}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="crt\sys">
+      <UniqueIdentifier>{337a961e-607d-4255-8913-923daa14d2a9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="crt\thr">
+      <UniqueIdentifier>{c3636feb-61a9-45cf-b2de-863659e7751b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="crt\vccorlib">
+      <UniqueIdentifier>{ffc8fafc-5a69-4a36-b906-473c18ac1f07}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="include">
+      <UniqueIdentifier>{7f751019-4ece-40a4-a1bf-eac780eaa2e7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="include\cliext">
+      <UniqueIdentifier>{49128ab2-3b1a-4d62-8e24-d74bdc4c8879}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="include\CodeAnalysis">
+      <UniqueIdentifier>{2e7f0717-868c-4ff5-9895-91511c49a2b2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="include\cvt">
+      <UniqueIdentifier>{30c05c08-94a5-4db3-a188-f7cb362d25e3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="include\Manifest">
+      <UniqueIdentifier>{f17b84a6-625c-430c-8873-4a6808bdce09}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="include\msclr">
+      <UniqueIdentifier>{5ea7ff85-7591-4491-a9b5-c2f42b26caad}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="include\msclr\com">
+      <UniqueIdentifier>{2a79f12c-ef2a-4305-8595-691106c0e1b7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="include\sys">
+      <UniqueIdentifier>{ca6207bb-5fa4-4196-a8b2-0c4a5770ca65}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="include\thr">
+      <UniqueIdentifier>{afc1dc07-be47-45e5-b3b0-7aecbc0e8f4e}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="crt\src\_ctype.c">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\_filbuf.c">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\_file.c">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\_filwbuf.c">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\_flsbuf.c">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\_flswbuf.c">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\_fptostr.c">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\_freebuf.c">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\_getbuf.c">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\_mbslen.c">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\_mbslen_s.c">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\_newmode.c">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\_open.c">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\_setargv.c">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\_sftbuf.c">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\_strerr.c">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\_tolower.c">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\_toupper.c">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\_wcserr.c">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\_wctype.c">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\_wopen.c">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\_wstargv.c">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\a_cmp.c">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\a_env.c">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\a_loc.c">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\a_map.c">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\a_str.c">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\abort.c">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\abs.c">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\access.c">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\Agent.cpp">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\align.c">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\asctime.c">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\assert.c">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\atodbl.c">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\atof.c">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\atomic.c">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\atonexit.c">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\atox.c">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\binmode.c">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\bsearch.c">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\bsearch_s.c">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\bswap.c">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\CacheLocalScheduleGroup.cpp">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\calloc.c">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\calloc_impl.c">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\cds_cache_aligned_allocator.cpp">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\cenvarg.c">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\cerr.cpp">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\cgets.c">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\cgetws.c">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\charmax.c">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\chdir.c">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\chmod.c">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\Chores.cpp">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\chsize.c">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\cin.cpp">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\cinitexe.c">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\clearerr.c">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\clock.c">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\clog.cpp">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\close.c">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\closeall.c">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\cmiscdat.c">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\commit.c">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\commode.c">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\concurrent_hash.cpp">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\concurrent_queue.cpp">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\concurrent_vector.cpp">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\Context.cpp">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\ContextBase.cpp">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\cout.cpp">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\cprintf.c">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\cprintfp.c">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\cprintfs.c">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\cputs.c">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\cputws.c">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\creat.c">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\crt0.c">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\crt0dat.c">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\crt0fp.c">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\crt0init.c">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\crt0msg.c">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\crtdll.c">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\crtexe.c">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\crtexew.c">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\crtheap.c">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\crtlib.c">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\crtmbox.c">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\crtmboxw.c">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\cscanf.c">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\cscanfs.c">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\ctime.c">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\ctime64.c">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\ctype.c">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\CurrentScheduler.cpp">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\cwprintf.c">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\cwprntfp.c">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\cwprntfs.c">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\cwscanf.c">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\cwscanfs.c">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\days.c">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\dbgcalloc.c">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\dbgdel.cpp">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\dbgdel2.cpp">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\dbgfree.c">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\dbgheap.c">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\dbghook.c">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\dbgmalloc.c">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\dbgnew.cpp">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\dbgrealloc.c">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\dbgrpt.c">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\dbgrptt.c">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\dbgrptw.c">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\dbgsec.c">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\defaultmerr.cpp">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\delaopnt.cpp">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\delete.cpp">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\delete2.cpp">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\delopnt.cpp">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\difftime.c">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\difftm64.c">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\div.c">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\dll_argv.c">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\dllargv.c">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\dllcrt0.c">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\dllmain.c">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\dosmap.c">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\dospawn.c">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\drive.c">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\drivemap.c">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\drivfree.c">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\dtoxtime.c">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\dtoxtm64.c">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\dup.c">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\dup2.c">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\eof.c">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\errmode.c">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\event.cpp">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\Exceptions.cpp">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\execl.c">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\execle.c">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\execlp.c">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\execlpe.c">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\ExecutionResource.cpp">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\execv.c">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\execve.c">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\execvp.c">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\execvpe.c">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\exedefad.cpp">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\expand.c">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\ExternalContextBase.cpp">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\FairScheduleGroup.cpp">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\fclose.c">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\fcvt.c">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\fdopen.c">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\feoferr.c">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\fflush.c">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\fgetc.c">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\fgetchar.c">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\fgetpos.c">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\fgets.c">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\fgetwc.c">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\fgetwchr.c">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\fgetws.c">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\fileno.c">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\filesys.cpp">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\findf64.c">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\findfi32.c">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\findfi64.c">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\findfile.c">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\fiopen.cpp">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\flength.c">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\fleni64.c">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\fopen.c">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\fp10.c">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\fprintf.c">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\fputc.c">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\fputchar.c">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\fputs.c">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\fputwc.c">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\fputwchr.c">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\fputws.c">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\fread.c">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\free.c">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\freea.c">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\FreeThreadProxy.cpp">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\FreeVirtualProcessorRoot.cpp">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\freopen.c">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\fscanf.c">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\fseek.c">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\fseeki64.c">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\fsetpos.c">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\fstat.c">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\fstat64.c">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\fstati32.c">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\fstati64.c">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\ftell.c">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\ftelli64.c">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\ftime.c">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\ftime64.c">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\fullpath.c">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\future.cpp">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\fwprintf.c">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\fwrite.c">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\fwscanf.c">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\gcvt.c">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\generics.cpp">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\getch.c">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\getcwd.c">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\getenv.c">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\getpath.c">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\getpid.c">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\getproc.c">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\getqloc.c">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\getqloc_downlevel.c">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\gets.c">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\getw.c">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\getwch.c">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\getws.c">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\glstatus.c">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\gmtime.c">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\gmtime64.c">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\gs_cookie.c">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\gs_report.c">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\gs_support.c">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\handler.cpp">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\heapadd.c">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\heapchk.c">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\heapinit.c">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\heapmin.c">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\heapused.c">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\heapwalk.c">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\helperfunc.cpp">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\HillClimbing.cpp">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\hpabort.c">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\imaxabs.c">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\imaxdiv.c">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\initcoll.c">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\initcon.c">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\initconin.c">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\initctyp.c">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\inithelp.c">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\initmon.c">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\initnum.c">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\inittime.c">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\input.c">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\inputs.c">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\instances.cpp">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\InternalContextBase.cpp">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\invalidcontinue.c">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\invarg.c">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\ioinit.c">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\iomanip.cpp">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\ios.cpp">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\iosptrs.cpp">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\iostream.cpp">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\isatty.c">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\isctype.c">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\ismbalnm.c">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\ismbalph.c">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\ismbbyte.c">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\ismbdgt.c">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\ismbgrph.c">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\ismbknj.c">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\ismblgl.c">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\ismblwr.c">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\ismbprn.c">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\ismbpunc.c">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\ismbsle.c">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\ismbspc.c">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\ismbstr.c">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\ismbupr.c">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\iswctype.c">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\labs.c">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\lcnvinit.c">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\lconv.c">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\ldiv.c">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\lfind.c">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\lfind_s.c">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\llabs.c">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\loaddll.c">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\locale.cpp">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\locale_implib_pure.cpp">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\locale0.cpp">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\locale0_implib.cpp">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\localref.c">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\localtim.c">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\location.cpp">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\locking.c">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\loctim64.c">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\loosefpmath.c">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\lsearch.c">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\lsearch_s.c">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\lseek.c">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\lseeki64.c">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\makepath.c">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\makepath_s.c">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\malloc.c">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\managedmain.cpp">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\mbbtype.c">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\mbccpy.c">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\mbccpy_s.c">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\mbccpy_s_l.c">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\mbclen.c">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\mbclevel.c">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\mbctype.c">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\mblen.c">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\mbrtowc.c">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\mbsbtype.c">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\mbscat_s.c">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\mbscat_s_l.c">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\mbschr.c">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\mbscmp.c">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\mbscoll.c">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\mbscpy_s.c">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\mbscpy_s_l.c">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\mbscspn.c">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\mbsdec.c">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\mbsearch.cpp">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\mbsicmp.c">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\mbsicoll.c">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\mbsinc.c">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\mbslen.c">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\mbslen_s.c">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\mbslwr.c">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\mbsnbcat.c">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\mbsnbcat_s.c">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\mbsnbcat_s_l.c">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\mbsnbcmp.c">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\mbsnbcnt.c">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\mbsnbcol.c">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\mbsnbcpy.c">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\mbsnbcpy_s.c">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\mbsnbcpy_s_l.c">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\mbsnbicm.c">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\mbsnbico.c">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\mbsnbset.c">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\mbsnbset_s.c">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\mbsnbset_s_l.c">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\mbsncat.c">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\mbsncat_s.c">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\mbsncat_s_l.c">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\mbsnccnt.c">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\mbsncmp.c">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\mbsncoll.c">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\mbsncpy.c">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\mbsncpy_s.c">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\mbsncpy_s_l.c">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\mbsnextc.c">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\mbsnicmp.c">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\mbsnicol.c">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\mbsninc.c">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\mbsnset.c">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\mbsnset_s.c">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\mbsnset_s_l.c">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\mbspbrk.c">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\mbsrchr.c">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\mbsrev.c">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\mbsset.c">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\mbsset_s.c">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\mbsset_s_l.c">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\mbsspn.c">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\mbsspnp.c">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\mbsstr.c">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\mbstok.c">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\mbstok_s.c">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\mbstowcs.c">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\mbsupr.c">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\mbtohira.c">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\mbtokata.c">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\mbtolwr.c">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\mbtoupr.c">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\mbtowc.c">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\mbtowenv.c">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\mcrtexe.cpp">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\mcrtexew.cpp">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\mdbgheap.cpp">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\mdbghook.cpp">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\memccpy.c">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\memchr.c">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\memcmp.c">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\memcpy.c">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\memcpy_s.c">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\memicmp.c">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\memmove.c">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\memmove_s.c">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\memset.c">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\merr.c">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\mfpieeeflt.cpp">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\mhandler.cpp">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\mkdir.c">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\mktemp.c">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\mktime.c">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\mktime64.c">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\mlfind.cpp">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\mlock.c">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\mlsearch.cpp">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\mmatherr.cpp">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\mpiostream.cpp">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\mpushiostream.cpp">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\mqsort.cpp">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\msilexit.cpp">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\msize.c">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\mstartup.cpp">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\multprec.cpp">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\muser.cpp">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\mwcrtexe.cpp">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\mwcrtexew.cpp">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\natstart.c">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\ncommode.c">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\new.cpp">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\new_mode.cpp">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\new2.cpp">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\newaop.cpp">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\newaop_s.cpp">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\newaopnt.cpp">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\newmode.c">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\newop.cpp">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\newop_s.cpp">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\newopnt.cpp">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\nlsdata.c">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\noarg.c">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\noenv.c">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\nohetoc.c">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\nothrow.cpp">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\nothrow0.cpp">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\nothrownew.cpp">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\onexit.c">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\open.c">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\openo.cpp">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\osfinfo.c">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\output.c">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\outputformat.c">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\outputp.c">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\outputs.c">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\perror.c">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\pesect.c">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\pipe.c">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\placeholders.cpp">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\Platform.cpp">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\popen.c">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\ppl.cpp">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\printf.c">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\ptrust.cpp">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\pureMSILcode.cpp">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\purevirt.c">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\putch.c">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\putenv.c">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\puts.c">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\putw.c">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\putwch.c">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\putws.c">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\qsort.c">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\qsort_s.c">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\raisehan.cpp">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\rand.c">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\rand_s.c">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\read.c">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\RealizedChore.cpp">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\realloc.c">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\recalloc.c">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\rename.c">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\resetstk.c">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\ResourceManager.cpp">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\rewind.c">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\rmdir.c">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\rmtmp.c">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\rotl.c">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\rotr.c">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\rtlocks.cpp">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\scanf.c">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\ScheduleGroupBase.cpp">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\SchedulerBase.cpp">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\SchedulerPolicyBase.cpp">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\SchedulerProxy.cpp">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\SchedulingNode.cpp">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\SchedulingRing.cpp">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\SearchAlgorithms.cpp">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\searchen.c">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\setargv.c">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\setbuf.c">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\setenv.c">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\seterrm.c">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\setlocal.c">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\setmaxf.c">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\setmode.c">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\setnewh.cpp">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\setvbuf.c">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\slbeep.c">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\smalheap.c">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\snprintf.c">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\snprnc.c">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\snscanf.c">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\snwprint.c">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\snwscanf.c">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\spawnl.c">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\spawnle.c">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\spawnlp.c">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\spawnlpe.c">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\spawnv.c">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\spawnve.c">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\spawnvp.c">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\spawnvpe.c">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\splitpat.c">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\splitpath_s.c">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\sprintf.c">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\sscanf.c">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\stat.c">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\stat64.c">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\stati32.c">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\stati64.c">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\staticinits.cpp">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\stdargv.c">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\stdenvp.c">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\stdhndlr.cpp">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\stdlldiv.c">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\stdthrow.cpp">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\strcat.c">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\strcat_s.c">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\strchr.c">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\strcmp.c">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\strcoll.c">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\strcpy_s.c">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\strcspn.c">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\strdate.c">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\strdup.c">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\stream.c">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\strerror.c">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\strftime.c">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\stricmp.c">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\stricoll.c">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\strlen.c">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\strlen_s.c">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\strlwr.c">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\strncat.c">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\strncat_s.c">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\strncmp.c">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\strncnt.c">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\strncoll.c">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\strncpy.c">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\strncpy_s.c">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\strnicmp.c">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\strnicol.c">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\strnset.c">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\strnset_s.c">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\strpbrk.c">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\strrchr.c">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\strrev.c">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\strset.c">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\strset_s.c">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\strspn.c">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\strstr.c">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\strtime.c">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\strtod.c">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\strtok.c">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\strtok_s.c">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\strtol.c">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\strtoq.c">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\strupr.c">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\strxfrm.c">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\SubAllocator.cpp">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\swab.c">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\swprintf.c">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\swprintn.cpp">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\swprnc.c">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\swscanf.c">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\syserr.c">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\syserror.cpp">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\system.c">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\systime.c">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\TaskCollection.cpp">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\TaskCollectionBase.cpp">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\tell.c">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\telli64.c">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\tempnam.c">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\thread.c">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\thread0.cpp">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\threadex.c">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\ThreadInternalContext.cpp">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\threadlocale.c">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\ThreadProxy.cpp">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\ThreadProxyFactoryManager.cpp">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\ThreadScheduler.cpp">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\ThreadVirtualProcessor.cpp">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\thrownew.cpp">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\ti_inst.cpp">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\tidprint.c">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\tidtable.c">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\time.c">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\time64.c">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\Timer.cpp">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\timeset.c">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\tlsdtor.c">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\tlsdyn.c">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\tlssup.c">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\tmpfile.c">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\tojisjms.c">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\tolower.c">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\tombbmbc.c">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\toupper.c">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\towlower.c">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\towupper.c">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\Trace.cpp">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\Transmogrificator.cpp">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\TransmogrifiedPrimary.cpp">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\txtmode.c">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\tzset.c">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\umask.c">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\UMSBackgroundPoller.cpp">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\UMSFreeThreadProxy.cpp">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\UMSFreeVirtualProcessorRoot.cpp">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\UMSSchedulerProxy.cpp">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\UMSSchedulingContext.cpp">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\UMSThreadInternalContext.cpp">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\UMSThreadProxy.cpp">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\UMSThreadScheduler.cpp">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\UMSThreadVirtualProcessor.cpp">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\UMSWrapper.cpp">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\uncaught.cpp">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\ungetc.c">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\ungetwc.c">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\unlink.c">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\ushcerr.cpp">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\ushcin.cpp">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\ushclog.cpp">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\ushcout.cpp">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\ushiostr.cpp">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\utils.cpp">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\utime.c">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\utime64.c">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\vacopy.c">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\vfprintf.c">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\vfwprint.c">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\VirtualProcessor.cpp">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\VirtualProcessorRoot.cpp">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\vprintf.c">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\vsnprint.c">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\vsnprnc.c">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\vsnwprnt.c">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\vsprintf.c">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\vswprinn.cpp">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\vswprint.c">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\vswprnc.c">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\vwprintf.c">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\w_cmp.c">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\w_env.c">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\w_map.c">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\waccess.c">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\wait.c">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\wasctime.c">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\wassert.c">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\wcenvarg.c">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\wcerr.cpp">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\wchdir.c">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\wchmod.c">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\wchtodig.c">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\wcin.cpp">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\wclog.cpp">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\wcout.cpp">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\wcreat.c">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\wcrt0.c">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\wcrtexe.c">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\wcrtexew.c">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\wcrtomb.c">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\wcscat.c">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\wcscat_s.c">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\wcscmp.c">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\wcscoll.c">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\wcscpy_s.c">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\wcscspn.c">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\wcsdup.c">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\wcserror.c">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\wcsftime.c">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\wcsicmp.c">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\wcsicoll.c">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\wcslen.c">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\wcslen_s.c">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\wcslwr.c">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\wcsncat.c">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\wcsncat_s.c">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\wcsncmp.c">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\wcsncnt.c">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\wcsncoll.c">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\wcsncpy.c">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\wcsncpy_s.c">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\wcsnicmp.c">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\wcsnicol.c">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\wcsnset.c">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\wcsnset_s.c">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\wcspbrk.c">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\wcsrev.c">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\wcsset.c">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\wcsset_s.c">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\wcsspn.c">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\wcstod.c">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\wcstok.c">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\wcstok_s.c">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\wcstol.c">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\wcstombs.c">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\wcstoq.c">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\wcsupr.c">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\wcsxfrm.c">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\wctime.c">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\wctime64.c">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\wctomb.c">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\wctrans.c">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\wctype.c">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\wdll_av.c">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\wdllargv.c">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\wdospawn.c">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\wexecl.c">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\wexecle.c">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\wexeclp.c">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\wexeclpe.c">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\wexecv.c">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\wexecve.c">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\wexecvp.c">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\wexecvpe.c">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\wfdopen.c">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\wfindfil.c">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\wfndf64.c">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\wfndfi32.c">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\wfndfi64.c">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\wfopen.c">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\wfreopen.c">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\wfullpat.c">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\wgetcwd.c">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\wgetenv.c">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\wgetpath.c">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\wild.c">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\wildcard.c">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\winapinls.c">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\winapisupp.c">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\wincmdln.c">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\wincrt0.c">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\winput.c">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\winputs.c">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\WinRTWrapper.cpp">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\winsig.c">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\winxfltr.c">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\wiostrea.cpp">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\wlocale.cpp">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\wmakepat.c">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\wmakepath_s.c">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\wmemcpy_s.c">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\wmemmove_s.c">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\wmkdir.c">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\wmktemp.c">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\wopen.c">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\WorkQueue.cpp">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\woutput.c">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\woutputp.c">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\woutputs.c">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\wperror.c">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\wpopen.c">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\wprintf.c">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\wputenv.c">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\wrename.c">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\write.c">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\wrmdir.c">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\wrt2err.c">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\wscanf.c">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\wsearche.c">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\wsetargv.c">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\wsetenv.c">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\wsetloca.c">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\wspawnl.c">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\wspawnle.c">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\wspawnlp.c">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\wspawnv.c">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\wspawnve.c">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\wspawnvp.c">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\wsplitpa.c">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\wsplitpath_s.c">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\wspwnlpe.c">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\wspwnvpe.c">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\wstat.c">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\wstat64.c">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\wstati32.c">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\wstati64.c">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\wstdargv.c">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\wstdenvp.c">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\wstrdate.c">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\wstrtime.c">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\wsystem.c">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\wtempnam.c">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\wtmpfile.c">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\wtof.c">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\wtombenv.c">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\wtox.c">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\wunlink.c">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\wutime.c">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\wutime64.c">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\wwild.c">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\wwincrt0.c">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\wwncmdln.c">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\xalloc.cpp">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\xcosh.c">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\xdateord.cpp">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\xdebug.cpp">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\xdint.c">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\xdnorm.c">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\xdscale.c">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\xdtento.c">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\xdtest.c">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\xdunscal.c">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\xexp.c">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\xfcosh.c">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\xfdint.c">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\xfdnorm.c">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\xfdscale.c">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\xfdtento.c">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\xfdtest.c">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\xfdunsca.c">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\xferaise.c">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\xfexp.c">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\xfpostox.cpp">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\xfprec.c">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\xfsinh.c">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\xfvalues.c">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\xgetwctype.c">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\xlcosh.c">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\xldint.c">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\xldnorm.c">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\xldscale.c">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\xldtento.c">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\xldtest.c">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\xldunsca.c">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\xlexp.c">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\xlgamma.cpp">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\xlocale.cpp">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\xlock.cpp">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\xlpoly.c">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\xlprec.c">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\xlsinh.c">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\xlvalues.c">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\xmbtowc.c">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\xmtx.c">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\xncommod.c">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\xonce.cpp">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\xpoly.c">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\xprec.c">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\xrngabort.cpp">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\xrngdev.cpp">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\xsinh.c">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\xstod.c">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\xstof.c">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\xstoflt.c">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\xstol.c">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\xstold.c">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\xstoll.c">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\xstopfx.c">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\xstoul.c">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\xstoull.c">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\xstoxflt.c">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\xstrcoll.c">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\xstrxfrm.c">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\xthdloc.c">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\xthrow.cpp">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\xtoa.c">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\xtoas.c">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\xtow.c">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\xtowlower.c">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\xtows.c">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\xtowupper.c">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\xtxtmode.c">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\xvalues.c">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\xwcscoll.c">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\xwcsxfrm.c">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\xwctomb.c">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\xwstod.c">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\xwstof.c">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\xwstoflt.c">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\xwstold.c">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\xwstopfx.c">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\xwstoxfl.c">
+      <Filter>crt</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\AMD64\dllsupp.c">
+      <Filter>crt\AMD64</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\ARM\helpexcept.c">
+      <Filter>crt\ARM</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\eh\ehvccctr.cpp">
+      <Filter>crt\eh</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\eh\ehvcccvb.cpp">
+      <Filter>crt\eh</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\eh\ehvecctr.cpp">
+      <Filter>crt\eh</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\eh\ehveccvb.cpp">
+      <Filter>crt\eh</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\eh\ehvecdtr.cpp">
+      <Filter>crt\eh</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\eh\excptptr.cpp">
+      <Filter>crt\eh</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\eh\frame.cpp">
+      <Filter>crt\eh</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\eh\hooks.cpp">
+      <Filter>crt\eh</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\eh\managdeh.cpp">
+      <Filter>crt\eh</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\eh\mehvccctr.cpp">
+      <Filter>crt\eh</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\eh\mehvcccvb.cpp">
+      <Filter>crt\eh</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\eh\mehvecctr.cpp">
+      <Filter>crt\eh</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\eh\mehveccvb.cpp">
+      <Filter>crt\eh</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\eh\mehvecdtr.cpp">
+      <Filter>crt\eh</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\eh\mexcptptr.cpp">
+      <Filter>crt\eh</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\eh\mstdexpt.cpp">
+      <Filter>crt\eh</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\eh\mtypinfo.cpp">
+      <Filter>crt\eh</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\eh\rtti.cpp">
+      <Filter>crt\eh</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\eh\stdexcpt.cpp">
+      <Filter>crt\eh</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\eh\throw.cpp">
+      <Filter>crt\eh</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\eh\tncleanup.cpp">
+      <Filter>crt\eh</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\eh\typinfo.cpp">
+      <Filter>crt\eh</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\eh\typname.cpp">
+      <Filter>crt\eh</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\eh\unhandld.cpp">
+      <Filter>crt\eh</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\eh\user.cpp">
+      <Filter>crt\eh</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\eh\validate.cpp">
+      <Filter>crt\eh</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\eh\amd64\gshandlereh.c">
+      <Filter>crt\eh\amd64</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\eh\amd64\trnsctrl.cpp">
+      <Filter>crt\eh\amd64</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\eh\amd64\ehstate.cpp">
+      <Filter>crt\eh\amd64</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\eh\arm\gshandlereh.c">
+      <Filter>crt\eh\arm</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\eh\arm\trnsctrl.cpp">
+      <Filter>crt\eh\arm</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\eh\arm\ehstate.cpp">
+      <Filter>crt\eh\arm</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\eh\i386\ehprolg3a.c">
+      <Filter>crt\eh\i386</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\eh\i386\trnsctrl.cpp">
+      <Filter>crt\eh\i386</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\eh\i386\ehprolg2.c">
+      <Filter>crt\eh\i386</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\eh\i386\ehprolg3.c">
+      <Filter>crt\eh\i386</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\intel\loadcfg.c">
+      <Filter>crt\intel</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\intel\secchk.c">
+      <Filter>crt\intel</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\intel\wcschr.c">
+      <Filter>crt\intel</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\intel\wcsrchr.c">
+      <Filter>crt\intel</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\intel\wcsstr.c">
+      <Filter>crt\intel</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\intel\fp8.c">
+      <Filter>crt\intel</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\thr\threadexc.cpp">
+      <Filter>crt\thr</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\thr\tss.c">
+      <Filter>crt\thr</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\thr\xnotify.c">
+      <Filter>crt\thr</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\thr\xtime.c">
+      <Filter>crt\thr</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\thr\cond.c">
+      <Filter>crt\thr</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\thr\cthread.c">
+      <Filter>crt\thr</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\thr\mutex.c">
+      <Filter>crt\thr</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\thr\once.c">
+      <Filter>crt\thr</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\thr\threadcall.cpp">
+      <Filter>crt\thr</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\vccorlib\dllexports.cpp">
+      <Filter>crt\vccorlib</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\vccorlib\dllexportsimpl.cpp">
+      <Filter>crt\vccorlib</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\vccorlib\eventsource.cpp">
+      <Filter>crt\vccorlib</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\vccorlib\exceptions.cpp">
+      <Filter>crt\vccorlib</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\vccorlib\heap.cpp">
+      <Filter>crt\vccorlib</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\vccorlib\init.cpp">
+      <Filter>crt\vccorlib</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\vccorlib\main.cpp">
+      <Filter>crt\vccorlib</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\vccorlib\object.cpp">
+      <Filter>crt\vccorlib</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\vccorlib\outofprocmodule.cpp">
+      <Filter>crt\vccorlib</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\vccorlib\serverexports.cpp">
+      <Filter>crt\vccorlib</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\vccorlib\sizet.cpp">
+      <Filter>crt\vccorlib</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\vccorlib\string.cpp">
+      <Filter>crt\vccorlib</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\vccorlib\tmdefault.cpp">
+      <Filter>crt\vccorlib</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\vccorlib\tmmta.cpp">
+      <Filter>crt\vccorlib</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\vccorlib\tmsta.cpp">
+      <Filter>crt\vccorlib</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\vccorlib\type.cpp">
+      <Filter>crt\vccorlib</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\vccorlib\vccorlib.cpp">
+      <Filter>crt\vccorlib</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\vccorlib\vcwinrt.cpp">
+      <Filter>crt\vccorlib</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\vccorlib\weakreference.cpp">
+      <Filter>crt\vccorlib</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\vccorlib\winmain.cpp">
+      <Filter>crt\vccorlib</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\vccorlib\activation.cpp">
+      <Filter>crt\vccorlib</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\vccorlib\agile.cpp">
+      <Filter>crt\vccorlib</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\vccorlib\attribute.cpp">
+      <Filter>crt\vccorlib</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\vccorlib\basetypes.cpp">
+      <Filter>crt\vccorlib</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\vccorlib\box.cpp">
+      <Filter>crt\vccorlib</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\vccorlib\climain.cpp">
+      <Filter>crt\vccorlib</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\vccorlib\compiler.cpp">
+      <Filter>crt\vccorlib</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\vccorlib\console.cpp">
+      <Filter>crt\vccorlib</Filter>
+    </ClCompile>
+    <ClCompile Include="crt\src\vccorlib\delegate.cpp">
+      <Filter>crt\vccorlib</Filter>
+    </ClCompile>
+    <ClCompile Include="include\delayhlp.cpp">
+      <Filter>include</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="crt\src\agents.h">
+      <Filter>crt</Filter>
+    </ClInclude>
+    <ClInclude Include="crt\src\align.h">
+      <Filter>crt</Filter>
+    </ClInclude>
+    <ClInclude Include="crt\src\ammintrin.h">
+      <Filter>crt</Filter>
+    </ClInclude>
+    <ClInclude Include="crt\src\arm_neon.h">
+      <Filter>crt</Filter>
+    </ClInclude>
+    <ClInclude Include="crt\src\armintr.h">
+      <Filter>crt</Filter>
+    </ClInclude>
+    <ClInclude Include="crt\src\assert.h">
+      <Filter>crt</Filter>
+    </ClInclude>
+    <ClInclude Include="crt\src\awint.h">
+      <Filter>crt</Filter>
+    </ClInclude>
+    <ClInclude Include="crt\src\CacheLocalScheduleGroup.h">
+      <Filter>crt</Filter>
+    </ClInclude>
+    <ClInclude Include="crt\src\cds_cache_aligned_allocator.h">
+      <Filter>crt</Filter>
+    </ClInclude>
+    <ClInclude Include="crt\src\cmsgs.h">
+      <Filter>crt</Filter>
+    </ClInclude>
+    <ClInclude Include="crt\src\collection.h">
+      <Filter>crt</Filter>
+    </ClInclude>
+    <ClInclude Include="crt\src\collections.h">
+      <Filter>crt</Filter>
+    </ClInclude>
+    <ClInclude Include="crt\src\concrt.h">
+      <Filter>crt</Filter>
+    </ClInclude>
+    <ClInclude Include="crt\src\concrtinternal.h">
+      <Filter>crt</Filter>
+    </ClInclude>
+    <ClInclude Include="crt\src\concrtrm.h">
+      <Filter>crt</Filter>
+    </ClInclude>
+    <ClInclude Include="crt\src\concurrent_priority_queue.h">
+      <Filter>crt</Filter>
+    </ClInclude>
+    <ClInclude Include="crt\src\concurrent_queue.h">
+      <Filter>crt</Filter>
+    </ClInclude>
+    <ClInclude Include="crt\src\concurrent_unordered_map.h">
+      <Filter>crt</Filter>
+    </ClInclude>
+    <ClInclude Include="crt\src\concurrent_unordered_set.h">
+      <Filter>crt</Filter>
+    </ClInclude>
+    <ClInclude Include="crt\src\concurrent_vector.h">
+      <Filter>crt</Filter>
+    </ClInclude>
+    <ClInclude Include="crt\src\conio.h">
+      <Filter>crt</Filter>
+    </ClInclude>
+    <ClInclude Include="crt\src\ContextBase.h">
+      <Filter>crt</Filter>
+    </ClInclude>
+    <ClInclude Include="crt\src\crtdbg.h">
+      <Filter>crt</Filter>
+    </ClInclude>
+    <ClInclude Include="crt\src\crtdefs.h">
+      <Filter>crt</Filter>
+    </ClInclude>
+    <ClInclude Include="crt\src\crtversion.h">
+      <Filter>crt</Filter>
+    </ClInclude>
+    <ClInclude Include="crt\src\crtwrn.h">
+      <Filter>crt</Filter>
+    </ClInclude>
+    <ClInclude Include="crt\src\cruntime.h">
+      <Filter>crt</Filter>
+    </ClInclude>
+    <ClInclude Include="crt\src\ctime.h">
+      <Filter>crt</Filter>
+    </ClInclude>
+    <ClInclude Include="crt\src\ctype.h">
+      <Filter>crt</Filter>
+    </ClInclude>
+    <ClInclude Include="crt\src\cvt.h">
+      <Filter>crt</Filter>
+    </ClInclude>
+    <ClInclude Include="crt\src\dbgint.h">
+      <Filter>crt</Filter>
+    </ClInclude>
+    <ClInclude Include="crt\src\direct.h">
+      <Filter>crt</Filter>
+    </ClInclude>
+    <ClInclude Include="crt\src\dos.h">
+      <Filter>crt</Filter>
+    </ClInclude>
+    <ClInclude Include="crt\src\dvec.h">
+      <Filter>crt</Filter>
+    </ClInclude>
+    <ClInclude Include="crt\src\eh.h">
+      <Filter>crt</Filter>
+    </ClInclude>
+    <ClInclude Include="crt\src\ehdata.h">
+      <Filter>crt</Filter>
+    </ClInclude>
+    <ClInclude Include="crt\src\emmintrin.h">
+      <Filter>crt</Filter>
+    </ClInclude>
+    <ClInclude Include="crt\src\errmsg.h">
+      <Filter>crt</Filter>
+    </ClInclude>
+    <ClInclude Include="crt\src\errno.h">
+      <Filter>crt</Filter>
+    </ClInclude>
+    <ClInclude Include="crt\src\excpt.h">
+      <Filter>crt</Filter>
+    </ClInclude>
+    <ClInclude Include="crt\src\ExecutionResource.h">
+      <Filter>crt</Filter>
+    </ClInclude>
+    <ClInclude Include="crt\src\ExternalContextBase.h">
+      <Filter>crt</Filter>
+    </ClInclude>
+    <ClInclude Include="crt\src\FairScheduleGroup.h">
+      <Filter>crt</Filter>
+    </ClInclude>
+    <ClInclude Include="crt\src\fcntl.h">
+      <Filter>crt</Filter>
+    </ClInclude>
+    <ClInclude Include="crt\src\fenv.h">
+      <Filter>crt</Filter>
+    </ClInclude>
+    <ClInclude Include="crt\src\file2.h">
+      <Filter>crt</Filter>
+    </ClInclude>
+    <ClInclude Include="crt\src\filesys.h">
+      <Filter>crt</Filter>
+    </ClInclude>
+    <ClInclude Include="crt\src\float.h">
+      <Filter>crt</Filter>
+    </ClInclude>
+    <ClInclude Include="crt\src\fltintrn.h">
+      <Filter>crt</Filter>
+    </ClInclude>
+    <ClInclude Include="crt\src\fpieee.h">
+      <Filter>crt</Filter>
+    </ClInclude>
+    <ClInclude Include="crt\src\FreeThreadProxy.h">
+      <Filter>crt</Filter>
+    </ClInclude>
+    <ClInclude Include="crt\src\FreeVirtualProcessorRoot.h">
+      <Filter>crt</Filter>
+    </ClInclude>
+    <ClInclude Include="crt\src\fvec.h">
+      <Filter>crt</Filter>
+    </ClInclude>
+    <ClInclude Include="crt\src\generics.h">
+      <Filter>crt</Filter>
+    </ClInclude>
+    <ClInclude Include="crt\src\HillClimbing.h">
+      <Filter>crt</Filter>
+    </ClInclude>
+    <ClInclude Include="crt\src\immintrin.h">
+      <Filter>crt</Filter>
+    </ClInclude>
+    <ClInclude Include="crt\src\internal.h">
+      <Filter>crt</Filter>
+    </ClInclude>
+    <ClInclude Include="crt\src\internal_concurrent_hash.h">
+      <Filter>crt</Filter>
+    </ClInclude>
+    <ClInclude Include="crt\src\internal_securecrt.h">
+      <Filter>crt</Filter>
+    </ClInclude>
+    <ClInclude Include="crt\src\internal_split_ordered_list.h">
+      <Filter>crt</Filter>
+    </ClInclude>
+    <ClInclude Include="crt\src\InternalContextBase.h">
+      <Filter>crt</Filter>
+    </ClInclude>
+    <ClInclude Include="crt\src\intrin.h">
+      <Filter>crt</Filter>
+    </ClInclude>
+    <ClInclude Include="crt\src\inttypes.h">
+      <Filter>crt</Filter>
+    </ClInclude>
+    <ClInclude Include="crt\src\io.h">
+      <Filter>crt</Filter>
+    </ClInclude>
+    <ClInclude Include="crt\src\isa_availability.h">
+      <Filter>crt</Filter>
+    </ClInclude>
+    <ClInclude Include="crt\src\iso646.h">
+      <Filter>crt</Filter>
+    </ClInclude>
+    <ClInclude Include="crt\src\ivec.h">
+      <Filter>crt</Filter>
+    </ClInclude>
+    <ClInclude Include="crt\src\limits.h">
+      <Filter>crt</Filter>
+    </ClInclude>
+    <ClInclude Include="crt\src\locale.h">
+      <Filter>crt</Filter>
+    </ClInclude>
+    <ClInclude Include="crt\src\Mailbox.h">
+      <Filter>crt</Filter>
+    </ClInclude>
+    <ClInclude Include="crt\src\malloc.h">
+      <Filter>crt</Filter>
+    </ClInclude>
+    <ClInclude Include="crt\src\math.h">
+      <Filter>crt</Filter>
+    </ClInclude>
+    <ClInclude Include="crt\src\mbctype.h">
+      <Filter>crt</Filter>
+    </ClInclude>
+    <ClInclude Include="crt\src\mbdata.h">
+      <Filter>crt</Filter>
+    </ClInclude>
+    <ClInclude Include="crt\src\mbstring.h">
+      <Filter>crt</Filter>
+    </ClInclude>
+    <ClInclude Include="crt\src\memory.h">
+      <Filter>crt</Filter>
+    </ClInclude>
+    <ClInclude Include="crt\src\minmax.h">
+      <Filter>crt</Filter>
+    </ClInclude>
+    <ClInclude Include="crt\src\minternal.h">
+      <Filter>crt</Filter>
+    </ClInclude>
+    <ClInclude Include="crt\src\mm3dnow.h">
+      <Filter>crt</Filter>
+    </ClInclude>
+    <ClInclude Include="crt\src\mmintrin.h">
+      <Filter>crt</Filter>
+    </ClInclude>
+    <ClInclude Include="crt\src\msdos.h">
+      <Filter>crt</Filter>
+    </ClInclude>
+    <ClInclude Include="crt\src\mtdll.h">
+      <Filter>crt</Filter>
+    </ClInclude>
+    <ClInclude Include="crt\src\new.h">
+      <Filter>crt</Filter>
+    </ClInclude>
+    <ClInclude Include="crt\src\nlsdownlevel.h">
+      <Filter>crt</Filter>
+    </ClInclude>
+    <ClInclude Include="crt\src\nlsint.h">
+      <Filter>crt</Filter>
+    </ClInclude>
+    <ClInclude Include="crt\src\nmmintrin.h">
+      <Filter>crt</Filter>
+    </ClInclude>
+    <ClInclude Include="crt\src\oscalls.h">
+      <Filter>crt</Filter>
+    </ClInclude>
+    <ClInclude Include="crt\src\Platform.h">
+      <Filter>crt</Filter>
+    </ClInclude>
+    <ClInclude Include="crt\src\pmmintrin.h">
+      <Filter>crt</Filter>
+    </ClInclude>
+    <ClInclude Include="crt\src\ppl.h">
+      <Filter>crt</Filter>
+    </ClInclude>
+    <ClInclude Include="crt\src\pplcancellation_token.h">
+      <Filter>crt</Filter>
+    </ClInclude>
+    <ClInclude Include="crt\src\pplconcrt.h">
+      <Filter>crt</Filter>
+    </ClInclude>
+    <ClInclude Include="crt\src\pplinterface.h">
+      <Filter>crt</Filter>
+    </ClInclude>
+    <ClInclude Include="crt\src\ppltasks.h">
+      <Filter>crt</Filter>
+    </ClInclude>
+    <ClInclude Include="crt\src\process.h">
+      <Filter>crt</Filter>
+    </ClInclude>
+    <ClInclude Include="crt\src\RealizedChore.h">
+      <Filter>crt</Filter>
+    </ClInclude>
+    <ClInclude Include="crt\src\ResourceManager.h">
+      <Filter>crt</Filter>
+    </ClInclude>
+    <ClInclude Include="crt\src\rminternal.h">
+      <Filter>crt</Filter>
+    </ClInclude>
+    <ClInclude Include="crt\src\rtcapi.h">
+      <Filter>crt</Filter>
+    </ClInclude>
+    <ClInclude Include="crt\src\rtcsup.h">
+      <Filter>crt</Filter>
+    </ClInclude>
+    <ClInclude Include="crt\src\rterr.h">
+      <Filter>crt</Filter>
+    </ClInclude>
+    <ClInclude Include="crt\src\ScheduleGroupBase.h">
+      <Filter>crt</Filter>
+    </ClInclude>
+    <ClInclude Include="crt\src\SchedulerBase.h">
+      <Filter>crt</Filter>
+    </ClInclude>
+    <ClInclude Include="crt\src\SchedulerProxy.h">
+      <Filter>crt</Filter>
+    </ClInclude>
+    <ClInclude Include="crt\src\SchedulingNode.h">
+      <Filter>crt</Filter>
+    </ClInclude>
+    <ClInclude Include="crt\src\SchedulingRing.h">
+      <Filter>crt</Filter>
+    </ClInclude>
+    <ClInclude Include="crt\src\search.h">
+      <Filter>crt</Filter>
+    </ClInclude>
+    <ClInclude Include="crt\src\SearchAlgorithms.h">
+      <Filter>crt</Filter>
+    </ClInclude>
+    <ClInclude Include="crt\src\sect_attribs.h">
+      <Filter>crt</Filter>
+    </ClInclude>
+    <ClInclude Include="crt\src\setjmp.h">
+      <Filter>crt</Filter>
+    </ClInclude>
+    <ClInclude Include="crt\src\setjmpex.h">
+      <Filter>crt</Filter>
+    </ClInclude>
+    <ClInclude Include="crt\src\setlocal.h">
+      <Filter>crt</Filter>
+    </ClInclude>
+    <ClInclude Include="crt\src\share.h">
+      <Filter>crt</Filter>
+    </ClInclude>
+    <ClInclude Include="crt\src\signal.h">
+      <Filter>crt</Filter>
+    </ClInclude>
+    <ClInclude Include="crt\src\smmintrin.h">
+      <Filter>crt</Filter>
+    </ClInclude>
+    <ClInclude Include="crt\src\stdarg.h">
+      <Filter>crt</Filter>
+    </ClInclude>
+    <ClInclude Include="crt\src\stdbool.h">
+      <Filter>crt</Filter>
+    </ClInclude>
+    <ClInclude Include="crt\src\stddef.h">
+      <Filter>crt</Filter>
+    </ClInclude>
+    <ClInclude Include="crt\src\stdexcpt.h">
+      <Filter>crt</Filter>
+    </ClInclude>
+    <ClInclude Include="crt\src\stdint.h">
+      <Filter>crt</Filter>
+    </ClInclude>
+    <ClInclude Include="crt\src\stdio.h">
+      <Filter>crt</Filter>
+    </ClInclude>
+    <ClInclude Include="crt\src\stdlib.h">
+      <Filter>crt</Filter>
+    </ClInclude>
+    <ClInclude Include="crt\src\string.h">
+      <Filter>crt</Filter>
+    </ClInclude>
+    <ClInclude Include="crt\src\StructuredWorkStealingQueue.h">
+      <Filter>crt</Filter>
+    </ClInclude>
+    <ClInclude Include="crt\src\SubAllocator.h">
+      <Filter>crt</Filter>
+    </ClInclude>
+    <ClInclude Include="crt\src\syserr.h">
+      <Filter>crt</Filter>
+    </ClInclude>
+    <ClInclude Include="crt\src\targetver.h">
+      <Filter>crt</Filter>
+    </ClInclude>
+    <ClInclude Include="crt\src\TaskCollection.h">
+      <Filter>crt</Filter>
+    </ClInclude>
+    <ClInclude Include="crt\src\tchar.h">
+      <Filter>crt</Filter>
+    </ClInclude>
+    <ClInclude Include="crt\src\ThreadInternalContext.h">
+      <Filter>crt</Filter>
+    </ClInclude>
+    <ClInclude Include="crt\src\ThreadProxy.h">
+      <Filter>crt</Filter>
+    </ClInclude>
+    <ClInclude Include="crt\src\ThreadProxyFactory.h">
+      <Filter>crt</Filter>
+    </ClInclude>
+    <ClInclude Include="crt\src\ThreadScheduler.h">
+      <Filter>crt</Filter>
+    </ClInclude>
+    <ClInclude Include="crt\src\ThreadVirtualProcessor.h">
+      <Filter>crt</Filter>
+    </ClInclude>
+    <ClInclude Include="crt\src\time.h">
+      <Filter>crt</Filter>
+    </ClInclude>
+    <ClInclude Include="crt\src\Timer.h">
+      <Filter>crt</Filter>
+    </ClInclude>
+    <ClInclude Include="crt\src\tmmintrin.h">
+      <Filter>crt</Filter>
+    </ClInclude>
+    <ClInclude Include="crt\src\Trace.h">
+      <Filter>crt</Filter>
+    </ClInclude>
+    <ClInclude Include="crt\src\Transmogrificator.h">
+      <Filter>crt</Filter>
+    </ClInclude>
+    <ClInclude Include="crt\src\TransmogrifiedPrimary.h">
+      <Filter>crt</Filter>
+    </ClInclude>
+    <ClInclude Include="crt\src\typeinfo.h">
+      <Filter>crt</Filter>
+    </ClInclude>
+    <ClInclude Include="crt\src\UMSBackgroundPoller.h">
+      <Filter>crt</Filter>
+    </ClInclude>
+    <ClInclude Include="crt\src\UMSFreeThreadProxy.h">
+      <Filter>crt</Filter>
+    </ClInclude>
+    <ClInclude Include="crt\src\UMSFreeVirtualProcessorRoot.h">
+      <Filter>crt</Filter>
+    </ClInclude>
+    <ClInclude Include="crt\src\UMSSchedulerProxy.h">
+      <Filter>crt</Filter>
+    </ClInclude>
+    <ClInclude Include="crt\src\UMSSchedulingContext.h">
+      <Filter>crt</Filter>
+    </ClInclude>
+    <ClInclude Include="crt\src\UMSThreadInternalContext.h">
+      <Filter>crt</Filter>
+    </ClInclude>
+    <ClInclude Include="crt\src\UMSThreadProxy.h">
+      <Filter>crt</Filter>
+    </ClInclude>
+    <ClInclude Include="crt\src\UMSThreadScheduler.h">
+      <Filter>crt</Filter>
+    </ClInclude>
+    <ClInclude Include="crt\src\UMSThreadVirtualProcessor.h">
+      <Filter>crt</Filter>
+    </ClInclude>
+    <ClInclude Include="crt\src\UMSWrapper.h">
+      <Filter>crt</Filter>
+    </ClInclude>
+    <ClInclude Include="crt\src\use_ansi.h">
+      <Filter>crt</Filter>
+    </ClInclude>
+    <ClInclude Include="crt\src\utils.h">
+      <Filter>crt</Filter>
+    </ClInclude>
+    <ClInclude Include="crt\src\vadefs.h">
+      <Filter>crt</Filter>
+    </ClInclude>
+    <ClInclude Include="crt\src\varargs.h">
+      <Filter>crt</Filter>
+    </ClInclude>
+    <ClInclude Include="crt\src\VirtualProcessor.h">
+      <Filter>crt</Filter>
+    </ClInclude>
+    <ClInclude Include="crt\src\VirtualProcessorRoot.h">
+      <Filter>crt</Filter>
+    </ClInclude>
+    <ClInclude Include="crt\src\wchar.h">
+      <Filter>crt</Filter>
+    </ClInclude>
+    <ClInclude Include="crt\src\wctype.h">
+      <Filter>crt</Filter>
+    </ClInclude>
+    <ClInclude Include="crt\src\winheap.h">
+      <Filter>crt</Filter>
+    </ClInclude>
+    <ClInclude Include="crt\src\WinRTWrapper.h">
+      <Filter>crt</Filter>
+    </ClInclude>
+    <ClInclude Include="crt\src\wmmintrin.h">
+      <Filter>crt</Filter>
+    </ClInclude>
+    <ClInclude Include="crt\src\workqueue.h">
+      <Filter>crt</Filter>
+    </ClInclude>
+    <ClInclude Include="crt\src\WorkStealingQueue.h">
+      <Filter>crt</Filter>
+    </ClInclude>
+    <ClInclude Include="crt\src\wrapwin.h">
+      <Filter>crt</Filter>
+    </ClInclude>
+    <ClInclude Include="crt\src\xatomic.h">
+      <Filter>crt</Filter>
+    </ClInclude>
+    <ClInclude Include="crt\src\xatomic0.h">
+      <Filter>crt</Filter>
+    </ClInclude>
+    <ClInclude Include="crt\src\xkeycheck.h">
+      <Filter>crt</Filter>
+    </ClInclude>
+    <ClInclude Include="crt\src\xlocinfo.h">
+      <Filter>crt</Filter>
+    </ClInclude>
+    <ClInclude Include="crt\src\xmath.h">
+      <Filter>crt</Filter>
+    </ClInclude>
+    <ClInclude Include="crt\src\xmmintrin.h">
+      <Filter>crt</Filter>
+    </ClInclude>
+    <ClInclude Include="crt\src\xmtx.h">
+      <Filter>crt</Filter>
+    </ClInclude>
+    <ClInclude Include="crt\src\xtgmath.h">
+      <Filter>crt</Filter>
+    </ClInclude>
+    <ClInclude Include="crt\src\xxcctype.h">
+      <Filter>crt</Filter>
+    </ClInclude>
+    <ClInclude Include="crt\src\xxdftype.h">
+      <Filter>crt</Filter>
+    </ClInclude>
+    <ClInclude Include="crt\src\xxfftype.h">
+      <Filter>crt</Filter>
+    </ClInclude>
+    <ClInclude Include="crt\src\xxlftype.h">
+      <Filter>crt</Filter>
+    </ClInclude>
+    <ClInclude Include="crt\src\xxstod.h">
+      <Filter>crt</Filter>
+    </ClInclude>
+    <ClInclude Include="crt\src\xxwctype.h">
+      <Filter>crt</Filter>
+    </ClInclude>
+    <ClInclude Include="crt\src\xxxdtent.h">
+      <Filter>crt</Filter>
+    </ClInclude>
+    <ClInclude Include="crt\src\xxxprec.h">
+      <Filter>crt</Filter>
+    </ClInclude>
+    <ClInclude Include="crt\src\ymath.h">
+      <Filter>crt</Filter>
+    </ClInclude>
+    <ClInclude Include="crt\src\yvals.h">
+      <Filter>crt</Filter>
+    </ClInclude>
+    <ClInclude Include="crt\src\ARM\fpcommon.h">
+      <Filter>crt\ARM</Filter>
+    </ClInclude>
+    <ClInclude Include="crt\src\msclr\all.h">
+      <Filter>crt\msclr</Filter>
+    </ClInclude>
+    <ClInclude Include="crt\src\msclr\appdomain.h">
+      <Filter>crt\msclr</Filter>
+    </ClInclude>
+    <ClInclude Include="crt\src\msclr\auto_gcroot.h">
+      <Filter>crt\msclr</Filter>
+    </ClInclude>
+    <ClInclude Include="crt\src\msclr\auto_handle.h">
+      <Filter>crt\msclr</Filter>
+    </ClInclude>
+    <ClInclude Include="crt\src\msclr\event.h">
+      <Filter>crt\msclr</Filter>
+    </ClInclude>
+    <ClInclude Include="crt\src\msclr\gcroot.h">
+      <Filter>crt\msclr</Filter>
+    </ClInclude>
+    <ClInclude Include="crt\src\msclr\lock.h">
+      <Filter>crt\msclr</Filter>
+    </ClInclude>
+    <ClInclude Include="crt\src\msclr\safebool.h">
+      <Filter>crt\msclr</Filter>
+    </ClInclude>
+    <ClInclude Include="crt\src\msclr\com\ptr.h">
+      <Filter>crt\msclr\com</Filter>
+    </ClInclude>
+    <ClInclude Include="crt\src\sys\types.h">
+      <Filter>crt\sys</Filter>
+    </ClInclude>
+    <ClInclude Include="crt\src\sys\utime.h">
+      <Filter>crt\sys</Filter>
+    </ClInclude>
+    <ClInclude Include="crt\src\sys\locking.h">
+      <Filter>crt\sys</Filter>
+    </ClInclude>
+    <ClInclude Include="crt\src\sys\stat.h">
+      <Filter>crt\sys</Filter>
+    </ClInclude>
+    <ClInclude Include="crt\src\sys\timeb.h">
+      <Filter>crt\sys</Filter>
+    </ClInclude>
+    <ClInclude Include="crt\src\thr\threads.h">
+      <Filter>crt\thr</Filter>
+    </ClInclude>
+    <ClInclude Include="crt\src\thr\wrapwin.h">
+      <Filter>crt\thr</Filter>
+    </ClInclude>
+    <ClInclude Include="crt\src\thr\xthrcommon.h">
+      <Filter>crt\thr</Filter>
+    </ClInclude>
+    <ClInclude Include="crt\src\thr\xthreads.h">
+      <Filter>crt\thr</Filter>
+    </ClInclude>
+    <ClInclude Include="crt\src\thr\xtimec.h">
+      <Filter>crt\thr</Filter>
+    </ClInclude>
+    <ClInclude Include="include\agents.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\agile.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\ammintrin.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\amp.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\amp_graphics.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\amp_math.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\amp_short_vectors.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\amprt.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\arm_neon.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\armintr.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\assert.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\collection.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\comdef.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\comdefsp.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\comip.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\complex.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\comutil.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\concrt.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\concrtrm.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\ConcurrencySal.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\concurrent_priority_queue.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\concurrent_queue.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\concurrent_unordered_map.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\concurrent_unordered_set.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\concurrent_vector.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\conio.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\crtdbg.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\crtdefs.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\crtversion.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\crtwrn.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\ctype.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\delayimp.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\direct.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\dos.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\dvec.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\eh.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\emmintrin.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\errno.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\excpt.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\fcntl.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\fenv.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\float.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\fpieee.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\fvec.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\gcroot.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\immintrin.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\internal_concurrent_hash.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\internal_split_ordered_list.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\intrin.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\inttypes.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\invkprxy.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\io.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\iso646.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\ivec.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\limits.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\locale.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\malloc.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\math.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\mbctype.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\mbstring.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\memory.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\minmax.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\mm3dnow.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\mmintrin.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\new.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\nmmintrin.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\omp.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\pmmintrin.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\ppl.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\pplcancellation_token.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\pplconcrt.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\pplinterface.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\ppltasks.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\process.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\rtcapi.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\safeint.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\safeint_internal.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\sal.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\search.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\setjmp.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\setjmpex.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\share.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\signal.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\smmintrin.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\stdarg.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\stdbool.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\stddef.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\stdexcpt.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\stdint.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\stdio.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\stdlib.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\string.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\tchar.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\time.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\tmmintrin.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\typeinfo.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\use_ansi.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\vadefs.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\varargs.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\vcclr.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\vccorlib.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\wchar.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\wctype.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\wmmintrin.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\xatomic.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\xatomic0.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\xkeycheck.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\xlocinfo.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\xmmintrin.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\xtgmath.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\xxamp.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\xxamp_inl.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\ymath.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\yvals.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\CodeAnalysis\sourceannotations.h">
+      <Filter>include\CodeAnalysis</Filter>
+    </ClInclude>
+    <ClInclude Include="include\CodeAnalysis\Warnings.h">
+      <Filter>include\CodeAnalysis</Filter>
+    </ClInclude>
+    <ClInclude Include="include\msclr\all.h">
+      <Filter>include\msclr</Filter>
+    </ClInclude>
+    <ClInclude Include="include\msclr\appdomain.h">
+      <Filter>include\msclr</Filter>
+    </ClInclude>
+    <ClInclude Include="include\msclr\auto_gcroot.h">
+      <Filter>include\msclr</Filter>
+    </ClInclude>
+    <ClInclude Include="include\msclr\auto_handle.h">
+      <Filter>include\msclr</Filter>
+    </ClInclude>
+    <ClInclude Include="include\msclr\event.h">
+      <Filter>include\msclr</Filter>
+    </ClInclude>
+    <ClInclude Include="include\msclr\gcroot.h">
+      <Filter>include\msclr</Filter>
+    </ClInclude>
+    <ClInclude Include="include\msclr\lock.h">
+      <Filter>include\msclr</Filter>
+    </ClInclude>
+    <ClInclude Include="include\msclr\marshal.h">
+      <Filter>include\msclr</Filter>
+    </ClInclude>
+    <ClInclude Include="include\msclr\marshal_atl.h">
+      <Filter>include\msclr</Filter>
+    </ClInclude>
+    <ClInclude Include="include\msclr\marshal_cppstd.h">
+      <Filter>include\msclr</Filter>
+    </ClInclude>
+    <ClInclude Include="include\msclr\marshal_windows.h">
+      <Filter>include\msclr</Filter>
+    </ClInclude>
+    <ClInclude Include="include\msclr\safebool.h">
+      <Filter>include\msclr</Filter>
+    </ClInclude>
+    <ClInclude Include="include\msclr\com\ptr.h">
+      <Filter>include\msclr\com</Filter>
+    </ClInclude>
+    <ClInclude Include="include\sys\timeb.h">
+      <Filter>include\sys</Filter>
+    </ClInclude>
+    <ClInclude Include="include\sys\types.h">
+      <Filter>include\sys</Filter>
+    </ClInclude>
+    <ClInclude Include="include\sys\utime.h">
+      <Filter>include\sys</Filter>
+    </ClInclude>
+    <ClInclude Include="include\sys\locking.h">
+      <Filter>include\sys</Filter>
+    </ClInclude>
+    <ClInclude Include="include\sys\stat.h">
+      <Filter>include\sys</Filter>
+    </ClInclude>
+    <ClInclude Include="include\thr\threads.h">
+      <Filter>include\thr</Filter>
+    </ClInclude>
+    <ClInclude Include="include\thr\xthrcommon.h">
+      <Filter>include\thr</Filter>
+    </ClInclude>
+    <ClInclude Include="include\thr\xthreads.h">
+      <Filter>include\thr</Filter>
+    </ClInclude>
+    <ClInclude Include="include\thr\xtimec.h">
+      <Filter>include\thr</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="crt\src\algorithm">
+      <Filter>crt</Filter>
+    </None>
+    <None Include="crt\src\allocators">
+      <Filter>crt</Filter>
+    </None>
+    <None Include="crt\src\array">
+      <Filter>crt</Filter>
+    </None>
+    <None Include="crt\src\atodbl.inl">
+      <Filter>crt</Filter>
+    </None>
+    <None Include="crt\src\atomic">
+      <Filter>crt</Filter>
+    </None>
+    <None Include="crt\src\bitset">
+      <Filter>crt</Filter>
+    </None>
+    <None Include="crt\src\cassert">
+      <Filter>crt</Filter>
+    </None>
+    <None Include="crt\src\ccomplex">
+      <Filter>crt</Filter>
+    </None>
+    <None Include="crt\src\cctype">
+      <Filter>crt</Filter>
+    </None>
+    <None Include="crt\src\cerrno">
+      <Filter>crt</Filter>
+    </None>
+    <None Include="crt\src\cfenv">
+      <Filter>crt</Filter>
+    </None>
+    <None Include="crt\src\cfloat">
+      <Filter>crt</Filter>
+    </None>
+    <None Include="crt\src\chrono">
+      <Filter>crt</Filter>
+    </None>
+    <None Include="crt\src\cinttypes">
+      <Filter>crt</Filter>
+    </None>
+    <None Include="crt\src\ciso646">
+      <Filter>crt</Filter>
+    </None>
+    <None Include="crt\src\climits">
+      <Filter>crt</Filter>
+    </None>
+    <None Include="crt\src\clocale">
+      <Filter>crt</Filter>
+    </None>
+    <None Include="crt\src\cmath">
+      <Filter>crt</Filter>
+    </None>
+    <None Include="crt\src\codecvt">
+      <Filter>crt</Filter>
+    </None>
+    <None Include="crt\src\complex">
+      <Filter>crt</Filter>
+    </None>
+    <None Include="crt\src\condition_variable">
+      <Filter>crt</Filter>
+    </None>
+    <None Include="crt\src\cruntime.inc">
+      <Filter>crt</Filter>
+    </None>
+    <None Include="crt\src\csetjmp">
+      <Filter>crt</Filter>
+    </None>
+    <None Include="crt\src\csignal">
+      <Filter>crt</Filter>
+    </None>
+    <None Include="crt\src\cstdarg">
+      <Filter>crt</Filter>
+    </None>
+    <None Include="crt\src\cstdbool">
+      <Filter>crt</Filter>
+    </None>
+    <None Include="crt\src\cstddef">
+      <Filter>crt</Filter>
+    </None>
+    <None Include="crt\src\cstdint">
+      <Filter>crt</Filter>
+    </None>
+    <None Include="crt\src\cstdio">
+      <Filter>crt</Filter>
+    </None>
+    <None Include="crt\src\cstdlib">
+      <Filter>crt</Filter>
+    </None>
+    <None Include="crt\src\cstring">
+      <Filter>crt</Filter>
+    </None>
+    <None Include="crt\src\ctgmath">
+      <Filter>crt</Filter>
+    </None>
+    <None Include="crt\src\ctime">
+      <Filter>crt</Filter>
+    </None>
+    <None Include="crt\src\cwchar">
+      <Filter>crt</Filter>
+    </None>
+    <None Include="crt\src\cwctype">
+      <Filter>crt</Filter>
+    </None>
+    <None Include="crt\src\deque">
+      <Filter>crt</Filter>
+    </None>
+    <None Include="crt\src\except.inc">
+      <Filter>crt</Filter>
+    </None>
+    <None Include="crt\src\exception">
+      <Filter>crt</Filter>
+    </None>
+    <None Include="crt\src\exsup.inc">
+      <Filter>crt</Filter>
+    </None>
+    <None Include="crt\src\fgetwc_nolock.inl">
+      <Filter>crt</Filter>
+    </None>
+    <None Include="crt\src\filesystem">
+      <Filter>crt</Filter>
+    </None>
+    <None Include="crt\src\forward_list">
+      <Filter>crt</Filter>
+    </None>
+    <None Include="crt\src\fstream">
+      <Filter>crt</Filter>
+    </None>
+    <None Include="crt\src\functional">
+      <Filter>crt</Filter>
+    </None>
+    <None Include="crt\src\future">
+      <Filter>crt</Filter>
+    </None>
+    <None Include="crt\src\hash_map">
+      <Filter>crt</Filter>
+    </None>
+    <None Include="crt\src\hash_set">
+      <Filter>crt</Filter>
+    </None>
+    <None Include="crt\src\initializer_list">
+      <Filter>crt</Filter>
+    </None>
+    <None Include="crt\src\iomanip">
+      <Filter>crt</Filter>
+    </None>
+    <None Include="crt\src\ios">
+      <Filter>crt</Filter>
+    </None>
+    <None Include="crt\src\iosfwd">
+      <Filter>crt</Filter>
+    </None>
+    <None Include="crt\src\iostream">
+      <Filter>crt</Filter>
+    </None>
+    <None Include="crt\src\istream">
+      <Filter>crt</Filter>
+    </None>
+    <None Include="crt\src\iterator">
+      <Filter>crt</Filter>
+    </None>
+    <None Include="crt\src\limits">
+      <Filter>crt</Filter>
+    </None>
+    <None Include="crt\src\list">
+      <Filter>crt</Filter>
+    </None>
+    <None Include="crt\src\locale">
+      <Filter>crt</Filter>
+    </None>
+    <None Include="crt\src\map">
+      <Filter>crt</Filter>
+    </None>
+    <None Include="crt\src\mbccpy_s.inl">
+      <Filter>crt</Filter>
+    </None>
+    <None Include="crt\src\mbscat_s.inl">
+      <Filter>crt</Filter>
+    </None>
+    <None Include="crt\src\mbscpy_s.inl">
+      <Filter>crt</Filter>
+    </None>
+    <None Include="crt\src\mbsncat_s.inl">
+      <Filter>crt</Filter>
+    </None>
+    <None Include="crt\src\mbsncpy_s.inl">
+      <Filter>crt</Filter>
+    </None>
+    <None Include="crt\src\mbsnset_s.inl">
+      <Filter>crt</Filter>
+    </None>
+    <None Include="crt\src\mbsset_s.inl">
+      <Filter>crt</Filter>
+    </None>
+    <None Include="crt\src\mbstok_s.inl">
+      <Filter>crt</Filter>
+    </None>
+    <None Include="crt\src\memory">
+      <Filter>crt</Filter>
+    </None>
+    <None Include="crt\src\mm.inc">
+      <Filter>crt</Filter>
+    </None>
+    <None Include="crt\src\mutex">
+      <Filter>crt</Filter>
+    </None>
+    <None Include="crt\src\new">
+      <Filter>crt</Filter>
+    </None>
+    <None Include="crt\src\numeric">
+      <Filter>crt</Filter>
+    </None>
+    <None Include="crt\src\ostream">
+      <Filter>crt</Filter>
+    </None>
+    <None Include="crt\src\queue">
+      <Filter>crt</Filter>
+    </None>
+    <None Include="crt\src\random">
+      <Filter>crt</Filter>
+    </None>
+    <None Include="crt\src\ratio">
+      <Filter>crt</Filter>
+    </None>
+    <None Include="crt\src\regex">
+      <Filter>crt</Filter>
+    </None>
+    <None Include="crt\src\scoped_allocator">
+      <Filter>crt</Filter>
+    </None>
+    <None Include="crt\src\set">
+      <Filter>crt</Filter>
+    </None>
+    <None Include="crt\src\sstream">
+      <Filter>crt</Filter>
+    </None>
+    <None Include="crt\src\stack">
+      <Filter>crt</Filter>
+    </None>
+    <None Include="crt\src\stdexcept">
+      <Filter>crt</Filter>
+    </None>
+    <None Include="crt\src\streambuf">
+      <Filter>crt</Filter>
+    </None>
+    <None Include="crt\src\string">
+      <Filter>crt</Filter>
+    </None>
+    <None Include="crt\src\strstream">
+      <Filter>crt</Filter>
+    </None>
+    <None Include="crt\src\strtok_s.inl">
+      <Filter>crt</Filter>
+    </None>
+    <None Include="crt\src\swprintf.inl">
+      <Filter>crt</Filter>
+    </None>
+    <None Include="crt\src\system_error">
+      <Filter>crt</Filter>
+    </None>
+    <None Include="crt\src\tcscat_s.inl">
+      <Filter>crt</Filter>
+    </None>
+    <None Include="crt\src\tcscpy_s.inl">
+      <Filter>crt</Filter>
+    </None>
+    <None Include="crt\src\tcsncat_s.inl">
+      <Filter>crt</Filter>
+    </None>
+    <None Include="crt\src\tcsncpy_s.inl">
+      <Filter>crt</Filter>
+    </None>
+    <None Include="crt\src\tcsnset_s.inl">
+      <Filter>crt</Filter>
+    </None>
+    <None Include="crt\src\tcsset_s.inl">
+      <Filter>crt</Filter>
+    </None>
+    <None Include="crt\src\tcstok_s.inl">
+      <Filter>crt</Filter>
+    </None>
+    <None Include="crt\src\thread">
+      <Filter>crt</Filter>
+    </None>
+    <None Include="crt\src\time.inl">
+      <Filter>crt</Filter>
+    </None>
+    <None Include="crt\src\tmakepath_s.inl">
+      <Filter>crt</Filter>
+    </None>
+    <None Include="crt\src\tsplitpath_s.inl">
+      <Filter>crt</Filter>
+    </None>
+    <None Include="crt\src\tuple">
+      <Filter>crt</Filter>
+    </None>
+    <None Include="crt\src\type_traits">
+      <Filter>crt</Filter>
+    </None>
+    <None Include="crt\src\typeindex">
+      <Filter>crt</Filter>
+    </None>
+    <None Include="crt\src\typeinfo">
+      <Filter>crt</Filter>
+    </None>
+    <None Include="crt\src\ungetc_nolock.inl">
+      <Filter>crt</Filter>
+    </None>
+    <None Include="crt\src\ungetwc_nolock.inl">
+      <Filter>crt</Filter>
+    </None>
+    <None Include="crt\src\unordered_map">
+      <Filter>crt</Filter>
+    </None>
+    <None Include="crt\src\unordered_set">
+      <Filter>crt</Filter>
+    </None>
+    <None Include="crt\src\utility">
+      <Filter>crt</Filter>
+    </None>
+    <None Include="crt\src\valarray">
+      <Filter>crt</Filter>
+    </None>
+    <None Include="crt\src\vector">
+      <Filter>crt</Filter>
+    </None>
+    <None Include="crt\src\wtime.inl">
+      <Filter>crt</Filter>
+    </None>
+    <None Include="crt\src\xcomplex">
+      <Filter>crt</Filter>
+    </None>
+    <None Include="crt\src\xdebug">
+      <Filter>crt</Filter>
+    </None>
+    <None Include="crt\src\xfacet">
+      <Filter>crt</Filter>
+    </None>
+    <None Include="crt\src\xfunctional">
+      <Filter>crt</Filter>
+    </None>
+    <None Include="crt\src\xhash">
+      <Filter>crt</Filter>
+    </None>
+    <None Include="crt\src\xiosbase">
+      <Filter>crt</Filter>
+    </None>
+    <None Include="crt\src\xlocale">
+      <Filter>crt</Filter>
+    </None>
+    <None Include="crt\src\xlocbuf">
+      <Filter>crt</Filter>
+    </None>
+    <None Include="crt\src\xlocinfo">
+      <Filter>crt</Filter>
+    </None>
+    <None Include="crt\src\xlocmes">
+      <Filter>crt</Filter>
+    </None>
+    <None Include="crt\src\xlocmon">
+      <Filter>crt</Filter>
+    </None>
+    <None Include="crt\src\xlocnum">
+      <Filter>crt</Filter>
+    </None>
+    <None Include="crt\src\xloctime">
+      <Filter>crt</Filter>
+    </None>
+    <None Include="crt\src\xmemory">
+      <Filter>crt</Filter>
+    </None>
+    <None Include="crt\src\xmemory0">
+      <Filter>crt</Filter>
+    </None>
+    <None Include="crt\src\xrefwrap">
+      <Filter>crt</Filter>
+    </None>
+    <None Include="crt\src\xstddef">
+      <Filter>crt</Filter>
+    </None>
+    <None Include="crt\src\xstring">
+      <Filter>crt</Filter>
+    </None>
+    <None Include="crt\src\xtr1common">
+      <Filter>crt</Filter>
+    </None>
+    <None Include="crt\src\xtree">
+      <Filter>crt</Filter>
+    </None>
+    <None Include="crt\src\xutility">
+      <Filter>crt</Filter>
+    </None>
+    <None Include="crt\src\xxatomic">
+      <Filter>crt</Filter>
+    </None>
+    <None Include="crt\src\AMD64\amdsecgs.asm">
+      <Filter>crt\AMD64</Filter>
+    </None>
+    <None Include="crt\src\ARM\armsecgs.asm">
+      <Filter>crt\ARM</Filter>
+    </None>
+    <None Include="crt\src\ARM\divide.asm">
+      <Filter>crt\ARM</Filter>
+    </None>
+    <None Include="crt\src\ARM\dllsupp.asm">
+      <Filter>crt\ARM</Filter>
+    </None>
+    <None Include="crt\src\ARM\fptoi64.asm">
+      <Filter>crt\ARM</Filter>
+    </None>
+    <None Include="crt\src\ARM\i64tofp.asm">
+      <Filter>crt\ARM</Filter>
+    </None>
+    <None Include="crt\src\ARM\memcmp.asm">
+      <Filter>crt\ARM</Filter>
+    </None>
+    <None Include="crt\src\ARM\memcpy.asm">
+      <Filter>crt\ARM</Filter>
+    </None>
+    <None Include="crt\src\ARM\memset.asm">
+      <Filter>crt\ARM</Filter>
+    </None>
+    <None Include="crt\src\ARM\rshi64.asm">
+      <Filter>crt\ARM</Filter>
+    </None>
+    <None Include="crt\src\ARM\rshui64.asm">
+      <Filter>crt\ARM</Filter>
+    </None>
+    <None Include="crt\src\cliext\functional">
+      <Filter>crt\cliext</Filter>
+    </None>
+    <None Include="crt\src\cliext\hash_map">
+      <Filter>crt\cliext</Filter>
+    </None>
+    <None Include="crt\src\cliext\hash_set">
+      <Filter>crt\cliext</Filter>
+    </None>
+    <None Include="crt\src\cliext\iterator">
+      <Filter>crt\cliext</Filter>
+    </None>
+    <None Include="crt\src\cliext\list">
+      <Filter>crt\cliext</Filter>
+    </None>
+    <None Include="crt\src\cliext\map">
+      <Filter>crt\cliext</Filter>
+    </None>
+    <None Include="crt\src\cliext\memory">
+      <Filter>crt\cliext</Filter>
+    </None>
+    <None Include="crt\src\cliext\numeric">
+      <Filter>crt\cliext</Filter>
+    </None>
+    <None Include="crt\src\cliext\queue">
+      <Filter>crt\cliext</Filter>
+    </None>
+    <None Include="crt\src\cliext\set">
+      <Filter>crt\cliext</Filter>
+    </None>
+    <None Include="crt\src\cliext\stack">
+      <Filter>crt\cliext</Filter>
+    </None>
+    <None Include="crt\src\cliext\utility">
+      <Filter>crt\cliext</Filter>
+    </None>
+    <None Include="crt\src\cliext\vector">
+      <Filter>crt\cliext</Filter>
+    </None>
+    <None Include="crt\src\cliext\xhash">
+      <Filter>crt\cliext</Filter>
+    </None>
+    <None Include="crt\src\cliext\xtree">
+      <Filter>crt\cliext</Filter>
+    </None>
+    <None Include="crt\src\cliext\xutility">
+      <Filter>crt\cliext</Filter>
+    </None>
+    <None Include="crt\src\cliext\adapter">
+      <Filter>crt\cliext</Filter>
+    </None>
+    <None Include="crt\src\cliext\algorithm">
+      <Filter>crt\cliext</Filter>
+    </None>
+    <None Include="crt\src\cliext\deque">
+      <Filter>crt\cliext</Filter>
+    </None>
+    <None Include="crt\src\cvt\greek">
+      <Filter>crt\cvt</Filter>
+    </None>
+    <None Include="crt\src\cvt\iceland">
+      <Filter>crt\cvt</Filter>
+    </None>
+    <None Include="crt\src\cvt\jis">
+      <Filter>crt\cvt</Filter>
+    </None>
+    <None Include="crt\src\cvt\jis_0208">
+      <Filter>crt\cvt</Filter>
+    </None>
+    <None Include="crt\src\cvt\jis0201">
+      <Filter>crt\cvt</Filter>
+    </None>
+    <None Include="crt\src\cvt\ksc5601">
+      <Filter>crt\cvt</Filter>
+    </None>
+    <None Include="crt\src\cvt\latin2">
+      <Filter>crt\cvt</Filter>
+    </None>
+    <None Include="crt\src\cvt\one_one">
+      <Filter>crt\cvt</Filter>
+    </None>
+    <None Include="crt\src\cvt\roman">
+      <Filter>crt\cvt</Filter>
+    </None>
+    <None Include="crt\src\cvt\sjis">
+      <Filter>crt\cvt</Filter>
+    </None>
+    <None Include="crt\src\cvt\sjis_0208">
+      <Filter>crt\cvt</Filter>
+    </None>
+    <None Include="crt\src\cvt\turkish">
+      <Filter>crt\cvt</Filter>
+    </None>
+    <None Include="crt\src\cvt\utf8">
+      <Filter>crt\cvt</Filter>
+    </None>
+    <None Include="crt\src\cvt\utf8_utf16">
+      <Filter>crt\cvt</Filter>
+    </None>
+    <None Include="crt\src\cvt\utf16">
+      <Filter>crt\cvt</Filter>
+    </None>
+    <None Include="crt\src\cvt\wbuffer">
+      <Filter>crt\cvt</Filter>
+    </None>
+    <None Include="crt\src\cvt\wstring">
+      <Filter>crt\cvt</Filter>
+    </None>
+    <None Include="crt\src\cvt\xjis">
+      <Filter>crt\cvt</Filter>
+    </None>
+    <None Include="crt\src\cvt\xone_byte">
+      <Filter>crt\cvt</Filter>
+    </None>
+    <None Include="crt\src\cvt\xtest">
+      <Filter>crt\cvt</Filter>
+    </None>
+    <None Include="crt\src\cvt\xtwo_byte">
+      <Filter>crt\cvt</Filter>
+    </None>
+    <None Include="crt\src\cvt\8859_1">
+      <Filter>crt\cvt</Filter>
+    </None>
+    <None Include="crt\src\cvt\8859_2">
+      <Filter>crt\cvt</Filter>
+    </None>
+    <None Include="crt\src\cvt\8859_3">
+      <Filter>crt\cvt</Filter>
+    </None>
+    <None Include="crt\src\cvt\8859_4">
+      <Filter>crt\cvt</Filter>
+    </None>
+    <None Include="crt\src\cvt\8859_5">
+      <Filter>crt\cvt</Filter>
+    </None>
+    <None Include="crt\src\cvt\8859_6">
+      <Filter>crt\cvt</Filter>
+    </None>
+    <None Include="crt\src\cvt\8859_7">
+      <Filter>crt\cvt</Filter>
+    </None>
+    <None Include="crt\src\cvt\8859_8">
+      <Filter>crt\cvt</Filter>
+    </None>
+    <None Include="crt\src\cvt\8859_9">
+      <Filter>crt\cvt</Filter>
+    </None>
+    <None Include="crt\src\cvt\8859_10">
+      <Filter>crt\cvt</Filter>
+    </None>
+    <None Include="crt\src\cvt\8859_13">
+      <Filter>crt\cvt</Filter>
+    </None>
+    <None Include="crt\src\cvt\8859_14">
+      <Filter>crt\cvt</Filter>
+    </None>
+    <None Include="crt\src\cvt\8859_15">
+      <Filter>crt\cvt</Filter>
+    </None>
+    <None Include="crt\src\cvt\8859_16">
+      <Filter>crt\cvt</Filter>
+    </None>
+    <None Include="crt\src\cvt\baltic">
+      <Filter>crt\cvt</Filter>
+    </None>
+    <None Include="crt\src\cvt\big5">
+      <Filter>crt\cvt</Filter>
+    </None>
+    <None Include="crt\src\cvt\cp037">
+      <Filter>crt\cvt</Filter>
+    </None>
+    <None Include="crt\src\cvt\cp424">
+      <Filter>crt\cvt</Filter>
+    </None>
+    <None Include="crt\src\cvt\cp437">
+      <Filter>crt\cvt</Filter>
+    </None>
+    <None Include="crt\src\cvt\cp500">
+      <Filter>crt\cvt</Filter>
+    </None>
+    <None Include="crt\src\cvt\cp737">
+      <Filter>crt\cvt</Filter>
+    </None>
+    <None Include="crt\src\cvt\cp775">
+      <Filter>crt\cvt</Filter>
+    </None>
+    <None Include="crt\src\cvt\cp850">
+      <Filter>crt\cvt</Filter>
+    </None>
+    <None Include="crt\src\cvt\cp852">
+      <Filter>crt\cvt</Filter>
+    </None>
+    <None Include="crt\src\cvt\cp855">
+      <Filter>crt\cvt</Filter>
+    </None>
+    <None Include="crt\src\cvt\cp856">
+      <Filter>crt\cvt</Filter>
+    </None>
+    <None Include="crt\src\cvt\cp857">
+      <Filter>crt\cvt</Filter>
+    </None>
+    <None Include="crt\src\cvt\cp860">
+      <Filter>crt\cvt</Filter>
+    </None>
+    <None Include="crt\src\cvt\cp861">
+      <Filter>crt\cvt</Filter>
+    </None>
+    <None Include="crt\src\cvt\cp862">
+      <Filter>crt\cvt</Filter>
+    </None>
+    <None Include="crt\src\cvt\cp863">
+      <Filter>crt\cvt</Filter>
+    </None>
+    <None Include="crt\src\cvt\cp864">
+      <Filter>crt\cvt</Filter>
+    </None>
+    <None Include="crt\src\cvt\cp865">
+      <Filter>crt\cvt</Filter>
+    </None>
+    <None Include="crt\src\cvt\cp866">
+      <Filter>crt\cvt</Filter>
+    </None>
+    <None Include="crt\src\cvt\cp869">
+      <Filter>crt\cvt</Filter>
+    </None>
+    <None Include="crt\src\cvt\cp874">
+      <Filter>crt\cvt</Filter>
+    </None>
+    <None Include="crt\src\cvt\cp875">
+      <Filter>crt\cvt</Filter>
+    </None>
+    <None Include="crt\src\cvt\cp932">
+      <Filter>crt\cvt</Filter>
+    </None>
+    <None Include="crt\src\cvt\cp936">
+      <Filter>crt\cvt</Filter>
+    </None>
+    <None Include="crt\src\cvt\cp949">
+      <Filter>crt\cvt</Filter>
+    </None>
+    <None Include="crt\src\cvt\cp950">
+      <Filter>crt\cvt</Filter>
+    </None>
+    <None Include="crt\src\cvt\cp1006">
+      <Filter>crt\cvt</Filter>
+    </None>
+    <None Include="crt\src\cvt\cp1026">
+      <Filter>crt\cvt</Filter>
+    </None>
+    <None Include="crt\src\cvt\cp1250">
+      <Filter>crt\cvt</Filter>
+    </None>
+    <None Include="crt\src\cvt\cp1251">
+      <Filter>crt\cvt</Filter>
+    </None>
+    <None Include="crt\src\cvt\cp1252">
+      <Filter>crt\cvt</Filter>
+    </None>
+    <None Include="crt\src\cvt\cp1253">
+      <Filter>crt\cvt</Filter>
+    </None>
+    <None Include="crt\src\cvt\cp1254">
+      <Filter>crt\cvt</Filter>
+    </None>
+    <None Include="crt\src\cvt\cp1255">
+      <Filter>crt\cvt</Filter>
+    </None>
+    <None Include="crt\src\cvt\cp1256">
+      <Filter>crt\cvt</Filter>
+    </None>
+    <None Include="crt\src\cvt\cp1257">
+      <Filter>crt\cvt</Filter>
+    </None>
+    <None Include="crt\src\cvt\cp1258">
+      <Filter>crt\cvt</Filter>
+    </None>
+    <None Include="crt\src\cvt\cyrillic">
+      <Filter>crt\cvt</Filter>
+    </None>
+    <None Include="crt\src\cvt\ebcdic">
+      <Filter>crt\cvt</Filter>
+    </None>
+    <None Include="crt\src\cvt\euc">
+      <Filter>crt\cvt</Filter>
+    </None>
+    <None Include="crt\src\cvt\euc_0208">
+      <Filter>crt\cvt</Filter>
+    </None>
+    <None Include="crt\src\cvt\gb2312">
+      <Filter>crt\cvt</Filter>
+    </None>
+    <None Include="crt\src\cvt\gb12345">
+      <Filter>crt\cvt</Filter>
+    </None>
+    <None Include="crt\src\eh\amd64\handlers.asm">
+      <Filter>crt\eh\amd64</Filter>
+    </None>
+    <None Include="crt\src\eh\arm\handlers.asm">
+      <Filter>crt\eh\arm</Filter>
+    </None>
+    <None Include="crt\src\eh\i386\ehprolog.asm">
+      <Filter>crt\eh\i386</Filter>
+    </None>
+    <None Include="crt\src\eh\i386\lowhelpr.asm">
+      <Filter>crt\eh\i386</Filter>
+    </None>
+    <None Include="crt\src\intel\lldvrm.asm">
+      <Filter>crt\intel</Filter>
+    </None>
+    <None Include="crt\src\intel\llmul.asm">
+      <Filter>crt\intel</Filter>
+    </None>
+    <None Include="crt\src\intel\llrem.asm">
+      <Filter>crt\intel</Filter>
+    </None>
+    <None Include="crt\src\intel\llshl.asm">
+      <Filter>crt\intel</Filter>
+    </None>
+    <None Include="crt\src\intel\llshr.asm">
+      <Filter>crt\intel</Filter>
+    </None>
+    <None Include="crt\src\intel\memccpy.asm">
+      <Filter>crt\intel</Filter>
+    </None>
+    <None Include="crt\src\intel\memchr.asm">
+      <Filter>crt\intel</Filter>
+    </None>
+    <None Include="crt\src\intel\memcpy.asm">
+      <Filter>crt\intel</Filter>
+    </None>
+    <None Include="crt\src\intel\memmove.asm">
+      <Filter>crt\intel</Filter>
+    </None>
+    <None Include="crt\src\intel\memset.asm">
+      <Filter>crt\intel</Filter>
+    </None>
+    <None Include="crt\src\intel\outp.asm">
+      <Filter>crt\intel</Filter>
+    </None>
+    <None Include="crt\src\intel\strcat.asm">
+      <Filter>crt\intel</Filter>
+    </None>
+    <None Include="crt\src\intel\strchr.asm">
+      <Filter>crt\intel</Filter>
+    </None>
+    <None Include="crt\src\intel\strcmp.asm">
+      <Filter>crt\intel</Filter>
+    </None>
+    <None Include="crt\src\intel\strcspn.asm">
+      <Filter>crt\intel</Filter>
+    </None>
+    <None Include="crt\src\intel\strlen.asm">
+      <Filter>crt\intel</Filter>
+    </None>
+    <None Include="crt\src\intel\strncat.asm">
+      <Filter>crt\intel</Filter>
+    </None>
+    <None Include="crt\src\intel\strncmp.asm">
+      <Filter>crt\intel</Filter>
+    </None>
+    <None Include="crt\src\intel\strncpy.asm">
+      <Filter>crt\intel</Filter>
+    </None>
+    <None Include="crt\src\intel\strnset.asm">
+      <Filter>crt\intel</Filter>
+    </None>
+    <None Include="crt\src\intel\strpbrk.asm">
+      <Filter>crt\intel</Filter>
+    </None>
+    <None Include="crt\src\intel\strrchr.asm">
+      <Filter>crt\intel</Filter>
+    </None>
+    <None Include="crt\src\intel\strrev.asm">
+      <Filter>crt\intel</Filter>
+    </None>
+    <None Include="crt\src\intel\strset.asm">
+      <Filter>crt\intel</Filter>
+    </None>
+    <None Include="crt\src\intel\strspn.asm">
+      <Filter>crt\intel</Filter>
+    </None>
+    <None Include="crt\src\intel\strstr.asm">
+      <Filter>crt\intel</Filter>
+    </None>
+    <None Include="crt\src\intel\ulldiv.asm">
+      <Filter>crt\intel</Filter>
+    </None>
+    <None Include="crt\src\intel\ulldvrm.asm">
+      <Filter>crt\intel</Filter>
+    </None>
+    <None Include="crt\src\intel\ullrem.asm">
+      <Filter>crt\intel</Filter>
+    </None>
+    <None Include="crt\src\intel\ullshr.asm">
+      <Filter>crt\intel</Filter>
+    </None>
+    <None Include="crt\src\intel\_memicmp.asm">
+      <Filter>crt\intel</Filter>
+    </None>
+    <None Include="crt\src\intel\_strnicm.asm">
+      <Filter>crt\intel</Filter>
+    </None>
+    <None Include="crt\src\intel\alloca16.asm">
+      <Filter>crt\intel</Filter>
+    </None>
+    <None Include="crt\src\intel\chkstk.asm">
+      <Filter>crt\intel</Filter>
+    </None>
+    <None Include="crt\src\intel\dllsupp.asm">
+      <Filter>crt\intel</Filter>
+    </None>
+    <None Include="crt\src\intel\enable.asm">
+      <Filter>crt\intel</Filter>
+    </None>
+    <None Include="crt\src\intel\inp.asm">
+      <Filter>crt\intel</Filter>
+    </None>
+    <None Include="crt\src\intel\lldiv.asm">
+      <Filter>crt\intel</Filter>
+    </None>
+    <None Include="crt\src\sys\utime.inl">
+      <Filter>crt\sys</Filter>
+    </None>
+    <None Include="crt\src\sys\wstat.inl">
+      <Filter>crt\sys</Filter>
+    </None>
+    <None Include="crt\src\sys\stat.inl">
+      <Filter>crt\sys</Filter>
+    </None>
+    <None Include="crt\src\sys\timeb.inl">
+      <Filter>crt\sys</Filter>
+    </None>
+    <None Include="crt\src\thr\tss">
+      <Filter>crt\thr</Filter>
+    </None>
+    <None Include="crt\src\thr\xmutex">
+      <Filter>crt\thr</Filter>
+    </None>
+    <None Include="crt\src\thr\xthread">
+      <Filter>crt\thr</Filter>
+    </None>
+    <None Include="crt\src\thr\xtime">
+      <Filter>crt\thr</Filter>
+    </None>
+    <None Include="crt\src\thr\condition">
+      <Filter>crt\thr</Filter>
+    </None>
+    <None Include="crt\src\thr\exceptions">
+      <Filter>crt\thr</Filter>
+    </None>
+    <None Include="crt\src\thr\mutex">
+      <Filter>crt\thr</Filter>
+    </None>
+    <None Include="crt\src\thr\once">
+      <Filter>crt\thr</Filter>
+    </None>
+    <None Include="crt\src\thr\recursive_mutex">
+      <Filter>crt\thr</Filter>
+    </None>
+    <None Include="crt\src\thr\thread">
+      <Filter>crt\thr</Filter>
+    </None>
+    <None Include="include\algorithm">
+      <Filter>include</Filter>
+    </None>
+    <None Include="include\allocators">
+      <Filter>include</Filter>
+    </None>
+    <None Include="include\array">
+      <Filter>include</Filter>
+    </None>
+    <None Include="include\atomic">
+      <Filter>include</Filter>
+    </None>
+    <None Include="include\bitset">
+      <Filter>include</Filter>
+    </None>
+    <None Include="include\cassert">
+      <Filter>include</Filter>
+    </None>
+    <None Include="include\ccomplex">
+      <Filter>include</Filter>
+    </None>
+    <None Include="include\cctype">
+      <Filter>include</Filter>
+    </None>
+    <None Include="include\cerrno">
+      <Filter>include</Filter>
+    </None>
+    <None Include="include\cfenv">
+      <Filter>include</Filter>
+    </None>
+    <None Include="include\cfloat">
+      <Filter>include</Filter>
+    </None>
+    <None Include="include\chrono">
+      <Filter>include</Filter>
+    </None>
+    <None Include="include\cinttypes">
+      <Filter>include</Filter>
+    </None>
+    <None Include="include\ciso646">
+      <Filter>include</Filter>
+    </None>
+    <None Include="include\climits">
+      <Filter>include</Filter>
+    </None>
+    <None Include="include\clocale">
+      <Filter>include</Filter>
+    </None>
+    <None Include="include\cmath">
+      <Filter>include</Filter>
+    </None>
+    <None Include="include\codecvt">
+      <Filter>include</Filter>
+    </None>
+    <None Include="include\complex">
+      <Filter>include</Filter>
+    </None>
+    <None Include="include\condition_variable">
+      <Filter>include</Filter>
+    </None>
+    <None Include="include\csetjmp">
+      <Filter>include</Filter>
+    </None>
+    <None Include="include\csignal">
+      <Filter>include</Filter>
+    </None>
+    <None Include="include\cstdarg">
+      <Filter>include</Filter>
+    </None>
+    <None Include="include\cstdbool">
+      <Filter>include</Filter>
+    </None>
+    <None Include="include\cstddef">
+      <Filter>include</Filter>
+    </None>
+    <None Include="include\cstdint">
+      <Filter>include</Filter>
+    </None>
+    <None Include="include\cstdio">
+      <Filter>include</Filter>
+    </None>
+    <None Include="include\cstdlib">
+      <Filter>include</Filter>
+    </None>
+    <None Include="include\cstring">
+      <Filter>include</Filter>
+    </None>
+    <None Include="include\ctgmath">
+      <Filter>include</Filter>
+    </None>
+    <None Include="include\ctime">
+      <Filter>include</Filter>
+    </None>
+    <None Include="include\cwchar">
+      <Filter>include</Filter>
+    </None>
+    <None Include="include\cwctype">
+      <Filter>include</Filter>
+    </None>
+    <None Include="include\deque">
+      <Filter>include</Filter>
+    </None>
+    <None Include="include\exception">
+      <Filter>include</Filter>
+    </None>
+    <None Include="include\filesystem">
+      <Filter>include</Filter>
+    </None>
+    <None Include="include\forward_list">
+      <Filter>include</Filter>
+    </None>
+    <None Include="include\fstream">
+      <Filter>include</Filter>
+    </None>
+    <None Include="include\functional">
+      <Filter>include</Filter>
+    </None>
+    <None Include="include\future">
+      <Filter>include</Filter>
+    </None>
+    <None Include="include\hash_map">
+      <Filter>include</Filter>
+    </None>
+    <None Include="include\hash_set">
+      <Filter>include</Filter>
+    </None>
+    <None Include="include\initializer_list">
+      <Filter>include</Filter>
+    </None>
+    <None Include="include\iomanip">
+      <Filter>include</Filter>
+    </None>
+    <None Include="include\ios">
+      <Filter>include</Filter>
+    </None>
+    <None Include="include\iosfwd">
+      <Filter>include</Filter>
+    </None>
+    <None Include="include\iostream">
+      <Filter>include</Filter>
+    </None>
+    <None Include="include\istream">
+      <Filter>include</Filter>
+    </None>
+    <None Include="include\iterator">
+      <Filter>include</Filter>
+    </None>
+    <None Include="include\limits">
+      <Filter>include</Filter>
+    </None>
+    <None Include="include\list">
+      <Filter>include</Filter>
+    </None>
+    <None Include="include\listing.inc">
+      <Filter>include</Filter>
+    </None>
+    <None Include="include\locale">
+      <Filter>include</Filter>
+    </None>
+    <None Include="include\map">
+      <Filter>include</Filter>
+    </None>
+    <None Include="include\memory">
+      <Filter>include</Filter>
+    </None>
+    <None Include="include\mutex">
+      <Filter>include</Filter>
+    </None>
+    <None Include="include\new">
+      <Filter>include</Filter>
+    </None>
+    <None Include="include\numeric">
+      <Filter>include</Filter>
+    </None>
+    <None Include="include\ostream">
+      <Filter>include</Filter>
+    </None>
+    <None Include="include\queue">
+      <Filter>include</Filter>
+    </None>
+    <None Include="include\random">
+      <Filter>include</Filter>
+    </None>
+    <None Include="include\ratio">
+      <Filter>include</Filter>
+    </None>
+    <None Include="include\regex">
+      <Filter>include</Filter>
+    </None>
+    <None Include="include\scoped_allocator">
+      <Filter>include</Filter>
+    </None>
+    <None Include="include\set">
+      <Filter>include</Filter>
+    </None>
+    <None Include="include\sstream">
+      <Filter>include</Filter>
+    </None>
+    <None Include="include\stack">
+      <Filter>include</Filter>
+    </None>
+    <None Include="include\stdexcept">
+      <Filter>include</Filter>
+    </None>
+    <None Include="include\streambuf">
+      <Filter>include</Filter>
+    </None>
+    <None Include="include\string">
+      <Filter>include</Filter>
+    </None>
+    <None Include="include\strstream">
+      <Filter>include</Filter>
+    </None>
+    <None Include="include\swprintf.inl">
+      <Filter>include</Filter>
+    </None>
+    <None Include="include\system_error">
+      <Filter>include</Filter>
+    </None>
+    <None Include="include\thread">
+      <Filter>include</Filter>
+    </None>
+    <None Include="include\time.inl">
+      <Filter>include</Filter>
+    </None>
+    <None Include="include\tuple">
+      <Filter>include</Filter>
+    </None>
+    <None Include="include\type_traits">
+      <Filter>include</Filter>
+    </None>
+    <None Include="include\typeindex">
+      <Filter>include</Filter>
+    </None>
+    <None Include="include\typeinfo">
+      <Filter>include</Filter>
+    </None>
+    <None Include="include\unordered_map">
+      <Filter>include</Filter>
+    </None>
+    <None Include="include\unordered_set">
+      <Filter>include</Filter>
+    </None>
+    <None Include="include\utility">
+      <Filter>include</Filter>
+    </None>
+    <None Include="include\valarray">
+      <Filter>include</Filter>
+    </None>
+    <None Include="include\vector">
+      <Filter>include</Filter>
+    </None>
+    <None Include="include\wtime.inl">
+      <Filter>include</Filter>
+    </None>
+    <None Include="include\xcomplex">
+      <Filter>include</Filter>
+    </None>
+    <None Include="include\xdebug">
+      <Filter>include</Filter>
+    </None>
+    <None Include="include\xfacet">
+      <Filter>include</Filter>
+    </None>
+    <None Include="include\xfunctional">
+      <Filter>include</Filter>
+    </None>
+    <None Include="include\xhash">
+      <Filter>include</Filter>
+    </None>
+    <None Include="include\xiosbase">
+      <Filter>include</Filter>
+    </None>
+    <None Include="include\xlocale">
+      <Filter>include</Filter>
+    </None>
+    <None Include="include\xlocbuf">
+      <Filter>include</Filter>
+    </None>
+    <None Include="include\xlocinfo">
+      <Filter>include</Filter>
+    </None>
+    <None Include="include\xlocmes">
+      <Filter>include</Filter>
+    </None>
+    <None Include="include\xlocmon">
+      <Filter>include</Filter>
+    </None>
+    <None Include="include\xlocnum">
+      <Filter>include</Filter>
+    </None>
+    <None Include="include\xloctime">
+      <Filter>include</Filter>
+    </None>
+    <None Include="include\xmemory">
+      <Filter>include</Filter>
+    </None>
+    <None Include="include\xmemory0">
+      <Filter>include</Filter>
+    </None>
+    <None Include="include\xrefwrap">
+      <Filter>include</Filter>
+    </None>
+    <None Include="include\xstddef">
+      <Filter>include</Filter>
+    </None>
+    <None Include="include\xstring">
+      <Filter>include</Filter>
+    </None>
+    <None Include="include\xtr1common">
+      <Filter>include</Filter>
+    </None>
+    <None Include="include\xtree">
+      <Filter>include</Filter>
+    </None>
+    <None Include="include\xutility">
+      <Filter>include</Filter>
+    </None>
+    <None Include="include\xxatomic">
+      <Filter>include</Filter>
+    </None>
+    <None Include="include\cliext\hash_map">
+      <Filter>include\cliext</Filter>
+    </None>
+    <None Include="include\cliext\hash_set">
+      <Filter>include\cliext</Filter>
+    </None>
+    <None Include="include\cliext\iterator">
+      <Filter>include\cliext</Filter>
+    </None>
+    <None Include="include\cliext\list">
+      <Filter>include\cliext</Filter>
+    </None>
+    <None Include="include\cliext\map">
+      <Filter>include\cliext</Filter>
+    </None>
+    <None Include="include\cliext\memory">
+      <Filter>include\cliext</Filter>
+    </None>
+    <None Include="include\cliext\numeric">
+      <Filter>include\cliext</Filter>
+    </None>
+    <None Include="include\cliext\queue">
+      <Filter>include\cliext</Filter>
+    </None>
+    <None Include="include\cliext\set">
+      <Filter>include\cliext</Filter>
+    </None>
+    <None Include="include\cliext\stack">
+      <Filter>include\cliext</Filter>
+    </None>
+    <None Include="include\cliext\utility">
+      <Filter>include\cliext</Filter>
+    </None>
+    <None Include="include\cliext\vector">
+      <Filter>include\cliext</Filter>
+    </None>
+    <None Include="include\cliext\xhash">
+      <Filter>include\cliext</Filter>
+    </None>
+    <None Include="include\cliext\xtree">
+      <Filter>include\cliext</Filter>
+    </None>
+    <None Include="include\cliext\xutility">
+      <Filter>include\cliext</Filter>
+    </None>
+    <None Include="include\cliext\adapter">
+      <Filter>include\cliext</Filter>
+    </None>
+    <None Include="include\cliext\algorithm">
+      <Filter>include\cliext</Filter>
+    </None>
+    <None Include="include\cliext\deque">
+      <Filter>include\cliext</Filter>
+    </None>
+    <None Include="include\cliext\functional">
+      <Filter>include\cliext</Filter>
+    </None>
+    <None Include="include\cvt\8859_4">
+      <Filter>include\cvt</Filter>
+    </None>
+    <None Include="include\cvt\8859_5">
+      <Filter>include\cvt</Filter>
+    </None>
+    <None Include="include\cvt\8859_6">
+      <Filter>include\cvt</Filter>
+    </None>
+    <None Include="include\cvt\8859_7">
+      <Filter>include\cvt</Filter>
+    </None>
+    <None Include="include\cvt\8859_8">
+      <Filter>include\cvt</Filter>
+    </None>
+    <None Include="include\cvt\8859_9">
+      <Filter>include\cvt</Filter>
+    </None>
+    <None Include="include\cvt\8859_10">
+      <Filter>include\cvt</Filter>
+    </None>
+    <None Include="include\cvt\8859_13">
+      <Filter>include\cvt</Filter>
+    </None>
+    <None Include="include\cvt\8859_14">
+      <Filter>include\cvt</Filter>
+    </None>
+    <None Include="include\cvt\8859_15">
+      <Filter>include\cvt</Filter>
+    </None>
+    <None Include="include\cvt\8859_16">
+      <Filter>include\cvt</Filter>
+    </None>
+    <None Include="include\cvt\baltic">
+      <Filter>include\cvt</Filter>
+    </None>
+    <None Include="include\cvt\big5">
+      <Filter>include\cvt</Filter>
+    </None>
+    <None Include="include\cvt\cp037">
+      <Filter>include\cvt</Filter>
+    </None>
+    <None Include="include\cvt\cp424">
+      <Filter>include\cvt</Filter>
+    </None>
+    <None Include="include\cvt\cp437">
+      <Filter>include\cvt</Filter>
+    </None>
+    <None Include="include\cvt\cp500">
+      <Filter>include\cvt</Filter>
+    </None>
+    <None Include="include\cvt\cp737">
+      <Filter>include\cvt</Filter>
+    </None>
+    <None Include="include\cvt\cp775">
+      <Filter>include\cvt</Filter>
+    </None>
+    <None Include="include\cvt\cp850">
+      <Filter>include\cvt</Filter>
+    </None>
+    <None Include="include\cvt\cp852">
+      <Filter>include\cvt</Filter>
+    </None>
+    <None Include="include\cvt\cp855">
+      <Filter>include\cvt</Filter>
+    </None>
+    <None Include="include\cvt\cp856">
+      <Filter>include\cvt</Filter>
+    </None>
+    <None Include="include\cvt\cp857">
+      <Filter>include\cvt</Filter>
+    </None>
+    <None Include="include\cvt\cp860">
+      <Filter>include\cvt</Filter>
+    </None>
+    <None Include="include\cvt\cp861">
+      <Filter>include\cvt</Filter>
+    </None>
+    <None Include="include\cvt\cp862">
+      <Filter>include\cvt</Filter>
+    </None>
+    <None Include="include\cvt\cp863">
+      <Filter>include\cvt</Filter>
+    </None>
+    <None Include="include\cvt\cp864">
+      <Filter>include\cvt</Filter>
+    </None>
+    <None Include="include\cvt\cp865">
+      <Filter>include\cvt</Filter>
+    </None>
+    <None Include="include\cvt\cp866">
+      <Filter>include\cvt</Filter>
+    </None>
+    <None Include="include\cvt\cp869">
+      <Filter>include\cvt</Filter>
+    </None>
+    <None Include="include\cvt\cp874">
+      <Filter>include\cvt</Filter>
+    </None>
+    <None Include="include\cvt\cp875">
+      <Filter>include\cvt</Filter>
+    </None>
+    <None Include="include\cvt\cp932">
+      <Filter>include\cvt</Filter>
+    </None>
+    <None Include="include\cvt\cp936">
+      <Filter>include\cvt</Filter>
+    </None>
+    <None Include="include\cvt\cp949">
+      <Filter>include\cvt</Filter>
+    </None>
+    <None Include="include\cvt\cp950">
+      <Filter>include\cvt</Filter>
+    </None>
+    <None Include="include\cvt\cp1006">
+      <Filter>include\cvt</Filter>
+    </None>
+    <None Include="include\cvt\cp1026">
+      <Filter>include\cvt</Filter>
+    </None>
+    <None Include="include\cvt\cp1250">
+      <Filter>include\cvt</Filter>
+    </None>
+    <None Include="include\cvt\cp1251">
+      <Filter>include\cvt</Filter>
+    </None>
+    <None Include="include\cvt\cp1252">
+      <Filter>include\cvt</Filter>
+    </None>
+    <None Include="include\cvt\cp1253">
+      <Filter>include\cvt</Filter>
+    </None>
+    <None Include="include\cvt\cp1254">
+      <Filter>include\cvt</Filter>
+    </None>
+    <None Include="include\cvt\cp1255">
+      <Filter>include\cvt</Filter>
+    </None>
+    <None Include="include\cvt\cp1256">
+      <Filter>include\cvt</Filter>
+    </None>
+    <None Include="include\cvt\cp1257">
+      <Filter>include\cvt</Filter>
+    </None>
+    <None Include="include\cvt\cp1258">
+      <Filter>include\cvt</Filter>
+    </None>
+    <None Include="include\cvt\cyrillic">
+      <Filter>include\cvt</Filter>
+    </None>
+    <None Include="include\cvt\ebcdic">
+      <Filter>include\cvt</Filter>
+    </None>
+    <None Include="include\cvt\euc">
+      <Filter>include\cvt</Filter>
+    </None>
+    <None Include="include\cvt\euc_0208">
+      <Filter>include\cvt</Filter>
+    </None>
+    <None Include="include\cvt\gb2312">
+      <Filter>include\cvt</Filter>
+    </None>
+    <None Include="include\cvt\gb12345">
+      <Filter>include\cvt</Filter>
+    </None>
+    <None Include="include\cvt\greek">
+      <Filter>include\cvt</Filter>
+    </None>
+    <None Include="include\cvt\iceland">
+      <Filter>include\cvt</Filter>
+    </None>
+    <None Include="include\cvt\jis">
+      <Filter>include\cvt</Filter>
+    </None>
+    <None Include="include\cvt\jis_0208">
+      <Filter>include\cvt</Filter>
+    </None>
+    <None Include="include\cvt\jis0201">
+      <Filter>include\cvt</Filter>
+    </None>
+    <None Include="include\cvt\ksc5601">
+      <Filter>include\cvt</Filter>
+    </None>
+    <None Include="include\cvt\latin2">
+      <Filter>include\cvt</Filter>
+    </None>
+    <None Include="include\cvt\one_one">
+      <Filter>include\cvt</Filter>
+    </None>
+    <None Include="include\cvt\roman">
+      <Filter>include\cvt</Filter>
+    </None>
+    <None Include="include\cvt\sjis">
+      <Filter>include\cvt</Filter>
+    </None>
+    <None Include="include\cvt\sjis_0208">
+      <Filter>include\cvt</Filter>
+    </None>
+    <None Include="include\cvt\turkish">
+      <Filter>include\cvt</Filter>
+    </None>
+    <None Include="include\cvt\utf8">
+      <Filter>include\cvt</Filter>
+    </None>
+    <None Include="include\cvt\utf8_utf16">
+      <Filter>include\cvt</Filter>
+    </None>
+    <None Include="include\cvt\utf16">
+      <Filter>include\cvt</Filter>
+    </None>
+    <None Include="include\cvt\wbuffer">
+      <Filter>include\cvt</Filter>
+    </None>
+    <None Include="include\cvt\wstring">
+      <Filter>include\cvt</Filter>
+    </None>
+    <None Include="include\cvt\xjis">
+      <Filter>include\cvt</Filter>
+    </None>
+    <None Include="include\cvt\xone_byte">
+      <Filter>include\cvt</Filter>
+    </None>
+    <None Include="include\cvt\xtest">
+      <Filter>include\cvt</Filter>
+    </None>
+    <None Include="include\cvt\xtwo_byte">
+      <Filter>include\cvt</Filter>
+    </None>
+    <None Include="include\cvt\8859_1">
+      <Filter>include\cvt</Filter>
+    </None>
+    <None Include="include\cvt\8859_2">
+      <Filter>include\cvt</Filter>
+    </None>
+    <None Include="include\cvt\8859_3">
+      <Filter>include\cvt</Filter>
+    </None>
+    <None Include="include\sys\timeb.inl">
+      <Filter>include\sys</Filter>
+    </None>
+    <None Include="include\sys\utime.inl">
+      <Filter>include\sys</Filter>
+    </None>
+    <None Include="include\sys\wstat.inl">
+      <Filter>include\sys</Filter>
+    </None>
+    <None Include="include\sys\stat.inl">
+      <Filter>include\sys</Filter>
+    </None>
+    <None Include="include\thr\mutex">
+      <Filter>include\thr</Filter>
+    </None>
+    <None Include="include\thr\once">
+      <Filter>include\thr</Filter>
+    </None>
+    <None Include="include\thr\recursive_mutex">
+      <Filter>include\thr</Filter>
+    </None>
+    <None Include="include\thr\thread">
+      <Filter>include\thr</Filter>
+    </None>
+    <None Include="include\thr\tss">
+      <Filter>include\thr</Filter>
+    </None>
+    <None Include="include\thr\xmutex">
+      <Filter>include\thr</Filter>
+    </None>
+    <None Include="include\thr\xthread">
+      <Filter>include\thr</Filter>
+    </None>
+    <None Include="include\thr\xtime">
+      <Filter>include\thr</Filter>
+    </None>
+    <None Include="include\thr\condition">
+      <Filter>include\thr</Filter>
+    </None>
+    <None Include="include\thr\exceptions">
+      <Filter>include\thr</Filter>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Manifest Include="include\Manifest\PerMonitorHighDPIAware.manifest">
+      <Filter>include\Manifest</Filter>
+    </Manifest>
+    <Manifest Include="include\Manifest\dpiaware.manifest">
+      <Filter>include\Manifest</Filter>
+    </Manifest>
+  </ItemGroup>
+</Project>

@@ -1,0 +1,282 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="资源文件">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="工具">
+      <UniqueIdentifier>{b49ac995-e852-43a2-b8c2-ed3729add544}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="工具\WMI">
+      <UniqueIdentifier>{6239230c-e69a-4066-a8ab-c157c9c8f519}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="工具\SystemInfo">
+      <UniqueIdentifier>{7b54484b-8e9f-43f6-a9e1-e4dc3582a01f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="工具\MQ">
+      <UniqueIdentifier>{781cd183-1c79-47cd-a82f-f893cbedba0e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="工具\Time">
+      <UniqueIdentifier>{5b2fd100-eca7-4354-97a7-3a970cb46f22}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="工具\Process">
+      <UniqueIdentifier>{a37d595b-e2a8-4137-83a9-668f3b5a26c5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="1.0">
+      <UniqueIdentifier>{e200d313-ff95-4fe3-8da1-9eb1521082b2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="2.0">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hh;hpp;hxx;hm;inl;inc;xsd</Extensions>
+    </Filter>
+    <Filter Include="工具\Encode">
+      <UniqueIdentifier>{a41b48f0-2b0a-4a77-8c67-34aeae80744d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="工具\Utils">
+      <UniqueIdentifier>{a72b1717-6291-426e-ac0f-d1b8bc5e223d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="工具\PIC">
+      <UniqueIdentifier>{ee155f05-8753-4faa-9957-d06b36a43221}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="工具\Log">
+      <UniqueIdentifier>{ad56b092-6a79-44f8-ba9b-e2510e9b1d9b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="工具\File">
+      <UniqueIdentifier>{4e0df6c1-652d-4b21-87ad-66ff77aa60af}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="工具\Task">
+      <UniqueIdentifier>{dca174c0-aab5-46af-a728-296b42301926}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="工具\App">
+      <UniqueIdentifier>{001e8e1a-8cd6-4b45-8f3b-4794d45be12c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="工具\USB">
+      <UniqueIdentifier>{f041dbc0-c6b2-41c0-a539-29aa6d6459bc}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="2.0\Manager">
+      <UniqueIdentifier>{2f5c22c8-0da5-4690-b6f3-a8b11dd95cd7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="工具\Desktop">
+      <UniqueIdentifier>{4556cdd2-6a2e-4934-a767-b73b8d1d4654}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\..\..\..\Network\MQ\RocketMQ\RocketMQ\RockMQProduUtils.h">
+      <Filter>工具\MQ</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\Network\MQ\RocketMQ\PushConsumer\RockMQConsuUtils.h">
+      <Filter>工具\MQ</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Time\Time\Time.hpp">
+      <Filter>工具\Time</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Time\Time\WinTime.h">
+      <Filter>工具\Time</Filter>
+    </ClInclude>
+    <ClInclude Include="IDPEvent.h">
+      <Filter>2.0</Filter>
+    </ClInclude>
+    <ClInclude Include="veidp.h">
+      <Filter>1.0</Filter>
+    </ClInclude>
+    <ClInclude Include="stdafx.h">
+      <Filter>1.0</Filter>
+    </ClInclude>
+    <ClInclude Include="resource.h">
+      <Filter>1.0</Filter>
+    </ClInclude>
+    <ClInclude Include="downloadFile.h">
+      <Filter>1.0</Filter>
+    </ClInclude>
+    <ClInclude Include="infoCollect.h">
+      <Filter>1.0</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\C++space\Convert\Convert\Convert.h">
+      <Filter>工具\Encode</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\Network\SocketEncode\SocketEncode\base64.h">
+      <Filter>工具\Encode</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\C++space\StringTools\StringTools\WinStrUtils.h">
+      <Filter>工具\Utils</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\C++space\StringTools\StringTools\StrUtils.h">
+      <Filter>工具\Utils</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\C++space\StringTools\StringTools\StringHead.h">
+      <Filter>工具\Utils</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\Network\Serialization\Json\JsonTools.hpp">
+      <Filter>工具\Encode</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Process\WindowsProcessHelper\CreateProcess\ProcessHelper.h">
+      <Filter>工具\Process</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\C++space\LogManager\LogManager\LogManager.hpp">
+      <Filter>工具\Log</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Process\WindowsProcessHelper\CreateProcess\SessionManager.h">
+      <Filter>工具\Process</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Windows\DLLProject\DLL注入\DLLUtils.h">
+      <Filter>工具\Process</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Process\WindowsProcessHelper\Fork\ForkUtils.h">
+      <Filter>工具\Process</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\Paint\GDI\PicHelper\PicHelper\PicHelper.h">
+      <Filter>工具\PIC</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Setting\SysSetting\TaskSchedule\TaskSchduleManager.h">
+      <Filter>工具\Task</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Windows\AppManager\AppManager\Apps.h">
+      <Filter>工具\App</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\SystemInfo\SystemInfo\SysInfoUtils.h">
+      <Filter>工具\SystemInfo</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\SystemInfo\WMI\CtrlWmi.h">
+      <Filter>工具\WMI</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\SystemInfo\WMI\WMIUtils.h">
+      <Filter>工具\WMI</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\SystemInfo\WMI\WMIDef.h">
+      <Filter>工具\WMI</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Process\WindowsProcessHelper\CreateProcess\ProcessMonitBase.h">
+      <Filter>工具\Process</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Process\WindowsProcessHelper\CreateProcess\ProcessMonitWMI.h">
+      <Filter>工具\Process</Filter>
+    </ClInclude>
+    <ClInclude Include="UserManager.h">
+      <Filter>2.0\Manager</Filter>
+    </ClInclude>
+    <ClInclude Include="GlobalData.h">
+      <Filter>2.0\Manager</Filter>
+    </ClInclude>
+    <ClInclude Include="ConfigManager.h">
+      <Filter>2.0\Manager</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Setting\WDesktop\LnkUtils.h">
+      <Filter>工具\Desktop</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Error\WErrorUtils\ErrorInfo.h">
+      <Filter>工具\Log</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\File\FileManager\FileManager\FileAttrHelper.h">
+      <Filter>工具\File</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\..\..\Time\Time\WinTime.cpp">
+      <Filter>工具\Time</Filter>
+    </ClCompile>
+    <ClCompile Include="IDPEvent.cpp">
+      <Filter>2.0</Filter>
+    </ClCompile>
+    <ClCompile Include="veidp.cpp">
+      <Filter>1.0</Filter>
+    </ClCompile>
+    <ClCompile Include="stdafx.cpp">
+      <Filter>1.0</Filter>
+    </ClCompile>
+    <ClCompile Include="infoCollect.cpp">
+      <Filter>1.0</Filter>
+    </ClCompile>
+    <ClCompile Include="downloadFile.cpp">
+      <Filter>1.0</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\C++space\Convert\Convert\Convert.cpp">
+      <Filter>工具\Encode</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\Network\SocketEncode\SocketEncode\base64.cpp">
+      <Filter>工具\Encode</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Process\WindowsProcessHelper\CreateProcess\ProcessHelper_Info.cpp">
+      <Filter>工具\Process</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Process\WindowsProcessHelper\CreateProcess\SessionManager_CDLL.cpp">
+      <Filter>工具\Process</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Process\WindowsProcessHelper\CreateProcess\SessionManager_CEXE.cpp">
+      <Filter>工具\Process</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Process\WindowsProcessHelper\CreateProcess\SessionManager_Get.cpp">
+      <Filter>工具\Process</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Process\WindowsProcessHelper\CreateProcess\SessionManager_Global.cpp">
+      <Filter>工具\Process</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Windows\DLLProject\DLL注入\DLLUtils.cpp">
+      <Filter>工具\Process</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Process\WindowsProcessHelper\Fork\ForkUtils.cpp">
+      <Filter>工具\Process</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\File\FileManager\FileManager\FileManager.cpp">
+      <Filter>工具\File</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\File\FileManager\FileManager\DiskManager.cpp">
+      <Filter>工具\File</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\Paint\GDI\PicHelper\PicHelper\PicHelper.cpp">
+      <Filter>工具\PIC</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Setting\SysSetting\TaskSchedule\TaskSchduleManager.cpp">
+      <Filter>工具\Task</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Windows\AppManager\AppManager\Apps.cpp">
+      <Filter>工具\App</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\SystemInfo\SystemInfo\SysInfoUtils.cpp">
+      <Filter>工具\SystemInfo</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\SystemInfo\WMI\CtrlWmi.cpp">
+      <Filter>工具\WMI</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\SystemInfo\WMI\WMIUtils.cpp">
+      <Filter>工具\WMI</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\USB\WUSBDevice\USBUtils.cpp">
+      <Filter>工具\USB</Filter>
+    </ClCompile>
+    <ClCompile Include="UserManager.cpp">
+      <Filter>2.0\Manager</Filter>
+    </ClCompile>
+    <ClCompile Include="GlobalData.cpp">
+      <Filter>2.0\Manager</Filter>
+    </ClCompile>
+    <ClCompile Include="ConfigManager.cpp">
+      <Filter>2.0\Manager</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Setting\WDesktop\LnkUtils.cpp">
+      <Filter>工具\Desktop</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\File\FileManager\FileManager\FileAttrHelper.cpp">
+      <Filter>工具\File</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="veidp.rc">
+      <Filter>资源文件</Filter>
+    </ResourceCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="veidp1.ico">
+      <Filter>资源文件</Filter>
+    </Image>
+    <Image Include="small1.ico">
+      <Filter>资源文件</Filter>
+    </Image>
+    <Image Include="veidp.ico">
+      <Filter>资源文件</Filter>
+    </Image>
+    <Image Include="small.ico">
+      <Filter>资源文件</Filter>
+    </Image>
+  </ItemGroup>
+</Project>

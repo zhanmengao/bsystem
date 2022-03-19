@@ -1,0 +1,8 @@
+#pragma once
+
+enum THREAD_ID
+{
+	THREAD_LOG = 0,
+	THREAD_USER,
+	THREAD_COLLECT,
+};

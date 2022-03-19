@@ -1,0 +1,40 @@
+syntax = "proto3";
+package pb;
+
+import "enum.proto";
+import "struct.proto";
+import "struct_slot.proto";
+
+// 被打发送广播
+message BroadcastFired {
+    SlotFireType        FireType   = 1;  // 攻击类型
+    SlotFireResultType  Result     = 2;  // 打炮结果
+    uint32              BuildingID = 3;  // 建筑编号
+    int64               FiredUID   = 4;  // 攻击者uid
+    UserProfileProperty Property   = 5;  // 用户的岛屿信息
+    UserProfileInfo     Info       = 6;  // 用户基本信息
+    bool                IsFriend   = 7;  // 是否是好友
+}
+
+// 被偷发送广播
+message BroadcastStolen {
+    int64           StealMoney   = 1;  // 偷取的金币数量
+    int64           SurplusMoney = 2;  // 偷取后的进步
+    UserProfileInfo Info         = 3;  // 用户基本信息
+    bool            IsFriend     = 4;  // 是否是好友
+}
+
+message BroadcastCKChange {
+    SlotStealCK CK = 1;
+}
+
+message BroadcastWheelCard {
+    CommonRewardData RewardData = 1;  // 掉落发奖
+}
+
+message BroadcastSlingshotSteal {
+    int64          FUID         = 1;  // 偷的人UID
+    int64          NexMagicTime = 2;  // 下一次风铃的刷新时间
+    repeated int32 Box          = 3;  // 礼盒内容
+    int32          ID           = 4;  // 风铃ID
+}

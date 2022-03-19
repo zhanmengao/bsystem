@@ -1,0 +1,37 @@
+syntax = "proto3";
+package pb;
+
+// 支付渠道
+enum PayChannelType {
+    PayChannelTypeDefault     = 0;
+    PayChannelTypeAndroidPay  = 1;  // 谷歌支付
+    PayChannelTypeIosPay      = 2;  // ios支付
+    PayChannelTypeUnityEditor = 3;  // unity编辑器
+    PayChannelTypeHuaWei      = 4;  // 华为支付
+    PayChannelTypeOppo        = 5;  // oppo支付
+}
+
+// 交易类型
+enum TradeType {
+    TradeTypeDefault            = 0;
+    TradeTypeFastPayTili        = 1;   // 快捷体力支付
+    TradeTypeMallPay            = 2;   // 商城购买
+    TradeTypeMallBigItem        = 3;   // 超级礼包购买
+    TradeTypeMallBigPack        = 4;   // 节日礼包
+    TradeTypeMallMultiPack      = 5;   // 多充礼包
+    TradeTypeMallMultiStagePack = 6;   // 多段礼包
+    TradeTypeMallAchievePackage = 7;   // 成就礼包
+    TradeTypePass               = 8;   // 通行证
+    TradeTypeHammyLottery       = 9;   // 哈米派对
+    TradeTypeFastPayProp        = 10;  // 快捷道具支付
+    TradeTypeCardBoxMoney       = 11;  // 金币购买守护神宝箱
+    TradeTypeFastPayMoney       = 12;  // 快捷金币
+}
+
+// 购买类型
+enum BuyType {
+    BuyTypeDefault = 0;  // 现金支付
+    BuyTypeMoney   = 1;  // 金币兑换
+    BuyTypeFree    = 2;  // 免费兑换
+    BuyTypeDiamond = 3;  // 钻石
+}

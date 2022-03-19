@@ -1,0 +1,12 @@
+Package: QTMenu
+Version: 1.0
+Architecture: all
+Maintainer: WangBiyu
+Installed-Size: 1024
+Recommends:
+Suggests:
+Section: devel
+Priority: optional
+Multi-Arch: foreign
+Description: QTMenu Make By WBY.
+

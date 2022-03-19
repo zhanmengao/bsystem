@@ -1,0 +1,10 @@
+syntax = "proto3";
+
+package pb;
+import "struct.proto";
+
+// 单个档位奖励
+message WheelEventLevelReward {
+    int64            Level  = 1;  // 奖励档位
+    CommonRewardData Reward = 2;  // 奖励内容
+}

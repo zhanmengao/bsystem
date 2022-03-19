@@ -1,0 +1,100 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="源文件">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="资源文件">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="Java">
+      <UniqueIdentifier>{a1afa393-7034-446e-b8ef-41998b5b58d2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="测试题">
+      <UniqueIdentifier>{5ba6cbfe-42ee-426d-b04b-9a6d87ad113f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Utils">
+      <UniqueIdentifier>{a5530d03-9c8b-419a-8b5d-f2638e736796}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="BF算法.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="KMP算法.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="TestSort.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="插入排序.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="插入排序法.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="归并排序.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="归并排序法.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="快速排序.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="冒泡排序.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="冒泡排序法.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="选择排序.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="选择排序法.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="畅游测试题.cpp">
+      <Filter>测试题</Filter>
+    </ClCompile>
+    <ClCompile Include="光宇游戏.cpp">
+      <Filter>测试题</Filter>
+    </ClCompile>
+    <ClCompile Include="完美世界.cpp">
+      <Filter>测试题</Filter>
+    </ClCompile>
+    <ClCompile Include="QuickSort.cpp">
+      <Filter>Utils</Filter>
+    </ClCompile>
+    <ClCompile Include="PartFind.cpp">
+      <Filter>Utils</Filter>
+    </ClCompile>
+    <ClCompile Include="BubbleSort.cpp">
+      <Filter>Utils</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Sort.h">
+      <Filter>Utils</Filter>
+    </ClInclude>
+    <ClInclude Include="SortTools.h">
+      <Filter>Utils</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\..\Normal\Java\com\SortSeek\CountSort.java">
+      <Filter>Java</Filter>
+    </None>
+    <None Include="..\..\Normal\Java\com\SortSeek\MergeSort.java">
+      <Filter>Java</Filter>
+    </None>
+    <None Include="..\..\Normal\Java\com\SortSeek\Select.java">
+      <Filter>Java</Filter>
+    </None>
+    <None Include="..\..\Normal\Java\com\SortSeek\Sort.java">
+      <Filter>Java</Filter>
+    </None>
+  </ItemGroup>
+</Project>

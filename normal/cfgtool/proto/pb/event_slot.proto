@@ -1,0 +1,82 @@
+syntax = "proto3";
+package pb;
+
+import "struct_slot.proto";
+import "enum.proto";
+import "struct.proto";
+
+// must
+message SlotOprMustEvent {  // 偷
+    string Type    = 1;
+    uint32 SubType = 2;
+}
+
+// slot结果
+message SlotPlayEvent {
+    int64        Uid          = 1;  // uid
+    SlotResult   Result       = 2;
+    int64        Tms          = 3;  // 毫秒
+    string       Version      = 4;
+    BehaviorType BehaviorType = 5;
+}
+
+message SlotStolenEvent {  // 被偷
+    SlotStealBehaviorInfo SlotStealBehaviorInfo = 1;
+}
+
+message SlotStealBehaviorEvent {  // 偷行为
+    SlotStealBehaviorInfo SlotStealBehaviorInfo = 1;
+    BehaviorType          BehaviorType          = 2;
+}
+
+message SlotStolenBehaviorEvent {  // 被偷行为
+    SlotStolenBehaviorInfo SlotStolenBehaviorInfo = 1;
+}
+
+// 炮行为事件
+message SlotFireBehaviorEvent {
+    BehaviorType BehaviorType = 1;
+    uint32       Multiple     = 2;  // 倍数
+    int64        TotalMoney   = 3;  // 乘以倍数的总金币
+    int64        AmountMoney  = 4;  // 发放后的金币数
+}
+
+// 有盾攻击存储的
+message SlotFireRobotShieldData {
+    string Date  = 1;  // 日期
+    int64  Times = 2;  // 次数
+}
+
+// 机器人打炮事件的触发器
+message RobotFireEvent {
+    map<int64, int64> ShieldList   = 1;  // 有盾列表
+    map<int64, int64> NoShieldList = 2;  // 无盾列表
+}
+
+message SlotStealTriggerLockedCKChangeEvent {
+    SlotStolenLockInfo StolenLockInfo = 1;
+}
+
+// 被打事件
+message SlotFiredEvent {       // 被偷
+    int64 FireUid       = 1;   // 打炮的人
+    bool  IsRobot       = 3;   // 攻击者是否是机器人
+    bool  FireIsVisitor = 10;  // 打炮的人是否为游客
+    int64 TargetUID     = 2;   // 被打的人
+    bool  TargetIsRobot = 7;   // 被打目标是否是机器人
+    int64 TimeMs        = 4;   // 触发的时间
+
+    uint32       Multiple   = 11;  // 倍数
+    uint32       BuildingID = 5;   // 被打的建筑
+    SlotFireType FireType   = 6;   // 打炮类型
+
+    SlotFireResultType  ResultType   = 12;  // 打炮结果类型
+    int64               Money        = 9;   // 获取的金币数
+    UserProfileProperty FireProperty = 8;   // 攻击者的信息
+}
+
+// 空盾事件
+message SlotFiredEmptyShield {
+    int64 Uid    = 1;  // 用户id
+    int64 TimeMs = 2;  // 时间戳
+}

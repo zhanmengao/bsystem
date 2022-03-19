@@ -1,0 +1,65 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="容器">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="算法">
+      <UniqueIdentifier>{ac5761c0-970c-4d44-a40c-68a28f0e5a1a}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="dm01_stl容器算法迭代器入门.cpp">
+      <Filter>容器</Filter>
+    </ClCompile>
+    <ClCompile Include="dm02_string的操练.cpp">
+      <Filter>容器</Filter>
+    </ClCompile>
+    <ClCompile Include="dm03_vector操练.cpp">
+      <Filter>容器</Filter>
+    </ClCompile>
+    <ClCompile Include="dm04_deque双端数组.cpp">
+      <Filter>容器</Filter>
+    </ClCompile>
+    <ClCompile Include="dm05_stack栈模型.cpp">
+      <Filter>容器</Filter>
+    </ClCompile>
+    <ClCompile Include="dm06_queue队列模型.cpp">
+      <Filter>容器</Filter>
+    </ClCompile>
+    <ClCompile Include="dm07_list模型.cpp">
+      <Filter>容器</Filter>
+    </ClCompile>
+    <ClCompile Include="dm08_优先级队列priority_queue基本操作.cpp">
+      <Filter>容器</Filter>
+    </ClCompile>
+    <ClCompile Include="dm09_set基本操作_大小_自定义类型排序_查找和对组.cpp">
+      <Filter>容器</Filter>
+    </ClCompile>
+    <ClCompile Include="dm10_multiset基本操练.cpp">
+      <Filter>容器</Filter>
+    </ClCompile>
+    <ClCompile Include="优先级队列priority_queue.cpp">
+      <Filter>容器</Filter>
+    </ClCompile>
+    <ClCompile Include="dm11_map基本操作.cpp">
+      <Filter>容器</Filter>
+    </ClCompile>
+    <ClCompile Include="dm12_multimap基本案例.cpp">
+      <Filter>容器</Filter>
+    </ClCompile>
+    <ClCompile Include="dm13_容器值（value）语意.cpp">
+      <Filter>容器</Filter>
+    </ClCompile>
+    <ClCompile Include="算法\dm04_stl常用算法1.cpp">
+      <Filter>算法</Filter>
+    </ClCompile>
+    <ClCompile Include="算法\dm05_stl常用算法2.cpp">
+      <Filter>算法</Filter>
+    </ClCompile>
+    <ClCompile Include="算法\STL演讲比赛案例.cpp">
+      <Filter>算法</Filter>
+    </ClCompile>
+  </ItemGroup>
+</Project>

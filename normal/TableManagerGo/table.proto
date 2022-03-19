@@ -1,0 +1,13 @@
+message BossShow {
+int32 Id  = 0; 
+string Desc  = 1; 
+int32 FakeObjID  = 2; 
+string Name  = 3; 
+string Detail  = 4; 
+string Tips  = 5; 
+string SkillDescTips  = 6; 
+int32 SkillID  = 7; 
+string BossInfoTexture  = 8; 
+int32 TweenDelay  = 9; 
+string Duration  = 10; 
+}

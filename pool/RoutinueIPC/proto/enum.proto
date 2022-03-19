@@ -1,0 +1,301 @@
+syntax = "proto3";
+package proto;
+
+enum GenderType {
+    GenderTypeInit   = 0;  //
+    GenderTypeMale   = 1;  // 男
+    GenderTypeFemale = 2;  // 女
+}
+
+enum CKType {
+    CKTypeInit   = 0;
+    CKTypeRobot  = 1;
+    CKTypeFriend = 2;
+}
+
+enum LoginType {
+    LoginTypeGuest    = 0;
+    LoginTypeFacebook = 1;
+    LoginTypeQQ       = 2;
+    LoginTypeWX       = 3;
+    LoginTypeAli      = 4;
+    LoginTypeApple    = 5;
+    LoginTypeQQH5     = 6;
+    LoginTypeWXH5     = 7;
+    LoginTypeQZONE    = 8;
+    LoginTypeWXApp    = 9;
+    LoginTypeWechat   = 11;
+}
+
+enum UserStatus {
+    UserStatusNormal  = 0;  // 正常
+    UserStatusBlocked = 1;  // 封号
+    UserStatusDeleted = 2;  // 删号
+    UserStatusShutUp  = 3;  // 禁言,
+}
+
+enum PetStatus {
+    PetStatusUnhatched = 0;  //未孵化的
+    PetStatusEnergetic = 1;  //有宠物精力
+    PetStatusExhausted = 2;  //宠物没精力
+}
+
+enum BuildingStatus {
+    BuildingStatusNormal  = 0;  // 正常
+    BuildingStatusDamage  = 1;  // 损毁
+    BuildingStatusDestroy = 2;  // 摧毁
+}
+
+enum EnemyListType {
+    EnemyListTypeInit   = 0;
+    EnemyListTypeTotal  = 1;  // 总恶人榜
+    EnemyListTypeWeek   = 2;  // 周恶人榜
+    EnemyListTypeRecent = 3;  // 当前恶人榜
+}
+
+enum AttackFriendType {
+    AttackFriendTypeInit   = 0;
+    AttackFriendTypeOnline = 1;  // 在线好友
+    AttackFriendTypeEnemy  = 2;  // 恶人
+    AttackFriendTypeRecent = 3;  // 近期登录好友
+}
+
+enum AttackRecordType {
+    AttackRecordTypeInit    = 0;
+    AttackRecordTypeDefense = 10;  // 攻击被防护
+    AttackRecordTypeDamage  = 11;  // 损毁
+    AttackRecordTypeDestroy = 12;  // 摧毁
+    AttackRecordTypeSteal   = 20;  // 偷
+}
+
+enum WantedType {
+    WantedTypeInit   = 0;
+    WantedTypeNormal = 1;  // 普通通缉令
+    WantedTypeBig    = 2;  // 大通缉令
+}
+
+enum OnlineStatus {
+    OnlineStatusInit    = 0;
+    OnlineStatusOffline = 1;  // 下线
+    OnlineStatusOnline  = 2;  // 上线
+}
+
+enum UserMsgType {
+    UserMsgTypeInit     = 0;
+    UserMsgTypeAll      = 1;  // 所有消息
+    UserMsgTypeSend     = 2;  // 赠送消息
+    UserMsgTypeExchange = 3;  // 交易消息
+}
+
+enum UserMsgMod {
+    UserMsgModInit          = 0;
+    UserMsgModFruit         = 1;  // 水果
+    UserMsgModDungeonAssist = 2;  // 副本协助
+    UserMsgModDungeonReward = 3;  // 副本奖励
+}
+
+// 兼容php消息的消息类型
+enum UserMsgTypePhp {
+    UserMsgTypePhpInit          = 0;
+    UserMsgTypePhpDungeonAssist = 10000;  // 副本协助
+    UserMsgTypePhpDungeonReward = 10001;  // 副本奖励
+}
+
+enum GuardCardSendType {
+    GuardCardSendTypeInit    = 0;
+    GuardCardSendTypeSend    = 1;  // 赠送
+    GuardCardSendTypeReceive = 2;  // 接收
+}
+
+enum UserMsgStatus {
+    UserMsgStatusInit    = 0;  // 交易初始状态, 未处理
+    UserMsgStatusAgree   = 1;  // 同意交换
+    UserMsgStatusRefuse  = 2;  // 拒绝交换
+    UserMsgStatusRunning = 3;  // 运行中
+    UserMsgStatusSuccess = 4;  // 成功
+    UserMsgStatusFailed  = 5;  // 失败
+    UserMsgStatusReward  = 6;  // 已经领取奖励
+}
+
+enum MsgType {
+    MsgTypeInit                = 0;
+    MsgTypeWanted              = 1;    // 通缉结果
+    MsgTypeAttackDefense       = 2;    // 打炮防御
+    MsgTypeAttackDamage        = 3;    // 打炮损毁
+    MsgTypeAttackDestroy       = 4;    // 打炮损毁
+    MsgTypeSteal               = 5;    //被偷
+    MsgTypeSelf                = 6;    //自定义消息
+    MsgTypeBeWanted            = 7;    //被通缉
+    MsgTypeHelpWanted          = 8;    //协助通缉
+    MsgTypeUseWanted           = 9;    //告知好友使用了通缉令
+    MsgTypeInvite              = 101;  // 邀请奖励
+    MsgTypeSystem              = 102;  // 系统奖励（金币，体力）
+    MsgTypeSystemPros          = 103;  // 系统奖励（道具）
+    MsgTypeCallBack            = 104;  // 召回奖励
+    MsgTypePetDefence          = 201;  //宠物技能挡住了攻击
+    MsgTypePetSystemSend       = 202;  //系统赠送宠物道具
+    MsgTypePetSteal            = 203;  //宠物技能防盗
+    MsgTypeManorPhoto          = 250;  //庄园赠送照片
+    MsgTypeEctypeInvite        = 400;  //副本邀请
+    MsgTypeMondayReward        = 655;  //周一奖励
+    MsgTypeLuckTakeAwayEnemy   = 667;  //幸运池大奖被好友领走平分一半
+    MsgTypeGoldShieldDisAppear = 668;  //金神盾失效
+    MsgTypeTribeReward         = 700;  //家族奖励
+    MsgTypeTribeKick           = 701;  //家族踢人
+    MsgTypeTribeJoin           = 702;  //家族通过
+    MsgTypeKKKK                = 704;  //
+    MsgTypeMagicTreeFull       = 705;  //
+    MsgTypeRecallFirstPic      = 901;
+    MsgTypeRecallSecondPic     = 902;
+    reserved 99, 200, 300, 666, 500, 703, 710;  //在php中被使用过的enum
+    MsgTypeGungeoRewardNew = 10001;             //副本活动奖励
+}
+
+enum MsgStatus {
+    MsgStatusUnRead   = 0;  // 消息未读或者奖励未领取
+    MsgStatusRewarded = 1;  // 消息已读并且奖励已领取
+}
+
+enum FriendType {
+    FriendTypeInit = 0;
+    FriendTypeApp  = 1;  // App 好友
+    FriendTypeGame = 2;  // 游戏内好友
+}
+
+enum InviteType {
+    InviteTypeInit      = 0;
+    InviteTypeFB        = 1;
+    InviteTypeMessenger = 2;
+}
+
+enum PetMsgType {
+    PetMsgTypeInit  = 0;
+    PetMsgTypeHelp  = 1;  // 互助
+    PetMsgTypeTouch = 2;  // 抚摸
+    PetMsgTypeHit   = 3;  // 攻击
+}
+
+enum PropertyType {
+    PropertyTypeInit        = 0;
+    PropertyTypeWanted      = 1;   // 通缉令
+    PropertyTypeBigWanted   = 2;   // 大通缉令
+    PropertyTypeMiniShield  = 3;   // 迷你盾
+    PropertyTypePetExp      = 4;   // 宠物爱心
+    PropertyTypeSnowBall    = 5;   // 雪球
+    PropertyTypeMagicBottle = 6;   // 魔法瓶
+    PropertyTypePetSnacks   = 7;   // 宠物零食
+    PropertyTypeSummon      = 8;   // 召唤石
+    PropertyTypeCannonball  = 9;   // 副本炮弹
+    PropertyTypeTrumpet     = 10;  // 小喇叭
+    PropertyTypeVIP         = 11;  // vip
+    PropertyTypeDart        = 12;  // 飞镖
+    PropertyTypePetMuppet   = 13;  // 线团
+    PropertyTypePetLagSpike = 14;  // 螺丝钉
+    PropertyTypeMagicPiece  = 15;  // 魔法碎片
+    PropertyTypeFruit       = 16;  // 水果
+    PropertyTypePassCard    = 17;  // 通行证
+    PropertyTypeMoney       = 18;  // 金币
+    PropertyTypeDiamond     = 19;  // 钻石
+    PropertyTypeShield      = 20;  // 盾
+    PropertyTypeEnergy      = 21;  // 体力
+    PropertyTypeRefresh     = 22;  // 刷新骰,todo ID22-36的道具是老版本不用但是可能需要展示、存的道具
+    PropertyTypeFuel        = 23;  // 庄园燃料
+    PropertyTypeSaw         = 24;  // 庄园锯子
+    PropertyTypeDonuts      = 25;  //庄园甜甜圈
+    PropertyTypeCardCannon  = 26;  //庄园炮卡
+    PropertyTypeCardGold    = 27;  //庄园金币卡
+    PropertyTypeCardShield  = 28;  //庄园盾卡
+    PropertyTypeHeart       = 29;  //庄园爱心
+    PropertyTypeGoldShield  = 30;  //金身盾牌
+    PropertyTypeIkRefrelsh  = 31;  //qZone刷新幸运池
+    PropertyTypeWBall       = 32;  //副本世界BOSS炮弹
+    PropertyTypeCandy       = 33;  //世界求爱糖果
+    PropertyTypeBroken      = 34;  //分手合约
+    PropertyTypePowerfulPic = 35;  //万能碎片可能是拼图的
+    PropertyTypeTicket      = 36;  //比赛门票
+}
+
+enum PropsGroup {
+    PropsGroupInit      = 0;
+    PropsGroupPermanent = 1;  // 永久道具， 存在userdata里面的
+    PropsGroupAction    = 2;  // 存在活动
+    PropsGroupExpire    = 3;  // 带过期时间的,存在userdata里面的
+}
+
+enum StrangeFriendApplyType {
+    StrangeFriendApplyTypeInit    = 0;
+    StrangeFriendApplyTypeActive  = 1;  //主动添加
+    StrangeFriendApplyTypePassive = 2;  //被动添加
+}
+
+enum StrangeFriendApplyStatus {
+    StrangeFriendApplyStatusInit   = 0;
+    StrangeFriendApplyStatusInvite = 1;  //添加邀请
+    StrangeFriendApplyStatusAgree  = 2;  //同意邀请
+    StrangeFriendApplyStatusReject = 3;  //拒绝邀请
+}
+
+enum StrangeFriendAddType {
+    StrangeFriendAddTypeInit   = 0;
+    StrangeFriendAddTypeNormal = 1;  //普通添加
+    StrangeFriendAddTypeAuto   = 2;  //自动添加
+}
+
+enum DataTransferType {
+    DataTransferTypeAll                     = 0;   // 全部数据
+    DataTransferTypeUserInfo                = 1;   // userinfo
+    DataTransferTypeUserData                = 2;   // userdata
+    DataTransferTypeUserStat                = 3;   // 统计数据
+    DataTransferTypeMsgCenter               = 4;   // 消息中心
+    DataTransferTypeFruitMsg                = 5;   // 水果消息
+    DataTransferTypeExchangeMsg             = 6;   // 交换中心消息
+    DataTransferTypePetInfo                 = 7;   // 宠物数据
+    DataTransferTypePetMsg                  = 8;   // 宠物消息
+    DataTransferTypeFriendInfo              = 9;   // 好友数据
+    DataTransferTypePayInfo                 = 10;  // 支付数据
+    DataTransferTypeGuardCardInfo           = 11;  // 卡片数据
+    DataTransferTypeGuardCardMsg            = 12;  // 卡片消息数据
+    DataTransferTypeDeviceInfo              = 13;  // 设备数据
+    DataTransferTypeWheelInfo               = 14;  // 转盘数据
+    DataTransferTypeWantedList              = 15;  // 通缉数据
+    DataTransferTypeEnemyList               = 16;  // 恶人榜数据
+    DataTransferTypeInviteFriend            = 17;  // 邀请好友数据
+    DataTransferTypeStrangeFriend           = 18;  // 陌生好友数据
+    DataTransferTypeAttackedRecordListTrans = 19;  // record记录
+    DataTransferTypeMailListTrans           = 20;  // 邮件列表，mailBox
+}
+
+// 语言
+enum Language {
+    LanguageDefault            = 0;
+    LanguageEnglish            = 1;
+    LanguageChineseSimplified  = 2;
+    LanguageChineseTraditional = 3;
+    LanguageThai               = 4;
+    LanguageVietnamese         = 5;
+}
+
+// 奖励发放
+enum ConstRewardType {
+    ConstRewardTypeInit       = 0;
+    ConstRewardTypeBindReward = 1;
+}
+
+enum WheelResultType {
+    WheelResultTypeDefault = 0;
+    WheelResultTypeMoney   = 1;  // 金币奖励
+    WheelResultTypeFire    = 2;  // 炮
+    WheelResultTypeSteal   = 3;  // 偷
+    WheelResultTypeShield  = 4;  // 盾牌
+    WheelResultTypeEnergy  = 5;  // 体力奖励
+    WheelResultTypeStarMul = 6;  // 星星多倍的金币奖励
+}
+
+
+enum IPCMessageID{
+    IPCMessageLoginEvent = 0;                      //登录事件
+    IPCMessageMoneyEvent = 1;                      //金钱变化事件
+    IPCMessageStealPoolReq = 2;                    //获取偷池
+    IPCMessageStealEvent = 3;                      //偷事件
+    IPCMessageLockEvent = 4;                     //锁定
+}

@@ -1,0 +1,119 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="信息系统">
+      <UniqueIdentifier>{df2d464b-1e27-460a-abea-6c460b4f9dc5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="platform">
+      <UniqueIdentifier>{35fcdffe-3319-4ded-9cd1-b5c74e32450a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="socketclient_src">
+      <UniqueIdentifier>{0cd5ce12-5bbe-4bc5-92de-1a4d4900b457}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Other">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="C++Primer_lambda">
+      <UniqueIdentifier>{7aefdd0f-921a-48e9-8996-f39cdc9074b2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="函数指针">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="STL函数指针">
+      <UniqueIdentifier>{29d7eca4-322a-4209-8540-4e5b04e57118}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="dm01_函数指针语法基础.c">
+      <Filter>函数指针</Filter>
+    </ClCompile>
+    <ClCompile Include="dm02_函数指针做函数参数的思想剖析.c">
+      <Filter>函数指针</Filter>
+    </ClCompile>
+    <ClCompile Include="信息系统框架集成第三方产品案例\CSckFactoryImp1.cpp">
+      <Filter>信息系统</Filter>
+    </ClCompile>
+    <ClCompile Include="信息系统框架集成第三方产品案例\CSckFactoryImp2.cpp">
+      <Filter>信息系统</Filter>
+    </ClCompile>
+    <ClCompile Include="信息系统框架集成第三方产品案例\des.cpp">
+      <Filter>信息系统</Filter>
+    </ClCompile>
+    <ClCompile Include="信息系统框架集成第三方产品案例\HwEncDec.cpp">
+      <Filter>信息系统</Filter>
+    </ClCompile>
+    <ClCompile Include="信息系统框架集成第三方产品案例\mainclass01_完成socket抽象类的集成测试.cpp">
+      <Filter>信息系统</Filter>
+    </ClCompile>
+    <ClCompile Include="信息系统框架集成第三方产品案例\mainclass02_完成框架集成socket厂商和加密厂商的产品.cpp">
+      <Filter>信息系统</Filter>
+    </ClCompile>
+    <ClCompile Include="信息系统框架集成第三方产品案例\mainclass03_框架类.cpp">
+      <Filter>信息系统</Filter>
+    </ClCompile>
+    <ClCompile Include="testplatform\demo01_testplatform.c">
+      <Filter>platform</Filter>
+    </ClCompile>
+    <ClCompile Include="socketclient\itcastlog.c">
+      <Filter>socketclient_src</Filter>
+    </ClCompile>
+    <ClCompile Include="socketclient\memwatch.c">
+      <Filter>socketclient_src</Filter>
+    </ClCompile>
+    <ClCompile Include="socketclient\socketclient.c">
+      <Filter>socketclient_src</Filter>
+    </ClCompile>
+    <ClCompile Include="dm03_函数指针做函数参数.cpp">
+      <Filter>函数指针</Filter>
+    </ClCompile>
+    <ClCompile Include="类成员函数做函数指针.cpp">
+      <Filter>Other</Filter>
+    </ClCompile>
+    <ClCompile Include="dm06_重载括号.cpp">
+      <Filter>函数指针</Filter>
+    </ClCompile>
+    <ClCompile Include="dm01_函数对象和谓词.cpp">
+      <Filter>STL函数指针</Filter>
+    </ClCompile>
+    <ClCompile Include="dm02_预定义函数对象和函数适配器.cpp">
+      <Filter>STL函数指针</Filter>
+    </ClCompile>
+    <ClCompile Include="dm03_strl容器算法迭代器设计理念.cpp">
+      <Filter>STL函数指针</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="信息系统框架集成第三方产品案例\CEncDesProtocol.h">
+      <Filter>信息系统</Filter>
+    </ClInclude>
+    <ClInclude Include="信息系统框架集成第三方产品案例\CSckFactoryImp1.h">
+      <Filter>信息系统</Filter>
+    </ClInclude>
+    <ClInclude Include="信息系统框架集成第三方产品案例\CSckFactoryImp2.h">
+      <Filter>信息系统</Filter>
+    </ClInclude>
+    <ClInclude Include="信息系统框架集成第三方产品案例\CSocketProtocol.h">
+      <Filter>信息系统</Filter>
+    </ClInclude>
+    <ClInclude Include="信息系统框架集成第三方产品案例\des.h">
+      <Filter>信息系统</Filter>
+    </ClInclude>
+    <ClInclude Include="信息系统框架集成第三方产品案例\HwEncDec.h">
+      <Filter>信息系统</Filter>
+    </ClInclude>
+    <ClInclude Include="testplatform\socketclientdll.h">
+      <Filter>platform</Filter>
+    </ClInclude>
+    <ClInclude Include="socketclient\itcastlog.h">
+      <Filter>socketclient_src</Filter>
+    </ClInclude>
+    <ClInclude Include="socketclient\itcast_comm.h">
+      <Filter>socketclient_src</Filter>
+    </ClInclude>
+    <ClInclude Include="socketclient\memwatch.h">
+      <Filter>socketclient_src</Filter>
+    </ClInclude>
+  </ItemGroup>
+</Project>

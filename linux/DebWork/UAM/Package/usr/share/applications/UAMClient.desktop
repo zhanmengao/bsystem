@@ -1,0 +1,10 @@
+[Desktop Entry]
+Name=UAMClient
+Type=Application
+Exec=/opt/vesystem/uam/UAMLinuxClient.sh
+Icon=/opt/vesystem/uam/logo_2.png
+Comment="released_on_2019_02_25"
+Terminal=false
+Type=Application
+StartupNotify=true
+Actions=new-window;

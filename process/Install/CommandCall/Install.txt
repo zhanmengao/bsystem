@@ -1,0 +1,9 @@
+Id	Desc	Script	Command	ReStart
+#				
+#唯一ID，不可重复，从1开始	描述	运行的脚本路径	给脚本文件传的命令行	执行完是否重启
+1	测试1	C:\VEIDP\stop.bat		0
+2	测试2	C:\VEIDP\Uninstall.bat		0
+3	测试3	C:\VEIDP\veidp.exe		0
+#4				0
+#5	测试5	D:\Space\Network\NetDisk\NetDiskUtils\Release\NetDiskUtils.exe	"""Z:"" ""http://192.168.50.44/remote.php/dav/files/admin/"" ""admin"" ""123456"""	0
+6	测试6	D:\Space\System\SystemInfo\SystemInfo\Debug\HardwareUtils.exe		0

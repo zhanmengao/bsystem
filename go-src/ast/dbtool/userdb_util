@@ -1,0 +1,400 @@
+package database
+
+import (
+	"fmt"
+	"log"
+
+	baseConfig "forevernine.com/base/srvcore/config"
+
+	"forevernine.com/base/srvcore/framework"
+
+	"forevernine.com/base/srvcore/datamgr"
+)
+
+// ProtoMessage interface of proto struct
+type ProtoMessage interface {
+	Marshal() (dAtA []byte, err error)
+	Unmarshal(dAtA []byte) (err error)
+	Size() (n int)
+	Reset()
+}
+
+type PlanetDataProto interface {
+	ProtoMessage
+
+	// GetProto return the inner pb message
+	GetProto() ProtoMessage
+
+	SetProto(ProtoMessage)
+
+	// GetDBName return the underlying database name
+	GetDBName() string
+
+	// GetKey return the redis key
+	GetKey() string
+
+	// GetHashField return the redis field info.
+	// if the data is stored directly in a string typed
+	// redis key, this function returns ("", false),
+	// otherwise it returns ("field_name", true)
+	GetHashField() (string, bool)
+}
+
+// DummyDataProto ! 慎用，目前只有运营平台使用
+type DummyDataProto struct {
+	PlanetDataProto
+	Key string
+}
+
+func (p *DummyDataProto) GetKey() string {
+	return p.Key
+}
+
+func InitRedisPool(dbName ...string) error {
+	if len(dbName) == 0 {
+		return fmt.Errorf("init redis daName Empty")
+	}
+	for k := range dbName {
+		cfg, err := baseConfig.GetDBConfig(baseConfig.DBTypeRedis, dbName[k])
+		if err != nil {
+			log.Printf("fail to get db config :%s\n", dbName[k])
+			return err
+		}
+		if err = datamgr.AddRedisPool(dbName[k], cfg); err != nil {
+			return err
+		}
+	}
+
+	return nil
+}
+
+// Get deprecated: Get is the general redis Get for PlanetDataProto
+func Get(target PlanetDataProto) (ok bool, err error) {
+	var data []byte
+	client := datamgr.NewRedisClient(target.GetDBName())
+	key := target.GetKey()
+	field, isHash := target.GetHashField()
+
+	if isHash {
+		data, err = client.HGet(key, field)
+	} else {
+		data, err = client.Get(key)
+	}
+	if err != nil || data == nil {
+		return
+	}
+	ok = true
+	err = target.Unmarshal(data)
+	if err != nil {
+		return
+	}
+	return
+}
+
+// SGet super get，db -> key -> field
+// 不判断是否存在，业务自己处理这种情况
+func SGet(ctx *framework.Context, targets ...PlanetDataProto) (err error) {
+	// todo： 分页
+	dbMap := map[string][]PlanetDataProto{}
+	for _, v := range targets {
+		dbMap[v.GetDBName()] = append(dbMap[v.GetDBName()], v)
+	}
+
+	for k, v := range dbMap {
+		err = sgetByDB(ctx, k, v...)
+		if err != nil {
+			return
+		}
+	}
+	return
+}
+
+// SSet super get，db -> key -> field
+func SSet(ctx *framework.Context, targets ...PlanetDataProto) (err error) {
+	// todo： 分页
+	dbMap := map[string][]PlanetDataProto{}
+	for _, v := range targets {
+		dbMap[v.GetDBName()] = append(dbMap[v.GetDBName()], v)
+	}
+
+	for k, v := range dbMap {
+		err = ssetByDB(ctx, k, v...)
+		if err != nil {
+			return
+		}
+	}
+	return
+}
+
+func sgetByDB(ctx *framework.Context, dbName string, targets ...PlanetDataProto) (err error) {
+	hm := map[string][]PlanetDataProto{}
+	m := []PlanetDataProto{}
+	for _, v := range targets {
+		uniqueKey := GetWithCtxUniqueKey(v)
+		data := ctx.GetValue(uniqueKey)
+		if data != nil {
+			msg := data.(ProtoMessage)
+			v.SetProto(msg)
+			continue
+		}
+		_, hashed := v.GetHashField()
+		if hashed {
+			hm[v.GetKey()] = append(hm[v.GetKey()], v)
+		} else {
+			m = append(m, v)
+		}
+	}
+	for k, v := range hm {
+		err = hmget(ctx, dbName, k, v...)
+		if err != nil {
+			return
+		}
+	}
+	err = mget(ctx, dbName, m...)
+	return
+}
+
+// kv 的 mget 封装
+func mget(_ *framework.Context, dbName string, targets ...PlanetDataProto) (err error) {
+	if len(targets) == 0 {
+		return
+	}
+	keys := make([]string, 0, len(targets))
+	for _, v := range targets {
+		keys = append(keys, v.GetKey())
+	}
+
+	client := datamgr.NewRedisClient(dbName)
+	data, err := client.MGet(keys...)
+	if err != nil {
+		return
+	}
+
+	for i, v := range data {
+		if v == nil {
+			continue
+		}
+		err = targets[i].Unmarshal(v)
+		if err != nil {
+			return
+		}
+	}
+	return
+}
+
+// hash 的 hmget 封装
+func hmget(_ *framework.Context, dbName string, key string, targets ...PlanetDataProto) (err error) {
+	if len(targets) == 0 {
+		return
+	}
+	fields := make([]interface{}, 0, len(targets))
+	for _, v := range targets {
+		field, _ := v.GetHashField()
+		fields = append(fields, field)
+	}
+
+	client := datamgr.NewRedisClient(dbName)
+	data, err := client.HMGet(key, fields...)
+	if err != nil {
+		return
+	}
+
+	for i, v := range data {
+		if v == nil {
+			continue
+		}
+		err = targets[i].Unmarshal(v)
+		if err != nil {
+			return
+		}
+	}
+	return
+}
+
+func ssetByDB(ctx *framework.Context, dbName string, targets ...PlanetDataProto) (err error) {
+	hm := map[string][]PlanetDataProto{}
+	m := []PlanetDataProto{}
+	for _, v := range targets {
+		_, hashed := v.GetHashField()
+		if hashed {
+			hm[v.GetKey()] = append(hm[v.GetKey()], v)
+		} else {
+			m = append(m, v)
+		}
+	}
+	for k, v := range hm {
+		err = hmset(ctx, dbName, k, v...)
+		if err != nil {
+			return
+		}
+	}
+	err = mset(ctx, dbName, m...)
+	if err != nil {
+		return
+	}
+
+	return
+}
+
+// kv 的 mget 封装
+func mset(ctx *framework.Context, dbName string, targets ...PlanetDataProto) (err error) {
+	if len(targets) == 0 {
+		return
+	}
+	keys := make([]interface{}, 0, len(targets))
+	var data []byte
+	for _, v := range targets {
+		data, err = v.Marshal()
+		if err != nil {
+			return
+		}
+		keys = append(keys, v.GetKey(), data)
+	}
+
+	client := datamgr.NewRedisClient(dbName)
+	err = client.MSet(keys...)
+	if err != nil {
+		return
+	}
+
+	for _, v := range targets {
+		uniqueKey := GetWithCtxUniqueKey(v)
+		ctx.SetValue(uniqueKey, v.GetProto())
+	}
+
+	return
+}
+
+// hash 的 hmget 封装
+func hmset(ctx *framework.Context, dbName string, key string, targets ...PlanetDataProto) (err error) {
+	if len(targets) == 0 {
+		return
+	}
+	fields := make([]interface{}, 0, len(targets))
+	var data []byte
+	for _, v := range targets {
+		data, err = v.Marshal()
+		if err != nil {
+			return
+		}
+		field, _ := v.GetHashField()
+		fields = append(fields, field, data)
+	}
+
+	client := datamgr.NewRedisClient(dbName)
+	err = client.HMSet(key, fields...)
+	if err != nil {
+		return
+	}
+
+	for _, v := range targets {
+		uniqueKey := GetWithCtxUniqueKey(v)
+		ctx.SetValue(uniqueKey, v.GetProto())
+	}
+
+	return
+}
+
+func GetWithCtxUniqueKey(target PlanetDataProto) string {
+	field, ok := target.GetHashField()
+	if ok {
+		return fmt.Sprintf("%s_%s", target.GetKey(), field)
+	}
+
+	return target.GetKey()
+}
+
+// GetWithCtx 通过ctx获取数据，优先从ctx获取，如果没有，采取数据库获取，同时同一个上下文中指向的是同一个指针，防止多次操作覆盖的问题
+func GetWithCtx(ctx *framework.Context, target PlanetDataProto) (ok bool, err error) {
+	uniqueKey := GetWithCtxUniqueKey(target)
+	data := ctx.GetSession().GetValue(uniqueKey)
+	if data == nil {
+		ok, err = Get(target)
+		if err != nil {
+			return
+		}
+
+		ctx.SetValue(uniqueKey, target.GetProto())
+	} else {
+		v := data.(ProtoMessage)
+		target.SetProto(v)
+		ok = true
+	}
+
+	return
+}
+
+// SetWithCtx 设置数据，设置完成后更新一下，使后面可以使用复用
+func SetWithCtx(ctx *framework.Context, target PlanetDataProto) (err error) {
+	uniqueKey := GetWithCtxUniqueKey(target)
+	err = Set(target)
+	if err != nil {
+		return
+	}
+
+	ctx.GetSession().SetValue(uniqueKey, target.GetProto())
+
+	return
+}
+
+// SetWithCtxTTL 设置数据，设置完成后更新一下，使后面可以使用复用
+func SetWithCtxTTL(ctx *framework.Context, target PlanetDataProto, ttl int64) (err error) {
+	uniqueKey := GetWithCtxUniqueKey(target)
+	err = SetEX(target, ttl)
+	if err != nil {
+		return
+	}
+
+	ctx.GetSession().SetValue(uniqueKey, target.GetProto())
+
+	return
+}
+
+// Set is the general redis Set for PlanetDataProto
+func Set(target PlanetDataProto) error {
+	data, err := target.Marshal()
+	if err != nil {
+		return err
+	}
+
+	client := datamgr.NewRedisClient(target.GetDBName())
+	key := target.GetKey()
+	field, isHash := target.GetHashField()
+	if isHash {
+		err = client.HSet(key, field, data)
+	} else {
+		err = client.Set(key, data)
+	}
+	return err
+}
+
+// SetEX is just redis SETEX, DO NOT use for hash stored data!
+func SetEX(target PlanetDataProto, ttl int64) error {
+	data, err := target.Marshal()
+	if err != nil {
+		return err
+	}
+	client := datamgr.NewRedisClient(target.GetDBName())
+	key := target.GetKey()
+	field, isHash := target.GetHashField()
+	if isHash {
+		err = fmt.Errorf("cannot SetEX for hash stored data<key:%s, field:%s>", key, field)
+	} else {
+		err = client.SetEX(key, int(ttl), data)
+	}
+	return err
+}
+
+// Del general data deletion for PlanetDataProto
+func Del(target PlanetDataProto) error {
+	var err error
+	client := datamgr.NewRedisClient(target.GetDBName())
+	key := target.GetKey()
+	field, isHash := target.GetHashField()
+	if isHash {
+		err = client.HDel(key, field)
+	} else {
+		err = client.Del(key)
+	}
+	return err
+}

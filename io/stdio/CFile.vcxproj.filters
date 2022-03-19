@@ -1,0 +1,57 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="源文件">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="头文件">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hh;hpp;hxx;hm;inl;inc;xsd</Extensions>
+    </Filter>
+    <Filter Include="资源文件">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="stdio">
+      <UniqueIdentifier>{4ba70cd9-5f6d-4a52-a047-09e622959c46}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="dm03_按照块的方式操作文件.c">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="dm01_按照字符读写文件.c">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="dm02_按照行读写文件.c">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="..\stdio\tempfiles.c">
+      <Filter>stdio</Filter>
+    </ClCompile>
+    <ClCompile Include="..\stdio\memstr.c">
+      <Filter>stdio</Filter>
+    </ClCompile>
+    <ClCompile Include="..\stdio\getcputc.c">
+      <Filter>stdio</Filter>
+    </ClCompile>
+    <ClCompile Include="..\stdio\getcharbug.c">
+      <Filter>stdio</Filter>
+    </ClCompile>
+    <ClCompile Include="..\stdio\fgetsfputs.c">
+      <Filter>stdio</Filter>
+    </ClCompile>
+    <ClCompile Include="..\stdio\buf.c">
+      <Filter>stdio</Filter>
+    </ClCompile>
+    <ClCompile Include="duo2main.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\stdio\Makefile">
+      <Filter>stdio</Filter>
+    </None>
+  </ItemGroup>
+</Project>

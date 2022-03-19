@@ -17,7 +17,6 @@
 *.dll
 
 # Fortran module files
-*.mod
 *.smod
 
 # Compiled Static libraries
@@ -30,3 +29,12 @@
 *.exe
 *.out
 *.app
+
+
+.vs
+.idea
+build_*_Qt*
+*.pro.user
+*.vcxproj.user
+*.ilk
+*.pdb

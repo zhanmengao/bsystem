@@ -1,0 +1,38 @@
+1. 线程概念
+
+	线程与进程关系。
+
+	线程之间共享、非共享
+
+	优缺点
+
+2. 线程控制原语
+
+	pthread_self
+		create
+		exit
+		join
+
+	对比记忆 
+
+		fork		pthead_create
+	
+		exit(10)	pthead_exit(void *);
+
+		wait(int *)	pthread_join（， void **）   阻塞     分离 22 ； cancel -1
+
+		kill()		pthread_cancel();	取消点(检查点)：系统调用
+
+							man 7 pthreads 
+
+							pthread_testcancel(); 系统调用
+		getpid()	pthread_self();
+
+				pthread_detach();  分离。 --自动清理pcb。 
+
+3. 线程属性
+
+	修改线程属性的方法
+
+
+4. 注意的事项

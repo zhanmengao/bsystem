@@ -1,0 +1,94 @@
+syntax = "proto3";
+package pb;
+
+import "error.proto";
+
+// Opts packet options 64 bits
+// bit index:     0 --- 59  60  61  62  63
+// value: 0x1     0 ---  0   0   0   0   1 close client connection
+// value: 0x2     0 ---  0   0   0   1   0 data was gziped
+// value: 0x4     0 ---  0   0   1   0   0 enable encrypt
+// value: 0x8     0 ---  0   1   0   0   0 client update local encryption key with PacketHead.CrtKey
+// value: 0x10    0 ---  1   0   0   0   0 gatesrv close client's socket
+message RpcHead {
+    int32  Cmd  = 1;
+    string UID  = 2;
+    int64  Time = 3;  // timestamp(millisecond)
+    int32  Seq  = 4;
+    int64  Opts = 5;
+
+    //http form客户端非必传,服务器内部通讯必传
+    string MtKey    = 20;
+    string Skey     = 21;
+    string Device   = 22;
+    string Channel  = 23;
+    string Language = 24;
+    string Country  = 25;
+    string Version  = 26;
+    uint32 CurPlanet = 27; // 客户端传递当前岛屿, 星星; 服务器用于session更新机制判断和同步
+    uint32 Star      = 28; // 客户端传递当前岛屿, 星星; 服务器用于session更新机判断和同步
+
+    // 服务器自动生成
+    string ReqId       = 30;  // server field: request id
+    bool Event         = 31; // server, packet is a server internal event
+    RpcSession Session = 32; // gatesrv包装, session透传
+    int32 SessionStrategy = 33; //  0 包装,  1 为空时包装,  2 不包装; 设计到前端通用协议少用枚举
+
+    // gateway 状态
+    string StreamID    = 100;
+    uint32 StreamMs    = 101; //网关处理毫秒时间, 如果前端有传递以前端 传递的为准
+    //     string RKey = 30; // route key
+    //     string ClientVer = 31; // server field
+    //     string ClientIP = 32; // server field
+    //     int32 Mod = 33; // server field
+    //     bool Event = 35; // server, packet is a server internal event
+
+    //     int32 TableID = 41;
+}
+
+message Rpc {
+    RpcHead Head = 1;
+    bytes   Body = 2;
+}
+
+message RpcRspHead {
+    int32    Code = 1;  // 错误码改为int型, 解决旧客户端解不开新增的错误码
+    string   Msg  = 2;  //主要用于前端debug
+}
+
+message RpcSession {
+    // redis online
+    int64 Uid             = 1;
+    string SiteUid        = 2;
+    bool   Status         = 3;
+    int64 Time            = 4;
+    uint32 CurPlanet      = 5;
+    string Secret         = 6;
+    int64 VipTime         = 7;
+
+    uint32 LoginType      = 10;
+    string ClientIp       = 11;
+    string ClientOS       = 12;
+    string ClientZone     = 13;
+    string ClientMac      = 14;
+
+    string Name         = 20;
+    uint32 Sex          = 21; // 通用协议, 不要用枚举
+    uint32 CurPic       = 22;
+    string FbPic        = 23;
+    int64  AvatarFrame  = 24;
+    uint32 Star         = 25;
+
+    //    string mtkey          = 2;
+    //    string platform       = 33;
+
+
+    // 前端有传递
+//    string MtKey          = 50;
+//    string Skey           = 51;
+    string Device         = 50;
+    string Channel        = 51;
+    string Language       = 52;
+    string Country        = 53;
+    string Version        = 54;
+}

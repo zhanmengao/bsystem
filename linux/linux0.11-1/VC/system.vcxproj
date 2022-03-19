@@ -1,0 +1,367 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="14.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{9BF52DCC-4F77-4828-A05B-B266AFBA289A}</ProjectGuid>
+    <Keyword>MakeFileProj</Keyword>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>Utility</ConfigurationType>
+    <PlatformToolset>v140</PlatformToolset>
+    <UseOfMfc>false</UseOfMfc>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+    <Import Project="$(VCTargetsPath)Microsoft.CPP.UpgradeFromVC60.props" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup>
+    <_ProjectFileVersion>14.0.23107.0</_ProjectFileVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <OutDir>.\Release\</OutDir>
+    <IntDir>.\Release\</IntDir>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <Midl>
+      <TypeLibraryName>.\Release/system.tlb</TypeLibraryName>
+      <HeaderFileName />
+    </Midl>
+    <PostBuildEvent>
+      <Command>bin\ld -T .\bin\ld_script.txt -s -x --file-alignment=1 --section-alignment=1 -Ttext=0 --image-base=0 -nostdlib -Map=.\release\system.map -o .\release\system   ".\Release\boot\head.o" ".\Release\init\main.o"  ".\Release\kernel\exit.o"  ".\Release\kernel\fork.o"  ".\Release\kernel\math\math_emulate.o"  ".\Release\kernel\mktime.o"  ".\Release\kernel\panic.o"  ".\Release\kernel\printk.o" ".\Release\kernel\sched.o"   ".\Release\kernel\signal.o" ".\Release\kernel\sys.o"  ".\Release\kernel\system_call.o"  ".\Release\kernel\traps.o"  ".\Release\kernel\vsprintf.o" ".\Release\kernel\asm.o"   ".\Release\kernel\blk_drv\floppy.o" ".\Release\kernel\blk_drv\hd.o"   ".\Release\kernel\blk_drv\ll_rw_blk.o" ".\Release\kernel\blk_drv\ramdisk.o"   ".\Release\kernel\chr_drv\console.o" ".\Release\kernel\chr_drv\keyboard.o"   ".\Release\kernel\chr_drv\rs_io.o" ".\Release\kernel\chr_drv\serial.o"   ".\Release\kernel\chr_drv\tty_io.o" ".\Release\kernel\chr_drv\tty_ioctl.o"   ".\Release\mm\memory.o" ".\Release\mm\page.o" ".\Release\fs\bitmap.o"   ".\Release\fs\block_dev.o" ".\Release\fs\buffer.o" ".\Release\fs\char_dev.o"   ".\Release\fs\exec.o"  ".\Release\fs\fcntl.o"        ".\Release\fs\file_dev.o"  ".\Release\fs\file_table.o"   ".\Release\fs\inode.o" ".\Release\fs\ioctl.o"   ".\Release\fs\namei.o" ".\Release\fs\open.o" ".\Release\fs\pipe.o"   ".\Release\fs\read_write.o" ".\Release\fs\stat.o" ".\Release\fs\super.o"  ".\Release\fs\truncate.o" ".\Release\lib\_exit.o" ".\Release\lib\close.o"  ".\Release\lib\ctype.o" ".\Release\lib\dup.o" ".\Release\lib\errno.o"  ".\Release\lib\execve.o" ".\Release\lib\malloc.o" ".\Release\lib\open.o"  ".\Release\lib\setsid.o" ".\Release\lib\string.o" ".\Release\lib\wait.o"  ".\Release\lib\write.o"</Command>
+    </PostBuildEvent>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <CustomBuild Include="..\boot\head.s">
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">bin\ml.exe -c -coff -nologo -Cp /X /Fo "$(IntDir)%(Filename).o" %(FullPath)
+</Command>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(IntDir)%(Filename).o;%(Outputs)</Outputs>
+    </CustomBuild>
+    <CustomBuild Include="..\kernel\asm.s">
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">bin\ml.exe -c -coff -nologo -Cp /X /Fo "$(IntDir)%(Filename).o" %(FullPath)
+</Command>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(IntDir)%(Filename).o;%(Outputs)</Outputs>
+    </CustomBuild>
+    <CustomBuild Include="..\kernel\chr_drv\keyboard.S">
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">cl /X /I "..\include" /EP /P %(FullPath)
+bin\ml.exe -c -coff -nologo -Cp /X /Fo "$(IntDir)%(Filename).o" $(ProjectDir)%(Filename).i
+</Command>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(IntDir)%(Filename).o;%(Outputs)</Outputs>
+    </CustomBuild>
+    <CustomBuild Include="..\kernel\chr_drv\rs_io.s">
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">bin\ml.exe -c -coff -nologo -Cp /X /Fo "$(IntDir)%(Filename).o" %(FullPath)
+</Command>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(IntDir)%(Filename).o;%(Outputs)</Outputs>
+    </CustomBuild>
+    <CustomBuild Include="..\kernel\system_call.s">
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">bin\ml.exe -c -coff -nologo -Cp /X /Fo "$(IntDir)%(Filename).o" %(FullPath)
+</Command>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(IntDir)%(Filename).o;%(Outputs)</Outputs>
+    </CustomBuild>
+    <CustomBuild Include="..\mm\page.s">
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">bin\ml.exe -c -coff -nologo -Cp /X /Fo "$(IntDir)%(Filename).o" %(FullPath)
+</Command>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(IntDir)%(Filename).o;%(Outputs)</Outputs>
+    </CustomBuild>
+  </ItemGroup>
+  <ItemGroup>
+    <CustomBuild Include="..\fs\bitmap.c">
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">cl /nologo  /W3 /vd0 /GX- /Ob1 /Ot /Oa /Og /Op /X /I "..\include" /u /FAs /Fa"$(IntDir)" /Fp"Release/system.pch" /YX /Fo"$(IntDir)%(Filename).o" /Fd"$(IntDir)" /FD /c %(FullPath)
+</Command>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(IntDir)%(Filename).o;%(Outputs)</Outputs>
+    </CustomBuild>
+    <CustomBuild Include="..\fs\block_dev.c">
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">cl /nologo  /W3 /vd0 /GX- /Ob1 /Ot /Oa /Og /Op /X /I "..\include" /u /FAs /Fa"$(IntDir)" /Fp"Release/system.pch" /YX /Fo"$(IntDir)%(Filename).o" /Fd"$(IntDir)" /FD /c %(FullPath)
+</Command>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(IntDir)%(Filename).o;%(Outputs)</Outputs>
+    </CustomBuild>
+    <CustomBuild Include="..\fs\buffer.c">
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">cl /nologo  /W3 /vd0 /GX- /Ob1 /Ot /Oa /Og /Op /X /I "..\include" /u /FAs /Fa"$(IntDir)" /Fp"Release/system.pch" /YX /Fo"$(IntDir)%(Filename).o" /Fd"$(IntDir)" /FD /c %(FullPath)
+</Command>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(IntDir)%(Filename).o;%(Outputs)</Outputs>
+    </CustomBuild>
+    <CustomBuild Include="..\fs\char_dev.c">
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">cl /nologo  /W3 /vd0 /GX- /Ob1 /Ot /Oa /Og /Op /X /I "..\include" /u /FAs /Fa"$(IntDir)" /Fp"Release/system.pch" /YX /Fo"$(IntDir)%(Filename).o" /Fd"$(IntDir)" /FD /c %(FullPath)
+</Command>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(IntDir)%(Filename).o;%(Outputs)</Outputs>
+    </CustomBuild>
+    <CustomBuild Include="..\fs\exec.c">
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">cl /nologo  /W3 /vd0 /GX- /Ob1 /Ot /Oa /Og /Op /X /I "..\include" /u /FAs /Fa"$(IntDir)" /Fp"Release/system.pch" /YX /Fo"$(IntDir)%(Filename).o" /Fd"$(IntDir)" /FD /c %(FullPath)
+</Command>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(IntDir)%(Filename).o;%(Outputs)</Outputs>
+    </CustomBuild>
+    <CustomBuild Include="..\fs\fcntl.c">
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">cl /nologo  /W3 /vd0 /GX- /Ob1 /Ot /Oa /Og /Op /X /I "..\include" /u /FAs /Fa"$(IntDir)" /Fp"Release/system.pch" /YX /Fo"$(IntDir)%(Filename).o" /Fd"$(IntDir)" /FD /c %(FullPath)
+</Command>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(IntDir)%(Filename).o;%(Outputs)</Outputs>
+    </CustomBuild>
+    <CustomBuild Include="..\fs\file_dev.c">
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">cl /nologo  /W3 /vd0 /GX- /Ob1 /Ot /Oa /Og /Op /X /I "..\include" /u /FAs /Fa"$(IntDir)" /Fp"Release/system.pch" /YX /Fo"$(IntDir)%(Filename).o" /Fd"$(IntDir)" /FD /c %(FullPath)
+</Command>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(IntDir)%(Filename).o;%(Outputs)</Outputs>
+    </CustomBuild>
+    <CustomBuild Include="..\fs\file_table.c">
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">cl /nologo  /W3 /vd0 /GX- /Ob1 /Ot /Oa /Og /Op /X /I "..\include" /u /FAs /Fa"$(IntDir)" /Fp"Release/system.pch" /YX /Fo"$(IntDir)%(Filename).o" /Fd"$(IntDir)" /FD /c %(FullPath)
+</Command>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(IntDir)%(Filename).o;%(Outputs)</Outputs>
+    </CustomBuild>
+    <CustomBuild Include="..\fs\inode.c">
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">cl /nologo  /W3 /vd0 /GX- /Ob1 /Ot /Oa /Og /Op /X /I "..\include" /u /FAs /Fa"$(IntDir)" /Fp"Release/system.pch" /YX /Fo"$(IntDir)%(Filename).o" /Fd"$(IntDir)" /FD /c %(FullPath)
+</Command>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(IntDir)%(Filename).o;%(Outputs)</Outputs>
+    </CustomBuild>
+    <CustomBuild Include="..\fs\ioctl.c">
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">cl /nologo  /W3 /vd0 /GX- /Ob1 /Ot /Oa /Og /Op /X /I "..\include" /u /FAs /Fa"$(IntDir)" /Fp"Release/system.pch" /YX /Fo"$(IntDir)%(Filename).o" /Fd"$(IntDir)" /FD /c %(FullPath)
+</Command>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(IntDir)%(Filename).o;%(Outputs)</Outputs>
+    </CustomBuild>
+    <CustomBuild Include="..\fs\namei.c">
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">cl /nologo  /W3 /vd0 /GX- /Ob1 /Ot /Oa /Og /Op /X /I "..\include" /u /FAs /Fa"$(IntDir)" /Fp"Release/system.pch" /YX /Fo"$(IntDir)%(Filename).o" /Fd"$(IntDir)" /FD /c %(FullPath)
+</Command>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(IntDir)%(Filename).o;%(Outputs)</Outputs>
+    </CustomBuild>
+    <CustomBuild Include="..\fs\open.c">
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">cl /nologo  /W3 /vd0 /GX- /Ob1 /Ot /Oa /Og /Op /X /I "..\include" /u /FAs /Fa"$(IntDir)" /Fp"Release/system.pch" /YX /Fo"$(IntDir)%(Filename).o" /Fd"$(IntDir)" /FD /c %(FullPath)
+</Command>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(IntDir)%(Filename).o;%(Outputs)</Outputs>
+    </CustomBuild>
+    <CustomBuild Include="..\fs\pipe.c">
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">cl /nologo  /W3 /vd0 /GX- /Ob1 /Ot /Oa /Og /Op /X /I "..\include" /u /FAs /Fa"$(IntDir)" /Fp"Release/system.pch" /YX /Fo"$(IntDir)%(Filename).o" /Fd"$(IntDir)" /FD /c %(FullPath)
+</Command>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(IntDir)%(Filename).o;%(Outputs)</Outputs>
+    </CustomBuild>
+    <CustomBuild Include="..\fs\read_write.c">
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">cl /nologo  /W3 /vd0 /GX- /Ob1 /Ot /Oa /Og /Op /X /I "..\include" /u /FAs /Fa"$(IntDir)" /Fp"Release/system.pch" /YX /Fo"$(IntDir)%(Filename).o" /Fd"$(IntDir)" /FD /c %(FullPath)
+</Command>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(IntDir)%(Filename).o;%(Outputs)</Outputs>
+    </CustomBuild>
+    <CustomBuild Include="..\fs\stat.c">
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">cl /nologo  /W3 /vd0 /GX- /Ob1 /Ot /Oa /Og /Op /X /I "..\include" /u /FAs /Fa"$(IntDir)" /Fp"Release/system.pch" /YX /Fo"$(IntDir)%(Filename).o" /Fd"$(IntDir)" /FD /c %(FullPath)
+</Command>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(IntDir)%(Filename).o;%(Outputs)</Outputs>
+    </CustomBuild>
+    <CustomBuild Include="..\fs\super.c">
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">cl /nologo  /W3 /vd0 /GX- /Ob1 /Ot /Oa /Og /Op /X /I "..\include" /u /FAs /Fa"$(IntDir)" /Fp"Release/system.pch" /YX /Fo"$(IntDir)%(Filename).o" /Fd"$(IntDir)" /FD /c %(FullPath)
+</Command>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(IntDir)%(Filename).o;%(Outputs)</Outputs>
+    </CustomBuild>
+    <CustomBuild Include="..\fs\truncate.c">
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">cl /nologo  /W3 /vd0 /GX- /Ob1 /Ot /Oa /Og /Op /X /I "..\include" /u /FAs /Fa"$(IntDir)" /Fp"Release/system.pch" /YX /Fo"$(IntDir)%(Filename).o" /Fd"$(IntDir)" /FD /c %(FullPath)
+</Command>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(IntDir)%(Filename).o;%(Outputs)</Outputs>
+    </CustomBuild>
+    <CustomBuild Include="..\init\main.c">
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">cl /nologo /W3 /vd0 /GX- /Ob1 /Ot /Oa /Og /Op /X /I "..\include" /u /FAs /Fa"$(IntDir)" /Fp"Release/system.pch" /YX /Fo"$(IntDir)%(Filename).o" /Fd"$(IntDir)" /FD /c %(FullPath)
+</Command>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(IntDir)%(Filename).o;%(Outputs)</Outputs>
+    </CustomBuild>
+    <CustomBuild Include="..\kernel\blk_drv\floppy.c">
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">cl /nologo  /W3 /vd0 /GX- /Ob1 /Ot /Oa /Og /Op /X /I "..\include" /u /FAs /Fa"$(IntDir)" /Fp"Release/system.pch" /YX /Fo"$(IntDir)%(Filename).o" /Fd"$(IntDir)" /FD /c %(FullPath)
+</Command>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(IntDir)%(Filename).o;%(Outputs)</Outputs>
+    </CustomBuild>
+    <CustomBuild Include="..\kernel\blk_drv\hd.c">
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">cl /nologo  /W3 /vd0 /GX- /Ob1 /Ot /Oa /Og /Op /X /I "..\include" /u /FAs /Fa"$(IntDir)" /Fp"Release/system.pch" /YX /Fo"$(IntDir)%(Filename).o" /Fd"$(IntDir)" /FD /c %(FullPath)
+</Command>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(IntDir)%(Filename).o;%(Outputs)</Outputs>
+    </CustomBuild>
+    <CustomBuild Include="..\kernel\blk_drv\ll_rw_blk.c">
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">cl /nologo  /W3 /vd0 /GX- /Ob1 /Ot /Oa /Og /Op /X /I "..\include" /u /FAs /Fa"$(IntDir)" /Fp"Release/system.pch" /YX /Fo"$(IntDir)%(Filename).o" /Fd"$(IntDir)" /FD /c %(FullPath)
+</Command>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(IntDir)%(Filename).o;%(Outputs)</Outputs>
+    </CustomBuild>
+    <CustomBuild Include="..\kernel\blk_drv\ramdisk.c">
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">cl /nologo  /W3 /vd0 /GX- /Ob1 /Ot /Oa /Og /Op /X /I "..\include" /u /FAs /Fa"$(IntDir)" /Fp"Release/system.pch" /YX /Fo"$(IntDir)%(Filename).o" /Fd"$(IntDir)" /FD /c %(FullPath)
+</Command>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(IntDir)%(Filename).o;%(Outputs)</Outputs>
+    </CustomBuild>
+    <CustomBuild Include="..\kernel\chr_drv\console.c">
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">cl /nologo  /W3 /vd0 /GX- /Ob1 /Ot /Oa /Og /Op /X /I "..\include" /u /FAs /Fa"$(IntDir)" /Fp"Release/system.pch" /YX /Fo"$(IntDir)%(Filename).o" /Fd"$(IntDir)" /FD /c %(FullPath)
+</Command>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(IntDir)%(Filename).o;%(Outputs)</Outputs>
+    </CustomBuild>
+    <CustomBuild Include="..\kernel\chr_drv\serial.c">
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">cl /nologo  /W3 /vd0 /GX- /Ob1 /Ot /Oa /Og /Op /X /I "..\include" /u /FAs /Fa"$(IntDir)" /Fp"Release/system.pch" /YX /Fo"$(IntDir)%(Filename).o" /Fd"$(IntDir)" /FD /c %(FullPath)
+</Command>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(IntDir)%(Filename).o;%(Outputs)</Outputs>
+    </CustomBuild>
+    <CustomBuild Include="..\kernel\chr_drv\tty_io.c">
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">cl /nologo  /W3 /vd0 /GX- /Ob1 /Ot /Oa /Og /Op /X /I "..\include" /u /FAs /Fa"$(IntDir)" /Fp"Release/system.pch" /YX /Fo"$(IntDir)%(Filename).o" /Fd"$(IntDir)" /FD /c %(FullPath)
+</Command>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(IntDir)%(Filename).o;%(Outputs)</Outputs>
+    </CustomBuild>
+    <CustomBuild Include="..\kernel\chr_drv\tty_ioctl.c">
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">cl /nologo  /W3 /vd0 /GX- /Ob1 /Ot /Oa /Og /Op /X /I "..\include" /u /FAs /Fa"$(IntDir)" /Fp"Release/system.pch" /YX /Fo"$(IntDir)%(Filename).o" /Fd"$(IntDir)" /FD /c %(FullPath)
+</Command>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(IntDir)%(Filename).o;%(Outputs)</Outputs>
+    </CustomBuild>
+    <CustomBuild Include="..\kernel\exit.c">
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">cl /nologo  /W3 /vd0 /GX- /Ob1 /Ot /Oa /Og /Op /X /I "..\include" /u /FAs /Fa"$(IntDir)" /Fp"Release/system.pch" /YX /Fo"$(IntDir)%(Filename).o" /Fd"$(IntDir)" /FD /c %(FullPath)
+</Command>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(IntDir)%(Filename).o;%(Outputs)</Outputs>
+    </CustomBuild>
+    <CustomBuild Include="..\kernel\fork.c">
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">cl /nologo  /W3 /vd0 /GX- /Ob1 /Ot /Oa /Op /X /I "..\include" /u /FAs /Fa"$(IntDir)" /Fp"Release/system.pch" /YX /Fo"$(IntDir)%(Filename).o" /Fd"$(IntDir)" /FD /c %(FullPath)
+</Command>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(IntDir)%(Filename).o;%(Outputs)</Outputs>
+    </CustomBuild>
+    <CustomBuild Include="..\kernel\math\math_emulate.c">
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">cl /nologo  /W3 /vd0 /GX- /Ob1 /Ot /Oa /Og /Op /X /I "..\include" /u /FAs /Fa"$(IntDir)" /Fp"Release/system.pch" /YX /Fo"$(IntDir)%(Filename).o" /Fd"$(IntDir)" /FD /c %(FullPath)
+</Command>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(IntDir)%(Filename).o;%(Outputs)</Outputs>
+    </CustomBuild>
+    <CustomBuild Include="..\kernel\mktime.c">
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">cl /nologo  /W3 /vd0 /GX- /Ob1 /Ot /Oa /Og /Op /X /I "..\include" /u /FAs /Fa"$(IntDir)" /Fp"Release/system.pch" /YX /Fo"$(IntDir)%(Filename).o" /Fd"$(IntDir)" /FD /c %(FullPath)
+</Command>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(IntDir)%(Filename).o;%(Outputs)</Outputs>
+    </CustomBuild>
+    <CustomBuild Include="..\kernel\panic.c">
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">cl /nologo  /W3 /vd0 /GX- /Ob1 /Ot /Oa /Og /Op /X /I "..\include" /u /FAs /Fa"$(IntDir)" /Fp"Release/system.pch" /YX /Fo"$(IntDir)%(Filename).o" /Fd"$(IntDir)" /FD /c %(FullPath)
+</Command>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(IntDir)%(Filename).o;%(Outputs)</Outputs>
+    </CustomBuild>
+    <CustomBuild Include="..\kernel\printk.c">
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">cl /nologo  /W3 /vd0 /GX- /Ob1 /Ot /Oa /Og /Op /X /I "..\include" /u /FAs /Fa"$(IntDir)" /Fp"Release/system.pch" /YX /Fo"$(IntDir)%(Filename).o" /Fd"$(IntDir)" /FD /c %(FullPath)
+</Command>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(IntDir)%(Filename).o;%(Outputs)</Outputs>
+    </CustomBuild>
+    <CustomBuild Include="..\kernel\sched.c">
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">cl /nologo  /W3 /vd0 /GX- /Ob1 /Ot /Oa /Og /Op /X /I "..\include" /u /FAs /Fa"$(IntDir)" /Fp"Release/system.pch" /YX /Fo"$(IntDir)%(Filename).o" /Fd"$(IntDir)" /FD /c %(FullPath)
+</Command>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(IntDir)%(Filename).o;%(Outputs)</Outputs>
+    </CustomBuild>
+    <CustomBuild Include="..\kernel\signal.c">
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">cl /nologo  /W3 /vd0 /GX- /Ob1 /Ot /Oa /Op /X /I "..\include" /u /FAs /Fa"$(IntDir)" /Fp"Release/system.pch" /YX /Fo"$(IntDir)%(Filename).o" /Fd"$(IntDir)" /FD /c %(FullPath)
+</Command>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(IntDir)%(Filename).o;%(Outputs)</Outputs>
+    </CustomBuild>
+    <CustomBuild Include="..\kernel\sys.c">
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">cl /nologo  /W3 /vd0 /GX- /Ob1 /Ot /Oa /Og /Op /X /I "..\include" /u /FAs /Fa"$(IntDir)" /Fp"Release/system.pch" /YX /Fo"$(IntDir)%(Filename).o" /Fd"$(IntDir)" /FD /c %(FullPath)
+</Command>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(IntDir)%(Filename).o;%(Outputs)</Outputs>
+    </CustomBuild>
+    <CustomBuild Include="..\kernel\traps.c">
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">cl /nologo  /W3 /vd0 /GX- /Ob1 /Ot /Oa /Og /Op /X /I "..\include" /u /FAs /Fa"$(IntDir)" /Fp"Release/system.pch" /YX /Fo"$(IntDir)%(Filename).o" /Fd"$(IntDir)" /FD /c %(FullPath)
+</Command>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(IntDir)%(Filename).o;%(Outputs)</Outputs>
+    </CustomBuild>
+    <CustomBuild Include="..\kernel\vsprintf.c">
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">cl /nologo  /W3 /vd0 /GX- /Ob1 /Ot /Oa /Og /Op /X /I "..\include" /u /FAs /Fa"$(IntDir)" /Fp"Release/system.pch" /YX /Fo"$(IntDir)%(Filename).o" /Fd"$(IntDir)" /FD /c %(FullPath)
+</Command>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(IntDir)%(Filename).o;%(Outputs)</Outputs>
+    </CustomBuild>
+    <CustomBuild Include="..\lib\close.c">
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">cl /nologo  /W3 /vd0 /GX- /Ob1 /Ot /Oa /Og /Op /X /I "..\include" /u /FAs /Fa"$(IntDir)" /Fp"Release/system.pch" /YX /Fo"$(IntDir)%(Filename).o" /Fd"$(IntDir)" /FD /c %(FullPath)
+</Command>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(IntDir)%(Filename).o;%(Outputs)</Outputs>
+    </CustomBuild>
+    <CustomBuild Include="..\lib\ctype.c">
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">cl /nologo  /W3 /vd0 /GX- /Ob1 /Ot /Oa /Og /Op /X /I "..\include" /u /FAs /Fa"$(IntDir)" /Fp"Release/system.pch" /YX /Fo"$(IntDir)%(Filename).o" /Fd"$(IntDir)" /FD /c %(FullPath)
+</Command>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(IntDir)%(Filename).o;%(Outputs)</Outputs>
+    </CustomBuild>
+    <CustomBuild Include="..\lib\dup.c">
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">cl /nologo  /W3 /vd0 /GX- /Ob1 /Ot /Oa /Og /Op /X /I "..\include" /u /FAs /Fa"$(IntDir)" /Fp"Release/system.pch" /YX /Fo"$(IntDir)%(Filename).o" /Fd"$(IntDir)" /FD /c %(FullPath)
+</Command>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(IntDir)%(Filename).o;%(Outputs)</Outputs>
+    </CustomBuild>
+    <CustomBuild Include="..\lib\errno.c">
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">cl /nologo  /W3 /vd0 /GX- /Ob1 /Ot /Oa /Og /Op /X /I "..\include" /u /FAs /Fa"$(IntDir)" /Fp"Release/system.pch" /YX /Fo"$(IntDir)%(Filename).o" /Fd"$(IntDir)" /FD /c %(FullPath)
+</Command>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(IntDir)%(Filename).o;%(Outputs)</Outputs>
+    </CustomBuild>
+    <CustomBuild Include="..\lib\execve.c">
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">cl /nologo  /W3 /vd0 /GX- /Ob1 /Ot /Oa /Og /Op /X /I "..\include" /u /FAs /Fa"$(IntDir)" /Fp"Release/system.pch" /YX /Fo"$(IntDir)%(Filename).o" /Fd"$(IntDir)" /FD /c %(FullPath)
+</Command>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(IntDir)%(Filename).o;%(Outputs)</Outputs>
+    </CustomBuild>
+    <CustomBuild Include="..\lib\malloc.c">
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">cl /nologo  /W3 /vd0 /GX- /Ob1 /Ot /Oa /Og /Op /X /I "..\include" /u /FAs /Fa"$(IntDir)" /Fp"Release/system.pch" /YX /Fo"$(IntDir)%(Filename).o" /Fd"$(IntDir)" /FD /c %(FullPath)
+</Command>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(IntDir)%(Filename).o;%(Outputs)</Outputs>
+    </CustomBuild>
+    <CustomBuild Include="..\lib\open.c">
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">cl /nologo  /W3 /vd0 /GX- /Ob1 /Ot /Oa /Og /Op /X /I "..\include" /u /FAs /Fa"$(IntDir)" /Fp"Release/system.pch" /YX /Fo"$(IntDir)%(Filename).o" /Fd"$(IntDir)" /FD /c %(FullPath)
+</Command>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(IntDir)%(Filename).o;%(Outputs)</Outputs>
+    </CustomBuild>
+    <CustomBuild Include="..\lib\setsid.c">
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">cl /nologo  /W3 /vd0 /GX- /Ob1 /Ot /Oa /Og /Op /X /I "..\include" /u /FAs /Fa"$(IntDir)" /Fp"Release/system.pch" /YX /Fo"$(IntDir)%(Filename).o" /Fd"$(IntDir)" /FD /c %(FullPath)
+</Command>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(IntDir)%(Filename).o;%(Outputs)</Outputs>
+    </CustomBuild>
+    <CustomBuild Include="..\lib\string.c">
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">cl /nologo  /W3 /vd0 /GX- /Ob1 /Ot /Oa /Og /Op /X /I "..\include" /u /FAs /Fa"$(IntDir)" /Fp"Release/system.pch" /YX /Fo"$(IntDir)%(Filename).o" /Fd"$(IntDir)" /FD /c %(FullPath)
+</Command>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(IntDir)%(Filename).o;%(Outputs)</Outputs>
+    </CustomBuild>
+    <CustomBuild Include="..\lib\wait.c">
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">cl /nologo  /W3 /vd0 /GX- /Ob1 /Ot /Oa /Og /Op /X /I "..\include" /u /FAs /Fa"$(IntDir)" /Fp"Release/system.pch" /YX /Fo"$(IntDir)%(Filename).o" /Fd"$(IntDir)" /FD /c %(FullPath)
+</Command>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(IntDir)%(Filename).o;%(Outputs)</Outputs>
+    </CustomBuild>
+    <CustomBuild Include="..\lib\write.c">
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">cl /nologo  /W3 /vd0 /GX- /Ob1 /Ot /Oa /Og /Op /X /I "..\include" /u /FAs /Fa"$(IntDir)" /Fp"Release/system.pch" /YX /Fo"$(IntDir)%(Filename).o" /Fd"$(IntDir)" /FD /c %(FullPath)
+</Command>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(IntDir)%(Filename).o;%(Outputs)</Outputs>
+    </CustomBuild>
+    <CustomBuild Include="..\lib\_exit.c">
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">cl /nologo  /W3 /vd0 /GX- /Ob1 /Ot /Oa /Og /Op /X /I "..\include" /u /FAs /Fa"$(IntDir)" /Fp"Release/system.pch" /YX /Fo"$(IntDir)%(Filename).o" /Fd"$(IntDir)" /FD /c %(FullPath)
+</Command>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(IntDir)%(Filename).o;%(Outputs)</Outputs>
+    </CustomBuild>
+    <CustomBuild Include="..\mm\memory.c">
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">cl /nologo  /W3 /vd0 /GX- /Ob1 /Ot /Oa /Og /Op /X /I "..\include" /u /FAs /Fa"$(IntDir)" /Fp"Release/system.pch" /YX /Fo"$(IntDir)%(Filename).o" /Fd"$(IntDir)" /FD /c %(FullPath)
+</Command>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(IntDir)%(Filename).o;%(Outputs)</Outputs>
+    </CustomBuild>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\include\a.out.h" />
+    <ClInclude Include="..\include\asm\io.h" />
+    <ClInclude Include="..\include\asm\memory.h" />
+    <ClInclude Include="..\include\asm\segment.h" />
+    <ClInclude Include="..\include\asm\system.h" />
+    <ClInclude Include="..\include\const.h" />
+    <ClInclude Include="..\include\ctype.h" />
+    <ClInclude Include="..\include\errno.h" />
+    <ClInclude Include="..\include\fcntl.h" />
+    <ClInclude Include="..\include\linux\config.h" />
+    <ClInclude Include="..\include\linux\fdreg.h" />
+    <ClInclude Include="..\include\linux\fs.h" />
+    <ClInclude Include="..\include\linux\hdreg.h" />
+    <ClInclude Include="..\include\linux\head.h" />
+    <ClInclude Include="..\include\linux\kernel.h" />
+    <ClInclude Include="..\include\linux\mm.h" />
+    <ClInclude Include="..\include\linux\sched.h" />
+    <ClInclude Include="..\include\linux\sys.h" />
+    <ClInclude Include="..\include\linux\tty.h" />
+    <ClInclude Include="..\include\set_seg.h" />
+    <ClInclude Include="..\include\signal.h" />
+    <ClInclude Include="..\include\stdarg.h" />
+    <ClInclude Include="..\include\stddef.h" />
+    <ClInclude Include="..\include\string.h" />
+    <ClInclude Include="..\include\sys\stat.h" />
+    <ClInclude Include="..\include\sys\times.h" />
+    <ClInclude Include="..\include\sys\types.h" />
+    <ClInclude Include="..\include\sys\utsname.h" />
+    <ClInclude Include="..\include\sys\wait.h" />
+    <ClInclude Include="..\include\termios.h" />
+    <ClInclude Include="..\include\time.h" />
+    <ClInclude Include="..\include\unistd.h" />
+    <ClInclude Include="..\include\utime.h" />
+    <ClInclude Include="..\kernel\blk_drv\blk.h" />
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>

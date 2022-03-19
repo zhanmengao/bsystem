@@ -1,0 +1,59 @@
+syntax = "proto3";
+package pb;
+
+import "rpc.proto";
+import "struct.proto";
+import "report.proto";
+import "enum_paycenter.proto";
+
+message PayExchangeReq {
+    TradeType      TradeType                    = 1; // 交易类型
+    int32          ConfigID                     = 2; // 具体商品配置ID
+    ReportGoodsFlowPropertyItem Report          = 3;
+    int32          Count                        = 4; // 兑换数量
+}
+
+message PayExchangeRsp {
+    RpcRspHead Head             = 1;
+    CommonRewardData RewardList = 2;
+}
+
+// 商城支付发货
+message PayCenterDeliveryReq {
+    PayChannelType PayChannel = 1; // 支付渠道
+    TradeType      TradeType  = 2; // 交易类型
+    int32          ConfigID   = 3; // 具体商品配置ID
+    string         Receipt    = 4;
+    string         Signature  = 5;
+    string         ProductID  = 6; // 实际平台价格ID
+    ReportGoodsFlowPropertyItem     Report     = 7; // 上报内容
+}
+
+message PayCenterDeliveryRsp {
+    RpcRspHead Head             = 1;
+    CommonRewardData RewardList = 2;
+    int32 Pid                   = 3;
+}
+
+// ======= 本地支付======
+// 本地支付购买的物品
+message LocalPayBuyItem {
+    ReportGoodsFlowPropertyItem reportEnum      = 1;  // 上报信息
+    repeated CommonRewardItem rewardItem        = 2;  // 奖励信息
+    int64                     singleRecharge    = 3;  // 是否进行充值活动
+}
+// 本地支付下单
+message LocalPayOrderReq {
+    int32     pid                               = 1;  // 商品ID
+    string     channel                          = 2;  // 渠道
+    ReportGoodsFlowPropertyItem reportEnum      = 3;  // 上报信息
+    int64      extend                           = 4;  // 转盘倍数
+    int64      singleRecharge                   = 5;  // 是否进行充值活动
+    int32      buyType                          = 6;  // 购买类型
+}
+
+message LocalPayOrderRsp {
+    RpcRspHead Head        = 1;
+    string     selfOrderID = 2;  // 自己生成的订单ID
+    bytes      extra       = 3;  // 额外字段
+}

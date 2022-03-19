@@ -1,0 +1,47 @@
+syntax = "proto3";
+package proto;
+import "enum.proto";
+import "struct.proto";
+message IPCHeader{
+  IPCMessageID PakId = 1;          //请求ID
+}
+
+message IPCMessage{
+  IPCHeader head = 1;
+  bytes Data = 2;
+}
+
+
+message UrvLoginEvent{
+  string UID = 1;
+}
+
+message UrvMoneyEvent{
+  string UID = 1;
+  int64 Incr = 2;
+}
+
+message UrvStealPoolReq{
+  string UID = 1;
+  int32 Need = 2;
+}
+
+message UrvStealPoolRspFriend{
+  string UID = 1;
+  int64 Money = 2;
+}
+message UrvStealPoolRsp{
+  string UID = 1;
+  repeated UrvStealPoolRspFriend friendList = 2;
+}
+message UrvStealEvent{
+  string SrcUID = 1;
+  string DstUID = 2;
+  int64 Money = 3;
+  int64 EventTime = 4;
+}
+message UrvLockEvent{
+  string SrcUID = 1;
+  string DstUID = 2;
+  int64 EventTime = 3;
+}

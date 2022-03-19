@@ -1,0 +1,109 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="源文件">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="资源文件">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="Head">
+      <UniqueIdentifier>{a6ecbef3-1db3-4db0-898e-1dfd955f4a41}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="MHead">
+      <UniqueIdentifier>{0f26d8b5-64fc-4d80-a09c-2fc85e9ec8e0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="extern">
+      <UniqueIdentifier>{75106b4b-b7ce-4f94-ae57-59272d7e7f57}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="CMakeLists.txt">
+      <Filter>资源文件</Filter>
+    </Text>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="_explicit.h">
+      <Filter>Head</Filter>
+    </ClInclude>
+    <ClInclude Include="_inline.h">
+      <Filter>Head</Filter>
+    </ClInclude>
+    <ClInclude Include="_union.h">
+      <Filter>Head</Filter>
+    </ClInclude>
+    <ClInclude Include="_virtual.h">
+      <Filter>Head</Filter>
+    </ClInclude>
+    <ClInclude Include="decltype.h">
+      <Filter>Head</Filter>
+    </ClInclude>
+    <ClInclude Include="initializer_list.h">
+      <Filter>Head</Filter>
+    </ClInclude>
+    <ClInclude Include="malloc.h">
+      <Filter>Head</Filter>
+    </ClInclude>
+    <ClInclude Include="pragma_pack.h">
+      <Filter>Head</Filter>
+    </ClInclude>
+    <ClInclude Include="typedefStruct.h">
+      <Filter>Head</Filter>
+    </ClInclude>
+    <ClInclude Include="using.h">
+      <Filter>Head</Filter>
+    </ClInclude>
+    <ClInclude Include="_assert.h">
+      <Filter>Head</Filter>
+    </ClInclude>
+    <ClInclude Include="_const.h">
+      <Filter>Head</Filter>
+    </ClInclude>
+    <ClInclude Include="_enum.h">
+      <Filter>Head</Filter>
+    </ClInclude>
+    <ClInclude Include="Typedef.h">
+      <Filter>MHead</Filter>
+    </ClInclude>
+    <ClInclude Include="SizeOf.h">
+      <Filter>MHead</Filter>
+    </ClInclude>
+    <ClInclude Include="LIMIT.h">
+      <Filter>MHead</Filter>
+    </ClInclude>
+    <ClInclude Include="BuildFunction.h">
+      <Filter>Head</Filter>
+    </ClInclude>
+    <ClInclude Include="extern C .h">
+      <Filter>extern</Filter>
+    </ClInclude>
+    <ClInclude Include="externCpp.h">
+      <Filter>extern</Filter>
+    </ClInclude>
+    <ClInclude Include="template.h">
+      <Filter>Head</Filter>
+    </ClInclude>
+    <ClInclude Include="auto.h">
+      <Filter>Head</Filter>
+    </ClInclude>
+    <ClInclude Include="NULL.h">
+      <Filter>Head</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="global.cpp">
+      <Filter>Head</Filter>
+    </ClCompile>
+    <ClCompile Include="main.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="extern.cpp">
+      <Filter>extern</Filter>
+    </ClCompile>
+    <ClCompile Include="extern.c">
+      <Filter>extern</Filter>
+    </ClCompile>
+  </ItemGroup>
+</Project>

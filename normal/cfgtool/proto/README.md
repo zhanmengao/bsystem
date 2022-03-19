@@ -1,0 +1,30 @@
+### proto 目录调整
+```text
+-- proto
+--- generate 生成的pb.go文件
+--- pbconfig 生成的abtest配置表
+--- protos proto文件夹
+---- audit_check.proto 国内审核版本
+---- cmd.proto 命令字
+---- cmd_other.proto 暂时不知道用途的命令字
+---- db_action.proto 活动相关存储数据
+---- db_base.proto 基础存储数据
+---- db_old.proto 暂时不知道用途的存储数据
+---- enum.proto 枚举
+---- enum.xlsx
+---- enum_other.proto 暂时不知道用途的枚举
+---- error.proto 错误码
+---- error_other.proto 暂时不知道用途的错误码
+---- interface_common.proto 前后端交互协议
+---- interface_other.proto 暂时不知道用途的协议
+---- interface_tqsrv.proto tqsrv服务用的协议
+---- interface_watchGo.proto watchGo服务内部协议
+---- interface_zhuanpan.proto 转盘服务内部协议
+---- report.proto 上报相关
+---- rpc.proto 协议头
+---- rpc_other.proto 暂时不知道用途的协议头
+---- struct.proto 通用的结构体字段
+---- struct_other.proto 暂时不知道用途的结构体
+---- table.proto 配置表相关结构
+---- table_other.proto 之前旧的配置结构
+--- buildProtos.sh proto生成脚本

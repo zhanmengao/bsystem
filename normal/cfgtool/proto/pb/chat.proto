@@ -1,0 +1,184 @@
+syntax="proto3";
+package pb;
+
+enum MSG_TYPE {
+    MSG_TYPE_INIT  = 0;
+    MSG_TYPE_TXT   = 1;
+    MSG_TYPE_IMG   = 2;
+    MSG_TYPE_VOICE = 3;
+}
+
+enum FORWARD_TYPE {
+    FORWARD_TYPE_INIT      = 0;
+    FORWARD_TYPE_USER      = 1; // one or more users
+    FORWARD_TYPE_ROOM      = 2;
+    FORWARD_TYPE_BROADCAST = 3;
+}
+
+enum ONLINE_STATUS {
+    ONLINE_STATUS_INIT    = 0;
+    ONLINE_STATUS_ONLINE  = 1;
+    ONLINE_STATUS_RETAIN  = 2;
+    ONLINE_STATUS_OFFLINE = 3;
+}
+
+enum ROOM_TYPE {
+    ROOM_TYPE_INIT      = 0;
+    ROOM_TYPE_PERMANENT = 1; // 永久的
+    ROOM_TYPE_TEMPORARY = 2; // 临时的
+}
+
+enum ERROR_CODE {
+    ERR_INIT = 0;
+
+    ERR_USER_DATA_NOT_EXISTS = 9001;
+
+    // logic error code
+    ERR_ROOM_TYPE_INVALID       = 20001;
+    ERR_ROOM_NOT_EXISTS         = 20002;
+    ERR_USER_OFFLINE            = 20003;
+    ERR_LOGIN_KEY_INVALID       = 20004;
+}
+
+enum SERVER_CMD {
+    SERVER_CMD_INIT = 0;
+
+    LOGIC_CMD_LOGIN_REQ          = 20001;
+    LOGIC_CMD_LOGIN_RSP          = 20002;
+
+    LOGIC_CMD_HEARTBEAT_REQ      = 20003;
+    LOGIC_CMD_HEARTBEAT_RSP      = 20004;
+
+    LOGIC_CMD_RECONNECT_REQ      = 20005;
+    LOGIC_CMD_RECONNECT_RSP      = 20006;
+
+    LOGIC_CMD_ENTER_ROOM_REQ     = 20007;
+    LOGIC_CMD_ENTER_ROOM_RSP     = 20008;
+
+    LOGIC_CMD_SEND_MSG_REQ       = 20009;
+    LOGIC_CMD_SEND_MSG_RSP       = 20010;
+
+    LOGIC_CMD_RECV_MSG_REQ       = 20011;
+    LOGIC_CMD_RECV_MSG_RSP       = 20012;
+
+    LOGIC_CMD_LEAVE_ROOM_REQ     = 20013;
+    LOGIC_CMD_LEAVE_ROOM_RSP     = 20014;
+}
+
+message ChatMsg {
+    MSG_TYPE Type      = 1;
+    FORWARD_TYPE FType = 2;
+    string SrcUID      = 3;
+    string Target      = 4; // uid or room id
+    bytes Content      = 5;
+    bytes Ext          = 6; // extra infomation
+    int64 SendTime     = 7; // timestamp
+    uint64 ID          = 8; 
+}
+
+message WorldMsg {
+    repeated ChatMsg Msgs = 1;
+}
+
+message GuildMsg {
+    repeated ChatMsg Msgs = 1;
+}
+
+message UserChatMsg {
+    repeated ChatMsg Msgs = 1;
+    uint64 Seq   = 2;
+}
+
+message UserStatus {
+    ONLINE_STATUS OLSt = 1; // online status
+    int64 Active       = 2; // last active time
+}
+
+message RspHead {
+    int32 Code = 1;
+}
+
+message LoginReq {
+    string UID = 1;
+    string Key = 2;
+}
+
+message LoginRsp {
+    RspHead Head = 1;
+}
+
+message MsgAck {
+    FORWARD_TYPE FType = 1;
+    string Src         = 2;
+    uint64 ID          = 3;
+}
+
+message RoomStat {
+    
+}
+
+message HeartbeatReq {
+    repeated MsgAck AckList = 1;
+}
+
+message HeartbeatRsp {
+    RspHead Head = 1;
+    repeated string RoomList = 2;
+}
+
+message ReconnectReq {
+}
+
+message ReconnectRsp {
+    RspHead Head = 1;
+}
+
+message EnterRoomReq {
+    string RID      = 1; // room id
+    ROOM_TYPE RType = 2;
+}
+
+message EnterRoomRsp {
+    RspHead Head = 1;
+    string RID   = 2;
+}
+
+message LeaveRoomReq {
+    string RID = 1;
+}
+
+message LeaveRoomRsp {
+    RspHead Head = 1;
+    string RID   = 2;
+}
+
+message SendMsgReq {
+    ChatMsg Msg   = 1;
+}
+
+message SendMsgRsp {
+    RspHead Head          = 1;
+    repeated ChatMsg Msgs = 2;
+}
+
+message RecvMsgReq {
+    ChatMsg Msg   = 1;
+}
+
+message RecvMsgRsp {
+    RspHead Head          = 1;
+    repeated ChatMsg Msgs = 2;
+}
+
+message PacketHead {
+    string UID       = 1;
+    int32 Cmd        = 2;
+    string ClientVer = 3;
+    string ClientIP  = 4;
+    int64 Opts       = 5;
+}
+
+message Packet {
+    PacketHead Head = 1;
+    bytes Body      = 2;
+}

@@ -1,0 +1,64 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.25420.1
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "RawInputDevices", "ListenerProject\ListenerProject.vcxproj", "{B351DF2E-C4BB-417A-A854-0E90CE38FA33}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Keylog", "Keylog\Keylog.vcxproj", "{AD686C76-457F-4344-BDC8-F431C8D70CD8}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "FileWatch", "FileWatch\FileWatch.vcxproj", "{9C90804B-4FCA-48CC-838E-2F277B8CE1AF}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "SocketCtrlClient", "..\..\File\FileManager\SocketCtrl\SocketCtrlClient\SocketCtrlClient.vcxproj", "{5BEA1E3C-D8F2-4616-B532-71D52FAEA962}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "VEIDP_Clear", "..\..\SystemInfo\VEIDP\VEIDP_Clear\VEIDP_Clear.vcxproj", "{89AA8D4A-45FD-4BB5-9F8A-1CE51D9626D8}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Win32 = Debug|Win32
+		Debug|x64 = Debug|x64
+		Release|Win32 = Release|Win32
+		Release|x64 = Release|x64
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{B351DF2E-C4BB-417A-A854-0E90CE38FA33}.Debug|Win32.ActiveCfg = Debug|Win32
+		{B351DF2E-C4BB-417A-A854-0E90CE38FA33}.Debug|Win32.Build.0 = Debug|Win32
+		{B351DF2E-C4BB-417A-A854-0E90CE38FA33}.Debug|x64.ActiveCfg = Debug|Win32
+		{B351DF2E-C4BB-417A-A854-0E90CE38FA33}.Release|Win32.ActiveCfg = Release|Win32
+		{B351DF2E-C4BB-417A-A854-0E90CE38FA33}.Release|Win32.Build.0 = Release|Win32
+		{B351DF2E-C4BB-417A-A854-0E90CE38FA33}.Release|x64.ActiveCfg = Release|Win32
+		{AD686C76-457F-4344-BDC8-F431C8D70CD8}.Debug|Win32.ActiveCfg = Debug|Win32
+		{AD686C76-457F-4344-BDC8-F431C8D70CD8}.Debug|Win32.Build.0 = Debug|Win32
+		{AD686C76-457F-4344-BDC8-F431C8D70CD8}.Debug|x64.ActiveCfg = Debug|x64
+		{AD686C76-457F-4344-BDC8-F431C8D70CD8}.Debug|x64.Build.0 = Debug|x64
+		{AD686C76-457F-4344-BDC8-F431C8D70CD8}.Release|Win32.ActiveCfg = Release|Win32
+		{AD686C76-457F-4344-BDC8-F431C8D70CD8}.Release|Win32.Build.0 = Release|Win32
+		{AD686C76-457F-4344-BDC8-F431C8D70CD8}.Release|x64.ActiveCfg = Release|x64
+		{AD686C76-457F-4344-BDC8-F431C8D70CD8}.Release|x64.Build.0 = Release|x64
+		{9C90804B-4FCA-48CC-838E-2F277B8CE1AF}.Debug|Win32.ActiveCfg = Debug|Win32
+		{9C90804B-4FCA-48CC-838E-2F277B8CE1AF}.Debug|Win32.Build.0 = Debug|Win32
+		{9C90804B-4FCA-48CC-838E-2F277B8CE1AF}.Debug|x64.ActiveCfg = Debug|Win32
+		{9C90804B-4FCA-48CC-838E-2F277B8CE1AF}.Release|Win32.ActiveCfg = Release|Win32
+		{9C90804B-4FCA-48CC-838E-2F277B8CE1AF}.Release|Win32.Build.0 = Release|Win32
+		{9C90804B-4FCA-48CC-838E-2F277B8CE1AF}.Release|x64.ActiveCfg = Release|Win32
+		{5BEA1E3C-D8F2-4616-B532-71D52FAEA962}.Debug|Win32.ActiveCfg = Debug|Win32
+		{5BEA1E3C-D8F2-4616-B532-71D52FAEA962}.Debug|Win32.Build.0 = Debug|Win32
+		{5BEA1E3C-D8F2-4616-B532-71D52FAEA962}.Debug|x64.ActiveCfg = Debug|x64
+		{5BEA1E3C-D8F2-4616-B532-71D52FAEA962}.Debug|x64.Build.0 = Debug|x64
+		{5BEA1E3C-D8F2-4616-B532-71D52FAEA962}.Release|Win32.ActiveCfg = Release|Win32
+		{5BEA1E3C-D8F2-4616-B532-71D52FAEA962}.Release|Win32.Build.0 = Release|Win32
+		{5BEA1E3C-D8F2-4616-B532-71D52FAEA962}.Release|x64.ActiveCfg = Release|x64
+		{5BEA1E3C-D8F2-4616-B532-71D52FAEA962}.Release|x64.Build.0 = Release|x64
+		{89AA8D4A-45FD-4BB5-9F8A-1CE51D9626D8}.Debug|Win32.ActiveCfg = Debug|Win32
+		{89AA8D4A-45FD-4BB5-9F8A-1CE51D9626D8}.Debug|Win32.Build.0 = Debug|Win32
+		{89AA8D4A-45FD-4BB5-9F8A-1CE51D9626D8}.Debug|x64.ActiveCfg = Debug|x64
+		{89AA8D4A-45FD-4BB5-9F8A-1CE51D9626D8}.Debug|x64.Build.0 = Debug|x64
+		{89AA8D4A-45FD-4BB5-9F8A-1CE51D9626D8}.Release|Win32.ActiveCfg = Release|Win32
+		{89AA8D4A-45FD-4BB5-9F8A-1CE51D9626D8}.Release|Win32.Build.0 = Release|Win32
+		{89AA8D4A-45FD-4BB5-9F8A-1CE51D9626D8}.Release|x64.ActiveCfg = Release|x64
+		{89AA8D4A-45FD-4BB5-9F8A-1CE51D9626D8}.Release|x64.Build.0 = Release|x64
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

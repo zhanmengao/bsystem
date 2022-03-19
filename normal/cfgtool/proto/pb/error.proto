@@ -1,0 +1,1352 @@
+syntax = "proto3";
+package pb;
+
+/*
+ * syhmErrno.proto - 业务错误码文件
+ * Author: 小白龙 <lightmen@aladinfun.com>
+ *
+ * 错误码规则：
+ * 错误码分为 基本错误码 和 业务错误码
+ *
+ * 基本错误码定义在base_errno.proto文件
+ * 基本错误码编码范围为 1 ~ 99999，并且这99999个基本错误码划分两类：
+ * 一类为系统级别的错误码，编码范围为 1 ~ 9999，定义系统函数级别的错误码；
+ * 另一类为项目自定义基本错误码，编码范围为 10000 ~ 99999。
+ *
+ * 业务错误码定义在syhmErrno.proto文件
+ * 业务错误码从100000开始，前两位用来划分模块，后四位定义具体错误码
+ *
+ * 添加错误码规则：
+ * 1. 编码连续 的错误码之间 不允许 空行，特殊情况除外，比如两个不同业务起始之间的错误码；
+ * 2. 编码不连续 的错误码之间 必须 空行；
+ * 3. 每个错误码后续必须写注释注明错误原因；
+ * 4. 为了代码美观需要，连续行错误码之间注意对齐；
+ * 5. 错误码命令规则： E_{模块名}_{错误说明缩写}，其中{模块名}针对项目级别错误码,可省略；
+*/
+enum SYHM_ERR {
+    SYHM_ERR_INIT = 0;  // 初始值
+
+    //项目自定义基本错误码，编码范围为 10000 ~ 99999
+    E_DATA_ENCODE = 10000;  // 编码错误
+    E_DATA_DECODE = 10001;  // 解码错误
+
+    E_NETWORK   = 10002;  // 网络错误
+    E_INTERNAL  = 10003;  // 内部错误
+    E_FORBIDDEN = 10004;  // 禁止 中间件拦截等
+                          //    E_EMPTY_REQ = 10005;  // req
+                          //    E_PARSE_REQ = 10006;  //
+                          //    E_CMD_NOT_HANDLER  = 10009;  //
+                          //    E_EMPTY_RPC_HEADER = 10010;  //
+                          //    E_RPC_SESSION      = 10011;  //
+                          //    E_HANDLE_ERR       = 10012;  //
+                          //    E_BUILD_RSP_ERR    = 10013;  //
+                          //    E_MQ_RPC           = 10014;  //
+                          //    E_TCP_RPC          = 10015;  //
+                          //    E_MQ_REPLY         = 10016;  //
+                          //    E_UPSTREAM_ERROR   = 10017;  //
+                          //    E_UPSTREAM_TIMEOUT = 10018;  //
+                          //
+                          //    E_CONFIG          = 11000;  //
+                          //    E_REDIS_POOL      = 11001;
+                          //    E_REDIS_CONN      = 11002;  //
+                          //    E_REDIS_READ      = 11003;  //
+                          //    E_REDIS_WRITE     = 11004;  //
+                          //
+                          //
+                          //    E_HTTP_REQUEST_ENCRYPT   = 11200;  //
+                          //    E_HTTP_REQUEST_RPC_HEADER   = 11201;  //
+                          //    E_HTTP_RESPONSE   = 11202;  //
+                          //    E_HTTP_RESPONSE_STATUS   = 11203;  //
+                          //    E_HTTP_RESPONSE_DECRYPT   = 11204;  //
+                          //    E_HTTP_RESPONSE_RPC_DECODE   = 11205;  //
+                          //    E_HTTP_RESPONSE_RPC_HEADER   = 11206;  //
+                          //
+                          //    E_TYPE_NOT_EXIST  = 12000;  //
+                          //    E_LOGIC           = 12001;  // 业务逻辑错误
+                          //    E_STRUCT_NIL      = 12002;  // 结构体nil
+
+    E_BASE_END = 99999; /* end of base errno code */
+
+    /**********登入game login* 只要ret !=0 提示消息由返回的msg指定*************/
+    E_DEVICETOKEN                     = 100000;  // deviceToken错误
+    E_LOGINVERIFY                     = 100001;  // 登陆态验证失败
+    E_GET_OPENID                      = 100002;  // openid获取失败
+    E_GET_ACCOUNT                     = 100003;  // 获取账号信息失败
+    E_REG_ACCOUNT                     = 100004;  // 注册账号失败
+    E_GET_GUEST_ACCOUNT               = 100005;  // 获取游客账号失败
+    E_GET_ZHUANPAN                    = 100006;  // 转盘信息获取失败
+    E_GET_GOLD                        = 100007;  // 获取金币失败
+    E_GET_ISLAND                      = 100008;  // 获取岛屿信息失败
+    E_UNDEFINED_ISLAND                = 100009;  // 岛屿未定义
+    E_GET_USER                        = 100010;  // 用户信息获取失败
+    E_NOT_REALNAME                    = 100011;  // 非微信或者QQ实名用户
+    E_LOGIN_LIMITED                   = 100012;  // 限制登陆
+    E_UID_EMPTY                       = 100013;  // uid为空
+    E_PARAM_VALIDITY                  = 100014;  // POST参数不合法
+    E_PARAM_NUMERIC                   = 100015;  // 参数不是数字
+    E_PARAM_EMPTY                     = 100016;  // 参数为空
+    E_PARAM_VERIFY                    = 100017;  // 参数算法校验失败
+    E_LESS_MONEY                      = 100018;  // 金币数量不够
+    E_GAME_LOGIN_GUEST_LOGIN          = 100019;  // 游客登入错误
+    E_GAME_LOGIN_UN_SET_PLANET_CONFIG = 100020;  // 未配置岛屿信息
+    E_GAME_LOGIN_TOKEN_EMPTY          = 100021;  // token为空
+    E_GAME_LOGIN_BIND                 = 100022;  // 绑定失败
+    E_GAME_LOGIN_TOKEN_SET            = 100023;  // 设置token
+    E_GAME_LOGIN_BAN                  = 100024;  // 封号
+    E_GAME_LOGIN_DEVICE_REG_LIMIT     = 100025;  // 设备注册个数限制
+    E_GAME_LOGIN_IP_REG_LIMIT         = 100026;  // ip注册限制
+    E_GAME_LOGIN_DEVIDE_LOGIN_LIMIT   = 100027;  // 设备登录限制
+    E_HAS_REWARD                      = 100028;  // 已经领奖
+    E_REWARD_FAILED                   = 100029;  // 领奖失败
+    E_REWARD_EXPIRE                   = 100030;  // 领奖过期
+    E_DEVICE_NULL                     = 100031;  // 设备信息为空
+    E_REWARD_NOT_TOKEN                = 100032;  // 还未领奖
+    E_PROP_NOT_ENOUGH                 = 100033;  // 用户道具不够
+    E_STATUS_IS_WRONG                 = 100034;  // 状态不对
+    E_NOT_VIP                         = 100035;  // 不是vip
+    E_UNLOCKED                        = 100036;  // 还未解锁
+    E_STATUS                          = 100037;  // 状态不对
+    E_PARAM_PARSE                     = 100038;  // 参数解析出错
+    E_PROC_NOT_FOUND                  = 100039;  // proc模块没有找到
+    E_POPS_NOT_ENOUGH                 = 100040;  // 道具不足
+    E_CONDITION_NOT_MET               = 100041;  // 条件不满足
+                                                 //    E_ACTION_NOT_RUN                                = 100042; // 活动不在线
+
+    E_ID_HAS_BEEN_USED       = 100043;  //身份信息已被占用实名认证失败导致注册
+    E_NAME_PASS_WRONG        = 100044;  //登录用户名或密码错误
+    E_ID_NOT_EXIST           = 100045;  //身份信息不存在实名认证失败
+    E_USERNAME_HAS_BEEN_USED = 100046;  //用户名已被占用注册失败
+
+    /********存储访问错误****/
+    E_DATA_SERVER          = 100050;  // server出错
+    E_DATA_EMPTY           = 100051;  // server数据为空
+    E_REDIS_HGETALL_NULL   = 100052;  // hgetall错误
+    E_REDIS_EXCEPTION      = 100053;  // redis异常
+    E_REDIS_HMGET_NULL     = 100054;  // hmget错误
+    E_REDIS_GET_NULL       = 100055;  // get错误
+    E_REDIS_SET_NULL       = 100056;  // set错误
+    E_REDIS_DEL_NULL       = 100057;  // del错误
+    E_REDIS_HMSET_NULL     = 100058;  // hmset错误
+    E_REDIS_HSET_NULL      = 100059;  // hset错误
+    E_REDIS_HGET_NULL      = 100060;  // hget错误
+    E_REDIS_HINCRBY_NULL   = 100061;  // set错误
+    E_REDIS_MGET_NULL      = 100062;  // mget错误
+    E_REDIS_MSET_NULL      = 100063;  // mset错误
+    E_INTERFACE_LOCK       = 100064;  // 接口被锁了
+    E_CACHE_EMPTY          = 100065;  // 临时缓存不存在
+    E_REWARD_HAS_BEEN      = 100066;  // 奖励已经领取
+    E_REWARD_CONDITION     = 100067;  // 领奖条件不符合
+    E_SQL_SELECT_EMPTY     = 100068;  // SELECT数据为空
+    E_SQL_FETCH_EMPTY      = 100069;  // FETCH数据为空
+    E_SQL_QUERY_EMPTY      = 100070;  // QUERY数据为空
+    E_SQL_FERCHALL_EMPTY   = 100071;  // FETCHALL数据为空
+    E_SQL_UPDATE           = 100072;  // UPDATE数据失败
+    E_SQL_INSERT           = 100073;  // INSERT数据失败
+    E_BIT_SET_ERROR        = 100074;  // bit位设置失败
+    E_WRITE_PHP_FILE       = 100075;  // 写PHP文件失败
+    E_REDIS_NO_SERVER_ADDR = 100076;  // 没有配置redis配置
+    E_REDIS_CONNECT_FAILED = 100077;  // redis链接失败
+    E_REDIS_NO_AUTH        = 100078;  // redis密码错误
+    E_REDIS_CONNECT_LOST   = 100079;  // redis链接关闭
+    E_REDIS_ERROR          = 100080;  // redis其他错误
+
+    E_MYSQL_NO_SERVER_ADDR = 100081;  // 没有配置mysql配置
+    E_MYSQL_PREPARE_FAILED = 100082;  // mysql prepare失败
+    E_MYSQL_EXECUTE_FAILED = 100083;  // mysql链接失败
+    E_MYSQL_NO_SSTATEMENT  = 100084;  // mysql没有状态对象
+    E_MYSQL_RESULT_EMPTY   = 100085;  // mysql结果为空
+    E_MYSQL_PDOINI_FAILED  = 100086;  // mysql pdo初始化失败
+
+    // 模块相关错误码
+    // 11000 ~ 15000 调用第三方出错
+    // 15000 ~  20000 公共错误码
+    E_SUB_ITEM                = 110000;  // 扣除道具失败
+    E_USER_NOT_EXSIT          = 110001;  // uid 是否存在
+    E_PRODUCT_OFF_ONLINE      = 110002;  // 道具下线
+    E_ACTION_OFF_ONLINE       = 110003;  // 活动下线
+    E_ACTION_IS_NOT_UNLOCK    = 110004;  // 活动尚未解锁
+    E_MODE_IS_NULL            = 110005;  // 模块为空
+    E_PLAY_WHEEL_UNKNOWN_TYPE = 110006;  // 错误的转盘项类型
+    E_CONFIG_FILE             = 110007;  // 配置文件某个字段找不到
+    E_GRANT_REWARD            = 110009;  // 奖励发放失败
+    E_GET_CUR_PLANET          = 110010;  // 获取用户当前岛屿失败
+    E_GET_FRIEND_SRC          = 110011;  // 指定的好友类型SRC 不存在
+    E_GET_USER_DATA_EMPTY     = 110012;  // 获取用户的userdata为空
+    E_GET_USER_DATA_FIELD     = 110013;  // 获取userdata字段有误
+    E_ADD_USER_PROPS          = 110014;  // 调用AddUserProps失败
+    E_GET_USER_PLANET         = 110015;  // 获取用户的当前岛屿失败
+    E_GET_USER_FRIEND         = 110016;  // 获取用户好友列表失败
+    E_GET_USER_INFO           = 110017;  // 获取用户userinfo失败
+    E_UPDATE_USER_INFO        = 110018;  // 更新userinfo失败
+    E_GET_USER_ACCOUNT        = 110019;  // 通过siteuid获取uid失败
+    E_GET_USER_STAR           = 110020;  // 获取用户星星数失败
+    E_CONFIG_FILED_NOT_FOUND  = 110021;  // 配置文件某个字段找不到
+    E_CONFIG_EMPTY            = 110022;  // 配置文件为空
+    E_GET_USER_PROPERTY       = 110023;  // 获取UserProperty失败
+    E_UPDATE_USER_PROPERTY    = 110024;  // 更新UserProperty失败
+    E_USER_ONLINE             = 110025;  // 用户在线
+    E_USER_NOT_ONLINE         = 110026;  // 用户不在线
+    E_CURL_EMPTY              = 110027;  // curl 请求返回NULL
+    E_PLATFORM_ERROR          = 110028;  // 平台错误
+    E_VERSION_ERROR           = 110029;  // 版本好错误
+    E_SEND_FAILED             = 110030;  // 赠送失败
+
+    /********业务通用的错误码********************/
+    E_HTTP_PARAM                 = 115000;  // 获取http参数出错
+    E_OBJ_NOT_EXIST              = 115001;  // 对象不存在
+    E_CONFIG_NOT_EXIST           = 115002;  // 配置不存在
+    E_ACTION_NOT_EXPIRE          = 115003;  // 活动未到期
+    E_OUT_LIMIT                  = 115004;  // 超出限制
+    E_NOT_FINISHED               = 115005;  // 未结束
+    E_FINISHED                   = 115006;  // 结束
+    E_SUB_DIAMOND                = 115007;  // 扣除钻石失败
+    E_DIRTY_WORDS_DETECTED       = 115008;  // 文本内容包含脏字/词
+    E_PEER_VERSION               = 115009;  // 对方客户端版本号不匹配，无法完成操作
+    E_PROBABILITY                = 115010;  // 概率不符合
+    E_ACTION_NAME_NOT_EXIST      = 115011;  // 活动类型不存在
+    E_ACTION_NAME_NOT_SCORE      = 115012;  // 活动类型不是积分活动
+    E_DATA_DELETING              = 115013;  // 数据待删除状态
+    E_DATA_INVALID               = 115014;  // 数据无效
+    E_ACTION_NOT_ACTIVE_AND_PREV = 115015;  // 活动在线或者已过期
+    E_COUNTRY_NOT_SUPPORT        = 115016;  // 国家不支持
+    E_REWARD_NOT_HANDLE          = 115017;  // 奖励未处理
+
+    // 业务错误码
+    E_FAMILY_ID                              = 120000;  // 家族ID参数错误
+    E_FAMILY_ICON                            = 120001;  // 家族ICON参数错误
+    E_FAMILY_NAME                            = 120002;  // 家族name参数错误
+    E_FAMILY_JOIN_OPTION                     = 120003;  // 家族joinOption参数错误
+    E_FAMILY_JOIN_STAR                       = 120004;  // 家族joinStar参数错误
+    E_FAMILY_TARGET_UID                      = 120005;  // 家族joinStar参数错误
+    E_FAMILY_POSITION                        = 120006;  // 家族joinStar参数错误
+    E_FAMILY_SAVE                            = 120007;  // 家族保存数据出错
+    E_FAMILY_UID_HAS_NOT_PERMISSION          = 120008;  // 家族UID没有权限
+    E_FAMILY_ID_NOT_MATCH                    = 120009;  // 家族ID不匹配
+    E_FAMILY_CREATOR_HAS                     = 120010;  // 已经创建过家族
+    E_FAMILY_EXIST                           = 120011;  // 已经家族已经存在
+    E_FAMILY_BEG_JOIN                        = 120012;  // 申请家族失败
+    E_FAMILY_FULL                            = 120013;  // 申请家族人数已满
+    E_FAMILY_FORBIDDEN_JOIN                  = 120014;  // 家族禁止加入
+    E_FAMILY_JOIN_STAR_NOT_ENOUGH            = 120015;  // 加入星星数不足
+    E_FAMILY_BEG_LIST_FULL                   = 120016;  // 申请家族队列已满
+    E_FAMILY_AGREE_JOIN                      = 120017;  // 审批加入家族失败
+    E_FAMILY_QUIT                            = 120018;  // 退出失败
+    E_FAMILY_NOT_HAS_UID                     = 120019;  // uid 不在家族内失败
+    E_FAMILY_KICKING                         = 120020;  // 剔除失败
+    E_FAMILY_KICKING_PATRIARCH               = 120021;  // 不能剔除族长
+    E_FAMILY_KICKING_MYSELF                  = 120022;  // 不能剔除自己
+    E_FAMILY_APPOINT_MYSELF                  = 120023;  // 不能任命自己
+    E_FAMILY_APPOINT_LIMIT                   = 120024;  // 任命副族长超过限制
+    E_FAMILY_APPLY_NUMBER_EXCEED             = 120029;  // 家族申请超过上线
+    E_FAMILY_BEG_UID_EXIST                   = 120030;  // 已经加入家族
+    E_FAMILY_KICKOVERFLOW                    = 120031;  // 踢出成员超出限制
+    E_FAMILY_APPLY                           = 120032;  // 已经加入家族
+    E_FAMILY_DINNER_REWARD_CTB               = 120033;  // 不能领取大餐需要 先做贡献
+    E_FAMILY_DINNER_OUT_NOTICE               = 120034;  // 离开家族后当天不可以领取家族大餐
+    E_FAMILY_TASK_CHECK_TASK_NO_FAMILY_ID    = 120035;  // 领取任务奖励的时候没有家族ID
+    E_FAMILY_DINNER_REWARD_MAX_OVER          = 120037;  // 大餐领奖选择的道具大于配置限定数量
+    E_FAMILY_DINNER_REWARD_PROPS_EMPTY       = 120038;  // 大餐领奖 但是没有道具奖励
+    E_FAMILY_DINNER_REWARD_PROPS_NOT_FOUND   = 120039;  // 大餐领奖 没有前端上传的道具
+    E_FAMILY_DINNER_REWARD_RAND_REWARD_EMPTY = 120040;  // 用于选取的奖励是空的
+    E_FAMILY_PATRIARCH_CANT_QUIT             = 120041;  // 先转让家族位置在退出
+    E_FAMILY_PARAMS                          = 120142;  // 家族设置参数错误
+    E_FAMILY_NOT_RUN                         = 120143;  // 家族活动还没有开启
+    E_FAMILY_ADD_FAMILY_EXCEED               = 120144;  // 当天加入的家族达到上限
+    E_FAMILY_APPOINT_ELDER_ERROR             = 120145;  // 升值为长老长老数量已经满了
+    E_FAMILY_DIAMOND_LESS                    = 120146;  // 钻石数量不够
+    E_FAMILY_GUEST                           = 120147;  // 游客不能申请、创建、看到家族列表
+    E_FAMILY_GET_LOGIN_TYPE_ERROR            = 120148;  // 获取用户loginType失败
+    E_FAMILY_APPOINT_ERROR                   = 120149;  // 任命错误
+    E_FAMILY_BE_JOIN_LOCK                    = 120150;  // 有人正在加入家族
+    E_FAMILY_HAD_DISBAND                     = 120151;  // 申请家族家族已经解锁
+    E_FAMILY_NOT_FOUND                       = 120152;  // 未查询到家族ID
+    E_FAMILY_BIND_GROUP_NOT_PATRIARCH        = 120153;  // 绑定群号，不是会长
+    E_FAMILY_BIND_OVER_LIMIT_ONE_DAY         = 120154;  // 绑定家族群号，一天只能绑定一次
+    E_FAMILY_BIND_NOT_IN_GROUP               = 120155;  // 公会绑定群，绑定人不在群中
+    E_FAMILY_NOT_PATRIARCH_ERROR             = 120156;  // 需要会长才能操作，但不是会长
+    E_FAMILY_BIND_NOTICE_DATE_ERROR          = 120157;  // 发绑定成功邮件的日期，和绑定成功的日期不是同一天
+    E_FAMILY_BIND_SEND_MAIL_ERROR            = 120158;  // 绑定群发邮件 当天只能发一次
+    E_FAMILY_START_TO_BIND_HAD_GROUP_NUM     = 120159;  // 设置正在绑定标志发现，已经有群号了
+    E_FAMILY_HAD_SIGNED                      = 120160;  // 已经签到过
+    E_FAMILY_GOOD_NOT_EXIST                  = 120161;  // 家族商城没有改物品
+    E_FAMILY_LEVEL_NOT_ENOUGH                = 120162;  // 家族兑换商品的等级不够
+    E_FAMILY_CONTRIBUTION_NOT_ENOUGH         = 120163;  // 用户兑换商品的贡献值不够
+    E_FAMILY_GOOD_EXCHANGE_LIMITED           = 120164;  // 用户兑换商品达到上限
+    E_DISCOUNT_BUILD_FULL                    = 120165;  // 用户当前岛屿已经满级，无法购买建筑减价商品
+    E_FAMILY_KICKING_ADMIN                   = 120167;  // 不能剔除副会长或者长老
+    E_FAMILY_SEND_RECEIVED                   = 120168;  // 用户已经收到赠送
+    E_FAMILY_SEND_EXPIRED                    = 120169;  // 赠送请求失效 （超过了24小时）
+    E_FAMILY_SEND_MSG_NOT_FOUND              = 120170;  // 没有找到该赠送请求消息
+
+    /********************趣味玩法***************/
+    E_FUNWAY_CARD_NOT_ENOUGH        = 121001;  // 卡片数量不足
+    E_FUNWAY_CARD_CAR_IN_USE        = 121002;  // 卡片正在使用
+    E_FUNWAY_MERCY_FIRE             = 121003;  // 用户没有打炮次数
+    E_FUNWAY_MERCY_NOT_IN_USE       = 121004;  // 用户没有求饶使用卡片/卡片次数为0
+    E_FUNWAY_POLICE_NOT_IN_USE      = 121005;  // 用户没有使用警察卡
+    E_FUNWAY_HAD_BEEN_PROTECT       = 121006;  // 用户已经处于被保护的状态
+    E_FUNWAY_FIRE_PARAMS            = 121007;  // 保护伞打炮 参数错误，例如没有传被保护者的uid
+    E_FUNWAY_FIRE_UNPROTECT         = 121008;  // 打炮但是不是保护关系
+    E_FUNWAY_SOS_LIMIT              = 121009;  // 已经达到了次数的上限
+    E_FUNWAY_PROECTER_PLANET_EMPTY  = 121010;  // 保护的人是空岛
+    E_FUNWAY_BEPROTECT_PLANET_EMPTY = 121011;  // 被保护的人是空岛
+    E_FUNWAY_UMBRELLA_GET_DETAIL    = 121012;  // 客户端用户没有权限查看指定用户的被保护状态
+    E_FUNWAY_HAD_PROTECT_SOMEONE    = 121013;  // 已经在 保护别人
+
+    /*************超级转盘******************/
+    E_MAGIC_WHEEL_TRIGGER_ENERGY_NOT_ENOUGH = 122000;  // 体力次数统计不够
+    E_MAGIC_WHEEL_NEWBIE                    = 122001;  // 没有过新手
+    E_MAGIC_WHEEL_TIMES_OVER                = 122002;  // 超级转盘次数已经用完
+    E_MAGIC_WHEEL_TIME_OUT                  = 122003;  // 超级转盘已经过期
+    E_MAGIC_WHEEL_GET_ZP_ERR                = 122004;  // 获取转盘信息失败
+    E_MAGIC_WHEEL_HAS_TRIGGER               = 122005;  // 已经解锁并触发了,不用过引导了
+    E_MAGIC_WHEEL_GET_ZP_CONFIG_ERR         = 122006;  // 取用户转盘配置失败
+
+    /*******************主线任务*******************/
+    E_MAIN_TASK_REWARD_NO_TASK           = 122100;  // 领奖但是确没有任务缓存
+    E_MAIN_TASK_REWARD_TARGET_NOT_ENOUGH = 122101;  // 领奖但是没有完成任务
+
+    E_PIC_TAKE_PIC_NOT_ENOUGH                  = 123000;  // 碎片take 碎片不足
+    E_PIC_POWER_PIC_NOT_ENOUGH                 = 123001;  // 万能碎片不足
+    E_PIC_TASK_HAS_TASK                        = 123002;  // 已经take了
+    E_PIC_SEND_NOT_APP_FRIEND                  = 123003;  // 赠送碎片不是指定的好友关系
+    E_PIC_SEND_PIC_NOT_ENOUGH                  = 123004;  // 赠送碎片碎片数量不够
+    E_PIC_RECV_PIC_OVER_MAX                    = 123005;  // 获得单个碎片数量达到上线
+    E_PIC_SEND_PIC_LIMIT                       = 123006;  // 赠送达到上线
+    E_PIC_SEND_PIC_LOCK                        = 123007;  // 被锁碎片不能赠送
+    E_PIC_RECV_PIC_LIMIT                       = 123008;  // 接受碎片达到上线
+    E_PIC_DEVICE_LIMIT                         = 123009;  // 同一设备不能赠送
+    E_PIC_CHANGE_GET_MSG_NULL                  = 123010;  // 发起交易的时候取消息失败
+    E_PIC_CHANGE_HAD_APPLY                     = 123011;  // 已经对该用户发起过交易
+    E_PIC_CHANGE_SET_MSG                       = 123012;  // 交易时设置消息过期
+    E_PIC_CHANGE_SET_PIC_DATA                  = 123013;  // 交易时设置PICData失败
+    E_PIC_CHANGE_STATE_GET_MSG                 = 123014;  // 改变交易状态获取消息列表失败
+    E_PIC_CHANGE_HAS_MSG_CHECK_EXPIRE          = 123015;  // 内部用：交易过期
+    E_PIC_CHANGE_HAS_MSG_CHECK_NOT_FOUND       = 123016;  // 内部用：没有找到对应的交易消息
+    E_PIC_CHANGE_STATE_CHANGE_USER_STATE       = 123017;  // 修改用户消息状态失败]
+    E_PIC_CHANGE_STATE_SET_MSG                 = 123018;  // 修改用户消息设置失败
+    E_PIC_CHANGE_STATE_GET_PIC_DATA            = 123019;  // 修改用户交易消息获取拼图数据失败
+    E_PIC_CHANGE_STATE_PIC_DATA_CHANGE_INFO    = 123020;  // 修改用户交易信息，picData上没有交易碎片数据
+    E_PIC_CHANGE_STATE_UID_PIC_NOT_ENOUGH      = 123021;  // 修改用户交易信息同意交易碎片数量不足
+    E_PIC_CHANGE_STATE_FUID_PIC_NOT_ENOUGH     = 123022;  // 修改用户交易信息同意交易碎片数量不足
+    E_PIC_CHANGE_STATE_SET_PIC_DATA            = 123023;  // 修改用户交易信息设置picData失败
+    E_PIC_CHANGE_CHANGE_INFO_NOT_EXPIRE        = 123024;  // 发起交易发现picData中的数据并没有过期
+    E_PIC_CHANGE_PIC_NOT_ENOUGH                = 123025;  // 交易的时候拼图数量不够
+    E_PIC_REWARD_OVER_MAX                      = 123026;  // 领奖次数超过最大次数
+    E_PIC_CHANGE_OVER_MAX                      = 123027;  // 交易次数超过最大
+    E_PIC_SEND_TO_UID_OVER_MAX_SET             = 123028;  // 被赠送碎片的好友套数达到限制
+    E_PIC_ACTION_REWARD_DATE_NOT_EXIST         = 123200;  // 当天没有奖励
+    E_PIC_ACTION_REWARD_EMPTY                  = 123201;  // 奖励数据为空
+    E_PIC_CHANGE_STATE_UID_PIC_NOT_ENOUGH_LOCK = 123202;  // uid(自己)的碎片碎了不足只剩好友赠送的
+
+    /***********************添加好友**************************/
+    E_RELATIONSHIP_ADD_SAME_APP_USER      = 124000;  // 不能添加自己在另外平台上的号 ios + android
+    E_RELATIONSHIP_DATA_EMPTY             = 124001;  // 取缓存数据为空
+    E_RELATIONSHIP_AGREE_BUT_NO_APPLY     = 124002;  // 同意添加好友但是没有申请关系
+    E_RELATIONSHIP_AGREE_NOT_ADD_RELATION = 124003;  // 有申请关系但是不是正确的申请和被申请关系
+    E_RELATIONSHIP_AGREE_NOT_ADD_STATUS   = 124004;  // 消息的状态不是添加的状态
+    E_RELATIONSHIP_AGREE_HAD_AGREE        = 124005;  // 已经同意添加了
+    E_RELATIONSHIP_AGREE_ADD_FRIEND       = 124006;  // 添加游戏内好友失败
+    E_RELATIONSHIP_DEL_FRIEND             = 124007;  // 删除好友失败
+    E_RELATIONSHIP_REJECT                 = 124008;  // 拒绝失败，没有可以拒绝的用户
+    E_RELATIONSHIP_HAS_BEEN_FRIEND        = 124009;  // 已经是你的好友
+    E_RELATIONSHIP_ADD_SECOND             = 124010;  // 已经发送邀请
+    E_RELATIONSHIP_ADD_CD                 = 124011;  // 上次请求被拒绝，48小时内不能再发
+    E_RELATIONSHIP_ADD_DAILY_LIMIT        = 124012;  // 今天已用完添加好友次数，请明天再试
+    E_RELATIONSHIP_MINE_COUNT_LIMIT       = 124013;  // 游戏内好友上限啦
+    E_RELATIONSHIP_STRANGE_COUNT_LIMIT    = 124014;  // 被加的人人好友达到上线
+    E_RELATIONSHIP_QUERY_LOGIN_TYPE_ERROR = 124015;  // 查找用户时登入天不同
+    E_RELATIONSHIP_ONE_KEY_AGREE_NO_USER  = 124016;  // 一键同意但是没有人加好友
+    /**********邮件功能******/
+    E_MAIL_DEL_ARGS      = 124500;  // 参数不合法
+    E_MAIL_MSG_NOT_EXIST = 124501;  // 邮件不存在
+    E_MAIL_MSG_UPDATE    = 124502;  // 更新失败
+    /*****************************消息中心*************************************/
+    E_MSG_CENTER_PUSH_REWARD        = 124503;  // 推送奖励领取失败
+    E_MSG_CENTER_REWARD_DATA_EMPTY  = 124504;  // 领取奖励数据为空
+    E_MSG_CENTER_REWARD_TYPE        = 124505;  // 领奖时类型有错
+    E_MSG_CENTER_REWARD_PIC_EMPTY   = 124506;  // 领奖拼图奖励为空
+    E_MSG_CENTER_REWARD_UPDATE_DATA = 124507;  // 领奖时更新数据失败
+    E_MSG_CENTER_QUEST_SET_BIT      = 124508;  // 设置问卷调查bit失败
+    E_MSG_CENTER_REWARD_MAIL_EXPIRE = 124509;  // 领奖时邮件过期
+    E_MSG_CENTER_REWARD_HAD_DONE    = 124510;  // 已经领过奖
+    E_MSG_CENTER_REWARD_ADD         = 124511;  // 增加奖励失败
+
+    /********************在线宝箱 IBoxAction**************/
+    E_BOX_ACTION_REWARD_STEP      = 124600;   // 宝箱活动领奖step有错
+    E_BOX_ACTION_REWARD_CONDITION = 1244601;  // 领奖条件不符合
+    E_BOX_ACTION_REWARD_IS_GUIDE  = 124602;   // 仍然是新手
+
+    /**********************八天登入奖励*********************/
+    E_CUMULUS_ACTION_IN_ONE_DAY = 124701;  // 再次领奖但没有跨天
+    E_CUMULUS_ACTION_ADD_PET    = 124702;  // 添加宠物失败
+
+    /****************************邀请************************/
+    E_INVITE_ACTION_REWARD_FINISHED        = 124800;  // 已经领完奖了
+    E_INVITE_ACTION_REWARD_PARAM           = 124801;  // 领奖step参数错误
+    E_INVITE_ACTION_REWARD_CACHE_STEP      = 124802;  // 按step去cache取数据失败
+    E_INVITE_ACTION_SIGN                   = 124803;  // sign值与客户端传的md5值不一致
+    E_INVITE_ACTION_USE_NOT_IN_SET         = 124804;  // 领取发送邀请奖励时，用户不在邀请set
+    E_INVITE_ACTION_OVER_LIMIT_OR_FINISHED = 124805;  // 邀请次数超过限制
+    E_INVITE_BIT_FINISHED                  = 124806;  // 邀请bit位已设置
+    E_INVITE_FRIEND_EMPTY                  = 124807;  // 好友数量为空
+    /*************************幸运抽奖 ***************************/
+    E_OL_TIME_COUNT_LEFT_ZERO = 124880;  // 剩余次数小于0
+    E_OL_TIME_CFG_REWARD_TYPE = 124881;  // 配置文件rewardType取出数据有问题
+
+    /*****************每日任务**************************************/
+    E_DAILY_TASK_TASK_EMPTY          = 125800;  // 取出来的任务数据为空
+    E_DAILY_TASK_REWARD_FINISH       = 125801;  // 已经领过奖 或者已经领完所有任务的奖
+    E_DAILY_TASK_FINISH_REWARD_EMPTY = 125802;  // 礼盒奖励配置为空
+    E_DAILY_TASK_REWARD              = 125803;  // 无法领奖，没有完成任务请求领奖
+
+    /********************召回***************************************/
+    E_CALL_BACK_FRIEND_LIST_EMPTY = 125900;  // 领取一键召回奖励，前端传的好友列表为空
+    E_CALL_BACK_HAD_CALL          = 125901;  // 已经一键找回过
+
+    /************************贵族(VIP)******************************/
+    E_VIP_ACTION_REWARD_CHECK         = 126000;  // 不可领奖
+    E_VIP_ACTION_UPDATE_LAST_VIP_TIME = 126001;  // 更新上次领奖时间失败
+
+    E_PROPS_USE_BANNER = 126050;  // 被禁言了
+
+    /*********************************建岛*****************************/
+    E_ISLAND_GO_NEXT_SHARE_BIT = 126100;  // 过岛分享BIT位未设置
+
+    /*****************************撮合好友 *****************************/
+    E_CHAT_PLAY_JOIN_CD         = 127001;  // 换房间cd
+    E_CHAT_PLAY_ROOM_INFO_EMPTY = 127002;  // 房间信息为空
+
+    /********************************矿岛********************************/
+    E_MINE_SHELL_FORBID_INCOME               = 127100;  // 矿岛f_income字段有误,大于当前时间
+    E_MINE_SHELL_GET_SHELL_DATA_NULL         = 127101;  // 取shelldata 失败
+    E_MINE_SHELL_GET_SHELL_DATA_EMPTY        = 127102;  // 取shellData error
+    E_MINE_SHELL_UPDATE_MONEY                = 127103;  // 矿岛收金币加金币失败
+    E_MINE_SHELL_MINE_PLANET_OVER_CUR_PLANET = 127104;  // 矿岛等级大于当前岛屿
+    E_MINE_SHELL_UPDATE                      = 127105;  // 更新矿岛数据失败
+
+    /*********************************新手引导*****************************/
+    E_GUIDE_PROCESS_SET_USER_STEP = 127150;  // 设置用户当前step错误
+
+    /*******************************大地图********************************/
+    E_BIG_MAP_BUY_PARAM              = 127200;  // 升级渔船条件错误
+    E_BIG_MAP_BUY_UPDATE_FISHER_DATA = 127201;  // 更新渔船信息失败
+    E_BIG_MAP_BUY_UPDATE_PROPERTIES  = 127202;  // 更新用户信息失败 升星、金币
+    E_BIG_MAP_BUY_LESS_MONEY         = 127203;  // 升级渔船金币不够
+
+    /****************************无效的兑换码*********************************/
+    E_CODE_HAD_REWARD   = 127300;  // 已经领取了
+    E_CODE_INVALID_CODE = 127301;  // 无效的兑换码
+    E_CODE_NOT_IN_TIME  = 127302;  // 未到领取时间
+    E_CODE_OUT_OF_TIME  = 127303;  // 过期
+    E_CODE_REWARD_FULL  = 127304;  // 领奖人数达到上限
+
+    /********************************破产补助*********************************/
+    E_BANKRUPT_GET_DATA_NULL        = 127400;  // 获取破产补助失败
+    E_BANKRUPT_GET_DATA_EMPTY       = 127401;  // 获取破产补助为空
+    E_BANKRUPT_CONDITION            = 127402;  // 不达到破产条件
+    E_BANKRUPT_REWARD_LEVEL_ERROR   = 127403;  // 破产等级不符合条件
+    E_BANKRUPT_REAL_RECOVER_NUM_ERR = 127404;  // 实际恢复的建筑等级有误
+
+    /**************************副本***********************************/
+    E_DUNGEON_NO_FREE_AND_SUMMON    = 127500;  // 没有免费次数也没有召唤石无法创建副本
+    E_DUNGEON_INIT_DUNGEON          = 127501;  // 初始化副本失败
+    E_DUNGEON_CREATE                = 127502;  // 构造副本ID失败
+    E_DUNGEON_GET_DUNGEON_EMPTY     = 127503;  // 取副本信息为空
+    E_DUNGEON_GET_PLAYER_DATA_EMPTY = 127504;  // 获取用户基础数据失败
+    E_DUNGEON_SIGN                  = 127505;  // 副本sign校验失败
+    E_DUNGEON_ATTACK_DAMAGE         = 127506;  // 副本伤害有错，过高
+    E_DUNGEON_ATTACK_USER_NOT_IN    = 127507;  // 攻击是不在副本中
+    E_DUNGEON_ATTACK_BOSS_DIE       = 127508;  // 攻击时副本已经死了
+    E_DUNGEON_REMAIN_ATTACK_ZERO    = 127509;  // 用户攻击次数用完
+    E_DUNGEON_ATTACK_FREQUENTLY     = 127510;  // 攻击频率过快
+    E_DUNGEON_BOSS_HP_REDUCE        = 127511;  // boss血量更变失败
+    E_DUNGEON_SET_DUNGEON_DATA      = 127512;  // 设置副本信息失败
+    E_DUNGEON_ADD_USER_DAMAGE       = 127513;  // 增加用户副本伤害失败
+    E_DUNGEON_REWARD_EXPIRE         = 127514;  // 领奖失败 过期
+    E_DUNGEON_REWARD_HAD_REWARD     = 127515;  // 已经领奖
+    E_DUNGEON_JOIN_BUT_DEATH        = 127516;  // 加入副本但是副本1已经挂了
+    E_DUNGEON_DISPOSE_LIST_EMPTY    = 127517;  // 攻击列表数据为空
+    E_DUNGEON_DISPOSE_HAS_DEAL      = 127518;  // 副本已经处理过了
+
+    /***********************后台推送弹框**********************************/
+    E_PUSH_REWARD_ID_NOT_FOUD      = 127597;  // IDIP配置文件中不存在指定ID
+    E_PUSH_REWARD_GET_POP_BOX_DATA = 127598;  // 获取
+    E_PUSH_REWARD_GET_USE_DATA     = 127599;  // 更新用户user data id 失败
+
+    /*****************************游客绑定**********************m**********/
+    E_GAME_BIND_FIELD_EMPTY         = 127600;  // 关键字段为空
+    E_GAME_BIND_CHECK_SIGN          = 127601;  // sig校验失败
+    E_GAME_BIND_NO_GUEST_INFO       = 127602;  // 没有游客信息
+    E_GAME_BIND_THIRD_GET_USER_INFO = 127603;  // 第三方接口获取用户信息失败
+    E_GAME_BIND_CHECK_TOKEN         = 127604;  // 校验token失败
+    E_GAME_BIND_HAD_BIND_USER       = 127605;  // 已经绑定用户
+    E_GAME_BIND_SET_ACCOUNT         = 127606;  // 绑定用户UID失败
+    E_GAME_BIND_DEL_ACCOUNT         = 127607;  // 删除游客账号失败
+    E_GAME_BIND_DEL_DEVICE          = 127608;  // 删除设备游客账号失败
+
+    /*************************功能解锁*************************************/
+    E_FUNC_UNLOCK_HAD_UNLOCK        = 127691;  // 功能已经解锁了
+    E_FUNC_UNLOCK_ACTION_NOT_FOUND  = 127690;  // 活动id找不到
+    E_FUNC_UNLOCK_STAR_NOT_ENOUGH   = 127692;  // 星星数不够
+    E_FUNC_UNLOCK_SET_BIT_FAILED    = 127693;  // 设置bit位失败
+    E_FUNC_UNLOCK_FISHER_FREE       = 127694;  // 设置免费小鱼失败
+    E_FUNC_UNLOCK_PLANET_NOT_ENOUGH = 127695;  // 岛屿数不够
+
+    /**************************米大师midasPay***************************/
+    E_MIDAS_PID_EMPTY               = 127701;  // 查询钻石接口 pid为空
+    E_MIDAS_GET_PRODUCT_EMPTY       = 127702;  // 获取商品信息为空
+    E_MIDAS_GET_BALANCE             = 127703;  // 获取余额失败
+    E_MIDAS_EQUAL_DIAMOND           = 127704;  // getBalance 获取的钻石数量和userdata中的一样
+    E_MIDAS_ADD_ORDER_ID            = 127705;  // 添加订单（状态为已支付状态）
+    E_MIDAS_DELIVERY                = 127706;  // 发货失败
+    E_MIDAS_REDUCE_DIAMOND          = 127707;  // 扣钻石失败
+    E_MIDAS_SIGN_REQUEST_NOT_FOUND  = 127708;  // request 中没有sig字段
+    E_MIDAS_CHECK_SIGN_ANDROID      = 127709;  // android校验sign失败
+    E_MIDAS_APPMETA                 = 127710;  // appmeta 参数不存在或有误
+    E_MIDAS_GET_ORDER_INFO          = 127711;  // 获取订单信息失败
+    E_MIDAS_UPDATE_ORDER_INFO       = 127712;  // 更新订单信息失败
+    E_MIDAS_REQUEST_PARAM_NOT_FOUND = 127713;  // sig  billno  openid  amt 字段为空
+    E_MIDAS_CHECK_SIGN_IOS          = 127714;  // ios sign 校验失败
+    E_MIDAS_ORDER                   = 127715;  // 下单失败
+    E_MIDAS_BUY_GOODS               = 127716;  // 调直购接口失败
+    E_DIAMOND_NOT_ENOUGH            = 127717;  // 钻石不够
+    E_PAY_MONEY_NOT_ENOUGH          = 127718;  // 金币不够
+    E_PAY_OVER_BUY_LIMIT            = 127719;  // 超过购买次数限制
+
+    /***************************引导标志*******************************/
+    E_GUIDE_MARK_UPDATE_MARK = 127799;  // 更新引导标志失败
+
+    /*****************************评星活动*****************************/
+    E_MARK_REWARD_INFO_ST    = 127800;  // 领奖时 st 字段不为空
+    E_MARK_REWARD_HAD_REWARD = 127801;  // 已经领奖了
+    E_MARK_REWARD_STAR_LESS  = 127802;  // 评星数不到5个，不能领奖
+
+    /********************************pet*****************************/
+    E_PET_CHANGE_STATUS_PARAM         = 127900;  // 改变宠物
+    E_PET_CHANGE_STATUS_OVER_MAX_TAKE = 127901;  // 要携带的宠物数量过多
+    E_PET_CHANGE_STATUS_PET_ID        = 127902;  // 修改携带宠物ID错误
+    E_PET_CHANGE_STATUS_UPDATE        = 127903;  // 携带宠物状态更新失败
+    E_PET_FEED_HEART_LESS             = 127904;  // 喂养零食魔力瓶不够
+    E_PET_NOT_EXIST                   = 127905;  // 喂养时宠物ID不存在
+    E_PET_FEED_PET_UPDATE             = 127906;  // 喂养时更新宠物数据失败
+    E_PET_UP_OVER_MAX_GRADE           = 127907;  // 升级时超过最大等级
+    E_PET_UP_UPDATE                   = 127908;  // 更新失败
+    E_PET_EXIST                       = 127909;  // 宠物已存在
+    E_PET_PUZZLE_LESS                 = 127910;  // 宠物碎片数量不够
+    E_PET_REWARD                      = 127911;  // 添加宠物奖励失败
+    E_PET_SKILL_NOT_EXIST             = 127912;  // 宠物技能不存在
+    E_PET_MP_LESS                     = 127913;  // 魔力不足
+    E_PET_EXP_LESS                    = 127914;  // 经验瓶中的经验不足
+    E_PET_EXPERIENCE_CANOT_FEED       = 127915;  // 体验的宠物无法喂养经验
+    E_PET_EXPERIENCE_CANOT_STATUS     = 127916;  // 体验的宠物无法放到培养池
+
+    /************************排行榜********************************/
+    E_RANK_TYPE = 127999;  // 查看排行榜 参数type错误
+
+    /************************特权***********************************/
+    E_PRIVILEGE_TYPE       = 128000;  // 不存在的特权类型
+    E_PRIVILEGE_SET_MSG    = 128001;  // 设置消息中心错误
+    E_PRIVILEGE_REWARD     = 128002;  // 特权奖励错误
+    E_PRIVILEGE_QUERY_INFO = 128003;  // 查询特权信息失败
+
+    /*************************弹弓活动******************************/
+    E_SLINGSHOT_SHOT_DATA_EMPTY                  = 128100;  // shot时数据有错
+    E_SLINGSHOT_SHOT_NOT_CREATE                  = 128101;  // shot 时 没有到刷新时间
+    E_SLINGSHOT_SHOT_NO_BALL                     = 128102;  // shot时 没有雪球
+    E_SLINGSHOT_SHOT_SHOT_C_MAX                  = 128103;  // shot时 本次刷新射击次数过多
+    E_SLINGSHOT_SHOT_BOX                         = 128104;  // shot 时没有风铃
+    E_SLINGSHOT_SEND_NO_BABY                     = 128105;  // 没有宝贝了
+    E_SLINGSHOT_SEND_INCRE_SEND_COUNT            = 128106;  // 赠送宝贝次数增加失败
+    E_SLINGSHOT_SEND_FRIEND_DATA_EMPTY           = 128107;  // 赠送宝贝好友数据获取失败
+    E_SLINGSHOT_SEND_INCRE_RECV_COUNT            = 128108;  // 增加接受宝贝次数失败
+    E_SLINGSHOT_SEND_REDUCE_BABY                 = 128109;  // 赠送宝贝减少宝贝数量失败
+    E_SLINGSHOT_SEND_INCRE_BABY                  = 128110;  // 接受宝贝，宝贝数量增加失败
+    E_SLINGSHOT_USE_GET_DATA                     = 128111;  // 使用仙女棒获取用户数据失败
+    E_SLINGSHOT_QUIT_GET_DATA                    = 128112;  // 退出好友弹弓活动，获取数据失败
+    E_SLINGSHOT_QUIT_NOT_IN_LIST                 = 128113;  // 退出时不在好友弹弓，列表中
+    E_SLINGSHOT_REWARD_OUT_OF_TIME               = 128114;  // 兑奖时活动已经下线
+    E_SLINGSHOT_SEND_OVER_LIMIT                  = 128115;  // 赠送次数达到最大
+    E_SLINGSHOT_RECV_OVER_LIMIT                  = 128116;  // 接收宝贝次数达到上限
+    E_SLINGSHOT_SEND_BABY_LOCK                   = 128117;  // 宝贝被锁,不能赠送
+    E_SLINGSHOT_IS_NOT_FRIEND                    = 128118;  // shot时不是好友关系
+    E_SLINGSHOT_NOT_RUN                          = 128119;  // 弹弓活动不在线
+    E_SLINGSHOT_CHANGE_OVER_LIMIT                = 128120;  // 交易超过当太难最大限制
+    E_SLINGSHOT_CHANGE_GET_MSG                   = 128121;  // 交易时获取消息失败
+    E_SLINGSHOT_GET_TREE_DATA                    = 128122;  // 获取树信息失败
+    E_SLINGSHOT_SET_PIC_DATA                     = 128123;  // 设置宝贝信息失败
+    E_SLINGSHOT_CHANGE_STATE_AGREE               = 128124;  // 同意交易设置数据失败
+    E_SLINGSHOT_CHANGE_CANCEL_OR_REFUSE          = 128125;  // 取消或同意失败
+    E_SLINGSHOT_SET_MESSAGE                      = 128126;  // 设置消息失败
+    E_SLINGSHOT_CHANGE_NO_BABY                   = 128127;  // 交易的时候只有别人送的宝贝
+    E_SLINGSHOT_CHANGE_STATE_NO_BABY             = 128128;  // 同意交易的时候只有别人送的宝贝
+    E_SLINGSHOT_REWARD_LIMIT                     = 128129;  // 兑换次数达到最大
+    E_SLINGSHOT_REWARD_BABY_LESS                 = 128130;  // 宝贝数量不够
+    E_SLINGSHOT_SHOT_MSG_EMPTY                   = 128131;  // 抢礼盒消息为空
+    E_SLINGSHOT_CHANGE_STATE_UID_BABY_NOT_ENOUGH = 128132;  // 自己的宝贝数量不足
+    E_SLINGSHOT_CLEAR_DATA_EVENT_DUPLICATE       = 128133;  // 清除活动数据重复
+    E_SLINGSHOT_EVENT_TYPE_ERROR                 = 128134;  // 非法的事件类型
+    E_SLINGSHOT_EVENT_ACTION_STILL_ONLINE        = 128135;  // 事件活动还在线
+
+    /******************************通缉***********************************/
+    E_TONGJI_GUIDE_TIMES             = 128200;  // 剩余转转盘次数获取失败
+    E_TONGJI_UPDATE_I_MUST           = 128201;  // 更新必中失败
+    E_TONGJI_HAD_BEEN_TONGJI         = 128202;  // 用户已经被通缉
+    E_TONGJI_SET_TONG_INFO           = 128203;  // 设置用户通缉他人信息失败
+    E_TONGJI_SET_BE_TONGJI_INFO      = 128204;  // 设置用户被通缉信息失败
+    E_TONGJI_GET_ENEMY_LIST          = 128205;  // 获取敌人列表失败
+    E_TONGJI_GET_TAKE_WANT_USER_INFO = 128206;  // 获取通缉我的人userinfo失败
+    E_TONGJI_GET_TAKE_WANT_PLANET    = 128207;  // 获取通缉我的人岛屿信息失败
+    E_TONGJI_PROPS_NOT_ENOUGH        = 128208;  // 发起通缉通缉令不够
+    E_TONGJI_GET_BE_WANT_INFO        = 128209;  // 获取被通缉的人userinfo失败
+    E_TONGJI_GET_BE_WANT_PLANET      = 128210;  // 获取被通缉的人Planet失败
+    E_TONGJI_GET_ENEMY_INFO          = 128211;  // 获取敌人列表userinfo失败
+    E_TONGJI_GET_ENEMY_PLANET        = 128212;  // 获取敌人列表Planet失败
+    E_TONGJI_LESS_PROP               = 128213;  // 通缉令数量不够
+    E_TONGJI_NOT_BEEN_TONGJI         = 128214;  // 用户没有被通缉
+
+    /*****************************偷炮*************************************/
+    E_USER_WEAPON_NOT_STEAL_TIMES            = 128300;  // 没有偷次数
+    E_USER_WEAPON_UPDATE_USER_WEAPON         = 128301;  // 更新偷炮次数失败
+    E_USER_WEAPON_FAILED_TO_SET_STEAL_TARGET = 128302;  // 设置被偷目标失败
+    E_USER_WEAPON_STEAL_ID                   = 128303;  // 选中偷目标ID错误
+    E_USER_WEAPON_STEAL_GET_TARGET_PROPERTY  = 128304;  // 获取被偷目标金币数失败
+    E_USER_WEAPON_STEAL_SET_TARGET_PROPERTY  = 128305;  // 更新被偷目标金币数失败
+    E_USER_WEAPON_STEAL_ADD_USER_MONEY       = 128306;  // 更新偷的人金币失败
+    E_USER_WEAPON_STEAL_GET_USER_PROPERTY    = 128307;  // 获取偷的人的金币失败
+    E_USER_WEAPON_STEAL_TARGET_EMPTY         = 128308;  // 获取偷目标失败
+
+    E_USER_WEAPON_ATTACK_NO_ATTACK_TIMES     = 128401;  // 没有打炮次数
+    E_USER_WEAPON_ATTACK_GET_TARGET_PLANET   = 128402;  // 获取目标岛屿失败
+    E_USER_WEAPON_ATTACK_WANT_FINISHED       = 128403;  // 通缉已经结束
+    E_USER_WEAPON_ATTACK_TYPE_REVENGE        = 128404;  // 打炮类型错误 复仇
+    E_USER_WEAPON_ATTACK_TYPE_WANT           = 128405;  // 打炮类型错误 通缉
+    E_USER_WEAPON_ATTACK_TYPE_FRIEND         = 128406;  // 打炮类型错误 好友
+    E_USER_WEAPON_ATTACK_TYPE_TO_FRIEND_FLAG = 128407;  // 好友的好友已经被打
+    E_USER_WEAPON_ATTACK_TYPE                = 128408;  // 未知的打炮类型
+    E_USER_WEAPON_ATTACK_TARGET_BUILD_FINISH = 128409;  // 目标的建筑被摧毁，不能再打
+    E_USER_WEAPON_ATTACK_BOOM_ADD_ERROR      = 128410;  // 装弹失败
+    E_USER_WEAPON_ATTACK_NO_BOOM_TIMES       = 128411;  // 装弹没有装弹次数
+    /*************************破产补助*************************************/
+    E_BANKRUPT_UPDATE_PLANET                 = 128501;  // 破产补助更新岛屿失败
+    E_BANKRUPT_BUILDING_NUM_OVER_TRIGGER_NUM = 128502;  // 破产补助触发但是当前建筑数量过多
+
+    /*****************************微信订阅*********************************/
+    E_WX_SUBSCRIBE_TYPE          = 128600;  // 订阅类型错误
+    E_WX_UN_SUBSCRIBE_TYPE       = 128601;  // 取消订阅错误
+    E_WX_SUBSCRIBE               = 128602;  // 订阅失败
+    E_WX_UN_SUBSCRIBE            = 128603;  // 取消订阅失败
+    E_WX_SUBSCRIBE_HAD_SUB       = 128604;  // 已经订阅
+    E_WX_UN_SUBSCRIBE_HAD_UB_SUB = 128605;  // 已经取消订阅
+
+    /*****************************腾讯密友*********************************/
+    E_CODE_PARAM_ERR                = 128701;  // 参数错误
+    E_CODE_THIRDPART_ERR            = 128702;  // 第三方错误
+    E_CODE_WRONG_REWARDSTAUTS       = 128703;  // 领奖状态错误
+    E_CODE_REWARD_FAIL              = 128704;  // 领奖失败
+    E_CODE_CLOSEFRIEND_TARGET_WRONG = 128705;  // 领奖盒子参数不对
+
+    /*********************建筑**********/
+    E_USER_ISLAND_EMPTY             = 128801;  // 建筑信息为空
+    E_USER_ISLAND_UPDATE            = 128802;  // 更新建筑信息失败
+    E_USER_ISLAND_FINISH            = 128803;  // 建筑没有建完
+    E_USER_ISLAND_REWARD            = 128804;  // 过岛奖励不存在
+    E_USER_ISLAND_UPDATE_ONLINE     = 128805;  // 更新在线数据失败
+    E_USER_ISLAND_BUILD_EXIST       = 128806;  // 建筑不存在
+    E_USER_ISLAND_BUILD_FINISH      = 128807;  // 建筑不完整（被打了）
+    E_USER_ISLAND_BUILD_PROTECT     = 128808;  // 建筑已经被保护
+    E_USER_ISLAND_PROTECT_DAILY_MAX = 128809;  // 每日使用迷你盾的次数达到最大
+    E_USER_ISLAND_PROTECT_MAX       = 128810;  // 保护建筑数量已到最大
+    E_USER_ISLAND_UPDATE_BIT        = 128811;  // 更新bit位失败
+
+    /**********************空岛方案*******************/
+    E_EMPTY_PLANET_FIRST_LOGIN       = 129001;  // 用户上次登入时间为0，说明这是第一次登入,不触发空岛方案
+    E_EMPTY_PLANET_NOT_EMPTY         = 129002;  // 不是空岛
+    E_EMPTY_PLANET_NOT_IN_TIME_RANGE = 129003;  // 用户不在流失的时间范围
+    E_EMPTY_PLANET_UPDATE_EMPTY      = 129004;  // update变量为空
+    E_EMPTY_PLANET_OVER_MAX          = 129005;  // 用户岛屿超过最大岛屿
+
+    /**********************转盘*******************/
+    E_ZHUANPAN_FIRE_LIMIT                  = 130000;  // 用户互相打炮次数达到上限
+    E_ZHUANPAN_SET_FIRE_LIMIT              = 130001;  // 设置用户互相打炮次数上限出错
+    E_ZHUANPAN_PARSE_PARAMS                = 130002;  // 解析转盘参数错误
+    E_ZHUANPAN_CHECKONLINE                 = 130003;  // 转盘检查online错误
+    E_ZHUANPAN_INTERVAL_TOO_SHORT          = 130004;  // 两次转转盘之间的时间间隔太短
+    E_ZHUANPAN_TILI_NOT_ENOUGH             = 130005;  // 转转盘的体力不够
+    E_ZHUANPAN_CONF_NOT_EXIST              = 130006;  // 当前转盘配置不存在
+    E_ZHUANPAN_PLANET_CONF_NOT_EXIST       = 130007;  // 当前岛屿配置不存在
+    E_ZHUANPAN_FINCOME                     = 130008;  // 转盘零收益
+    E_ZHUANPAN_MULTIPLE_INVALID            = 130009;  // 转盘倍数值无效
+    E_ZHUANPAN_REWARD_EMPTY                = 130010;  // 转盘转到的奖励为空
+    E_ZHUANPAN_GET_RESULT                  = 130011;  // 转转盘时获取结果出错
+    E_ZHUANPAN_FIRE_TO_PHP                 = 130012;  // 转到攻击后发送请求到php失败
+    E_ZHUANPAN_STEAL_TO_PHP                = 130013;  // 转到偷后发送请求到php失败
+    E_ZHUANPAN_REWARD_INVALID              = 130014;  // 转盘转到的奖励类型无效
+    E_ZHUANPAN_FIELDS_EMPTY                = 130015;  // 转盘相关字段为空
+    E_ZHUANPAN_PARAM_MOD_NOT_EXIST         = 130016;  // 转盘请求mod参数不存在
+    E_ZHUANPAN_PARAM_ACT_NOT_EXIST         = 130017;  // 转盘请求act参数不存在
+    E_ZHUANPAN_PARAM_MOD_INVALID           = 130018;  // 无效的转盘请求mod参数
+    E_ZHUANPAN_PARAM_UID_NOT_EXIST         = 130019;  // 转盘请求uid参数不存在
+    E_ZHUANPAN_PROPERTY_EMPTY              = 130020;  // 体力数据为空
+    E_ZHUANPAN_CANNOT_BOOM                 = 130021;  // 炸弹转盘活动未开启
+    E_ZHUANPAN_USER_EXT_DARA_MARSHAL_ERROR = 130022;  // userData ext 数据 MARSHAL 失败
+    E_ZHUANPAN_GET_USER_PLANET_ERROR       = 130023;  // 用户岛屿获取失败
+    E_ZHUANPAN_UNSEAL_ZHUANPAN_ID_ERROR    = 130024;  // 解除冰封格子失败
+    E_ZHUANPAN_SEAL_TO_PHP                 = 130025;  // 转到冰封后发送请求到php失败
+    E_ZHUANPAN_CARD_GROUP_TRIGGER          = 130026;  // 牌组概率触发异常
+
+    /****************超级礼包**************************/
+    E_BIG_ITEM_BUY_ERROR = 131000;  // 超级礼包购买失败
+
+    /************图鉴*************/
+    E_HANDBOOK_LIGHT_PLANET_GREATER = 131200;  // 要点亮的岛屿高于当前等级,不能点亮
+    E_HANDBOOK_LIGHT_PLANET_MORE    = 131201;  // 点亮的图鉴个数岛屿大于当前岛屿数
+    E_HANDBOOK_LIGHT_PLANET_FINISH  = 131202;  // 点亮的图鉴建筑不完整
+    E_HANDBOOK_LIGHT_HAS_BEEN       = 131203;  // 图鉴点亮已经点亮
+    E_HANDBOOK_LIGHT_UPDATE         = 131204;  // 更新图鉴数据失败
+    E_HANDBOOK_CURSE_PLANET_FINISH  = 131205;  // 点亮岛屿诅咒，建筑不完整
+    E_HANDBOOK_CURSE_HAS_BEEN       = 131206;  // 岛屿诅咒已经点亮
+    E_HANDBOOK_CURSE_UPDATE         = 131207;  // 更新岛屿诅咒数据失败
+
+    /****************分享奖励**************/
+    E_SHARE_ACTION_LEFTDRAWTIMES_ZERO = 131300;  // 幸运抽奖次数为0
+    E_SHARE_ACTION_STEAL_EMPTY        = 131301;  // 偷分享数据为空
+    E_SHARE_ACTION_ATTACK_EMPTY       = 131302;  // 打分享数据为空
+    E_SHARE_ACTION_DUNGEON_EMPTY      = 131303;  // 副本分享数据为空
+    E_SHARE_ACTION_PIC_EMPTY          = 131304;  // 拼图分享碎片为空
+    E_SHARE_ACTION_OFF                = 131305;  // 分享已关闭
+    E_SHARE_ACTION_TIME_MAX           = 131306;  // 分享次数达到上限
+    E_SHARE_ACTION_TILI_MORE          = 131307;  // 体力大于分享最小值
+
+    /********通缉令引导*****/
+    E_WANT_GUIDE_TIME_ZERO = 131400;  // 引导次数数据为空， 不能开启引导
+    E_WANT_GUIDE_MSUT_SET  = 131401;  // 更新必中数据失败
+
+    /**********活动*******/
+    E_ACTION_GET_DOWN      = 131500;  // 活动不在线
+    E_ACTION_DUP_FRESH     = 131501;  // 活动已经刷新过
+    E_ACTION_FRESH_CEILING = 131502;  // 活动刷新次数已达到上限
+    E_ACTION_LIMT_FRESH    = 131503;  // 已完成的活动不允许刷新
+
+    /*******支付下单和发货*******/
+    E_PAYCNETER_EMPTY_REWARD                = 141600;  // 没有奖励可发
+    E_PAYCNETER_DIAMOND_REWARD              = 141601;  // 钻石更新失败
+    E_PAYCENTER_ADD_ORDERID                 = 141602;  // 订单插入失败
+    E_PAYCENTER_GET_ORDERID_DATA            = 141603;  // 不存在的订单
+    E_PAYCENTER_UPDATE_ORDERID_DATA         = 141604;  // 订单更新失败
+    E_PAYCENTER_ANDROID_PACKANEME_NOT_EQUAL = 141605;  // android支付packName不等
+    E_PAYCENTER_ANDROID_ORDERID_EMPTY       = 141606;  // android支付orderid空
+    E_PAYCENTER_IOS_CONNECT_APP_STORE       = 141607;  // ios连接失败
+    E_PAYCENTER_IOS_STATUS                  = 141608;  // ios返回字段status错误
+    E_PAYCENTER_IOS_RECEIPT                 = 141609;  // ios返回字段receipt错误
+    E_PAYCENTER_IOS_PACKAGE_ERROR           = 141610;  // ios返回字段package错误
+    E_PAYCENTER_IOS_DECODE                  = 141611;  // ios解包失败
+    E_PAYCENTER_BUYTYPE_ERROR               = 141612;  // buyType错误
+    E_PAYCENTER_BUYITEM_EMPTY               = 141613;  // buyItem为空
+    E_PAYCENTER_IOS_CHECK                   = 141614;  // ios校验失败
+    /***********反馈***********/
+    E_FEEDBACK_CONTENT_EMPTY    = 141700;  // 反馈内容为空
+    E_FEEDBACK_CONTENT_OVER_LEN = 141701;  // 反馈字符数量过长
+
+    /*********第三方接口**************/
+    E_THIRDPARTYAPI_WX_OPENID_OR_TOKEN_EMPTY  = 141800;  // 微信open或token为空
+    E_THIRDPARTYAPI_WX_TOKEN_CHECK            = 141801;  // 微信token状态失效
+    E_THIRDPARTYAPI_QQ_OPENID_OR_TOKEN_EMPTY  = 141803;  // QQ open或token为空
+    E_THIRDPARTYAPI_QQ_TOKEN_CHECK            = 141804;  // QQ token状态失效
+    E_THIRDPARTYAPI_TOR_OPENID_OR_TOKEN_EMPTY = 141805;  // 游客open或token为空
+    E_THIRDPARTYAPI_TOR_TOKEN_CHECK           = 141806;  // 游客token状态失效
+    E_THIRDPARTYAPI_LOGINTYPE_UNKOWN          = 141807;  // 登录类型错误
+
+    /**********推送**************/
+    E_PUSHTASK_TASK_ID_NOT_EXIST = 141907;  // 推送id对应的配置不存在
+    E_PUSHTASK_USER_LANG_EMPTY   = 141908;  // 用户的语言为空
+    E_PUSHTASK_LANG_NOT_FIELD    = 141909;  // d对应语言的推送不存在
+    E_PUSHTASK_TOKEN_EMPTY       = 141910;  // 用户token为空
+    E_PUSHTASK_TOKEN_MAX_LEN     = 141911;  // token长度太大
+    E_PUSH_DAMAGE_PPLANET_ZERO   = 141912;  // 没有损坏的岛屿
+    E_PUSH_MINE_MOENY_MAX        = 141913;  // 挖矿金币没满
+    E_PUSH_TYPE_UNKOWN           = 141914;  // 推送类型错误
+    E_PUSH_TIME_OUT              = 141915;  // 推送超时
+    E_PUSH_TIME_FAIL             = 141916;  // 推送失败
+
+    /*********禁言********/
+    E_CHATFBD_YOUMI_REQUEST_ERROR      = 142000;  // 游密接口调用出错
+    E_CHATFBD_YOUMI_RESPONSE_ERROR     = 142001;  // 游密返回值出错
+    E_CHATFBD_YOUMI_SET_USERINFO_ERROR = 142002;  // 设置用户禁言失败
+
+    /*********chatPlay**********/
+    E_CHATPLAY_PARSE_POSTDATA = 143000;  // chatPlay解析POST参数出错
+    E_CHATPLAY_UIDS_POSTDATA  = 143001;  // chatPlay中uids POST参数无效
+    E_CHATPLAY_GETROOMINFO    = 143002;  // chatPlay getRoomInfo错误
+    E_CHATPLAY_EXCHANGE       = 143003;  // chatPlay exchange错误
+
+    /*******************嘉年华-炸弹********************/
+    E_CARNIVAL_BOOM_QUERY_EXPIRE                  = 143100;  // 炸弹不在了
+    E_CARNIVAL_BOOM_QUERY_GET_ADD_USER_INFO_ERROR = 143101;  // 查询时找不到炸弹放置者
+    E_CARNIVAL_BOOM_DOWN_LINE_EMPTY               = 143102;  // 拆线的时候没有线信息
+    E_CARNIVAL_BOOM_BUILDING_VALUE_ERROR          = 143103;  // 建筑的值不足够用于爆炸
+    E_CARNIVAL_BOOM_BUILDING_DESTROY              = 143104;  // 爆炸时建筑已经被摧毁
+    E_CARNIVAL_BOOM_DOWN_NOT_IN_ROOM              = 143105;  // 帮助拆弹的时候，已经不在房间内
+    E_CARNIVAL_BOOM_GET_ROOM_ERROR                = 143106;  // 获取用户房间信息失败
+    E_CARNIVAL_BOOM_DOWN_HAD_CUT                  = 143107;  // 用户已经拆过线了
+    E_CARNIVAL_BOOM_REWARD_OVER_LIMIT             = 143108;  // 兑换超过次数
+    E_CARNIVAL_BOOM_REWARD_PIECE_NOT_ENOUGH       = 143109;  // 炸弹碎片数量不够
+    E_CARNILVA_BOOM_DOWN_LINE_CURED               = 143110;  // 线已经被别人捡了
+    E_CARNIVAL_BOOM_BOOM_HAD_ADD                  = 143111;  // 已经被装炸弹了
+    E_CARNIVAL_BOOM_ADD_GUIDE_HAD_DONE            = 143112;  // 装弹引导已经完成
+    E_CARNIVAL_BOOM_VERSION_ERROR                 = 143113;  // 用户版本不对
+    E_CARNIVAL_BOOM_BUILD_DESTROY_BOOM_EXPIRE     = 143114;  // 建筑被摧毁时，炸弹过期了
+    E_CARNIVAL_BOOM_QUERY_ID_ERROR                = 143115;  // 查询的时候炸弹ID对不上
+    E_CARNIVAL_BOOM_ADD_BOOM_BUILDING_NOT_EXIST   = 143116;  // 装弹时建筑不存在
+    E_CARNIVAL_BOOM_GUIDE_NOT_ONLINE              = 143117;  // 引导时活动不在线
+    /*************玩伴奖池***********************/
+    E_CHAT_PLAY_POOL_REWARD_NOT_ACTIVE = 143200;  // 领奖时间还没到
+    E_CHAT_PLAY_POOL_REWARD_HAS_DOWN   = 143201;  // 领奖时间已过
+    E_CHAT_PLAY_POOL_REWARD_NULL       = 143202;  // 没有奖励可领
+    E_CHAT_PLAY_POOL_REWARD_HAS_REWARD = 143203;  // 领奖已被领取
+    E_CHAT_PLAY_POOL_ROOM_NULL         = 143204;  // 找不到房间号
+    E_CHAT_PLAY_POOL_ROOM_DATA_NULL    = 143205;  // 找不到房间号的数据
+    E_CHAT_PLAY_POOL_ROOM_REWARD_FAIL  = 143206;  // 领奖失败
+    E_CHAT_PLAY_POOL_REWARD_NOT_UID    = 143207;  // 不在领奖uid中
+
+    /*******************前端任务上报 ****************/
+    E_REPORT_TASK_NOT_DONE = 143300;  // 任务没有完成
+
+    /*************公会战***********************/
+    E_UNIONCOMP_GET_FAMILYID        = 144000;  // 获取用户所属家族出错
+    E_UNIONCOMP_NOT_APPLIED         = 144001;  // 该家族未报名比赛
+    E_UNIONCOMP_FULL                = 144002;  // 该家族参加比赛的人员已经满了
+    E_UNIONCOMP_NOT_TEAM            = 144003;  // 该家族不在比赛队伍中
+    E_UNIONCOMP_ABNORMAL_CURINFO    = 144004;  // 当前赛事数据异常
+    E_UNIONCOMP_DUP_APPLIED         = 144005;  // 该家族已报名
+    E_UNIONCOMP_LIMIT_APPLY_TIME    = 144006;  // 未到报名时间
+    E_UNIONCOMP_APPLY_FAIL          = 144007;  // 报名失败
+    E_UNIONCOMP_TEAM_INEXISTENCE    = 144008;  // team不存在
+    E_UNIONCOMP_NOT_CAPTAIN         = 144009;  // 不是船长
+    E_UNIONCOMP_COMMAND_CD_LIMIT    = 144010;  // 船长命令CD时间限制
+    E_UNIONCOMP_COMMAND_INVALID     = 144011;  // 无效的船长命令
+    E_UNIONCOMP_OPERATION_OUT_TIME  = 144012;  // 船员命令超出有效时间
+    E_UNIONCOMP_OPERATION_INVALID   = 144013;  // 无效的船员命令
+    E_UNIONCOMP_OPERATION_REPEAT    = 144014;  // 船员重复操作时间限制
+    E_UNIONCOMP_NO_POSITION_SWITCH  = 144015;  // 对侧没有位置可切换
+    E_UNIONCOMP_NO_NETINFO          = 144016;  // 没有用户的netinfo信息
+    E_UNIONCOMP_ROOM_INEXISTENCE    = 144017;  // room不存在
+    E_UNIONCOMP_NO_TEAM_IN_ROOM     = 144018;  // room里面不存在该team
+    E_UNIONCOMP_COMP_NOT_STANDBY    = 144019;  // 比赛不在standby状态
+    E_UNIONCOMP_NO_TEAM_MEMBER      = 144020;  // 队伍里面没有该队员
+    E_UNIONCOMP_MEMBER_IN_TEAM      = 144021;  // 队伍里面已经存在该队员
+    E_UNIONCOMP_NO_FOUND_RANK       = 144022;  // 查询工会战排行榜失败
+    E_UNIONCOMP_NOT_PROMOTED        = 144023;  // 队伍未晋级
+    E_UNIONCOMP_NOT_IN_RUNNING      = 144024;  // 当前比赛状态未在Running状态
+    E_UNIONCOMP_ROOM_NOT_IN_RUNNING = 144025;  // 当前房间不在running状态
+    E_UNIONCOMP_NIL_MEMBERINFO      = 144026;  // 获取memberinfo为空
+    E_UNIONCOMP_NIL_CAPTAIN         = 144027;  // 船长为空
+    E_UNIONCOMP_IS_NOT_TEST_ACCOUNT = 144028;  // 不是测试账号
+    E_UNIONCOMP_GET_ONLINE          = 144029;  // 获取online数据
+    E_UNIONCOMP_CLI_VERSION_TOO_OLD = 144030;  // 客户端版本号太老
+    E_UNIONCOMP_NOT_OPEN            = 144031;  // 公会战未开启
+
+    /**************************离线保护***********************/
+    E_OFFLINE_GUARD_PLANET_LIMIT        = 144200;  // 离线保护岛屿限制
+    E_OFFLINE_GUARD_PLANET_EMPTY        = 144201;  // 离线保护触发岛屿为空
+    E_OFFLINE_GUARD_DATA_EMPTY          = 144202;  // 离线保护数据没有
+    E_OFFLINE_GUARD_OVER_LIMIT          = 144203;  // 离线保护当天触发超过限制
+    E_OFFLINE_GUARD_LESS_HOUR           = 144204;  // 离线保护触发，再次登入时间 小于1个小时
+    E_OFFLINE_GUARD_RECOVER_RANGE_ERROR = 144205;  // 离线保护触发找不到对应的时间配置
+    E_OFFLINE_GUARD_ATTACK_ONLINE       = 144206;  // 用户被打时 在线
+    E_OFFLINE_GUARD_HAD_RECORD          = 144207;  // 建筑离线保护记录 已经存在
+
+    /*************************新手八天签到***********************/
+    E_NEWER_SIGN_IN_CHECK_BREAK_LIST_EMPTY = 144400;  // 新手签到，有签到时间，但是却没有签到数据
+    E_NEWER_SIGN_IN_BREAK                  = 144401;  // 新手八天签到，断签
+    E_NEWER_SIGN_IN_REPEATED_SIGN_IN       = 144402;  // 新手八天签到，重复签到
+    E_NEWER_SIGN_IN_DATA_NOT_INIT          = 144403;  // 新手八天签到，数据没有初始化
+    E_NEWER_SIGN_IN_DO_NOT_REWARD_TODAY    = 144404;  // 新手八天签到, 今天没有签到不能选择明天奖励
+    E_NEWER_SIGN_IN_NEXT_REWARD_NOT_FOUND  = 144405;  // 新手八天签到，明天的奖励配置没有找到
+    E_NEWER_SIGN_IN_REWARD_INDEX_INVALID   = 144406;  // 新手八天签到，选择奖励，下标有误
+    E_NEWER_SIGN_IN_NEXT_REWARD_SELECTED   = 144407;  // 新手八天签到，明天的奖励已经被选了
+    E_NEWER_SIGN_IN_HAD_REWARD             = 144408;  // 新手八天签到，今天已经领过将了
+    E_NEWER_SIGN_IN_DOT_NOT_REWARD_TODAY   = 144409;  // 用户选择明天奖励，但是今天没有签到
+
+    /*********************注册奖励****************************/
+    E_REGISRTER_REWARD_HASBEEN      = 144500;  // 已经领奖
+    E_REGISRTER_REWARD_NOT_TRIGGER  = 144501;  // 没有触发奖励
+    E_REGISRTER_REWARD_SET_BIT      = 144502;  // 更新奖励转台失败
+    E_REGISRTER_REWARD_REG_TIME_OUT = 144503;  // 注册时间已超过24小时
+    E_REGISRTER_REWARD_HAS_TRIGGER  = 144504;  // 已经触发过, 还没有发奖
+
+    /*********************累计充值****************************/
+    E_CUMU_RECHARGE_REWARD_NONE = 144600;  // 未达到奖励领取条件
+    E_CUMU_RECHARGE_REWARD_DUP  = 144601;  // 请勿重复领奖
+
+    /***************************spine动画**********************/
+    E_USER_FRIEND_SPINE_TYPE_ERROR = 144700;  // 上报的spine类型错误
+
+    /*******************************互助玩法*******************/
+    E_FRIEND_HELP_TYPE_ERROR                      = 144900;  // 去随机类型失败
+    E_FRIEND_HELP_NO_FRIEND                       = 144901;  // 没有好友
+    E_FRIEND_HELP_NO_FRIEND_CAN_HELP              = 144902;  // 没有好友可以帮助
+    E_FRIEND_HELP_DEFAULT_TARGET_ISLAND_NOT_FOUND = 144903;  // 默认目标的岛屿信息获取失败
+    E_FRIEND_HELP_HELP_NO_TIMES                   = 144904;  // 援助好友但是没有援助的机会
+    E_FREIND_HELP_HELP_LIMIT                      = 144905;  // 被援助的人，援助次数达到上线
+    E_FRIEND_HELP_HELP_CAN_NOT_REPAIR             = 144906;  // 被援助的人，没有可以修复的建筑
+    E_FRIEND_HELP_HELP_BUILDING_CAN_NOT_REPAIR    = 144907;  // 被援助的人，建筑无法被修复
+    E_FRIEND_HELP_REWARD_LIST_EMPTY               = 144908;  // 领奖时，被援助列表为空
+    E_FRIEND_HELP_NOT_FRIEND                      = 144909;  // 援助的人不是好友
+    E_FRIEND_HELP_GUIDE_HAD_DONE                  = 144910;  // 用户已经完成引导
+
+    /*********************************************************/
+
+    /*******************嘉年华-接金币********************/
+    E_CARNIVAL_GAINCOIN_QUERY_EMPTY  = 145100;  // 没有转到接金币格子
+    E_CARNIVAL_GAINCOIN_REWARD_ERROR = 145101;  // 接金币奖励数据错误
+
+    /************************转盘皮肤************************/
+    E_WHEEL_SKIN_ADD_SKIN_FOREVER               = 145200;  // 增加转盘皮肤，但是皮肤是永久的
+    E_WHEEL_SKIN_WHEEL_ID_ERROR                 = 145201;  // 转盘ID找不到
+    E_WHEEL_SKIN_ADD_SKIN_WHEEL_ID_LESS         = 145202;  // 发转盘皮肤皮肤ID值小于200
+    E_WHEEL_SKIN_BUTTON_COMENSATED_NOT_EXCHANGE = 145203;  // 2.19版本用户领完补偿后回到2.18版本用户是不让重新兑换按钮皮肤的
+
+    /************************海外支付************************/
+    E_PAY_OA_MISS_ORDER_ID      = 145300;  // 缺少订单ID
+    E_PAY_OA_MISS_RECEIPT       = 145301;  // 缺少receipt
+    E_PAY_OA_MISS_SIG           = 145302;  // 缺少signature
+    E_PAY_OA_ORDER_INFO_NULL    = 145303;  // 未查询到订单信息
+    E_PAY_OA_DEVICE_NULL        = 145304;  // 未查询到设备信息
+    E_PAY_OA_CALL_SDK_RET_NULL  = 145305;  // 调用sdk返回异常
+    E_PAY_OA_CALL_SDK_RET       = 145306;  // 调用sdk出错
+    E_PAY_OA_CALL_SDK_RET_MISS  = 145307;  // 调用sdk返回字段缺失
+    E_PAY_ORDER_STATUS_ABMORMAL = 145308;  // 订单状态异常
+    E_PAY_ADD_ORDER_INFO_ERROR  = 145309;  // 添加订单到数据库失败
+    E_PAY_OA_ORDER_DUP          = 145310;  // 重复订单
+    E_PAY_OA_ORDER_CHECK        = 145311;  // 订单校验出错
+    E_PAY_OA_PRODUCT_EMPTY      = 145312;  // product为空
+    E_PAY_OA_ORDER_ADD          = 145313;  // 添加订单出错
+
+    /************************欢乐夺宝************************/
+    E_HAPPY_MISS_TYPE     = 145400;  // 缺少夺宝类型
+    E_HAPPY_ILEGAL_TYPE   = 145401;  // 夺宝类型异常
+    E_HAPPY_DROP_CFG      = 145402;  // 夺宝掉落配置异常
+    E_HAPPY_CUMU_CFG      = 145403;  // 夺宝累计奖励配置异常
+    E_HAPPY_PRICE_CFG     = 145404;  // 夺宝价格配置异常
+    E_HAPPY_LIMIT_DIAMOND = 145405;  // 钻石不足
+    E_HAPPY_SUB_DIAMOND   = 145406;  // 扣除钻石失败
+    E_HAPPY_DROP          = 145407;  // 掉落失败
+    E_HAPPY_NOT_OPEN      = 145408;  // 欢乐夺宝未开放
+
+    /**********************领取绑定奖励***********************/
+    E_BIND_REWARD_CONDITION_ERROR = 145500;  // 领取绑定奖励，条件不符
+    E_BIND_REWARD_PLATFOM         = 145501;  //绑定的平台不符合条件
+    E_BIND_REWARD_NOT_FB          = 145502;  //非fb登陆， 不允许绑定
+    E_BIND_REWARD_BIT_SET         = 145503;  //绑定位已经设置， 用户已经绑定
+
+    /***************************守护神卡片收集***********************/
+    E_GUARD_CARD_PLANET_ERROR             = 145600;  // 用户岛屿没有达到可见要求
+    E_GUARD_CARD_GROUP_ERROR              = 145601;  // 卡组集齐领奖，但是卡组ID有错
+    E_GUARD_CARD_HAD_COMPLETE             = 145602;  // 卡组集齐领奖，以及集齐过
+    E_GUARD_CARD_UN_COMPLETE              = 145603;  // 卡组集齐领奖，没有集齐
+    E_GUARD_CARD_SEND_NO_CARD             = 145604;  // 赠送卡片，没有这张卡片
+    E_GUARD_CARD_SEND_RECV_CAN_NOT_SEND   = 145605;  // 赠送卡片，好友送的卡片不能再送
+    E_GUARD_CARD_SEND_ERROR_FRD_TYPE      = 145606;  // 赠送卡片，不支持的好友类型
+    E_GUARD_CARD_SEND_FRD_HAD_CARD        = 145607;  // 赠送卡片，好友已经有这张卡片，不能再送了
+    E_GUARD_CARD_SEND_OVER_SEND_LIMIT     = 145608;  // 赠送卡片，达到当天赠送上限
+    E_GUARD_CARD_SEND_OVER_RECV_LIMIT     = 145609;  // 赠送卡片，达到当天赠送上限
+    E_GUARD_CARD_SEND_FRD_UNABLE_TO_GET   = 145610;  // 赠送卡片，好友当前还未解锁改卡片
+    E_GUARD_CARD_SEND_FUID_PLANET_LOW     = 145611;  // 赠送卡片，好友岛屿没有达到要求
+    E_GUARD_CARD_GET_NEW_CARD_INFO_ERR    = 145612;  // 发卡，出现错误
+    E_GUARD_CARD_STAR_LESS_THAN_NEED      = 145613;  // 卡片兑换，但是星星数不够
+    E_GUARD_CARD_EXCHANGE_OVER_LIMIT      = 145614;  // 卡片兑换，但是次数达到限制
+    E_GUARD_CARD_GOD_NUM_NOT_ENOUGH       = 145615;  //万能卡片不足
+    E_GUARD_CARD_GOD_EVENT_SUB_ERROR      = 145616;  //万能卡扣除失败（事件回调）
+    E_GUARD_CARD_GOD_EVENT_TYPE_NOT_FOUND = 145617;  //卡片事件回调类型不存在
+    E_GUARD_CARD_GOD_EVENT_DISABLED       = 145618;  //卡片事件回调不生效
+    E_GUARD_CARD_GOD_EVENT_ADVANCE        = 145619;  //卡片事件提前回调
+    E_GUARD_CARD_GOD_EVENT_MULTI_CALLBACK = 145620;  //卡片事件并发回调
+    E_GUARD_CARD_EXCHANGE_REWARD          = 145621;  // 守护神回收发奖失败
+    E_GUARD_CARD_EXCHANGE_NOT_ENOUGH      = 145622;  // 守护神回卡片数量不够
+
+    /***************************打折卡***********************/
+    E_DIS_CARD_GET_RAND_CARD_ERROR = 145700;  // 打折卡获取随机卡片失败
+    E_DIS_CARD_CARD_EXPIRE         = 145701;  // 打折卡过期
+    E_DIS_CARD_USE_OVER_LIMIT      = 145702;  // 打折卡当天使用次数达到上限
+
+    /**********************付费礼包***********************/
+    E_PAYPACKAGE_NOT_EXISTS        = 145800;  // 礼包不存在
+    E_PAYPACKAGE_CONFIG_NOT_EXISTS = 145801;  // 礼包对应的配置不存在
+    E_PAYPACKAGE_NOT_OPEN          = 145802;  // 礼包没有开放
+    E_PAYPACKAGE_LIMITED           = 145803;  // 礼包达到每日或者每周次数触发上限
+    E_PAYPACKAGE_MIN_PLANET        = 145804;  // 礼包未满足最小岛屿条件
+    E_PAYPACKAGE_MAX_TILI          = 145805;  // 礼包未满足最大体力条件
+    E_PAYPACKAGE_BANKRUPT_LEVEL    = 145806;  // 礼包未满足破产保护等级条件
+    E_PAYPACKAGE_SNOW_BALL         = 145807;  // 礼包未满足用户小鸟个数条件
+    E_PAYPACKAGE_OUT_LINE          = 145808;  // 礼包未满足下线前时效条件
+    E_PAYPACKAGE_PIC_REWARD        = 145809;  // 礼包未满足拼图可兑换条件
+    E_PAYPACKAGE_PIC_NUM           = 145810;  // 礼包未满足拼图数量条件
+    E_PAYPACKAGE_RAND              = 145811;  // 礼包满足条件但是未被随机触发到
+    E_PAYPACKAGE_NO_ID             = 145812;  // 转盘深度付费礼包对应的订单ID不存在
+    E_PAYPACKAGE_EMPTY_ID          = 145813;  // 转盘深度付费礼包对应的订单ID配置不存在
+    E_PAYPACKAGE_DOUBLEDIAMOND     = 145814;  // 礼包因为首次加班导致未触发
+
+    /**********************一次性礼包***********************/
+    E_ONETIMEPACKAGE_NO_ITEM       = 145900;  // 一次性礼包对应的项不存在
+    E_ONETIMEPACKAGE_NO_REWARD     = 145901;  // 一次性礼包项的奖励不存在
+    E_ONETIMEPACKAGE_EMPTY_REWARD  = 145902;  // 一次性礼包项的奖励为空
+    E_PACKAGE_NO_ITEM              = 145903;  // 礼包对应的项不存在
+    E_PACKAGE_EMPTY_REWARD         = 145904;  // 礼包项的奖励为空
+    E_PACKAGE_REWARD_STATUS_NO     = 145905;  // 礼包项的奖励不存在
+    E_PACKAGE_REWARD_STATUS_CANNOT = 145906;  // 礼包项的奖励不存在
+
+    /**********************视频广告***********************/
+    E_VIDEOAD_POP_LIMIT      = 146000;  // 用户弹出次数被限制
+    E_VIDEOAD_REWARD_LIMIT   = 146001;  // 用户领奖次数被限制
+    E_VIDEOAD_HAS_TILI       = 146002;  // 用户还有体力
+    E_VIDEOAD_HAS_DUNGEONGUN = 146003;  // 用户还有鱼雷
+    E_VIDEOAD_HAS_SNOWBALL   = 146004;  // 用户还有小鸟
+    E_VIDEOAD_REWARD_OUT_POP = 146005;  // 用户领奖次数超过弹出次数
+
+    /**********************海底探险***********************/
+    E_ADVENTURE_STATUS          = 146101;  // 状态不对
+    E_ADVENTURE_NO_MAP          = 146102;  // 没有地图
+    E_ADVENTURE_HAD_HELPED      = 146103;  // 已经帮助过了
+    E_ADVENTURE_HELP_OUT_LIMIT  = 146104;  // 帮助人数达到上限
+    E_ADVENTURE_START_OUT_LIMIT = 146105;  // 当日探险次数达到上限
+    E_ADVENTURE_SEND_OUT_LIMIT  = 146106;  // 当日地图赠送次数达到上限
+
+    /**********************海岛推荐***********************/
+    E_RECRUITMENT_ACTVIE_STAR_ERROR           = 146200;  // 激活但是星星数不够
+    E_RECRUITMENT_ACTIVE_ACTIVE_NO_INVITE_FRD = 146201;  // 激活职位但是没有邀请他的好友
+    E_RECRUITMENT_UN_ACTIVE_FRD_NOT_FOUND     = 146202;  // 用户解聘/确认，招聘列表中找不到员工uid
+    E_RECRUITMENT_SURE_STAUTS_NOT_ACTIVE      = 146203;  // 用户点击确认，但是当前状态不是激活的状态
+
+    /**********************星座邀请***********************/
+    E_HOROSCOPE_ROOMID_FAILED     = 146300;  // 创建房间ID失败
+    E_HOROSCOPE_ROOMMEMBERS_FULL  = 146301;  // 房间成员已经满了
+    E_HOROSCOPE_HORO_INVALID      = 146302;  // 用户星座无效
+    E_HOROSCOPE_HORO_NOT_MATCH    = 146303;  // 用户星座与房间星座不匹配
+    E_HOROSCOPE_ROOM_HAD_END      = 146304;  // 房间已经结束比赛
+    E_HOROSCOPE_MEMBER_IN_ROOM    = 146305;  // 用户已经在房间里面了
+    E_HOROSCOPE_NO_TELESCOPE      = 146306;  // 无望远镜，没法创建房间
+    E_HOROSCOPE_JOIN_ROOM_CEILING = 146307;  // 达到加入房间上限
+    E_HOROSCOPE_ROOM_OVERDUE      = 146308;  // 该房间已过期
+
+    /**********************单笔充值***********************/
+    E_SINGLE_RECHARGE_WELFARE_TIMES_ERR       = 146401;  // 今日免费抽取福利的次数已用完
+    E_SINGLE_RECHARGE_MONEY_TIMES_ERR         = 146402;  // 今日刷新充值档位的次数已用完
+    E_SINGLE_RECHARGE_DISCOUNT_TIMES_ERR      = 146403;  // 今日刷新折扣档位的次数已用完
+    E_SINGLE_RECHARGE_REFRESH_MONEY_ERR       = 146404;  // 刷新充值档位所需的钻石数不足
+    E_SINGLE_RECHARGE_REFRESH_DISCOUNT_ERR    = 146405;  // 刷新折扣档位所需的钻石数不足
+    E_SINGLE_RECHARGE_PRODUCT_OR_DISCOUNT_ERR = 146406;  // 商品id或折扣档位为空
+    E_SINGLE_RECHARGE_WRITE_TO_REDIS_ERR      = 146407;  // 写入redis失败
+    E_SINGLE_RECHARGE_UPDATE_USER_DIAMOND_ERR = 146408;  // 更新用户的总钻石数失败
+    E_SINGLE_RECHARGE_NO_REWARD_ERR           = 146409;  // 没有需要领取的钻石
+    E_SEND_REWARD_ERR                         = 146410;  // 发送奖励失败
+
+    /**********************订阅钻石VIP*******************/
+    E_SUBSCRIBE_CONTENT_ERR           = 146500;  // 没有用户的订阅信息
+    E_SUBSCRIBE_NO_REWARD_ERR         = 146501;  // 没有奖励可以领取
+    E_SUBSCRIBE_NO_CONTENT_UPDATE_ERR = 146502;  // 没有要更新的订阅信息
+    E_SUBSCRIBE_HAD_REWARDED          = 146503;  // 奖励已经领取
+    E_SUBSCRIBE_NOT_SUBSCRIBE         = 146504;  // 不是订阅消息
+    E_SUBSCRIBE_DUP_ORDER             = 146505;  // 多重订单
+
+    /**********************公会竞标赛*******************/
+    E_UNIONSTAR_STEP_WRONG     = 146600;  // 阶段状态不对
+    E_UNIONSTAR_STEP_NOT_MATCH = 146601;  // 阶段状态不匹配
+    E_UNIONSTAR_NO_ROOM        = 146602;  // 不在房间
+
+    /**********************3D_个人竞标赛*******************/
+    E_TOURNAMENT_INFO_EMPTY         = 147600;  // 个人竞标赛的信息为空
+    E_TOURNAMENT_NO_REWARD          = 147601;  // 没有奖励可以领取
+    E_TOURNAMENT_REWARD_HAS_TOKEN   = 147602;  // 已经领过奖了
+    E_TOURNAMENT_E_REWARD_LEVEL_ERR = 147603;  // 领奖级别错误
+    E_DISCOUNT_CARD_FULL            = 147604;  // 建筑物打折卡已满
+
+    /**********************3D_辛勤奖励*******************/
+    E_DILIGENT_NO_REWARD    = 146700;  // 没有辛勤奖励可以领取
+    E_DILIGENT_REWARD_TOKEN = 146701;  // 已经领取过了辛勤奖励
+
+    /*************************钻石制造机*************************/
+    E_DIMAOND_MAKER_OVER_LIMIT = 147700;  //兑换次数达到上线
+
+    /*************************许愿树*************************/
+    E_BOXID_NOT_FOUND = 147801;  //未找到用户的宝箱
+    E_BALL_NOT_ENOUGH = 147802;  //用户许愿球不够
+
+    /*************************fb链接进入游戏领奖*************************/
+    E_FBLINK_EXPIRED_CODE  = 147900;  // 无用的兑换码
+    E_FBLINK_REPEAT_REWARD = 147901;  // 重复领取
+    E_FBLINK_REWARD_FAILED = 147902;  // 领取失败
+    E_FBLINK_CODE_EXPIRED  = 147903;  // 兑换码失效
+
+    /******************支付奖励***************************/
+    E_PAY_REWARD_EXCE_LIMIT       = 148000;  //超过限制次数
+    E_PAY_REWARD_DIAMOND_SUB_FAIL = 148001;  //扣除钻石失败
+    E_PAY_REWARD_EMPTY_CFG        = 148002;  //配置文件为空
+    E_PAY_REWARD_INCR_FAIL        = 148003;  //添加限制失败
+
+    /*****************皮肤碎片**********************/
+    E_SKIN_EMPTY_CFG    = 148100;  //配置文件为空
+    E_SKIN_STAMP_ENOUGH = 148101;  //兑换碎片不足
+    E_SKIN_HAVE         = 148102;  //用户已经拥有皮肤
+    E_SKIN_UPDATE_FAIL  = 148103;  //更新到redis失败
+
+    /****************通行证*********/
+    E_PASS_DATA             = 148200;  //用户redis数据错误或者配置错误
+    E_PASS_LESS_MEDAL       = 148201;  //勋章数不够
+    E_PASS_HAS_RECEIVE      = 148202;  //已经领取过奖励
+    E_PASS_SEND_REWARD_FAIL = 148203;  //发送奖励失败
+    E_PASS_NOT_PAY          = 148204;  //用户未支付领取支付奖励
+    E_PASS_GET_REWARD       = 148205;  //获取reward配置文件数据失败
+
+    /***************猪猪冒险 **********/
+    E_BUILD_IS_OK = 148300;  //建筑已经修复
+
+    /***************刮刮卡 **********/
+    E_SCRATCH_CARD_REDIS        = 148400;  //redis data失败
+    E_SCRATCH_CARD_CONFIG       = 148401;  //config error
+    E_SCRATCH_CARD_LOCK         = 148402;  //redis 请求锁
+    E_SCRATCH_CARD_CONDITION    = 148403;  //状态条件错误
+    E_SCRATCH_CARD_REWARD       = 148404;  //发奖失败
+    E_SCRATCH_CARD_DIAMOND      = 148405;  //钻石不够
+    E_SCRATCH_CARD_PARAM        = 148406;  //参数不对
+    E_SCRATCH_CARD_ACTION_CHECK = 148407;  //活动不在线, 或者岛屿满足开启条件
+
+    //成长基金
+    E_GROWN_FUND_LOCK           = 148500;  //未解锁
+    E_GROWN_FUND_HAS_RECEIVE    = 148501;  //已经领取奖励
+    E_GROWN_FUND_CANNOT_RECEIVE = 148502;  //没有达到领取条件
+    E_GROWN_FUND_NOT_REGISTER   = 148503;  //非注册玩家并且没有数据的不应该访问这个接口
+
+    //水果
+    E_FRUIT_INVALID_MOD   = 148600;  //领取的奖励模块错误
+    E_FRUIT_REFRESH_LIMIT = 148601;  //刷新次数限制
+    E_FRUIT_DATA          = 148602;  //水果数据错误
+    E_FRUIT_HAS_RECEIVE   = 148603;  //水果奖励已经领取
+    E_FRUIT_NUMBER        = 148604;  //水果奖励领取数量不足
+
+    /****************************聊天相关******************************/
+    E_ALREADY_REPORTED = 149001;  // 已举报过该用户
+    E_REPORT_LIMIT     = 149002;  // 举报数量达到上限
+
+    /****************************Bingo相关******************************/
+    E_BINGO_DIGIT_NOT_ENOUGH = 150001;  // 数字道具数量不足
+
+    // go交换错误码
+    E_EXCHANGE_SERVER            = 151000;  // 兑换服务错误
+    E_EXCHANGE_PRODUCT_NOT_EXIST = 151001;  // 兑换商品不存在
+    //E_EXCHANGE_
+
+    // 发奖模块
+    E_REWARD_EMPTY        = 152000;  // 奖励为空
+    E_REWARD_PHP          = 152001;  // 调用php失败
+    E_REWARD_PHP_RSP_CODE = 152002;  // 调用php错误码失败
+
+    // pb通用
+    E_PB_MARSHAL   = 153000;  // pb marshal失败
+    E_PB_UNMARSHAL = 153001;  // pb unmarshal失败
+
+    // 通用封装包码错误
+    E_PACK_CMD_REQUEST  = 154000;  // 请求cmd码错误
+    E_PACK_CMD_RESPONSE = 154001;  // 响应cmd码错误
+    E_PACK_PB_REQUEST   = 154002;  // 请求的pb结构错误
+    E_PACK_PB_RESPONSE  = 154003;  // 响应的pb结构错误
+
+    // 支付模块
+    E_PAY_INVALID_TYPE         = 155000;  // 非法的支付type
+    E_PAY_PRODUCT_NOT_EXIST    = 155001;  // 支付商品不存在
+    E_PAY_ORDER_ID_CREATE_FAIL = 155002;  // 订单号创建失败
+    E_PAY_INSERT_SQL           = 155003;  // 订单插入数据库失败
+    E_PAY_ALREADY_REWARD       = 155004;  // 已经发货
+    E_PAY_IS_NOT_PAYMENT       = 155005;  // 还未支付
+
+    // 头像框
+    E_AVATAR_NOT_OWN = 156000;  // 未拥有头像框
+
+    //抽奖宝箱
+    E_CHEST_REWARD_ID_NOT_EXIST = 157000;  // 宝箱ID不存在
+
+    // 本地支付错误码
+    E_PAY_LOCAL_USER_INFO_NOT_FOUND = 158000;  // 台湾本地支付找不到用户信息
+    E_PAY_LOCAL_SERVER_ERROR        = 158001;  // 服务器出错
+    E_ORDER_FAILED                  = 158003;
+
+    /****************************冰封活动相关******************************/
+    E_USER_WEAPON_SEAL_NO_SEAL_TIMES = 158100;  // 没有冰封次数
+    E_USER_WEAPON_SEAL_NO_USER_DATA  = 158101;  // 没有冰封数据
+    E_USER_WEAPON_SEAL_ALREADY       = 158102;  // 已经被冰封
+    E_USER_WEAPON_SEAL_NOT_JOIN_ACTI = 150103;  // 被冰封用户不能参与冰封活动
+
+    /****************************网赚活动相关******************************/
+    E_EARNING_ONLINE_APPLY_DAY_LIMIT       = 158200;  // 每日申请上限)
+    E_EARNING_ONLINE_COIN_NOT_ENOUGH       = 158201;  // 红包币不足
+    E_EARNING_ONLINE_COIN_ISLAND_LIMIT     = 158202;  // 岛屿上限
+    E_EARNING_ONLINE_COIN_PERSON_APPLY_NUM = 158203;  // 单人单次活动申请次上限
+    E_EARNING_ONLINE_PHONE_NOT             = 158204;  // 没有可用的电话卡
+    E_EARNING_ONLINE_WITHDRAW_SHARE_LIMIT  = 158205;  // 提现分享领奖上限
+
+    /****************************主题卡组相关******************************/
+    E_ACTION_CARD_PARAM_INVALID        = 159001;  // 参数非法
+    E_ACTION_CARD_GROUP_ALREADY_REWARD = 159002;  // 卡组已领奖
+    E_ACTION_CARD_GROUP_NOT_FINISH     = 159003;  // 卡组没有集齐
+    E_ACTION_CARD_GROUP_FINISH_REWARD  = 159004;  // 卡组奖励发放失败
+    E_ACTION_CARD_NUM_NOT_ENOUGH       = 159005;  // 卡片数量不够
+
+    /****************************露娜寻宝相关******************************/
+    E_LUNA_PLANET_INVALID         = 160001;  // 用户岛屿非法
+    E_LUNA_GET_REDIS_DATA         = 160002;  // 获取用户寻宝数据失败
+    E_LUNA_UPDATE_USER_PROPS      = 160003;  // 更新用户道具数量失败
+    E_LUNA_STAGE_ALREADY_REWARD   = 160004;  // 此阶段已领取奖励
+    E_LUNA_STAGE_SCORE_NOT_ENOUGH = 160005;  // 用户露娜积分不够
+
+    /*******************************限定宝箱*******************************/
+    E_LIMIT_CARD_BOX_COUNT_OVER_RANGE = 161001;  // 购买数量超过限制
+    E_CARD_POOL_EMPTY                 = 161002;  // 符合条件的卡池为空
+    /****************************挖矿寻宝相关******************************/
+    E_MINE_GET_REDIS_DATA        = 162001;  // 获取挖矿数据失败
+    E_MINE_PLANET_INVALID        = 162002;  // 用户岛屿非法
+    E_MINE_GENERATE_MAP_FAIL     = 162003;  // 生成地图失败
+    E_MINE_SET_MINE_DATA_FAIL    = 162004;  // 设置挖矿数据失败
+    E_MINE_RAND_MINE_MAP_FAIL    = 162005;  // 刷新地图失败
+    E_MINE_UPDATE_USER_PROPS     = 162006;  // 更新用户道具失败
+    E_MINE_USER_PROPS_NOT_ENOUGH = 162007;  // 用户道具不足
+    E_MINE_PHP_MAIL_REWARD_FAIL  = 162008;  // 邮件发送奖励失败
+    E_MINE_REWARD_OVER_LIMIT     = 162009;  // 兑奖次数超出限制
+    E_USER_IS_NOT_NEW            = 162010;  // 用户不是新用户
+    E_USER_PIECE_NOT_ENOUGH      = 162011;  // 用户碎片数不够
+    E_MINE_NO_MORE_MAP           = 162012;  // 已生成完地图
+    E_SEND_TIMES_OVER_LIMIT      = 162013;  // 赠送次数超出限制
+    E_RECV_TIMES_OVER_LIMIT      = 162014;  // 接收次数超出限制
+
+    /************************** 多段礼包、多充礼包 ***************************************/
+    E_GET_GIFT_MOD_FAILED    = 163001;  // 获取用户分层模型失败
+    E_GET_ACTION_DATA_FAILED = 163002;  // 获取活动数据失败
+
+    // ================== @todo 新增的尽量都使用新定义的, 底层错误码也是一样的 =======================
+    // common
+    // 底层
+    E_COMMON_INTERNAL         = 1000000;  // 内部错误
+    E_COMMON_NETWORK          = 1000001;  // 网络错误
+    E_COMMON_DATA_ENCODE      = 1000002;  // 编码错误
+    E_COMMON_DATA_DECODE      = 1000003;  // 解码错误
+    E_COMMON_FORBIDDEN        = 1000004;  // 禁止 中间件拦截等
+    E_COMMON_EMPTY_REQ        = 1000005;  // req
+    E_COMMON_PARSE_REQ        = 1000006;  // 解析错误
+    E_COMMON_CMD_NOT_HANDLER  = 1000007;  // 没有处理器
+    E_COMMON_EMPTY_RPC_HEADER = 1000008;  // rpc头部为空
+    E_COMMON_RPC_SESSION      = 1000009;  // session失败
+    E_COMMON_HANDLE           = 1000010;  // 处理失败
+    E_COMMON_BUILD_RSP_ERR    = 1000011;  // 构建rsp失败
+    E_COMMON_MQ_RPC           = 1000012;  // mq投递失败
+    E_COMMON_TCP_RPC          = 1000013;  // tcp请求失败
+    E_COMMON_MQ_REPLY         = 1000014;  // mq回复失败
+    E_COMMON_UPSTREAM_ERROR   = 1000015;  // 上层代理失败
+    E_COMMON_UPSTREAM_TIMEOUT = 1000016;  // 上层代理超时
+    E_COMMON_UPSTREAM_CANCEL  = 1000017;  // 取消
+
+    // 网络层其他
+    E_COMMON_REDIS_POOL  = 1001000;
+    E_COMMON_REDIS_CONN  = 1001001;  //
+    E_COMMON_REDIS_READ  = 1001002;  //
+    E_COMMON_REDIS_WRITE = 1001003;  //
+    E_COMMON_REDIS_ERROR = 1001004;  //
+
+    E_COMMON_HTTP_REQUEST_ENCRYPT     = 1001101;  //
+    E_COMMON_HTTP_REQUEST_RPC_HEADER  = 1001102;  //
+    E_COMMON_HTTP_RESPONSE            = 1001103;  //
+    E_COMMON_HTTP_RESPONSE_STATUS     = 1001104;  //
+    E_COMMON_HTTP_RESPONSE_DECRYPT    = 1001105;  //
+    E_COMMON_HTTP_RESPONSE_RPC_DECODE = 1001106;  //
+    E_COMMON_HTTP_RESPONSE_RPC_HEADER = 1001117;  //
+
+    E_COMMON_API_CALL       = 1001201;  //
+    E_COMMON_THIRD_API_CALL = 1001202;  //
+
+    // 基础业务
+    E_COMMON_CONFIG              = 1010000;  //
+    E_COMMON_DATA_EMPTY          = 1010001;
+    E_COMMON_TYPE                = 1010002;  // 类型错误
+    E_COMMON_LOGIC               = 1010003;  // 业务逻辑错误
+    E_COMMON_STRUCT_NIL          = 1010004;  // 结构体nil
+    E_COMMON_PARAM               = 1010005;
+    E_COMMON_DATA_INVALID        = 1010006;
+    E_COMMON_REWARD_RECURSION    = 1010007;  // 发奖递归超过限制
+    E_COMMON_REWARD_TYPE         = 1010008;  // 发奖类型
+    E_COMMON_REWARD_ERROR        = 1010009;  // 发奖失败
+    E_COMMON_REWARD_PHP_ERROR    = 1010010;  // 调用php发奖失败
+    E_COMMON_OUT_LIMIT           = 1010011;  // 超过限制
+    E_COMMON_ACTION_OFFLINE      = 1010012;  // 玩家活动不在线
+    E_COMMON_DATA_ENOUGH         = 1010013;  // 数量足够
+    E_COMMON_PROPERTY_NOT_ENOUGH = 1010014;  // 经济不足
+    E_COMMON_ACTION_NOT          = 1010015;  // 活动不存在
+    E_COMMON_UNAUTHORIZED        = 1010016;  // 鉴权失败
+    E_COMMON_MYSQL_INSERT        = 1010017;  // 插入数据库失败
+    E_COMMON_MYSQL_QUERY         = 1010018;  // 数据库查询失败
+
+    // 具体业务从2000000开始
+    // slot服务
+    E_SLOT_TILI_NOT_ENOUGH = 2000000;
+    E_SLOT_CONF_NOT_EXIST  = 2000001;
+    E_SLOT_REWARD_INVALID  = 2000002;
+    E_SLOT_CARD_GROUP      = 2000003;
+
+    E_SLOT_FIRE_NO_OPPORTUNITY = 2000100;  // 没有打炮的机会
+    E_SLOT_SAVE_FAIL           = 2000101;  // slot数据保存失败
+    E_SLOT_GET_FAIL            = 2000102;  // slot数据获取失败
+    E_SLOT_FIRE_EXCEED_TIMES   = 2000103;  // 用户超过被打限制
+
+    // 本地支付
+    E_LOCAL_PAY_GET_TXNID_FAILED = 2000201;
+    E_LOCAL_PAY_INQUIRY_FAILED   = 2000202;
+    E_LOCAL_PAY_ORDER_STATUS_ERR = 2000203;
+
+    // 商城支付模块
+    E_MALL_PAY_SDK_CHECK_FAILED = 2000301;  // 支付校验失败
+    E_MALL_PAY_ALREADY_REWARD   = 2000302;  // 已经发货
+    E_MALL_PAY_ORDER_STATUS_ERR = 2000303;  // 订单状态
+
+    // 建岛
+    E_PLANET_PRICE_ZERO                = 2000401;  // 建/修复岛屿价格为0
+    E_PLANET_BUILD_FAILED              = 2000402;  // 建建筑失败
+    E_PLANET_REPAIR_FAILED             = 2000403;  // 修复建筑失败
+    E_PLANET_NEXT_CHECK_FAILED         = 2000404;  // 过岛检查失败
+    E_PLANET_OPERATOR_UNKNOWN          = 2000405;  // 操作行为未知
+    E_PLANET_EVALUATION_STAR_LESS      = 2000406;  // 评星数太低
+    E_PLANET_SHARE_REWARD_CHECK_FAILED = 2000407;  // 过岛分享奖励没有领取资格
+
+    // 头像框
+    E_COMMON_REWARD_AVATAR_FRAME_OWNED = 2000501;  // 头像框已经拥有
+
+    // 推送上报
+    E_REPORT_TOKEN_TO_MID_FAIL = 2000600;  // 上报token到中台报错
+
+    // login
+    E_LOGIN_NOT_TYPE       = 2000700;  //不支持的登陆类型
+    E_LOGIN_REGISTER_LIMIT = 2000701;  // 注册上线
+
+    // msgcenter
+    E_MSG_CENTER_DATA_EMPTY = 2000800;  // 消息数据为空
+
+    // 交易系统
+    E_TRADE_NO_SEND_HANDLER  = 2000900;  // 物品不被允许赠送
+    E_TRADE_NO_TRADE_HANDLER = 2000901;  // 物品不被允许交换
+    E_TRADE_NOT_FRIEND       = 2000902;  // 双方不是好友关系
+    E_TRADE_NOT_SAME_FAMILY  = 2000903;  // 双方不在同一个家族内
+    E_TRADE_PENDING_LIMIT    = 2000904;  // 正在等待处理的消息达到上限
+    E_TRADE_NO_TRADE_ITEM    = 2000905;  // 找不到对应的交易条目
+    E_TRADE_WRONG_OPERATION  = 2000906;  // 交易操作类型错误
+    E_TRADE_FRIEND_NOT_ALLOW = 2000907;  // 交易对方无法参与活动
+
+    // 拼图
+    E_ACTION_PIC_TAKE_PIC_NOT_ENOUGH      = 2001000;  // 碎片不足 -
+    E_ACTION_PIC_POWER_PIC_NOT_ENOUGH     = 2001001;  // 万能碎片不足 -
+    E_ACTION_PIC_SEND_PIC_LIMIT           = 2001002;  // 赠送达到上线 -
+    E_ACTION_PIC_RECV_PIC_LIMIT           = 2001003;  // 接受碎片达到上线 -
+    E_ACTION_PIC_CHANGE_PIC_NOT_ENOUGH    = 2001024;  // 交易的时候拼图数量不够 -
+    E_ACTION_PIC_REWARD_OVER_MAX          = 2001025;  // 领奖次数超过最大次数 -
+    E_ACTION_PIC_CHANGE_OVER_MAX          = 2001026;  // 交易次数超过最大 -
+    E_ACTION_PIC_SEND_TO_UID_OVER_MAX_SET = 2001027;  // 被赠送碎片的好友套数达到限制 -
+    E_ACTION_PIC_ACTION_REWARD_EMPTY      = 2001028;  // 奖励数据为空 -
+    E_ACTION_PIC_CHANGE_NOT_INFO          = 2001029;  // 交易物品不是拼图碎片 -
+    E_ACTION_PIC_REWARD_NOT_COMPLETE      = 2001030;  // 领奖时未完成一套拼图 -
+    E_ACTION_PIC_HAD_COMPLETE             = 2001031;  // 拼图已经完成，请先领奖 -
+}

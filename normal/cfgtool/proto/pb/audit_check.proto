@@ -1,0 +1,58 @@
+syntax = "proto3";  //版本号
+package pb;         //包名
+
+//message UserInfo{ //消息，对应于Go的结构体
+//int64 name=1; //1:标号，唯一 即可（相当于数据库中的Id，不一定要从1 ，2的顺序依次排列。）
+//int64 pass=2;  //必须指定整型的范围，如int32，int64
+//}
+message regRes {
+    uint32 regRessponse = 1;  //1--注册成功 2--身份信息已被占用实名认证失败导致注册 3--身份信息不存在实名认证失败 4--用户名已被占用注册失败 5--注册失败
+}
+
+message loginRes {
+    uint32 loginResponse = 1;  //1--登录成功 2--用户名或密码错误 3--其他原因登陆失败
+}
+
+// redis数据库的值 key为'verifyInfo:'$uid
+message verifyInfo {
+    uint32 age             = 1;  // 年龄
+    bool   isYoung         = 2;  //是否未成年
+    uint32 loginLimitStage = 3;  // 1——22:00~8:00限制 2——非节假日限制1.5h 3——节假日限制3h 4——非节假日1h提醒 5——节假日1.5小时提醒 0——允许登录
+    int64  todayPlayedTime = 4;  //今天在线总时间
+    bool   addictNotiFlag  = 5;  //今日是否已提醒
+    bool   addictKickFlag  = 6;  //今日是否已发过踢人消息
+    int64  lastLoginTime   = 7;  //上次登陆时间时间戳
+}
+
+// 登陆后返回给前端的信息
+message verifyMsg {
+    uint32 age                  = 1;  // 年龄
+    bool   isYoung              = 2;  //是否未成年
+    uint32 loginLimitStage      = 3;  // 1——22:00~8:00限制 2——非节假日限制1.5h 3——节假日限制3h 4——非节假日1h提醒 5——节假日1.5小时提醒 0——允许登录
+    bool   isHolidayToday       = 4;  // 读取配置表判断
+    int64  todayPlayedTime      = 5;  //今天在线总时间
+    uint32 maxPayAmountPerOrder = 6;  // 每笔订单最大支付    读取配置表，通过age比较
+    uint32 payAmountMonth       = 7;  //本月已支付钱数    查询mysql订单并计算
+    uint32 maxPayAmountPerMonth = 8;  //每月最多充值数    读取配置表，通过age比较
+}
+//redis存昵称，key为userName$userName
+
+message userName {
+    int64 uid = 1;
+}
+
+//redis存userInfo,key为uidUserInfo$uid
+message uidUserInfo {
+    int64 idCardNumber = 1;
+}
+
+//redis存身份证号，key为身份证号:"idCardNum$idCardNumber"，
+message idCardNumber {
+    string trueName = 1;  //玩家真实姓名
+    int64  uid      = 2;
+}
+
+//redis存用户密码key为"pass".$uid
+message passWord {
+    int64 pass = 1;
+}

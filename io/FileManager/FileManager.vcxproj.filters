@@ -1,0 +1,152 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="源文件">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="CBrowse">
+      <UniqueIdentifier>{defc6cdd-438d-41b6-8a72-43a47fe4649d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Other">
+      <UniqueIdentifier>{5ae65916-4461-4ba6-8965-f2060ce90482}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="FileManager">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hh;hpp;hxx;hm;inl;inc;xsd</Extensions>
+    </Filter>
+    <Filter Include="Utils">
+      <UniqueIdentifier>{e3711427-38fe-4027-8dea-50c489bbb236}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="DiskManager">
+      <UniqueIdentifier>{3b3738f6-22a8-42f7-8a44-2206feaa4ca4}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="CBrowseDir.h">
+      <Filter>CBrowse</Filter>
+    </ClInclude>
+    <ClInclude Include="FileManager.h">
+      <Filter>FileManager</Filter>
+    </ClInclude>
+    <ClInclude Include="Command.hpp">
+      <Filter>源文件</Filter>
+    </ClInclude>
+    <ClInclude Include="DiskManager.h">
+      <Filter>DiskManager</Filter>
+    </ClInclude>
+    <ClInclude Include="PathHelper.hpp">
+      <Filter>FileManager</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\C++space\Convert\Convert\Convert.h">
+      <Filter>Utils</Filter>
+    </ClInclude>
+    <ClInclude Include="ACLOther2.h">
+      <Filter>Other</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Process\WindowsProcessHelper\CreateProcess\ProcessHelper.h">
+      <Filter>Utils</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Process\WindowsProcessHelper\CreateProcess\SessionManager.h">
+      <Filter>Utils</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Process\WindowsProcessHelper\Fork\ForkUtils.h">
+      <Filter>Utils</Filter>
+    </ClInclude>
+    <ClInclude Include="..\CFileManager.h">
+      <Filter>FileManager</Filter>
+    </ClInclude>
+    <ClInclude Include="FileAttrHelper.h">
+      <Filter>FileManager</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\ZIP\ZIPUtils\ZIPUtils.h">
+      <Filter>Utils</Filter>
+    </ClInclude>
+    <ClInclude Include="FileAttrHelperEx.h">
+      <Filter>FileManager</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="main.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="CBrowseDir.cpp">
+      <Filter>CBrowse</Filter>
+    </ClCompile>
+    <ClCompile Include="Other.cpp">
+      <Filter>Other</Filter>
+    </ClCompile>
+    <ClCompile Include="Other2.cpp">
+      <Filter>Other</Filter>
+    </ClCompile>
+    <ClCompile Include="Other3.cpp">
+      <Filter>Other</Filter>
+    </ClCompile>
+    <ClCompile Include="FileManager.cpp">
+      <Filter>FileManager</Filter>
+    </ClCompile>
+    <ClCompile Include="DiskManager.cpp">
+      <Filter>DiskManager</Filter>
+    </ClCompile>
+    <ClCompile Include="Other4.cpp">
+      <Filter>Other</Filter>
+    </ClCompile>
+    <ClCompile Include="FileMapping.cpp">
+      <Filter>Other</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\C++space\Convert\Convert\Convert.cpp">
+      <Filter>Utils</Filter>
+    </ClCompile>
+    <ClCompile Include="ACLOther1.cpp">
+      <Filter>Other</Filter>
+    </ClCompile>
+    <ClCompile Include="SpecialFolderPath.cpp">
+      <Filter>Other</Filter>
+    </ClCompile>
+    <ClCompile Include="DiskOther.cpp">
+      <Filter>Other</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Process\WindowsProcessHelper\CreateProcess\ProcessHelper_Info.cpp">
+      <Filter>Utils</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Process\WindowsProcessHelper\CreateProcess\SessionManager_CDLL.cpp">
+      <Filter>Utils</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Process\WindowsProcessHelper\CreateProcess\SessionManager_CEXE.cpp">
+      <Filter>Utils</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Process\WindowsProcessHelper\CreateProcess\SessionManager_Get.cpp">
+      <Filter>Utils</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Process\WindowsProcessHelper\CreateProcess\SessionManager_Global.cpp">
+      <Filter>Utils</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Windows\DLLProject\DLL注入\DLLUtils.cpp">
+      <Filter>Utils</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Process\WindowsProcessHelper\Fork\ForkUtils.cpp">
+      <Filter>Utils</Filter>
+    </ClCompile>
+    <ClCompile Include="FileAttrHelper.cpp">
+      <Filter>FileManager</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\ZIP\zlib-1.2.11\contrib\minizip\ioapi.c">
+      <Filter>Utils</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\ZIP\zlib-1.2.11\contrib\minizip\iowin32.c">
+      <Filter>Utils</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\ZIP\zlib-1.2.11\contrib\minizip\mztools.c">
+      <Filter>Utils</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\ZIP\zlib-1.2.11\contrib\minizip\unzip.c">
+      <Filter>Utils</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\ZIP\zlib-1.2.11\contrib\minizip\zip.c">
+      <Filter>Utils</Filter>
+    </ClCompile>
+    <ClCompile Include="FileAttrHelperEx.cpp">
+      <Filter>FileManager</Filter>
+    </ClCompile>
+  </ItemGroup>
+</Project>

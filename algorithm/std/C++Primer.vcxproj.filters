@@ -1,0 +1,73 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="C++Primer3数组字符串">
+      <UniqueIdentifier>{91345003-27e8-4eda-9d17-4acc686a96e5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="C++Primer9顺序容器">
+      <UniqueIdentifier>{bbdad8a5-0597-4ca5-9ffa-387d5bcaeeab}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="C++Primer3\习题3.10.cpp">
+      <Filter>C++Primer3数组字符串</Filter>
+    </ClCompile>
+    <ClCompile Include="C++Primer3\习题3.14.cpp">
+      <Filter>C++Primer3数组字符串</Filter>
+    </ClCompile>
+    <ClCompile Include="C++Primer3\习题3.15.cpp">
+      <Filter>C++Primer3数组字符串</Filter>
+    </ClCompile>
+    <ClCompile Include="C++Primer3\习题3.17.cpp">
+      <Filter>C++Primer3数组字符串</Filter>
+    </ClCompile>
+    <ClCompile Include="C++Primer3\习题3.19.cpp">
+      <Filter>C++Primer3数组字符串</Filter>
+    </ClCompile>
+    <ClCompile Include="C++Primer3\习题3.20.cpp">
+      <Filter>C++Primer3数组字符串</Filter>
+    </ClCompile>
+    <ClCompile Include="C++Primer3\习题3.23.cpp">
+      <Filter>C++Primer3数组字符串</Filter>
+    </ClCompile>
+    <ClCompile Include="C++Primer3\习题3.31.cpp">
+      <Filter>C++Primer3数组字符串</Filter>
+    </ClCompile>
+    <ClCompile Include="C++Primer3\习题3.32.cpp">
+      <Filter>C++Primer3数组字符串</Filter>
+    </ClCompile>
+    <ClCompile Include="C++Primer3\习题3.4.cpp">
+      <Filter>C++Primer3数组字符串</Filter>
+    </ClCompile>
+    <ClCompile Include="C++Primer3\习题3.5.cpp">
+      <Filter>C++Primer3数组字符串</Filter>
+    </ClCompile>
+    <ClCompile Include="C++Primer3\习题3.6.cpp">
+      <Filter>C++Primer3数组字符串</Filter>
+    </ClCompile>
+    <ClCompile Include="C++Primer9\习题9.44.cpp">
+      <Filter>C++Primer9顺序容器</Filter>
+    </ClCompile>
+    <ClCompile Include="C++Primer9\练习9.41.cpp">
+      <Filter>C++Primer9顺序容器</Filter>
+    </ClCompile>
+    <ClCompile Include="C++Primer9\练习9.42.cpp">
+      <Filter>C++Primer9顺序容器</Filter>
+    </ClCompile>
+    <ClCompile Include="C++Primer9\练习9.43.cpp">
+      <Filter>C++Primer9顺序容器</Filter>
+    </ClCompile>
+    <ClCompile Include="C++Primer9\练习9.45.cpp">
+      <Filter>C++Primer9顺序容器</Filter>
+    </ClCompile>
+    <ClCompile Include="C++Primer9\练习9.46.cpp">
+      <Filter>C++Primer9顺序容器</Filter>
+    </ClCompile>
+    <ClCompile Include="C++Primer9\练习9.47.cpp">
+      <Filter>C++Primer9顺序容器</Filter>
+    </ClCompile>
+    <ClCompile Include="C++Primer9\练习9.49.cpp">
+      <Filter>C++Primer9顺序容器</Filter>
+    </ClCompile>
+  </ItemGroup>
+</Project>

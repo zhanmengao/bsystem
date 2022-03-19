@@ -1,0 +1,360 @@
+syntax = "proto3";
+package pb;
+
+import "enum_other.proto";
+import "struct_other.proto";
+
+/******************************用户信息********************/
+//玩家名片信息
+message DBProfile {
+    bytes  Signature        = 1;  // 个性签名
+    bytes  Province         = 2;  // 省份
+    bytes  City             = 3;  // 市
+    bytes  Address          = 4;  // 地址（海外）
+    bytes  Constellation    = 5;  // 星座
+    string PlatNum          = 6;  // 关键平台号码(wx/qq/fb)
+    uint32 DefaultSignature = 7;  // 默认个性签名
+}
+//
+message ExtraUserData {
+    int32  goPlanetTime       = 1;
+    int32  povertyRewardTime  = 2;
+    int32  povertyRewardCount = 3;
+    uint32 skillType          = 4;   // 技能类型，0 为没被动技能效果，1为偷，2为打炮，3为金币加成
+    float  skillVal           = 5;   // 技能数值
+    uint32 eggTimes           = 6;   // 扭蛋机抽蛋次数
+    uint32 numenEnergy        = 7;   // 守护神当前能量值
+    uint32 beAttackTimes      = 8;   // 被打次数，过岛清空
+    uint32 elephantToyPresent = 9;   // 给大象玩具的等级, 有 0, 1, 2
+    uint32 numenUsedTimes     = 10;  // 守护神使用次数
+    uint32 usedNumenSkill     = 11;  // 使用过的守护神技能
+    string doneTaskList       = 12;  // 已完成的任务奖励ID记录，如 1_3_4
+    uint32 recallPopReward    = 13;  // 召回弹窗奖励的领取记录
+    string recallTask         = 14;  // 符合条件的任务链，记录 recall.xlsx 的 processKey ，形如 1_3_4_7
+    uint32 recallTimes        = 15;  // 记录已经领取的任务的次数
+    string activeFuncs        = 17;  // 记录已经激活的功能列表，英文 , 隔开
+}
+/******************************用户信息*******************/
+
+// 转盘
+message ZhuanpanLotteryData {
+    int64          bet          = 1;
+    int64          currentType  = 2;  //当前触发类型
+    int64          currentRound = 3;  //当前轮数
+    repeated int64 typesNum     = 4;  //类型触发次数
+    int64          Rounds       = 5;  //类型转盘生效轮数
+}
+
+// 超级礼包
+message BigItem {
+    int32  buy        = 1;  //是否已经购买超级礼包标志
+    string itemId     = 2;
+    int64  modeID     = 3;
+    uint32 firstPay   = 4;  //首充礼包过期时间戳 弃用
+    uint32 expireTime = 5;  //超级礼包有单独的持续时间，这是持续时间的倒计时，如果结束了，就重新开始解释
+}
+
+message BingoDigit {
+    int32 digit  = 1;  // 道具ID
+    int32 weight = 2;  // 权重
+}
+
+// 后台活动数据
+message BingoData {
+    // 数字格子下标定义
+    // +---+---+---+---+
+    // | 0 | 1 | 2 |   |
+    // +---+---+---+---+
+    // | 3 | 4 | 5 |   |
+    // +---+---+---+---+
+    // | 6 | 7 | 8 |   |
+    // +---+---+---+---+
+    // |   |   |   |   |
+    // +---+---+---+---+
+    repeated BingoDigit digits = 1;  // 每个格子下标对应的数字及其权重
+    // 数组索引为 数字道具ID-1
+    repeated int32 digitOwn = 2;  // 每个数字的存量
+    // 奖励格子下标定义
+    // +---+---+---+---+
+    // |   |   |   | 0 |
+    // +---+---+---+---+
+    // |   |   |   | 1 |
+    // +---+---+---+---+
+    // |   |   |   | 2 |
+    // +---+---+---+---+
+    // | 3 | 4 | 5 | 6 |
+    // +---+---+---+---+
+    repeated int32 rewardTimes = 3;  // 每个奖励已领取的次数
+    int64          expireAt    = 4;  // 当前数据过期时间
+    int32          invited     = 5;  // 当期活动已邀请的总人数
+    repeated int64 invites     = 6;  // 已邀请成功但未领取数字的uid列表
+}
+
+//数据每天过期
+message BuyLimitItem {
+    string productId = 1;  //商品id
+    int32  count     = 2;  //当天购买次数
+}
+
+// 每天购买次数限制
+message BuyLimit {
+    repeated BuyLimitItem list = 1;  //购买列表
+}
+
+//累计充值
+message DBCumuRecharge {
+    uint32 CumuDiamond = 1;  // 累计充值的钻石数
+    uint32 BitDone     = 2;  // 已完成的档位奖励
+    uint32 BitRecv     = 3;  // 领取状态的档位奖励
+}
+
+//累计欢乐夺宝
+message DBHappyCumu {
+    uint32 CumuTimes = 1;  // 累计的次数
+    uint32 BitDone   = 2;  // 已完成的档位奖励
+    uint32 BitRecv   = 3;  // 领取状态的档位奖励
+}
+
+//转盘事件累计
+message DBWheelEvent {
+    uint32 EventId   = 1;  // 子活动id
+    uint32 CumuTimes = 2;  // 累计的次数
+    uint32 BitDone   = 3;  // 已完成的档位奖励
+    uint32 BitRecv   = 4;  // 领取状态的档位奖励
+    uint32 BitVip    = 5;  // vip领取状态的档位奖励
+    uint32 ExpireAt  = 6;  // 数据到期时间
+    string ConfigId  = 7;  // 配置表ID
+    bool   Locked    = 8;  // 锁定本次比赛，重构需求：玩家从老版本升级新版本完成数据转换后锁定不让老版本参加比赛
+}
+
+// 工会赠送记录
+message FamilySendRecord {
+    int32 sendId  = 1;  // 捐赠请求编号
+    int32 type    = 2;  // pic: 1, baby: 2
+    int32 id      = 3;  // 物品id
+    int32 expire  = 4;  // 时间戳
+    int32 sendUid = 5;  // 赠送者uid
+    int32 time    = 6;  // 赠送时间
+}
+
+// 24小时记录数据
+message FamilySend {
+    int32                     sendId = 1;  // 捐赠请求编号，此值自增用于record中sendId编号
+    repeated FamilySendRecord record = 2;  // 捐赠请求记录
+}
+
+/**********************************好友帮助 开始********************************/
+message FriendHelpItem {
+    int32  type   = 1;  //互助的类型
+    int32  uid    = 2;  //帮我的人的uid
+    uint32 time   = 3;  // 帮我的时间
+    string fbPic  = 4;  //好友的头像 防止好友删除 没了头像
+    string name   = 5;  //援助的好友的名字
+    uint32 itemId = 6;  //id 领奖时根据ID领取
+}
+
+message BeHelpItem {
+    int32  uid   = 1;  //帮我的人的uid
+    uint32 count = 2;  //帮助我的次数
+}
+
+message ToDayHelpItem {
+    int32 count = 1;  //帮助的次数
+    int64 time  = 2;  //今天最后一次被帮助的时间
+    int32 type  = 3;  //互助类型
+}
+
+message LastHelpTypeItem {
+    int32 uid  = 1;  //对谁使用了帮助
+    int32 type = 2;  //使用了什么类型
+}
+
+message HelpCountItem {
+    int32 fUid        = 1;  //加好友用对
+    int32 toHelpCount = 2;  //帮助这个好友多少次
+    int32 beHelpCount = 3;  //被这个好友帮助了多少次
+}
+
+message FriendHelp {
+    repeated FriendHelpItem   list            = 1;  //可以领取的奖励列表, 因为领奖后item会删掉所以另外加个存储做当天次数统计
+    repeated ToDayHelpItem    toDayHelp       = 3;  //今天被帮助次数的统计
+    repeated LastHelpTypeItem lastHelpType    = 4;  //对某个好友最近使用了什么帮助卡
+    repeated HelpCountItem    helpCountList   = 5;  //统计帮助好友和被好友帮助的次数
+    uint32                    helpCountExpire = 6;  //好友互助分数的过期时间，月底清空,如果当前时间大于该时间，次数应该被清空
+    repeated FriendHelpItem   passList        = 7;  //已经领取的奖励条目
+    repeated uint32           itemId          = 8;  //用来记录 itemId， 领奖的时候需要指定id
+}
+/**********************************好友帮助 结束********************************/
+
+/**********************************卡片相关 开始*********************************/
+message GuardCardItem {
+    int32 cardId = 1;  // 卡片ID, groupId * 100 + cardIndex [0-8]
+    int32 num    = 2;  // 卡片数量 , 包括被锁数量
+    int32 recv   = 3;  // 好友赠送的卡片数量
+}
+
+message GuardCardSendItem {
+    uint64 fuid  = 1;  // 好友的uid
+    uint32 count = 2;  // 好友赠送的次数，前端需要做排序
+}
+
+message GuardCard {
+    repeated GuardCardItem     cardList          = 1;  // 卡片list
+    repeated uint32            completeGroupList = 2;  // 哪些卡组已经凑齐领奖了
+    int32                      sendTime          = 3;  // 最近一次发送发片的时间
+    int32                      sendCount         = 4;  // 今天发送卡片的次数
+    int32                      recvTime          = 5;  // 最近一次接收卡片的时间
+    int32                      recvCount         = 6;  // 今天接收卡片的次数
+    repeated GuardCardSendItem sendCntList       = 7;  // 好友赠送次数列表
+    GuardCardGod               godCard           = 8;  // 万能卡片
+    int64                      cardVer           = 9;  // 卡组版本，2.16.0版本升级（5星卡）后版本为2
+}
+
+message GuardCardMsgItem {
+    uint64 fuid   = 1;  //赠送卡片的好友的uid
+    int32  cardId = 2;  // 卡片ID, groupId * 100 + cardIndex [0-8]
+    uint32 time   = 3;
+    uint32 type   = 4;  //消息类型 0 send  1 接收
+}
+
+message GuardCardMsg {
+    repeated GuardCardMsgItem list = 1;
+}
+
+message GuardCardExchangeItem {
+    int32 id           = 1;  //兑换奖励的id
+    int32 times        = 2;  //今天兑换的次数
+    int32 exchangeTime = 3;  //最近一次兑换的时间
+}
+
+message GuardCardExchange {
+    repeated GuardCardExchangeItem list = 1;  // 购买数据
+}
+
+message GuardCardGod {
+    int32 num                = 1;  // 数量
+    int32 offlineDisabledNum = 2;  // 离线万能卡失效数量
+}
+/**********************************卡片相关 结束*********************************/
+message SkinWearAry {
+    repeated SkinWear group = 1;
+}
+
+message SkinWear {
+    string type   = 1;  //穿戴的类型(wheelSkin-转盘皮肤,wheelButtonSkin-转盘按钮皮肤)
+    string wearID = 2;  //当前穿戴的id
+}
+
+// 组员基础信息
+message UnionCompetitionTeamMemberBaseInfo {
+    uint32 uid  = 1;
+    string name = 2;
+}
+
+// 队员信息
+message UnionCompetitionTeamMemberInfo {
+    UnionCompetitionTeamMemberBaseInfo  baseInfo          = 1;
+    EnumUnionCompetitionShipSide        side              = 2;
+    EnumUnionCompetitionMemberOperation lastOperation     = 3;
+    uint64                              lastOperationTime = 4;
+}
+
+// 队长信息
+message UnionCompetitionTeamCaptainInfo {
+    UnionCompetitionTeamMemberBaseInfo baseInfo        = 1;
+    EnumUnionCompetitionCaptainCommand lastCommand     = 2;
+    uint64                             lastCommandTime = 3;
+}
+
+message UnionCompetitionTeamBaseInfo {
+    uint32 teamId   = 1;
+    string teamName = 2;
+}
+
+// 队伍信息
+message UnionCompetitionTeamInfo {
+    UnionCompetitionTeamBaseInfo            baseInfo       = 1;
+    UnionCompetitionTeamCaptainInfo         captain        = 2;
+    repeated UnionCompetitionTeamMemberInfo teamMemberList = 3;
+    uint32                                  posIndex       = 4;
+}
+
+// 赛场信息
+message UnionCompetitionArenaInfo {
+    repeated UnionCompetitionTeamInfo teams       = 1;
+    uint32                            myTeamIndex = 2;
+}
+
+message UserMsgItem {
+    string          modName    = 1;  //消息所属的模块
+    uint32          msgType    = 2;  //消息类型
+    uint32          msgID      = 3;  //消息ID
+    uint32          createTime = 4;  //消息时间， unix时间
+    uint32          validTime  = 5;  //消息有效时间, 单位秒， 0表示永远有效
+    repeated string params     = 6;  //消息参数
+    string          extra      = 7;  //额外的数据
+}
+
+message UserMsg {
+    repeated UserMsgItem msg   = 1;
+    uint32               curID = 3;  //用户保存的当前ID
+}
+
+// 建筑物打折卡PB结构
+message DiscountCard {
+    repeated DiscountCardItem cardItem = 1;  // 打折卡列表
+}
+message DiscountCardItem {
+    string id     = 1;  // 打折卡序号，组成格式如：1_1，代表打折卡对应的建筑物为第一行第一个
+    int32  expire = 2;  // 打折卡的有效期
+}
+
+message WishTreeReward {  //存储用户领取个人宝箱情况
+    int32 id  = 1;        //奖励ID
+    int32 num = 2;        //奖励数量
+}
+
+message WishTreePrivate {                     //个人相关数据
+    int32                   ballCount   = 1;  //用户拥有的许愿球个数
+    int32                   wishCount   = 2;  //用户许愿次数
+    repeated int32          privateBox  = 3;  //用户个人宝箱奖励领取
+    repeated int32          publicBox   = 4;  //用户全民宝箱奖励领取
+    repeated WishTreeReward rewarded    = 5;  //用户已经领取情况
+    int32                   presentDate = 6;  //系统最后一次赠送许愿球的时间，格式 YYYYmmdd
+}
+
+message WishTreeUser {
+    int32  id   = 1;  //用户领取的全民宝箱奖励ID
+    int32  uid  = 2;  //用户uid
+    string name = 3;  //用户名
+    string fpic = 4;  //用户头像url
+}
+
+message WishTreePublic {                 //全民相关数据
+    repeated WishTreeUser userList = 1;  //获得全民宝箱的用户
+}
+
+message ActionCard {
+    repeated ActionCardItem cardList          = 1;  // 所有拥有卡片
+    repeated int32          completeGroupList = 2;  // 已集齐并领奖卡组
+}
+
+//当前拥有的皮肤
+message SkinObject {
+    int32 id         = 1;  //编号
+    int32 num        = 2;  //当前拥有的数量
+    int32 createTime = 3;  //购买时间
+}
+
+//拥有的某个类别的皮肤的集合
+message SkinGroup {
+    string              type         = 1;  //类型
+    repeated SkinObject group        = 2;  //皮肤的集合
+    int32               deleteFlag   = 3;  // 删除标记位
+    int32               isCompensate = 4;  // 是否补偿  因为2.19.0版本去掉了按钮皮肤
+}
+
+//单个商品
+message Skin {
+    repeated SkinGroup list = 1;  //皮肤
+}

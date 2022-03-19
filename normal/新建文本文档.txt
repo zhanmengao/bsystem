@@ -1,0 +1,4 @@
+读第一行 生成字段名。第一个字段必须是id int32
+读第二行，生成字段类型 支持string int32 int64 
+
+生成相应的读写函数：key为int32 value为pb

@@ -1,0 +1,5 @@
+﻿  main.cpp
+d:\space\system\ipc\pipe\main.cpp(63): warning C4244: “初始化”: 从“std::streamsize”转换到“std::size_t”，可能丢失数据
+d:\space\system\ipc\pipe\main.cpp(95): warning C4244: “参数”: 从“std::streamsize”转换到“std::size_t”，可能丢失数据
+  Pipe.vcxproj -> D:\Space\System\IPC\Pipe\Debug\Pipe.exe
+  Pipe.vcxproj -> D:\Space\System\IPC\Pipe\Debug\Pipe.pdb (Full PDB)

@@ -1,0 +1,72 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Day2_类和对象">
+      <UniqueIdentifier>{8242d3cb-4dfd-4fc9-ab9c-673e38d9a85b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Other">
+      <UniqueIdentifier>{015a2289-8f0d-4ada-bbfe-ab5e8cc8976b}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="Day2\dm01_类的封装.cpp">
+      <Filter>Day2_类和对象</Filter>
+    </ClCompile>
+    <ClCompile Include="Day2\dm02_mycube.cpp">
+      <Filter>Day2_类和对象</Filter>
+    </ClCompile>
+    <ClCompile Include="Day2\dm03_点和圆形.cpp">
+      <Filter>Day2_类和对象</Filter>
+    </ClCompile>
+    <ClCompile Include="Day2\dm12_指针的引用.cpp">
+      <Filter>Day2_类和对象</Filter>
+    </ClCompile>
+    <ClCompile Include="Day2\dm13_常量引用.cpp">
+      <Filter>Day2_类和对象</Filter>
+    </ClCompile>
+    <ClCompile Include="Day2\dm14_inline内联函数.cpp">
+      <Filter>Day2_类和对象</Filter>
+    </ClCompile>
+    <ClCompile Include="Day2\dm15_函数参数相关的扩展.cpp">
+      <Filter>Day2_类和对象</Filter>
+    </ClCompile>
+    <ClCompile Include="Day2\dm16_函数重载基础.cpp">
+      <Filter>Day2_类和对象</Filter>
+    </ClCompile>
+    <ClCompile Include="Day2\dm17_函数重载和函数指针在一起.cpp">
+      <Filter>Day2_类和对象</Filter>
+    </ClCompile>
+    <ClCompile Include="Day2\MyTeacher.cpp">
+      <Filter>Other</Filter>
+    </ClCompile>
+    <ClCompile Include="Day2\点和圆分开\mainclass.cpp">
+      <Filter>Other</Filter>
+    </ClCompile>
+    <ClCompile Include="Day2\mainclass.cpp">
+      <Filter>Other</Filter>
+    </ClCompile>
+    <ClCompile Include="Day2\点和圆分开\MyPoint.cpp">
+      <Filter>Other</Filter>
+    </ClCompile>
+    <ClCompile Include="Day2\点和圆分开\AdvCircle.cpp">
+      <Filter>Other</Filter>
+    </ClCompile>
+    <ClCompile Include="指针和引用.cpp">
+      <Filter>Other</Filter>
+    </ClCompile>
+    <ClCompile Include="this.cpp">
+      <Filter>Other</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Day2\MyTeacher.h">
+      <Filter>Other</Filter>
+    </ClInclude>
+    <ClInclude Include="Day2\点和圆分开\MyPoint.h">
+      <Filter>Other</Filter>
+    </ClInclude>
+    <ClInclude Include="Day2\点和圆分开\AdvCircle.h">
+      <Filter>Other</Filter>
+    </ClInclude>
+  </ItemGroup>
+</Project>

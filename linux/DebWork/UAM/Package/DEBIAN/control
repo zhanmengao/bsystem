@@ -1,0 +1,11 @@
+Package: UAM
+Version: 1.0
+Architecture: all
+Maintainer: VESystem
+Installed-Size: 1024
+Recommends:
+Suggests:
+Section: devel
+Priority: optional
+Multi-Arch: foreign
+Description: VESystem UAM Client

@@ -1,0 +1,116 @@
+/*
+	message PayConfigAry{
+		repeated PayConfig Ary = 1;
+	}
+	message PayConfig{
+		int32 ID = 1;
+		repeated PayItem = 2;
+		map<string,Delivery> DeliveryMap = 3;
+	}
+	message PayItem{
+		string ItemID = 1; 
+		int64 ItemPrice = 2;
+		string ItemName = 3; 
+	}
+	message Delivery{
+		string ItemID = 1;
+		int32 ProductType = 2;
+		string ProductID = 3;
+	}
+*/
+
+// 以下是上面PB商城的结构体格式
+
+type PayConfigAry struct{
+	Ary []*PayConfig
+}
+
+type PayConfig struct{
+	ID int32
+	ItemList []*PayItem
+	DeliveryMap map[string]*Delivery
+}
+
+type PayItem struct{
+	ItemID string 
+	ItemPrice int64
+	ItemName string
+}
+
+type Delivery struct {
+	ItemID string 
+	ProductType int32
+	ProductID string
+}
+
+
+//----------------以下是readonly生成的格式------------------------------
+//因为两者的内存布局完全一样，可以直接指针转化
+func (m *PayConfigAry)GetReadOnly()*PayConfigAryRO{
+	return (*PayConfigAryRO)(unsafe.Pointer(m))
+}
+
+type PayConfigAryRO struct{
+	_Ary []*PayConfigRO
+}
+
+func (p *PayConfigAryRO)GetAry()[]*PayConfigRO{
+	return p._Ary
+}
+
+
+type PayConfigRO struct{
+	_ID int32
+	_ItemList []*PayItemRO
+	_DeliveryMap map[string]*DeliveryRO
+}
+
+func (p *PayConfigRO)GetID()int32{
+	return p._ID
+}
+func (p *PayConfigRO)GetItemList()[]*PayItemRO{
+	tmp := make([]*PayItemRO, len(p._ItemList))
+	copy(tmp, p._ItemList)
+	return tmp
+}
+func (p *PayConfigRO)DeliveryMap()map[string]*DeliveryRO{
+	tmp := make(map[string]*DeliveryRO) 
+	for k,v := range p._DeliveryMap{
+		tmp[k]= v 
+	}
+	return tmp
+}
+
+type PayItemRO struct{
+	_ItemID string 
+	_ItemPrice int64
+	_ItemName string
+}
+
+func (p *PayItemRO)GetItemID()string{
+	return p._ItemID
+}
+func (p *PayItemRO)GetItemPrice()int64{
+	return p._ItemPrice
+}
+func (p *PayItemRO)GetItemName()string{
+	return p._ItemName
+}
+
+type DeliveryRO struct {
+	_ItemID string 
+	_ProductType int32
+	_ProductID string
+}
+
+func(p *DeliveryRO)GetItemID()string{
+	return p._ItemID
+} 
+
+func(p *DeliveryRO)GetProductType()int32{
+	return p._ProductType
+} 
+
+func(p *DeliveryRO)GetProductID()string{
+	return p._ProductID
+} 

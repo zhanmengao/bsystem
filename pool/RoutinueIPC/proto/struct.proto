@@ -1,0 +1,301 @@
+syntax = "proto3";
+package proto;
+import "enum.proto";
+
+message CommonRewardItem {
+    string type   = 1;  // 道具类型
+    int64  num    = 2;  // 道具数量
+    int64  param  = 3;  // 道具号码
+    int64  maxNum = 4;  // 不为0,数量在num~maxNum之间随机
+    string image  = 5;  // 道具图片
+    //int32  rare      = 6; // 是否为稀有奖励 1:稀有 配置中心中配置， 先占用个位置
+    //int32  broadcast = 7; // 是否需要广播 1:需要
+    repeated CommonRewardItem innerReward = 8;  // 嵌套奖励
+}
+
+message SdkUserInfo {
+    string     Name      = 1;
+    GenderType Sex       = 2;
+    string     Avatar    = 3;
+    string     Country   = 4;
+    string     SiteUid   = 5;
+    string     FirstName = 6;
+    string     Email     = 7;
+    string     OpenID    = 8;
+}
+
+//message AttackedRecord {
+//    string UID            = 1;  // 打炮UID
+//    string FromUID        = 2;  // 被哪个UID打或偷
+//    AttackRecordType Type = 3;  // 类型
+//    int64 Building        = 4;  // 建筑ID
+//    int64 MoneyNum        = 5;  // 偷金币
+//    int64 Time            = 6;  // 添加时间
+//    int64 Status          = 7;  // 状态
+//}
+
+// 客户端更新
+message AppUpdateInfo {
+    string PromptVersion   = 1;  // 提示更新版本号
+    string Content         = 2;  // 更新文案
+    string ForceMinVersion = 3;  // 强更最小版本号
+    string ForceVersion    = 4;  // 强更版本号
+    string DownloadUrl     = 5;  // 更新包下载地址
+}
+
+// 服务器停服状况
+message ServerInfo {
+    bool   IsPause = 1;  // 是否停服
+    string Content = 2;  // 停服文案
+}
+
+message ResourceInfo {
+    string CdnHost      = 1;  // 静态CDN地址
+    string ResourcePath = 2;  // 下载地址的路径，绝对路径
+    string ConfigMD5    = 3;  // config_md5.json的md5值
+    string ConfigPath   = 4;  // 配置中心bytes路径
+}
+
+message Reward {
+    PropertyType PropID = 1;  // 奖励类型
+    int64        Incr   = 2;  // 增量
+    int64        Total  = 3;  // 总量
+    int64        Expire = 4;  // 过期时间
+    int32        ID     = 5;  // 道具ID,用于唯一标识奖励
+}
+
+message Consume {
+    PropertyType PropID = 1;  // 奖励类型
+    int64        Desc   = 2;  // 减量
+    int64        Expire = 4;  // 减少的过期时间
+}
+
+message UserProfile {
+    string         Name        = 1;   // 名
+    string         Nick        = 2;   // 昵称
+    GenderType     Sex         = 3;   // 性别
+    string         Avatar      = 4;   // 头像
+    int64          AvatarFrame = 5;   // 头像框
+    bool           IsRobot     = 6;   // 是否机器人
+    int64          VIPTime     = 7;   // vip有效期
+    int64          FamilyID    = 8;   // 公会ID
+    string         FamilyName  = 9;   // 公会名
+    int64          FamilyIcon  = 10;  // 公会Icon
+    int64          CurFlag     = 11;  // 当前旗子
+    repeated int64 FlagList    = 12;  // 用户旗子
+    string         Version     = 13;  // 版本
+    string         DeviceType  = 14;  // 设备类型
+    string         Channel     = 15;  // 渠道
+    string         Platform    = 16;  // 平台
+    string         Language    = 17;  // 语言
+    string         Country     = 18;  // 国家
+    string         HotVersion  = 19;  // 热更版本
+    int64          Prosperity  = 20;  // 庄园繁荣度（展示使用）
+}
+
+message PiggyWheelCardLevelConfig {
+    int32          PetID       = 1;  // 宠物ID
+    int32          PetLevelMin = 2;  // 最小宠物等级 左闭
+    int32          PetLevelMax = 3;  // 最大宠物等级 右开
+    int32          MinBet      = 4;  // 最小bet 左闭
+    int32          MaxBet      = 5;  // 最大bet 右开
+    repeated int32 Modes       = 6;  // 对应模型列表
+}
+
+message PiggyWheelCardDefineConfig {
+    int32          Mode          = 1;  // 模型
+    int32          No            = 2;  // 模型序号
+    repeated int32 GridRandCount = 3;  // 转盘对应格子出现次数; (10个元素表示十格 程序读出来是0-9)
+}
+
+message PiggyWheelCardBaseConfig {
+    int32          BasicCardNum      = 1;  // 基础卡组每组数量
+    repeated int32 BasicCardFillGrid = 2;  // 基础卡组补足数量,所用格子 (填写的值是1-10非索引)
+    int32          IsOpen            = 3;  // 是否开启
+}
+
+message PiggyWheelGridItem {
+    WheelResultType ResultType = 1;
+    int64           Count      = 2;
+}
+
+message PiggyWheelGridContentConfig {
+    int64                       Planet          = 1;  // 岛屿号
+    int64                       MaxEnergy       = 2;  // 最大体力值
+    int64                       RecoverEnergy   = 3;  // 体力恢复值
+    int64                       RecoverInterval = 4;  // 体力恢复周期
+    int64                       MaxShield       = 5;  // 最大盾数量
+    repeated PiggyWheelGridItem Grids           = 6;  // 转盘格子内容
+}
+
+message PiggyStealConfig {
+    int32 PlanetID             = 1;
+    int64 DailyLimit           = 2;
+    int64 CKMax                = 3;
+    int64 CKDelta              = 4;
+    int64 CKMin                = 5;
+    int64 SRMin                = 6;
+    int64 SRMax                = 7;
+    int64 BRMin                = 8;
+    int64 BRMax                = 9;
+    int32 RobotSpaceMin        = 10;
+    int32 RobotSpaceMax        = 11;
+    int64 SideMin              = 12;
+    int64 SideMax              = 13;
+    int32 StolenTimesProtected = 14;
+}
+
+message PiggyStealConstantConfig {
+    int32           CKLockedLimit = 1;
+    repeated CKType CKType        = 2;
+}
+
+// 审核
+message AccReviewConfig {
+    bool   IsReview = 1;  // 是否审核
+    string Version  = 2;  // 审核的版本
+}
+
+message AccPauseConfig {
+    bool                              IsPause  = 1;  // 是否停服
+    repeated AccLanguageContentConfig Contents = 2;
+}
+
+message AccLanguageContentConfig {
+    string Lang    = 1;
+    string Content = 2;  //  文案
+}
+
+message AccAppUpdateConfig {
+    string                            Device        = 1;  // 设备，android/ios
+    string                            MinVersion    = 2;  // 游戏支持的最小版本号，低于此版本一定强制更新
+    string                            PromptVersion = 3;  // 低于此版本弹框提示更新
+    repeated AccLanguageContentConfig Contents      = 4;  // 更新的文案
+    string                            Channel       = 5;  // 渠道
+    string                            DownloadUrl   = 6;  // 下载的url
+}
+
+message FuncSwitchConfig {
+    string Device      = 1;  // 设备，android/ios
+    string CodeVersion = 2;  // 高于此版本不显示兑换码（包含）
+}
+
+// 热更
+message HotFix {
+    int64  Revision    = 1;  // 热更版本号
+    string ForceUpdate = 2;  // 是否强制更新(Y/N)
+    string FileName    = 3;  // 补丁文件名
+    string FileSize    = 4;  // 文件大小(byte)
+}
+
+// 热更
+message AccHotFixConfig {
+    int64  Revision    = 1;  // 热更版本号
+    string ForceUpdate = 2;  // 是否强制更新(Y/N)
+    string FileName    = 3;  // 补丁文件名
+    string FileSize    = 4;  // 文件大小(byte)
+    string Device      = 5;  // 设备(Android/iOS)
+    string Platform    = 6;  // 平台
+    string Version     = 7;  // 版本号
+}
+
+message BindRewardConfig {
+    LoginType       LoginType = 1;  //绑定类型
+    repeated Reward Rewards   = 2;  //奖励
+}
+
+// 宠物与玩具的映射关系
+message PiggyPetToyMapConfig {
+    int64 PetID = 1;
+    int64 ToyID = 2;
+}
+
+message PiggyPetWheelMoneyExtra {
+    int64 Level        = 1;
+    int64 ExtraPercent = 2;
+}
+
+message PiggyPetWheelMoneyConfig {
+    int64                            PetID       = 1;  // 携带之后额外加成转盘金币的宠物ID
+    int64                            PetLevel    = 2;  // 宠物等级
+    int64                            BasePercent = 4;  // 额加成转盘金币的百分比
+    repeated PiggyPetWheelMoneyExtra ToyExtra    = 5;  // 宠物玩具等级额外加成
+}
+message MsgCenterSteal {
+    string money = 1;  //钱数
+}
+
+message MsgCenterPetSteal {
+    string money       = 1;  //钱数
+    int32  petId       = 2;
+    string petSubMoney = 3;
+}
+// 机器人
+message PiggySlotRobotFakeConfig {
+    uint32 PlanetRandChangeLeft  = 1;  // 随机岛屿
+    uint32 PlanetRandChangeRight = 2;  // 随机岛屿
+    uint32 ShieldRate            = 3;  // 是否有盾牌(%)
+    // 玩家岛屿状态从25个建筑50个状态中进行随机
+    // 机器人星星=当前岛屿*25
+}
+message PiggySlotRobotLimitConfig {
+    int64 Planet        = 1;  // 岛屿
+    int64 RobotStealMax = 2;  // 边池机器人偷取上限
+    int64 RobotStealMin = 3;  // 边池机器人偷取下限
+}
+
+message StolenDailyData {
+    repeated StealRecord StolenRecord   = 1;
+    int64                StealMoney     = 2;
+    int64                LastStolenTime = 3;
+}
+
+message CKLockedData {
+    string UID      = 1;
+    int64  LockTime = 2;
+}
+
+message FriendCKData {
+    string                UID           = 1;
+    int64                 Money         = 2;
+    repeated CKLockedData LockData      = 3;
+    StolenDailyData       StolenData    = 4;
+    int64                 LastLoginTime = 5;
+}
+
+message StealRecord {
+    string UID       = 1;
+    int64  Money     = 2;
+    int64  StealTime = 3;
+}
+
+message StealDailyData {
+    int64                StealMoney       = 1;
+    int64                StealPlayerTimes = 2;
+    int64                StealRobotTimes  = 3;
+    repeated StealRecord StealRecord      = 4;
+    int64                LastStealTime    = 5;
+}
+
+message CKData {
+    string                UID       = 1;
+    int64                 Money     = 2;
+    UserProfile           Profile   = 3;
+    bool                  IsVip     = 4;
+    bool                  IsRobot   = 5;
+    int64                 LockTime  = 6;
+    int64                 CurPlanet = 7;
+    repeated BuildingInfo Buildings = 8;
+}
+
+message PlanetInfo {
+    int64                 CurPlanet = 1;
+    int64                 Star      = 2;
+    repeated BuildingInfo Buildings = 3;
+}
+
+message BuildingInfo {
+    int64          Lv                    = 1;
+    BuildingStatus Status                = 2;
+    bool           IsMiniShieldProtected = 3;
+}

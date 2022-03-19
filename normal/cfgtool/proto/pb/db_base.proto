@@ -1,0 +1,391 @@
+syntax = "proto3";
+package pb;
+
+import "enum.proto";
+import "struct.proto";
+import "struct_slot.proto";
+
+// 场景限制信息存储
+message SceneSubsidyData {
+    map<int32, int32> Pops    = 1;  // 配置id, 观看次数
+    map<int32, int32> Rewards = 2;  // 配置id, 发奖次数
+}
+
+// 礼盒存储结构
+message SceneGiftBoxItem {
+    int64 giftBoxRewardTime   = 1;  // 上次的领奖时间
+    int64 giftBoxRewardCounts = 2;  // 领奖次数
+}
+
+message SceneGiftBox {
+    map<int32, SceneGiftBoxItem> list = 1;
+}
+
+// pet data
+message PetStorageData {
+    PetInfo Data = 1;
+}
+
+// 玩家的标签数据
+message UserTagData {
+    TagDataItem StarCompRoom   = 1;
+    TagDataItem WheelEventRoom = 2;
+}
+message TagDataItem {
+    int64          TagTime         = 1;  // 打标签时间
+    int64          LastTriggerDate = 2;  // 最近一次消耗标签时间（黑名单需要）
+    repeated int32 TagIDs          = 3;  // 标签列表
+}
+
+// 玩家状态的历史记录
+message UserStatusHistoryData {
+    repeated WheelEventHistoryItem WheelEventHistory = 1;  // 转盘事件
+    repeated StarCompHistoryItem   StarCompHistory   = 2;  // 锦标赛
+    repeated TiliHistoryItem       TiliHistory       = 3;  // 体力
+    int32                          backFlowDays      = 4;  // 回流天数
+}
+// 历史记录数据中基础部分
+message BaseHistory {
+    int64 date = 1;  // 日期
+}
+// 转盘事件历史记录
+message WheelEventHistoryItem {
+    BaseHistory base         = 1;
+    int32       TriggerTagID = 2;
+}
+// 锦标赛历史记录
+message StarCompHistoryItem {
+    BaseHistory base         = 1;
+    int32       TriggerTagID = 2;  // 触发的标签
+    int32       Rank         = 3;  // 排名
+}
+// 体力发放历史记录
+message TiliHistoryItem {
+    BaseHistory base     = 1;
+    int32       GrantNum = 2;
+}
+
+// 用户的一些不核心的资产
+message UserProps {
+    map<int64, bool> AvatarFrame = 1;  //头像框
+}
+
+message StarEvaluation {
+    string version       = 1;  // 版本号
+    int32  rewardNum     = 2;  // 领奖次数
+    int32  evaluationNum = 3;  // 评星次数
+}
+
+// 用户的一些标志位
+message UserMark {
+    bool           StarEvaluation    = 1 [deprecated = true];  // 是否评星(废弃)
+    int32          PlanetShareReward = 2;                      // 过岛分享
+    FuncUnlock     FuncUnlock        = 3;                      // 用户解锁币
+    MarkInvite     Invite            = 4;                      // 用户分享相关
+    int64          AppFriendTime     = 5;                      // 上一次设置好友的时间
+    bool           GmNotify          = 6;                      // 日志上报
+    StarEvaluation StarEvaluationMgr = 7;                      // 评星
+    bool           FbConnectReward   = 8;                      // fb绑定奖励
+}
+
+// 登录时需要拉取的数据
+// SubType-> ClientLoginStatusData
+message ClientLoginStatusData {
+    int32                  GuideMark        = 1;  // 用户引导标记
+    SceneSubsidyStatusData SceneSubsidyData = 2;  // 广告授权状态及次数, -1表示已授权, >=0 表示玩家拒绝授权次数
+}
+// 广告暂存数据
+message SceneSubsidyStatusData {
+    int32                        Auth    = 1;
+    repeated SceneSubsidyPopData PopData = 2;
+}
+// 广告弹出数据
+message SceneSubsidyPopData {
+    int32 SceneId = 1;
+    int32 Count   = 2;
+}
+
+message MarkInvite {
+    bool  InviteSuccess = 1;
+    int64 InviteUID     = 2;
+    int32 SceneID       = 3;
+    int32 Destination   = 4;
+}
+
+// 用户日志上传状态
+message GmStatusData {
+    bool NeedUploadLog = 1;  // 日志上传
+}
+
+message UserInfo {
+    int64   Uid         = 1;
+    string  Name        = 2;
+    int32   CurPic      = 3;
+    string  Siteuid     = 4;
+    uint32  DeviceToken = 5;
+    uint32  LoginType   = 6;
+    string  AccessToken = 7;
+    SexType Sex         = 8;
+    //    string          Email               = 9;
+    //    string          LargePic            = 10;
+    string Lang       = 11;
+    string Country    = 12;
+    string Device     = 13;
+    string Channel    = 14;
+    string Version    = 15;
+    string Platform   = 16;
+    uint32 Logincnt   = 17;  //登录天数
+    uint32 Lasttime   = 18;
+    uint32 Createtime = 19;
+    int32  Status     = 20;  //封号状态
+                             //    uint32          Fbdexpire           = 21;  //禁言
+    string Fbpic = 22;
+    //    int32           Vip                 = 23;
+    //    userInfoForPlat PlatInfo            = 24;
+    //    userInfoSurplus SurplusInfo         = 25;
+    //    uint32          HasCall             = 26;  //是否发起过召回任务
+    string Googldidad  = 27;
+    string Idfa        = 28;
+    string Adjustid    = 29;
+    int64  AvatarFrame = 30;  // 正在使用的头像框，冗余字段AvatarFrameData.usingFrame
+                              //    int64           SubscribeTime       = 31;  // 订阅到期时间
+    int64  Guide     = 32;    // 新手引导步骤
+    uint32 CurPlanet = 33;    // 当前岛屿
+    int64  Star      = 34;    // 星星数
+    int64  GuideId   = 35;    // 新手引导配置
+}
+
+//转盘皮肤
+
+message WheelSkinItem {
+    int32 id     = 1;  // 转盘ID > 200 的才会存在这里
+    int32 expire = 2;  // 转盘的过期时间戳
+}
+
+message WheelSkin {
+    repeated WheelSkinItem list = 1;
+}
+
+// 礼包分层数据
+message GiftModeDataItem {
+    int32 Num     = 1;
+    int64 Total   = 2;
+    int64 Max     = 3;
+    int32 PayTime = 4;  // 最近一次支付日期
+}
+
+message GiftModeData {
+    map<int32, GiftModeDataItem> DayData = 1;  //分天数据, 最多保留35条
+}
+
+message AvatarFrameData {
+    int64          usingFrame  = 1;  // 用户正在使用的头像框
+    repeated int64 ownedFrames = 2;  // 用户已拥有的头像框
+}
+
+// 广告数据; php实现的发奖时要加锁, 暂时没有超时机制
+message VideoADData {
+    int32          Auth    = 1;  // 当前授权状态及次数, -1表示已授权, >=0 表示不授权次数
+    VideoADDayData DayData = 2;
+    //    VideoADWeekData WeekData = 3;
+}
+
+message VideoADDayData {
+    int32             Day     = 1;
+    map<int32, int32> Pops    = 2;  // 配置id, 观看次数
+    map<int32, int32> Rewards = 3;  // 配置id, 发奖次数
+}
+
+// 用户行为数据
+message UserBehaviorData {
+    uint32 createTime         = 1;  // 数据创建时间
+    uint32 loginDay           = 2;  // 登录天数
+    uint32 loginTimesToday    = 3;  // 今日登录次数
+    uint32 numBeAttackedToday = 4;  // 今日被攻击次数
+}
+
+// 好友 hash pb, key userhash:, field friend
+message UserFriendData {
+    repeated int64 FbUids = 1;  // fb好友在我们平台中的uid
+    //    repeated string FbIDs = 2; // fb好友的fb平台id, fb -> uid 关联关系, 由另外一个key可确定
+}
+
+// 资产 hash pb, key userhash:, field property
+message UserPropertyData {
+    int64          Money      = 1;
+    int64          Tili       = 2;
+    int64          Shield     = 3;
+    int64          BaseStar   = 4;
+    UserPlanetInfo PlanetInfo = 5;
+    int64          Diamond    = 6;
+
+    int64 TiliLastTime         = 100;  // 最后的体力恢复时间
+    int64 PlanetLastChangeTime = 101;  // 最后的岛屿数变更时间
+}
+
+// slot hash pb, key userhash:, field slot
+enum SlotMustType {
+    SlotMustTypeInit  = 0;
+    SlotMustTypeFire  = 1;
+    SlotMustTypeSteal = 2;
+}
+
+message UserSlotMust {
+    string OprMust          = 1;  // 运营中心必中
+    uint32 OprMustSub       = 2;  // 运营中心必中 子类型
+    uint32 NewbieMustPlanet = 3;  // 新手必中
+    uint32 NewbieMustTimes  = 4;  // 新手必中
+}
+
+message UserSlotSpecial {
+    uint32          Bet          = 1;
+    uint32          CurrentType  = 2;  //当前触发类型
+    uint32          CurrentRound = 3;  //当前轮数
+    repeated uint32 TypesNum     = 4;  //类型触发次数
+    uint32          Rounds       = 5;  //类型转盘生效轮数
+    uint32          BuildDay     = 6;  //生成时间
+}
+
+message UserSlotSteal {
+    SlotStealPlayerInfo SlotStealPlayerInfo = 1;
+    SlotStolenLockInfo  SlotStolenLockInfo  = 2;
+    SlotStealSelectInfo SlotStealSelectInfo = 3;
+}
+
+// 用户炮的数据
+message UserSlotFireData {
+    string               Date     = 1;  // 日期
+    repeated int64       Attacker = 2;  // 当天的攻击者
+    UserSlotFireNoShield NoShield = 3;  // 无盾
+}
+
+message UserSlotFireNoShield {
+    string NoShieldDate      = 4;  // 无盾攻击的日期
+    int32  NoShieldTimes     = 5;  // 无盾攻击的第n次
+    int64  NoShieldTimestamp = 6;  // 开始无盾的时间
+}
+
+message UserSlotData {
+    UserSlotMust       Must    = 1;
+    UserSlotSpecial    Special = 2;
+    UserSlotSteal      Steal   = 3;
+    SlotFirePlayerInfo Fire    = 4;  // 用户打炮存储的信息
+}
+
+// 打炮-无盾攻击
+message RobotFireNoShield {
+    int64  StartTimestamp       = 1;  // 开始的时间戳
+    uint32 TriggerNum           = 2;  // 当前触发的次数
+    int64  NextTriggerTimestamp = 3;  // 下次触发的时间
+    uint32 Day                  = 4;  // 日期
+}
+
+// 打炮-机器人有盾
+message RobotFireShield {
+    int64  LastTriggerTime = 1;  // 最后一次触发时间
+    uint32 TriggerNum      = 2;  // 当天已经触发的次数
+    uint32 Day             = 3;  // 日期
+}
+
+// 打炮机器人打炮的数据
+message RobotFireData {
+    RobotFireNoShield NoShield = 1;  // 无盾的数据
+    RobotFireShield   Shield   = 2;  // 无盾的数据
+}
+
+// 登陆相关
+message CacheFBInfo {
+    string Name     = 1;
+    int32  Gender   = 2;
+    string Email    = 3;
+    string OpenID   = 4;
+    string HeadURL  = 5;
+    string City     = 6;
+    string Province = 7;
+    string Country  = 8;
+    int32  BirthDay = 9;
+}
+
+//message CacheSimulation {
+//    int64 UID = 1; // 需要模拟的账户ID
+//    int64 TargetUID = 2; // 模拟的目标uid
+//}
+
+// 用户每天的数据
+message UserDayData {
+    InviteDayData InviteDayData = 1;
+}
+
+// 邀请的每日数据
+message InviteDayData {
+    int32 SendFBTimes      = 1;  // 发送FB邀请的次数
+    int32 SendMessageTimes = 2;  // 发送message邀请的次数
+}
+
+message HuaWeiInfo {
+    string AccessToken    = 1;
+    string Scope          = 2;
+    int64  ExpiresIn      = 3;
+    string IDToken        = 4;
+    string RefreshToken   = 5;
+    string OpenID         = 6;
+    string DisplayName    = 7;
+    string HeadPictureURL = 8;
+    string SrvNationCode  = 9;
+    string BirthDate      = 10;
+    int32  AgeGroupFlag   = 11;
+    string Email          = 12;
+}
+
+message OppoInfo {
+    string OpenID   = 1;
+    string UserName = 2;
+    string Email    = 3;
+    int32  Mobile   = 4;
+}
+
+// 注册拦截器
+message RegisterBlocker {
+    int32 RegisterNum = 1;
+}
+
+// 转盘水线控制
+message UserWaterlineBase {
+    double Water = 1;  //水量
+}
+message UserWaterlineCurrent {
+    string LimitModes = 1;  //
+    bool   IsSeal     = 2;  // 当前生成的和活动环节不一致, 切换limit及next数据
+}
+message UserWaterlineNext {
+    map<int32, string> HighMap = 1;  //上限水线 line -> modes
+    map<int32, string> LowMap  = 2;  //下限水线
+}
+message UserWaterlineItem {
+    UserWaterlineBase    Base    = 1;
+    UserWaterlineCurrent Current = 2;
+    UserWaterlineNext    Next    = 3;
+}
+message UserWaterlineData {
+    map<int32, UserWaterlineItem> Data = 1;  // bet -> item
+}
+
+// 宝箱间隔
+message BoxIntervalCondition {
+    int32 OrdinaryBox = 1;  // 普通箱子间隔数
+    int32 SystemBox   = 2;  // 系统箱子间隔数
+}
+
+message BoxIntervalItem {
+    BoxIntervalCondition OrdinaryCard      = 1;  // 普卡间隔数
+    BoxIntervalCondition OrdinaryGoldCard  = 2;  // 普通金卡卡间隔数
+    BoxIntervalCondition OrdinaryWhiteCard = 3;  // 普通白开间隔数
+    BoxIntervalCondition RareGoldCard      = 4;  // 稀有金卡间隔数
+    BoxIntervalCondition RareWhiteCard     = 5;  // 稀有白卡间隔数
+}
+
+// 玩家数据
+message BoxIntervalData {
+    map<int32, BoxIntervalItem> NewCardIntervalData = 1;
+    map<int32, BoxIntervalItem> OldCardIntervalData = 2;
+}

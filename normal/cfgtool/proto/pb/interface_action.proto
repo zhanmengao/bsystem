@@ -1,0 +1,435 @@
+syntax = "proto3";
+package pb;
+
+import "rpc.proto";
+import "struct.proto";
+import "enum.proto";
+import "db_action.proto";
+
+//通行证info
+message PassInfoReq {
+}
+
+message PassInfoRsp {
+    RpcRspHead head = 1;
+    passDetail data = 2;  // 通行证相关信息
+}
+
+//通行证领取奖励
+message PassRewardReq {
+    uint32   id           = 1;  // 通行证领奖档位
+    PassType rewardType   = 2;  // 领奖类型
+    bool     IsReceiveAll = 3;  // 是否一键领取
+}
+
+message PassRewardRsp {
+    RpcRspHead       head = 1;
+    CommonRewardData data = 2;
+}
+
+// 通行证购买升级
+message PassBuyReq {
+    uint32 id = 1;  // 购买到第几档
+}
+
+message PassBuyRsp {
+    RpcRspHead head       = 1;
+    passDetail data       = 2;  // 通行证相关信息
+    int64      diamondNum = 3;  // 钻石信息
+}
+
+// 竞标赛分数更新
+message StarCompUpdateScoreReq {
+    int32  Score  = 1;  // 分数
+    string CompID = 2;  // 房间号
+}
+
+message StarCompUpdateScoreRsp {
+    RpcRspHead Head = 1;
+}
+
+// 竞标赛分配房间
+message StarCompAllocationRoomReq {
+    int32 Score = 1;  // 分数
+}
+
+message StarCompAllocationRoomRsp {
+    RpcRspHead Head = 1;
+}
+
+// 活动下线道具补偿接口
+message MineCompensateRewardReq {
+    int64 startTime = 1;  // 活动开始时间
+    int64 endTime   = 2;  // 活动结束时间
+}
+
+message MineCompensateRewardRsp {
+    RpcRspHead Head = 1;  // 返回头
+}
+
+// PHP邮件发奖
+message PHPMailRewardReq {
+    repeated CommonRewardItem property = 1;  // 剩余道具
+    repeated CommonRewardItem reward   = 2;  // 奖励
+}
+
+message PHPMailRewardRsp {
+    RpcRspHead Head = 1;  // 返回头
+}
+
+// PHP活动下线邮件补偿奖励
+message ActionMailRewardReq {
+    repeated CommonRewardItem reward         = 1;  // 奖励
+    MailLanguage              MailLanguage   = 2;  // 邮件相关内容
+    int64                     MailExpireTime = 3;  // 邮件过期时间
+}
+
+message ActionMailRewardRsp {
+    RpcRspHead Head = 1;
+}
+
+// 添加事件请求
+message AddEventReq {
+    int64  startTime = 1;  // 活动开始时间
+    int64  endTime   = 2;  // 活动结束时间
+    string name      = 3;  // 活动名
+}
+
+message AddEventRsp {
+    RpcRspHead Head = 1;  // 返回头
+}
+
+// 本地支付调用php 商城发奖接口
+message LocalPayPHPRewardReq {
+    repeated CommonRewardItem reward    = 1;  // 奖励信息
+    string                    pid       = 2;  // 商品ID
+    string                    orderID   = 3;  // 第三方订单号
+    int64                     payStatus = 4;  // 越南本地支付 支付状态
+    int32                     price     = 5;  // 价格
+}
+
+message LocalPayPHPRewardRsp {
+    RpcRspHead       Head   = 1;
+    CommonRewardData reward = 2;  // 奖励
+}
+
+// 台湾本地支付向邮箱设置奖励
+message LocalPayTwMailRewardReq {
+    repeated CommonRewardItem reward = 1;  // 奖励信息
+    int64                     price  = 2;  // 价格
+    string                    pid    = 3;  // 商品ID
+}
+
+message LocalPayTwMailRewardRsp {
+    RpcRspHead Head = 1;
+}
+
+// 副本下线后的补偿
+message DungeonOfflineCompensateReq {
+}
+
+message DungeonOfflineCompensateRsp {
+    RpcRspHead Head = 1;
+}
+
+message GuessBasicSync {
+    uint32                    Round          = 1;  // 当前轮次
+    uint32                    Level          = 2;  // 当前关
+    uint32                    Status         = 3;  // 0-4
+    uint32                    CurTicket      = 4;  // 当前机票
+    uint32                    NeedTicket     = 5;  // 集满需要多少机票
+    uint32                    NextReviveType = 6;
+    int64                     NextReviveNum  = 7;
+    uint32                    LastOpen       = 8;
+    repeated CommonRewardItem TotalReward    = 9;
+
+    uint32 LootIDIndex = 10;  //关卡lootid 单元索引(0,1)
+}
+
+message GuessInfoReq {
+}
+
+message GuessInfoRsp {
+    RpcRspHead Head = 1;
+
+    GuessBasicSync Basic = 2;
+}
+
+message GuessOpenReq {
+    uint32 Pos = 1;
+}
+
+message GuessOpenRsp {
+    RpcRspHead Head = 1;
+
+    GuessBasicSync Basic       = 2;
+    uint32         Pos         = 3;  // 哪个位置
+    uint32         RewardIndex = 4;  // 砸到捣蛋鬼, 给第4个
+}
+
+message GuessExitReq {
+}
+
+message GuessExitRsp {
+    RpcRspHead Head = 1;
+
+    GuessBasicSync   Basic  = 2;
+    CommonRewardData Reward = 3;  // 发奖信息
+}
+
+message GuessReviveReq {
+    uint32 ReviveType = 1;  // 复活类型
+}
+
+message GuessReviveRsp {
+    RpcRspHead     Head         = 1;
+    GuessBasicSync Basic        = 2;
+    uint32         ReviveType   = 3;  // 复活类型
+    int64          ReviveCost   = 4;  // 复活类型消耗
+    int64          ReviveAmount = 5;  // 复活类型剩余全量
+}
+
+// 赠送
+message TradeSendReq {
+    TradeScene      Scene       = 1;  // 发起场景
+    int64           ReceiverUID = 2;  // 接收人UID
+    CommonProp      Prop        = 3;  // 赠送内容
+    TradeMsgSrcType SourceType  = 4;  // 来源(目前主要公会捐赠才会传值)
+    string          FamilyMsgID = 5;  // 消息ID(目前主要公会捐赠才会传值)
+}
+
+message TradeSendRsp {
+    RpcRspHead Head = 1;
+}
+
+// 请求交换
+message TradeRequestExchangeReq {
+    TradeScene Scene        = 1;  // 发起场景
+    TradeSide  SelfInfo     = 2;  // 发起方信息
+    TradeSide  ReceiverInfo = 3;  // 接收方信息
+}
+
+message TradeRequestExchangeRsp {
+    RpcRspHead Head = 1;
+}
+
+// 响应交换
+message TradeOperateExchangeReq {
+    TradeScene  Scene        = 1;  // 交易场景
+    string      TradeID      = 2;  // 消息ID
+    TradeStatus TargetStatus = 3;  // 交易状态
+}
+
+message TradeOperateExchangeRsp {
+    RpcRspHead Head = 1;
+}
+
+// 交易信息列表
+message TradeListCheckReq {
+    TradeScene Scene = 1;
+}
+
+message TradeListCheckRsp {
+    RpcRspHead         Head      = 1;
+    repeated TradeItem TradeList = 2;
+}
+
+// 赠送广播
+message TradeSendBrocastMsg {
+    TradeSide Source = 1;  // 发起方信息
+}
+
+// 请求交易/交易状态变更广播
+// 这个可以想个更适当的名
+message TradeStatusChangeBrocastMsg {
+    TradeItem Item = 1;
+}
+
+//***************************小鸟弹弓活动**************************
+// 进入自身界面
+message SlingshotEnterReq {
+}
+
+message SlingshotEnterRsp {
+    RpcRspHead          Head           = 1;
+    int32               SnowBall       = 2;  // 雪球数量
+    int32               MagicBottle    = 3;  // 魔法棒的数量
+    int64               NextMagicTime  = 4;  // 下一次风铃刷新时间
+    int32               ExchangeBoxNum = 5;  // 兑换宝箱数
+    repeated CommonProp BabyReward     = 6;  // 宝贝总数
+    repeated CommonProp SendBabyReward = 7;  // 赠送宝贝总数
+    repeated int32      Box            = 8;  // 礼盒内容 0 代表不展示 1代表展示
+}
+
+// 进入他人界面
+message SlingshotOtherEnterReq {
+    int64 TargetUID = 1;
+}
+
+message SlingshotOtherEnterRsp {
+    RpcRspHead     Head     = 1;
+    UserProfile    Profile  = 2;  // 用户信息
+    bool           CanShot  = 3;  // 是否可以射击宝贝
+    repeated int32 Box      = 4;  // 礼盒内容
+    int32          SnowBall = 5;  // 雪球数量
+}
+
+// 击中风铃
+message SlingshotShotReq {
+    int64 TargetUID = 1;
+    int32 HitGiftID = 2;
+    bool  Newbie    = 3;  // 是否是新手引导
+}
+
+message SlingshotShotRsp {
+    RpcRspHead          Head          = 1;
+    int32               SnowBall      = 2;  // 雪球数
+    CommonRewardData    RewardData    = 3;  // 击中发的奖励
+    repeated CommonProp BabyReward    = 4;  // 宝贝总数
+    repeated int32      Box           = 5;  // 礼盒内容 0 代表不展示 1代表展示
+    int64               NextMagicTime = 6;  // 下一次风铃刷新的时间
+}
+
+message SlingshotFriend {
+    bool  CanShot         = 1;  // 能否打
+    int64 LastRefreshTime = 2;  // 上一次刷新时间
+    int64 UID             = 3;  // 好友UID
+}
+
+// 弹弓获取好友列表
+message SlingshotFriendsReq {
+}
+
+message SlingshotFriendsRsp {
+    RpcRspHead               Head            = 1;
+    repeated SlingshotFriend SlingshotFriend = 2;
+    int32                    TipTime         = 3;
+}
+
+// 宝箱兑换
+message SlingshotExchangeReq {
+    string ID = 1;
+}
+
+message SlingshotExchangeRsp {
+    RpcRspHead          Head           = 1;
+    CommonRewardData    Reward         = 2;
+    repeated CommonProp BabyReward     = 3;  // 宝贝总数
+    repeated CommonProp SendBabyReward = 4;  // 赠送宝贝总数
+}
+
+// 风铃刷新
+message SlingshotRefreshReq {
+    bool isUseMagicBottle = 1;  // 是否使用仙女棒
+}
+
+message SlingshotRefreshRsp {
+    RpcRspHead     Head        = 1;
+    repeated int32 Box         = 2;  // 礼盒内容 0 代表不展示 1代表展示
+    int32          MagicBottle = 3;  // 仙女棒数量
+}
+
+message SlingshotQuitFriendReq {
+    int64 FUID = 1;
+}
+
+message SlingshotQuitFriendRsp {
+    RpcRspHead Head = 1;
+}
+
+message SlingshotShotMsgReq {
+}
+
+message SlingshotShotMsgRsp {
+    RpcRspHead                    Head     = 1;
+    repeated SlingshotShotMsgItem ShotList = 2;
+}
+
+/*********************拼图（结束）****************************/
+//拼图信息获取请求
+message PicInfoReq {
+}
+// 拼图信息获取返回
+message PicInfoRsp {
+    RpcRspHead                Head         = 1;
+    repeated CommonRewardItem Reward       = 2;  // 拼图奖励后端配置
+    PayExtra                  PayExtra     = 3;  // 付费后的额外奖励，后端读配置
+    uint32                    Expire       = 4;  // 到期时间，后端读配置
+    uint32                    RewardLimit  = 5;  // 最大领奖次数 后端读配置
+    uint32                    MaxOwnCount  = 6;  // 最大拥有的碎片套数
+    map<int64, uint32>        TradeNumDict = 7;  // 好友交易次数 uid , 次数
+    PicBaseData               PicData      = 8;  // 用户拼图相关数据
+}
+
+// 上报拼图完成请求
+message PicReportCompleteReq {
+    repeated uint32 SpecialPicId = 1;  // 万能碎片抵的碎片id的信息
+}
+
+message PicReportCompleteRsp {
+    RpcRspHead Head = 1;
+}
+/*********************拼图（结束）****************************/
+
+/*********************水果商人（结束）****************************/
+// 请求某个水果订单奖品
+message RewardFruitOrderReq {
+    int32 ID = 1;  // 订单编号
+};
+message RewardFruitOrderRsp {
+    RpcRspHead       Head   = 1;
+    FruitCollection  Result = 2;
+    CommonRewardData Reward = 3;  // 请求的订单奖励
+};
+
+// 请求水果商人大奖
+message RewardFruitActionReq {
+};
+message RewardFruitActionRsp {
+    RpcRspHead       Head                 = 1;
+    int32            LeftRefreshTimes     = 2;  // 用户参与水果商人活动剩余次数
+    int64            ActionFinishDuration = 3;  // 完成一批订单的时间戳
+    CommonRewardData FinalReward          = 4;  // 请求的大奖奖励
+};
+
+// 再次开启水果商人活动接口
+message RefreshFruitActionReq {
+};
+message RefreshFruitActionRsp {
+    RpcRspHead Head             = 1;
+    int32      LeftRefreshTimes = 2;  // 用户第几次参与水果商人活动
+};
+
+// 查询水果商人详情（首次请求水果商人活动时，返回所有的数据给前端）
+message FruitOrderConfigInfo {
+    int32                     OrderID       = 1;  // 水果订单ID,即配置文件中的编号
+    int32                     FruitType     = 2;
+    RewardStatus              OrderStatus   = 3;
+    int32                     RequireNumber = 4;  // 完成订单需要地水果数量
+    repeated CommonRewardItem Reward        = 5;  // 奖励
+};
+message ListFruitInfoReq {
+};
+message ListFruitInfoRsp {
+    RpcRspHead                    Head                  = 1;
+    int32                         ExpireDuration        = 2;
+    int32                         LeftRefreshTimes      = 3;  // 用户参与水果商人活动剩余次数
+    int64                         ActionFinishDuration  = 4;  // 下一批活动开始的等待时长时长
+    int32                         RefreshLimit          = 5;  // 参与活动的限制次数,配置文件信息
+    int64                         RefreshDuration       = 6;  // 刷新时长,即多长时间内不能在参与活动,配置文件信息
+    repeated FruitOrderConfigInfo OrderRewardInfo       = 7;  // 订单奖励
+    repeated CommonRewardItem     FinalActionRewardInfo = 8;  // 奖励
+    map<int32, FruitCollection>   CollectionInfo        = 9;  // FruitType => 已经收集水果数量.
+};
+/********************水果商人（结束）****************************/
+
+// 获取拼图奖励
+message PicRewardReq {
+    bool isPay = 1;  // 是否付款加倍
+}
+
+message PicRewardRsp {
+    RpcRspHead       head   = 1;
+    CommonRewardData Reward = 2;  // 发奖信息
+}
+/**************************拼图(结束)***************************/

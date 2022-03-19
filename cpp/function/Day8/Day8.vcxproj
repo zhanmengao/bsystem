@@ -1,0 +1,115 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="14.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{9BE56537-5635-4CCA-8396-0C220BCF04B8}</ProjectGuid>
+    <Keyword>Win32Proj</Keyword>
+    <RootNamespace>Day8</RootNamespace>
+    <WindowsTargetPlatformVersion>8.1</WindowsTargetPlatformVersion>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v120</PlatformToolset>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v140</PlatformToolset>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <LinkIncremental>true</LinkIncremental>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <LinkIncremental>false</LinkIncremental>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>Disabled</Optimization>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </ClCompile>
+    <Link>
+      <SubSystem>Console</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <Optimization>MaxSpeed</Optimization>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <PreprocessorDefinitions>WIN32;NDEBUG;_CONSOLE;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </ClCompile>
+    <Link>
+      <SubSystem>Console</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClCompile Include="dm01_函数对象和谓词.cpp" />
+    <ClCompile Include="dm02_预定义函数对象和函数适配器.cpp" />
+    <ClCompile Include="dm03_strl容器算法迭代器设计理念.cpp" />
+    <ClCompile Include="dm03_函数指针做函数参数.cpp" />
+    <ClCompile Include="dm01_函数指针语法基础.c" />
+    <ClCompile Include="dm02_函数指针做函数参数的思想剖析.c" />
+    <ClCompile Include="dm06_重载括号.cpp" />
+    <ClCompile Include="socketclient\itcastlog.c" />
+    <ClCompile Include="socketclient\memwatch.c" />
+    <ClCompile Include="socketclient\socketclient.c" />
+    <ClCompile Include="testplatform\demo01_testplatform.c" />
+    <ClCompile Include="信息系统框架集成第三方产品案例\CSckFactoryImp1.cpp" />
+    <ClCompile Include="信息系统框架集成第三方产品案例\CSckFactoryImp2.cpp" />
+    <ClCompile Include="信息系统框架集成第三方产品案例\des.cpp" />
+    <ClCompile Include="信息系统框架集成第三方产品案例\HwEncDec.cpp" />
+    <ClCompile Include="信息系统框架集成第三方产品案例\mainclass01_完成socket抽象类的集成测试.cpp" />
+    <ClCompile Include="信息系统框架集成第三方产品案例\mainclass02_完成框架集成socket厂商和加密厂商的产品.cpp" />
+    <ClCompile Include="信息系统框架集成第三方产品案例\mainclass03_框架类.cpp" />
+    <ClCompile Include="类成员函数做函数指针.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="socketclient\itcastlog.h" />
+    <ClInclude Include="socketclient\itcast_comm.h" />
+    <ClInclude Include="socketclient\memwatch.h" />
+    <ClInclude Include="testplatform\socketclientdll.h" />
+    <ClInclude Include="信息系统框架集成第三方产品案例\CEncDesProtocol.h" />
+    <ClInclude Include="信息系统框架集成第三方产品案例\CSckFactoryImp1.h" />
+    <ClInclude Include="信息系统框架集成第三方产品案例\CSckFactoryImp2.h" />
+    <ClInclude Include="信息系统框架集成第三方产品案例\CSocketProtocol.h" />
+    <ClInclude Include="信息系统框架集成第三方产品案例\des.h" />
+    <ClInclude Include="信息系统框架集成第三方产品案例\HwEncDec.h" />
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>

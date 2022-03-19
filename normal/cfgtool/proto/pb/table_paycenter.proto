@@ -1,0 +1,350 @@
+syntax = "proto3";
+package pb;
+
+import "struct.proto";
+import "enum.proto";
+import "report.proto";
+
+/**********************支付基础配置配置(开始)********************************/
+
+message DisPriceReportItem {
+    uint32 disPrice = 1;  // 打折后的价格
+    string country  = 2;  // 国家缩写
+}
+
+// 商品价格配置表
+message PayPriceConfig {
+    int32                       PriceID   = 1;  // 价格ID
+    string                      AndroidID = 2;  // 谷歌商品ID
+    string                      IosID     = 3;  // 苹果商品ID
+    int64                       Price     = 4;  // 实际价格
+    repeated DisPriceReportItem DisInfo   = 5;  // 商城打折上报信息
+    int32                       BuyType   = 6;  // 购买类型,详情见enum BuyType
+    string                      HuaWeiID  = 7;  // 华为商品ID
+    string                      OppoID    = 8;  // oppo商品ID
+}
+
+// @cfg:PayConfig|map:PayPriceConfig|PriceID:int32
+message PayPriceConfigAry {
+    repeated PayPriceConfig ary = 1;
+}
+
+// 存储到本地的价格信息结构 前端用
+message ProductPriceItem {
+    string pid        = 1;  // 商品id
+    string localPrice = 2;  // 本地价格信息
+}
+
+message ProductPriceList {
+    repeated ProductPriceItem itemList = 1;
+}
+
+// 存储到本地的订单信息结构 前端用
+message PayOrderInfoItem {
+    int32      pid       = 1;  // 商品id
+    string     platId    = 2;  // 支付id
+    ReportEnum report    = 3;  // 上报内容
+    string     orderId   = 4;  // 谷歌或ios商店的订单id
+    int32      TradeType = 5;  // 交易类型
+}
+
+message PayOrderInfoItemList {
+    repeated PayOrderInfoItem itemList = 1;
+}
+
+message ProductInfoConfig {
+    int32                     PID        = 1;  // 商品ID
+    int32                     PriceID    = 2;  // 价格ID
+    string                    Version    = 4;  // 版本号
+    string                    MaxVersion = 5;  // 最大版本号
+    int32                     ProductId  = 6;  // 上报的物品ID
+    repeated CommonRewardItem BuyItem    = 7;  // 购买内容
+    int32                     TradeType  = 8;  // 购买类型，详见枚举 TradeType
+    int32                     SubType    = 9;  // 购买子类型（暂用于体力区分等级）
+
+    // 商城展示内容
+    int32  flag      = 10;  // 文字标签 1 畅销 2 热卖 0 无标签
+    int32  show      = 11;  // 是否可以展示 0、1 展示  2不展示
+    int32  bgQuality = 12;  // 商城物品底框品质
+    int32  bgType    = 13;  // 背景框类型
+    string backImg   = 14;  // 商城背景图片,可配置多张 用 | 分割
+    int32  groupType = 15;  // 分组
+
+    // 礼包展示内容
+    int32  isShowGood        = 16;  // 是否展示物品及数量 1展示，0不展示
+    int32  isShowFakePrice   = 17;  // 是否展示原价 1 展示 0 不展示
+    int32  isShowPrice       = 18;  // 是否展示现价 1 展示 0 不展示
+    int32  showDisType       = 19;  // 是否展示折扣 1 展示 0 不展示
+    int32  discountRate      = 20;  // 折扣率
+    string insetName         = 21;  // 礼包地图的名字
+    string modelName         = 22;  // 入口模型名称
+    int32  buyBtnIndex       = 23;  // 购买按钮底图编号
+    int32  isShowRemainTimes = 24;  // 是否展示剩余可购买次数 1 展示 0 不展示
+    string disImgName        = 25;  // 折扣标签图
+    int32  templateId        = 26;  // 礼包模板 0-旧模板 1-新模板方形 2 新模板叶子形
+
+    // 运营提示字段
+    int64  fadePrice = 27;  // 用来看商品价格
+    string fadeName  = 28;  // 商品分类备注
+}
+
+// @cfg:PayConfig:ProductConfig|map:ProductInfoConfig|PID:int32
+message ProductInfoConfigAry {
+    repeated ProductInfoConfig ary = 1;
+}
+
+/**********************支付基础配置(结束)********************************/
+
+/*************************商城配置(开始)********************************/
+// 分组信息表
+message ShopGroupConfig {
+    int64 id       = 1;  // 分组
+    int64 order    = 2;  // 排序
+    int64 headType = 3;  // 分组头部
+}
+
+message ShopGroupConfigAry {
+    repeated ShopGroupConfig ary = 1;
+}
+
+// 商城打折信息
+message ShopDiscountConfig {
+    int32 pid         = 1;  // 商品ID
+    int64 type        = 2;  // 道具类型
+    int64 disNum      = 3;  // 打折数量
+    int64 moreGetNum  = 4;  // 多送数量
+    int64 moreGetRate = 5;  // 多送比率
+}
+
+// @cfg:PayConfig|map:ShopDiscountConfig|Pid:int32
+message ShopDiscountConfigAry {
+    repeated ShopDiscountConfig ary = 1;
+}
+
+message ShopDisSwitchConfig {
+    int64  propType  = 1;  // 道具类型
+    string startTime = 2;  // 开始时间
+    string endTime   = 3;  // 结束时间
+}
+
+// @cfg:PayConfig|map:ShopDisSwitchConfig|propType:int64
+message ShopDisSwitchConfigAry {
+    repeated ShopDisSwitchConfig ary = 1;
+}
+
+// 商城对话框显示配置
+message ShopMallBoxShowConfig {
+    int64 shopMallBoxSwitch = 1;  // 商城对话框开关 0 是关 1 开
+    int64 shopMallBoxAppear = 2;  // 隔多久后,玩家登陆再出现 单位:秒
+    int64 shopMallBoxID     = 3;  // 对话框ID
+}
+
+message ShopMallBoxShowConfigAry {
+    repeated ShopMallBoxShowConfig ary = 1;
+}
+
+// 商城对话框弹出配置
+message ShopMallBoxPopConfig {
+    int64  popID           = 1;  // 触发条件ID
+    string popDesc         = 2;  // 触发条件描述
+    int64  popPriority     = 3;  // 优先级
+    string popShowLanguage = 4;  // 展示文案
+}
+
+message ShopMallBoxPopConfigAry {
+    repeated ShopMallBoxPopConfig ary = 1;
+}
+
+// 广告礼盒配置
+message VideoADGiftBoxConfig {
+    string giftBoxID            = 1;  // 礼盒ID
+    int64  giftBoxSwitch        = 2;  // 礼盒开关
+    int64  giftBoxRewardNum     = 3;  // 广告礼盒看一次发放道具个数
+    int64  giftBoxShortCDTime   = 4;  // 礼盒短CD时间 单位：秒
+    int64  giftBoxShortCDCounts = 5;  // 经过几次短冷却，触发长冷却
+    int64  giftBoxLongCDTime    = 6;  // 礼盒长CD时间 单位：秒
+}
+
+message VideoADGiftBoxConfigAry {
+    repeated VideoADGiftBoxConfig ary = 1;
+}
+
+// 广告礼盒奖励配置
+message VideoADGiftBoxRewardConfig {
+    int64                     id        = 1;  // 抽奖项ID
+    string                    giftBoxID = 2;  // 礼盒ID
+    int64                     weight    = 3;  // 权重
+    repeated CommonRewardItem reward    = 4;  // 道具奖励
+}
+
+message VideoADGiftBoxRewardConfigAry {
+    repeated VideoADGiftBoxRewardConfig ary = 1;
+}
+
+/*************************商城配置(结束)********************************/
+
+/* 新版多充礼包 */
+// @cfg:MultiPayPackConfig:MultiPayPackList|list:MultiPayPackConfig
+message MultiPayPackConfigAry {
+    repeated MultiPayPackConfig ary = 1;
+}
+
+message MultiPayPackConfig {
+    multiPayCfgItem multiPay = 1;
+    int32           sid      = 2;
+}
+
+message MultiPayPackProductConfig {
+    int32  sid            = 1;
+    string startTime      = 2;
+    string endTime        = 3;
+    int32  showTime       = 4;
+    int32  multiPayID     = 5;
+    string skinBundleName = 6;  // 皮肤名，前端使用
+}
+
+// @cfg:MultiPayPackConfig|list:MultiPayPackProductConfig
+message MultiPayPackProductConfigAry {
+    repeated MultiPayPackProductConfig ary = 1;
+}
+
+// @cfg:MultiPayPackConfig:MultiPayBase|struct:MultiPayPackBaseConfig
+message MultiPayPackBaseConfigAry {
+    repeated MultiPayPackBaseConfig ary = 1;
+}
+
+message MultiPayPackBaseConfig {
+    int64 showTime = 1;  // 展示时间
+}
+
+/* 多段礼包 */
+// @cfg:MultiStagePackConfig:multiStageList|list:MultiStagePackConfig
+// @cfg:MultiStagePackConfig:MultiStageCfgMap|map:MultiStagePackConfig|levelID:int32
+message MultiStagePackConfigAry {
+    repeated MultiStagePackConfig ary = 1;
+}
+
+message MultiStagePackConfig {
+    int32                levelID   = 1;
+    repeated productInfo levelInfo = 2;
+}
+
+message productInfo {
+    int32 modelID  = 1;
+    int32 pid      = 2;
+    int32 buyLimit = 3;
+    int32 price    = 4;
+}
+
+/**********************超级礼包配置(开始)********************************/
+message BigItemCondition {
+    string          type     = 1;
+    repeated string data     = 2;
+    string          actionId = 3;
+}
+
+message BigItemConfig {
+    string                    bigItemId       = 1;
+    string                    startTime       = 2;
+    string                    endTime         = 3;
+    int32                     originalPrice   = 4;
+    string                    amazonProductId = 5;
+    repeated BigItemCondition condition       = 6;
+    uint32                    bigItemReportId = 7;
+    uint32                    keepTime        = 8;   // 礼包持续时间是多久
+    uint32                    triggerTimes    = 9;   // 每天弹出的次数
+    uint32                    buyTimes        = 10;  // 每天能买多少次
+    uint32                    buyTimesDaily   = 11;  // 每天购买限制
+    int32                     modeID          = 12;  //模型ID
+    int32                     PID             = 13;
+    string                    disImgName      = 14;  // 折扣标签图
+    string                    skinName        = 15;  // 皮肤资源名
+    int32                     sid             = 16;
+    string                    skinBundleName  = 17;  // 皮肤名
+}
+
+// @cfg:BigItemConfig|list:BigItemConfig #list
+message BigItemConfigAry {
+    repeated BigItemConfig ary = 1;
+}
+
+message BigItemProductConfig {
+    int32 sid           = 1;
+    int32 modeID        = 2;
+    int32 originalPrice = 3;
+    int32 pid           = 4;
+    int32 keepTime      = 5;
+}
+
+// @cfg:BigItemConfig|list:BigItemProductConfig
+message BigItemProductConfigAry {
+    repeated BigItemProductConfig ary = 1;
+}
+
+/**********************超级礼包配置(结束)********************************/
+
+/**********************节日礼包配置****************************/
+message PackInfo {
+    int64 levelID = 1;
+    int32 pID     = 2;
+    int32 count   = 3;
+    int32 price   = 4;
+}
+
+message BigPackRewardConfig {
+    int32             sid      = 1;  // sid
+    int32             modID    = 2;  // 用户分层ID
+    repeated PackInfo packInfo = 3;  // 礼包信息
+}
+
+// @cfg:BigPackRewardConfig:BigPackRewardConfig|group:BigPackRewardConfig|Sid:int32
+message BigPackRewardConfigAry {
+    repeated BigPackRewardConfig Ary = 1;
+}
+/**********************节日礼包配置****************************/
+
+// 用户分层
+message GiftModeCondition {
+    GiftModeConditionType type = 1;
+    string                data = 2;
+}
+
+message GiftModeV2Config {
+    int64                      mode       = 1;  // 模型
+    string                     country    = 2;  // 国家代码
+    repeated GiftModeCondition conditions = 3;  // 条件组
+}
+
+// @cfg:GiftConfig|list:GiftModeV2Config #list
+message GiftModeV2ConfigAry {
+    repeated GiftModeV2Config ary = 1;
+}
+
+/*=================成就礼包开始===========================*/
+message PayPackageAchievementConfig {
+    int32 limit     = 1;  // 购买上限
+    int32 condition = 2;  // 条件组
+    int32 minPay    = 3;  // 最小付费
+    int32 maxPay    = 4;  // 最高付费
+    int32 id        = 5;  // 购买
+    int32 PID       = 6;  // 商品ID
+    int32 price     = 7;  // 价格
+}
+
+// @cfg:PayPackageAchieveCfg|list:PayPackageAchievementConfig
+message PayPackageAchievementConfigAry {
+    repeated PayPackageAchievementConfig ary = 1;
+}
+
+message PayPackageAchievePlanetConfig {
+    int32 minPlanet    = 1;  // 起始岛屿
+    int32 maxPlanet    = 2;  // 结束岛屿
+    int32 range        = 3;  // 推送岛屿的间隔
+    int32 showDuration = 4;  // 展示时间
+}
+
+// @cfg:PayPackageAchieveCfg|list:PayPackageAchievePlanetConfig
+message PayPackageAchievePlanetConfigAry {
+    repeated PayPackageAchievePlanetConfig ary = 1;
+}
+/*============成就礼包结束===========*/

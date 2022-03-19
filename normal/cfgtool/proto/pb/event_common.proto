@@ -1,0 +1,105 @@
+syntax = "proto3";
+package pb;
+
+import "struct.proto";
+import "struct_action.proto";
+import "enum_paycenter.proto";
+import "report.proto";
+import "enum.proto";
+import "event.proto";
+
+// 一系列资产变动事件结构
+message UserChangePropertyEvent {
+    UserProfileProperty Old        = 1;
+    UserProfileProperty New        = 2;
+    int64               ChangeTime = 3;  // 变动时间
+}
+
+message UserLoginEvent {
+    // 用户基础信息通过rpc head session获取
+    UserProfileProperty UserProfileProperty = 1;
+    int64               CallBackFlowsTimes  = 2;  // 上一次登录距当前登录时间差(s)
+}
+
+//message UserChangePropertySingleEvent {
+//    int64 Incr   = 1;
+//    UserProfileProperty UserProfileProperty = 2;
+//}
+
+//message UserChangeMoneyEvent {
+//    int64 Incr   = 1;
+//    UserProfileProperty UserProfileProperty = 2;
+//}
+//
+//message UserChangeNextPlanetEvent {
+//    UserProfileProperty UserProfileProperty = 1;
+//}
+
+message UserFriendEvent {  // 用户好友
+    repeated int64 Friends = 1;
+}
+
+message UserLoginOutEvent {
+    int64 loginOutTime = 1;  // 登出时间，单位ms
+}
+
+// 用户支付事件
+message UserPayEvent {
+    int32                       ConfigID  = 1;
+    TradeType                   TradeType = 2;
+    int64                       Price     = 3;  // 支付的价格,单位美分
+    int32                       partnerId = 4;  // 本地支付的合作方
+    ReportGoodsFlowPropertyItem Report    = 5;
+}
+
+message PhpCompatibleChangePropertyEvent {
+    int64 AddStar = 1;  //添加星星
+}
+
+// 第三方登陆事件
+message UserThirdLoginEvent {
+    string    AccessToken = 1;
+    LoginType LoginType   = 2;
+    bool      IsRegister  = 3;  // 本次登录事件是否是注册登录
+}
+// 锦标赛排名结算事件
+message StarCompRankSettlementEvent {
+    int64 StartTime = 1;  // 这期锦标赛开始时间
+    int64 rank      = 2;  // 锦标赛结束排名
+}
+// 场景触发标签事件
+message TagModTrigTagEvent {
+    TagMod TrigTagMod = 1;  // 触发标签的场景
+    int64  StartTime  = 2;  // 这期活动的开始时间
+    int64  TagID      = 3;  // 触发的标签id
+}
+// 玩家活动开始事件
+message ActionTrigTagEvent {
+    int64 StartTime = 1;  // 活动开始时间
+}
+
+// 交易系统事件
+message TradeSystemEvent {
+    SystemEventType Type        = 1;  // 事件类型
+    TradeItem       Item        = 2;  // 事件信息
+    TradeMsgSrcType SourceType  = 3;  // 来源(目前主要公会捐赠才会传值)
+    string          FamilyMsgID = 4;  // 消息ID(目前主要公会捐赠才会传值)
+}
+
+message WheelEventRewardEvent {
+    int32                          LastScoreBet = 1;
+    repeated WheelEventLevelReward LevelRewards = 2;
+}
+
+message SlingshotEnter {
+    int64 UID = 1;
+}
+
+message SlingshotShot {
+    int64 FromUID    = 1;  // 攻击者的UID
+    int32 HideGiftID = 2;  // 击中的礼盒ID
+}
+
+message SlingshotQuit {
+    int64 FromUID = 1;
+}

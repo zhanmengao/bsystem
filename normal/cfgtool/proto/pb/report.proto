@@ -1,0 +1,707 @@
+syntax = "proto3";
+
+package pb;
+
+// 上报枚举信息, 由业务层传递到具体上报逻辑
+message ReportEnum {
+    ReportMod1        mod1           = 1;
+    ReportMod2        mod2           = 2;
+    ReportMod3        mod3           = 3;
+    ReportReason      reason         = 4;    // 发放/消耗原因
+    ReportGrantType   grantType      = 5;    // 发放类型
+    ReportConsumeType consumeType    = 6;    // 消耗类型
+    int64             GiftId         = 7;    // 礼包ID
+    int64             FamilyID       = 8;    // 家族id
+    int64             FriendUID      = 9;    // 好友UID
+    int64             GrantLevel     = 10;   // 发放档位
+    string            OrderID        = 11;   // 订单号
+    ReportActionType  opType         = 12;   // 行为类型
+    int32             RecursionLevel = 100;  // 递归判断
+}
+
+message ReportList {
+    ReportGoodsFlowPropertyItem flowReport = 1;
+    int64                       price      = 2;
+    ReportActionType            actionType = 3;
+    int32                       PartnerId  = 4;
+}
+
+// 消耗结构定义
+//message ReportConsumeList {
+//    repeated ReportConsumeItem list = 1;
+//}
+
+message ReportGrantItem {
+    ReportGood goodID     = 1;  //源产品ID
+    int64      goodCnt    = 2;  //源产品数量
+    int64      goodTotal  = 3;  //源产品消耗后存量
+    int64      grantLevel = 4;  // 发放等级
+}
+
+message ReportConsumeItem {
+    ReportGood srcGoodID    = 1;  //源产品ID
+    int64      srcGoodCnt   = 2;  //源产品数量
+    int64      srcGoodTotal = 3;  //源产品消耗后存量
+    ReportGood dstGoodID    = 4;  //目标ID
+    int64      dstGoodCnt   = 5;  //目标产品数量
+}
+
+message ReportGoodsFlowPropertyItem {
+    int64                   productID      = 1;  // 产品ID
+    bool                    isVisitor      = 2;  // 是否游客
+    ReportMod1              moduleID1      = 3;
+    ReportMod2              moduleID2      = 4;
+    ReportMod3              moduleID3      = 5;
+    ReportProductChangeType changeType     = 6;    // 变动类型
+    ReportReason            reason         = 7;    // 发放/消耗原因
+    int64                   level          = 8;    // 发放等级
+    int64                   ConfigID       = 9;    // 配置ID
+    int64                   FamilyID       = 10;   // 家族ID
+    int32                   RecursionLevel = 100;  // 递归判断
+}
+
+// 数据上报枚举定义
+enum ReportReason {
+    ReportReasonEmpty                         = 0;
+    ReportReasonTiliExchange                  = 1;    // 转盘体力恢复
+    ReportReasonAddTiliByFriendSend           = 2;    // 领取好友赠送体力
+    ReportReasonStealMoney                    = 3;    // 偷金币
+    ReportReasonBuyItem                       = 6;    // 建筑升级
+    ReportReasonCollectMine                   = 7;    // 矿工收益
+    ReportReasonCollectFish                   = 8;    // 收集小鱼
+    ReportReasonRepairItem                    = 9;    // 建筑修复
+    ReportReasonSubTiliPlayZhuanpan           = 10;   // 转盘扣体力
+    ReportReasonSlotPlay                      = 11;   // 玩老虎机
+    ReportReasonPicReward                     = 12;   // 拼图奖励
+    ReportReasonDungeon                       = 13;   // 副本奖励
+    ReportReasonSendInvite                    = 14;   // 发送邀请奖励
+    ReportReasonSysReward                     = 15;   // 消息中心系统奖励
+    ReportReasonBoxAction                     = 16;   // 定点宝箱奖励
+    ReportReasonMidasPay                      = 17;   // 道具和游戏币购买
+    ReportReasonTaskPool                      = 18;   // 任务奖励
+    ReportReasonDiamondPay                    = 19;   // 钻石购买
+    ReportReasonPetAdd                        = 20;   // 宠物添加
+    ReportReasonGetPic                        = 21;   // 获得拼图
+    ReportReasonSubPic                        = 22;   // 合成一套拼图
+    ReportReasonSendPic                       = 23;   // 赠送碎片
+    ReportReasonReceivePic                    = 24;   // 接收好友碎片
+    ReportReasonVIPReward                     = 30;   // 获得vip奖励
+    ReportReasonPetFeed                       = 31;   // 宠物喂食
+    ReportReasonSubTongjilingByTongji         = 32;   // 使用通缉令
+    ReportReasonUse                           = 33;   // 聊天
+    ReportReasonPetUpgrade                    = 34;   // 宠物升级
+    ReportReasonSummonDungeon                 = 35;   // 副本召唤
+    ReportReasonAttackDungeon                 = 36;   // 攻击副本boss
+    ReportReasonAdmin                         = 37;   // 后台操作
+    ReportReasonActInvite                     = 39;   // 邀请活动
+    ReportReasonActOlTime                     = 40;   // 在线抽奖
+    ReportReasonStarUp                        = 41;   // 升星活动
+    ReportReasonNewGuideUpdate                = 42;   // 新手奖励
+    ReportReasonRedeemCode                    = 43;   // 兑换码奖励
+    ReportReasonAddRewardByGoToNext           = 44;   // 过岛奖励
+    ReportReasonSendCbMgs                     = 45;   // 发送召回奖励
+    ReportReasonBeyondFriend                  = 46;   // 超越好友奖励
+    ReportReasonSubMoneyBySteal               = 47;   // 金币被其它玩家偷
+    ReportReasonAddMoneyBySteal               = 48;   // 偷其它玩家金币
+    ReportReasonLoginReward                   = 50;   // 八天登录奖励
+    ReportReasonAddMoneyFromStealRobotBySteal = 51;   // 偷机器人金币
+    ReportReasonSubMoneyStealedByRobot        = 52;   // 被机器人偷金币
+    ReportReasonPushReward                    = 53;   // 推送奖励
+    ReportReasonDestroyBuild                  = 55;   // 摧毁建筑
+    ReportReasonBuyFisher                     = 56;   // 购买渔船
+    ReportReasonBuyMiner                      = 57;   // 购买矿工
+    ReportReasonNewer                         = 58;   // 注册奖励
+    ReportReasonSubByShowUser                 = 59;   // 后台操作删除用户
+    ReportReasonBuyVipReward                  = 69;   // 购买vip奖励
+    ReportReasonShot                          = 70;   // 小鸟射击
+    ReportReasonExchange                      = 71;   // 钻石兑换
+    ReportReasonAddBallInitData               = 72;   // 初始化小鸟数据
+    ReportReasonProTectBuild                  = 73;   // 使用迷你盾
+    ReportReasonGiftBox                       = 74;   // 击中礼盒奖励
+    ReportReasonTreeBoom                      = 75;   // 打到龙
+    ReportReasonPicSub                        = 76;   // 万能碎片使用
+    ReportReasonUseMagicBottle                = 77;   // 使用魔法棒
+    ReportReasonSlingshot                     = 78;   // 兑换宝贝
+    ReportReasonUseMercyCard                  = 79;   // 使用求饶卡
+    ReportReasonCollsReward                   = 80;   // 破产补助
+    ReportReasonMercyReward                   = 81;   // 求饶卡奖励
+    ReportReasonDinnerReward3                 = 82;   // 第三道大餐奖励
+    ReportReasonMarkReward                    = 83;   // ios评星奖励
+    ReportReasonGuideReward                   = 84;   // 新手完成奖励
+    ReportReasonDelFriend                     = 85;   // 删除游戏内好友
+    ReportReasonDinnerReward1                 = 86;   // 第一道大餐奖励
+    ReportReasonDinnerReward2                 = 87;   // 第二道大餐奖励
+    ReportReasonUsePoliceCard                 = 88;   // 使用警察卡
+    ReportReasonUseUmbrellaCard               = 89;   // 使用保护伞
+    ReportReasonAddByTencent                  = 90;   // IDIP添加
+    ReportReasonBackReward                    = 91;   // 玩家回归奖励
+    ReportReasonNobleReward                   = 92;   // 领取贵族金币
+    ReportReasonAddMoneyTiliByConncetFB       = 93;   // 绑定奖励
+    ReportReasonSubByTencent                  = 94;   // IDIP操作
+    ReportReasonPay                           = 95;   // 支付
+    ReportReasonAddItemsByAddMoney            = 96;   // 消耗金币送小鸟
+    ReportReasonIOSPay                        = 97;   // ios支付
+    ReportReasonShotFailed                    = 98;   // 加小鸟
+    ReportReasonAddTiliByFullShield           = 99;   // 满盾转体力
+    ReportReasonRewardPushBack                = 100;  //推送回来奖励
+    ReportReasonAddTiliPlayDazhuanpan         = 101;  //转盘奖励
+    ReportReasonAddMoneyPlayGaojiZhuanpan     = 102;  //星星数奖励
+    ReportReasonSkipGuide                     = 103;  //跳过新手
+    ReportReasonRefreshTask                   = 104;  //家族任务刷新
+    ReportReasonCreateFamily                  = 105;  //创建家族
+    ReportReasonCallback                      = 106;  //召回阶段性奖励
+    ReportReasonEnergyUse                     = 107;  //转盘加小鸟
+    ReportReasonAddBallMoney                  = 108;  //金币加小鸟
+    ReportReasonShareReward                   = 109;  //过岛分享奖励
+    ReportReasonAntGuide                      = 110;  //通缉引导
+    ReportReasonAddMoneyPlayZhuanpan          = 111;  //转盘加金币
+    ReportReasonWheelShare                    = 112;  //转盘转到最小值分享
+    ReportReasonMagicWheelNewbie              = 113;  //超级转盘引导
+    ReportReasonAddTiliByInviteSucc           = 114;  //邀请奖励
+    ReportReasonCloseFriendSend               = 115;  //密友发送邀请奖励
+    ReportReasonPicChange                     = 116;  //拼图碎片交易
+    ReportReasonSlingsHotChange               = 117;  //弹弓宝贝交易
+    ReportReasonSlingShotGet                  = 118;  //获取赠送的宝贝
+    ReportReasonSlingShotSend                 = 119;  //宝贝赠送
+    ReportReasonSummonDungeonFree             = 120;  //使用免费召唤石
+    ReportReasonUserRelation                  = 121;  //私密关系分享奖励
+    ReportReasonWeeklyPaperShare              = 122;  //岛主周报分享
+    ReportReasonCardReward                    = 123;  //牌组奖励
+    ReportReasonMainTask                      = 124;  //主线任务
+    ReportReasonBuy                           = 125;  //购买
+    ReportReasonChatPlayPool                  = 126;  //玩伴奖池
+    ReportReasonSummonDungeonGuide            = 127;  //引导召唤
+    ReportReasonWeaponAttack                  = 128;  //打炮攻击
+    ReportReasonFreeRecover                   = 129;  //免费兑换
+    ReportReasonFamilyBind                    = 130;  //公会绑定群发奖
+    ReportReasonCumuRechargeReward            = 131;  //累计充值
+    ReportReasonFightFriendReward             = 132;  //打好友活动
+    ReportReasonGainCoin                      = 133;  //嘉年华-接金币
+    ReportReasonNewerSignIn                   = 134;  //新手八天连续签到
+    ReportReasonHelpFriend1                   = 135;  //使用体力卡领奖
+    ReportReasonHelpFriend2                   = 136;  //使用金币卡领奖
+    ReportReasonHelpFriend3                   = 137;  //使用盾卡领奖
+    ReportReasonHelpFriend4                   = 138;  //使用修复卡领奖
+    ReportReasonHelpFrdAccept1                = 139;  //领取互助体力卡
+    ReportReasonHelpFrdAccept2                = 140;  //领取互助金币卡
+    ReportReasonHelpFrdAccept3                = 141;  //领取互助盾卡
+    ReportReasonBoomPieceReward               = 142;  //嘉年华领奖
+    ReportReasonHappyReward                   = 143;  //欢乐夺宝累计奖励
+    ReportReasonHappyLotteryReward            = 144;  //欢乐夺宝钻石抽奖
+    ReportReasonHappyLottery                  = 145;  //欢乐夺宝
+    ReportReasonWheelEventReward              = 146;  // 转盘事件领奖
+    ReportReasonSendBindReward                = 147;  // 领取FB绑定奖励
+    ReportReasonStarActionFresh               = 148;  //星星活动刷新
+    ReportReasonStarActionReward              = 149;  //星星活动发奖
+    ReportReasonExchangeByMoney               = 150;  //用金币买道具
+    ReportReasonGuardCardComplete             = 151;  // 集齐一套卡片
+    ReportReasonHelpFriendLimit               = 152;  //互助好友失败返回体力
+    ReportReasonGuardCardExchange             = 153;  // 卡片兑换
+    ReportReasonHelpFriendGuide               = 154;  //互助玩法引导
+    ReportReasonFamilyTask                    = 155;  //公会任务发奖
+    ReportReasonDestinyAddTili                = 156;  //运气发体力
+    ReportReasonDestinyMoney                  = 157;  //运气发金币
+    ReportReasonDestinySubMoney               = 158;  //运气扣金币
+    ReportReasonDepthInvite                   = 159;  //深度邀请
+    ReportReasonAdventure                     = 160;  //海底探险
+    ReportReasonAdventure5                    = 161;  //海底探险-5人组队奖励
+    ReportReasonSendCard                      = 162;  //赠送卡片
+    ReportReasonVideoAD                       = 163;  //视频广告
+    ReportReasonFamilySign                    = 164;  // 家族签到
+    ReportReasonBoomGuide                     = 165;  //炸弹引导赠送体力
+    ReportReasonBoomDismantle                 = 166;  //炸弹拆除
+    ReportReasonStarComp                      = 167;  // 火焰锦标赛
+    ReportReasonPlanetUpgrade                 = 168;  //过岛刺激奖励
+    ReportReasonWheelPayPackage               = 169;  //转盘付费
+    ReportReasonOnetimePackage                = 170;  //一次性礼包
+    ReportReasonGeneralWheel                  = 171;  //普通转盘
+    ReportReasonSuperWheel                    = 172;  //超级转盘
+    ReportReasonWanted                        = 173;  //通缉
+    ReportReasonBuildPlanet                   = 174;  //建岛
+    ReportReasonMiner                         = 175;  //矿工
+    ReportReasonStarAction                    = 176;  //星星活动
+    ReportReasonGuardCard                     = 177;  //守护神卡片
+    ReportReasonSingleRechargeReward          = 178;  //单笔充值领奖
+    ReportReasonConstellationObserve          = 179;  //星座观察奖励
+    ReportReasonHoroscope                     = 180;  //星座邀请
+    ReportReasonStarBox                       = 181;  //冲星宝箱
+    ReportReasonSubscribeReward               = 182;  //订阅
+    ReportReasonContinuousPackage             = 183;  //连续充值活动
+    ReportReasonTournamentReward              = 184;  //个人竞标赛领奖
+    ReportReasonUnionStarComp                 = 185;  //公会竞标赛
+    ReportReasonDiligentReward                = 186;  //辛勤奖励ReportReason
+    ReportReasonDiamondMake                   = 187;  //钻石制造机
+    ReportReasonWishTreePresent               = 188;  //许愿树-赠送
+    ReportReasonWishTreeWish                  = 189;  //许愿树-许愿
+    ReportReasonWishTreePrivateBox            = 190;  //许愿树-个人宝箱
+    ReportReasonWishTreePublicBox             = 191;  //许愿树-全员宝箱
+    ReportReasonFamilyGoodSmallGift           = 192;  //家族商品-体力
+    ReportReasonEmptyPlanet                   = 193;  //空岛方案领奖
+    ReportReasonFamilyAddProps                = 194;  //家族-添加食材发放奖励
+    ReportReasonTapjoyWall                    = 195;  //tap积分墙
+    ReportReasonHelpFrdAcceptSpeed            = 196;  //好友互助一键领奖
+    ReportReasonShare                         = 197;  //分享奖励
+    ReportReasonDinnerReward4                 = 198;  //公会第四道大餐
+    ReportReasonDinnerReward5                 = 199;  //公会第五道大餐
+    ReportReasonIslandGrade                   = 200;  //建岛竞标赛积分
+    ReportReasonGoodDefaultReward             = 201;  //家族商品-默认奖励
+    ReportReasonBackProtect                   = 202;  //回归奖励合一
+    ReportReasonFBLinkCode                    = 203;  //fb链接跳转奖励
+    ReportReasonSingleFruitReward             = 204;  //单个水果完成奖励ReportReason
+    ReportReasonMulFruitReward                = 205;  //一批水果完成奖励
+    ReportReasonBuyFruit                      = 206;  //购买水果
+    ReportReasonFruitRefresh                  = 207;  //刷新水果
+    ReportReasonSystem                        = 208;  //系统奖励
+    ReportReasonFruitExchange                 = 209;  //水果交换
+    ReportReasonFruitSend                     = 210;  //水果赠送
+    ReportReasonSkinStampExchange             = 211;  //碎片兑换皮肤
+    ReportReasonEggRevive                     = 212;  //砸蛋复活
+    ReportReasonGuessExit                     = 213;  // 砸蛋领奖
+    ReportReasonSlingshotOpeningGift          = 219;  //弹弓活动开启系统小鸟赠送
+    ReportReasonFamilySendCtb                 = 220;  //家族赠送奖励贡献值
+    ReportReasonZhuanpanPassMedal             = 221;  //转盘获取通行证
+    ReportReasonFamilyStageReward1            = 222;  //公会集体任务1奖励
+    ReportReasonFamilyStageReward2            = 223;  //公会集体任务2奖励
+    ReportReasonFamilyStageReward3            = 224;  //公会集体任务3奖励
+    ReportReasonFamilyExchange                = 225;  //公会商城兑换
+    ReportReasonPassReward                    = 226;  //通行证奖励发放
+    ReportReasonPigAdventureGuideReward       = 227;  //猪猪大冒险-引导奖励
+    ReportReasonPigAdventureBoxReward         = 228;  //猪猪大冒险-奖励
+    ReportReasonFamiySeasonRankReward         = 229;  //家族赛季排名奖励
+    ReportReasonPigAdventureBuild             = 230;  //猪猪大冒险-建建筑物品消耗
+    ReportReasonScratchCardLotteryReward      = 231;  // 刮刮卡奖励发放
+    ReportReasonLotteryKeepmulti              = 232;  //乐透保持倍数
+    ReportReasonLotteryConsume                = 233;  //乐透消耗卡片
+    ReportReasonGetLottery                    = 234;  //获得乐透
+    ReportReasonBingoRewardDigit              = 235;  //Bingo奖励数字兑换活动奖励
+    ReportReasonBingoActReward                = 236;  //Bingo数字兑换活动奖励
+    ReportReasonWheelEventLimit               = 237;  //转盘限时活动奖励发放
+    ReportReasonDestinyScratchCard            = 238;  //运气刮刮卡奖励
+    ReportReasonStarCompStageReward1          = 239;  //火焰锦标赛阶段奖1
+    ReportReasonStarCompStageReward2          = 240;  //火焰锦标赛阶段奖2
+    ReportReasonStarCompStageReward3          = 241;  //火焰锦标赛阶段奖3
+    ReportReasonHammyLottery                  = 243;  //抽奖奖励
+    ReportReasonHammyStageComplete            = 244;  //抽奖奖励
+    ReportReasonPetAllowance                  = 245;  //宠物补偿
+    ReportReasonPetTimerFree                  = 246;  //魔力瓶定时免费恢复
+    ReportReasonFamilyTreeCommonReward        = 247;  //普通奖
+    ReportReasonFamilyTreeLockReward          = 248;  //锁定奖
+    ReportReasonEventScore                    = 249;  //事件加积分
+    ReportReasonShopADGiftBox1                = 250;  //商城广告礼盒1
+    ReportReasonShopADGiftBox2                = 251;  //商城广告礼盒2
+    ReportReasonSkinFuncUnlock                = 252;  //皮肤功能解锁奖励发放
+    ReportReasonWheelButtonSkinCompensate     = 253;  //转盘皮肤补偿
+    ReportReasonChestBox                      = 254;  // 抽奖宝箱奖励
+    ReportReasonTwPay                         = 255;  // 台湾本地支付发放原因
+    ReportReasonGoldCardExpire                = 256;  // 万能卡失效
+    ReportReasonGodCardEXCHANGE               = 257;  // 兑换万能卡片
+    ReportReasonSealAction                    = 258;  // 冰封活动上报
+    ReportReasonSealActionCompensate          = 259;  // 冰封活动下线奖励补偿
+    ReportReasonInviteSuccess                 = 260;  // 邀请成功的奖励
+    ReportReasonEarningOnlineApplyRed         = 261;  // 网赚提取红包
+    ReportReasonEarningOnlineWithdraw         = 262;  // 网赚提现分享领奖
+    ReportReasonEarningOnlineWithdrawSuccess  = 263;  // 网赚提现成功领奖
+    ReportReasonEarningOnlineLottery          = 264;  // 网赚红包抽奖
+    ReportReasonFinishActionCard              = 265;  // 集齐主题卡组领奖
+    ReportReasonLunaLotteryReward             = 266;  // 露娜寻宝-抽奖奖励
+    ReportReasonLunaStageReward               = 267;  // 露娜寻宝-进度奖励
+    ReportReasonExperienceCardChange          = 268;  // 体验卡转换
+    ReportReasonMinecraftReward               = 269;  // 挖矿奖励
+    ReportReasonMinecraftRefreshMap           = 270;  // 挖矿刷新地图
+    ReportReasonMinePieceSend                 = 271;  // 挖矿碎片赠送
+    ReportReasonMinePieceSwitch               = 272;  // 挖矿碎片交换
+    ReportReasonMinePieceExchange             = 273;  // 挖矿碎片兑奖
+    ReportReasonPassReceivePay                = 274;  // 领取通行证付费奖励
+    ReportReasonPassReceiveFree               = 275;  // 领取通行证普通奖励
+    ReportReasonFamilyTreeCommonRewardAll     = 276;  // 一键领取工会种树普通奖
+    ReportReasonFamilyTreeLockRewardAll       = 277;  // 一键领取工会种树锁定奖
+    ReportReasonRecoverTili                   = 278;  // 老虎机体力恢复
+    ReportReasonStealNotFull                  = 279;  // 金币未偷满
+    ReportReasonInviteSuccessStage            = 280;  // 邀请成功后的阶段奖励
+    ReportReasonEarningOnlineGuidReward       = 281;  // 网赚新手引导奖励发放
+    ReportReasonSlingshotStart                = 284;  // 弹弓活动开启
+    ReportReasonSlingshotShot                 = 285;  // 射击自己的风铃
+    ReportReasonSlingshotShotFriend           = 286;  // 射击好友的风铃
+    ReportReasonSlingshotShotUseMagic         = 287;  // 使用仙女棒
+    ReportReasonSlingshotShotGift             = 288;  // 击中自己礼盒
+    ReportReasonSlingshotShotFriendGift       = 289;  // 击中好友礼盒
+    ReportReasonTrade                         = 290;  // 碎片交换
+    ReportReasonSend                          = 291;  // 碎片赠送
+    ReportReasonExchangeReward                = 292;  // 碎片兑换
+    ReportReasonPetMagicRecover               = 293;  // 宠物魔力值恢复
+    ReportReasonPetFunUnlock                  = 294;  // 宠物解锁
+    // 500~600用于卡片上报
+    ReportReasonGuardBoxReward = 501;  // 守护神宝箱开卡
+}
+
+// 最好与奖励格式关联
+// 如宠物 type: pet, param: 1, 则设定为 ReportGoodPet1
+enum ReportGood {
+    ReportGoodNone        = 0;   // 没有
+    ReportGoodDungeongun  = 1;   // 副本炮弹
+    ReportGoodHeart       = 3;   // 宠物魔力瓶
+    ReportGoodSummon      = 4;   // 副本召唤石
+    ReportGoodTili        = 7;   // 体力
+    ReportGoodMoney       = 12;  // 金币
+    ReportGoodDiamond     = 13;  // 钻石
+    ReportGoodShield      = 15;  // 盾
+    ReportGoodMagicBottle = 18;  // 仙女棒
+    ReportGoodSnowBall    = 19;  // 小鸟
+
+    ReportGoodStar             = 23;   //星星
+    ReportGoodFamilyContribute = 92;   // 公会贡献值
+    ReportGoodPassMedal        = 132;  // 通行证勋章
+
+    ReportGoodAvatarFrame = 230;  //头像框
+    //ReportGoodAvatarFrame1 = 231; //头像框1 默认头像框
+    //ReportGoodAvatarFrame2 = 232; //头像框2 VIP头像框
+    //ReportGoodAvatarFrame3 = 233; //头像框3 周年庆头像框
+    //    ReportGoodAvatarFrame30 = 260; //头像框30 保留30个头像框物品ID
+    ReportGoodRedCoin                = 244;  // 红包币
+    ReportGoodThb                    = 245;  // 泰铢
+    ReportGoodPhoneCard              = 246;  // 电话卡
+    ReportGoodTwd                    = 247;  // 台币
+    ReportGoodLunaScore              = 248;  // 露娜寻宝积分
+    ReportGoodLunaLimitCardBoxLow    = 249;  // 低级宝箱
+    ReportGoodLunaLimitCardBoxMiddle = 250;  // 中级宝箱
+    ReportGoodLunaLimitCardBoxHigh   = 251;  // 高级宝箱
+    ReportGoodActionCard             = 252;  // 主题卡组
+
+    ReportGoodMineShovel    = 253;  // 挖矿铲子
+    ReportGoodMineBomb      = 254;  // 挖矿炸弹
+    ReportGoodMineFirework  = 255;  // 挖矿烟花
+    ReportGoodMinePiece1    = 256;  // 挖矿碎片1
+    ReportGoodMinePiece2    = 257;  // 挖矿碎片2
+    ReportGoodMinePiece3    = 258;  // 挖矿碎片3
+    ReportGoodMinePiece4    = 259;  // 挖矿碎片4
+    ReportGoodMinePiece5    = 260;  // 挖矿碎片5
+    ReportGoodMinePiece6    = 261;  // 挖矿碎片6
+    ReportGoodMyr           = 262;  // 马来币
+    ReportGoodIdr           = 263;  // 印尼币
+    ReportGoodStarSlotEvent = 267;  // 老虎机事件奖励积分
+    ReportGoodStarCompScore = 268;  // 锦标赛积分
+    ReportGoodPowPic        = 269;  // 万能碎片
+
+    ReportGoodsBaby1 = 301;  // 弹弓宝贝碎片1
+    ReportGoodsBaby2 = 302;  // 弹弓宝贝碎片2
+    ReportGoodsBaby3 = 303;  // 弹弓宝贝碎片3
+    ReportGoodsBaby4 = 304;  // 弹弓宝贝碎片4
+    ReportGoodsBaby5 = 305;  // 弹弓宝贝碎片5
+    ReportGoodsBaby6 = 306;  // 弹弓宝贝碎片6
+
+    // 拼图碎片
+    ReportGoodsPic1 = 311;  // 拼图碎片1
+    ReportGoodsPic2 = 312;  // 拼图碎片2
+    ReportGoodsPic3 = 313;  // 拼图碎片3
+    ReportGoodsPic4 = 314;  // 拼图碎片4
+    ReportGoodsPic5 = 315;  // 拼图碎片5
+    ReportGoodsPic6 = 316;  // 拼图碎片6
+    ReportGoodsPic7 = 317;  // 拼图碎片7
+    ReportGoodsPic8 = 318;  // 拼图碎片8
+    ReportGoodsPic9 = 319;  // 拼图碎片9
+
+    // 基础功能物品 1000开始, 不同子模块分类
+    ReportGoodPetExp  = 1000;  //通用经验, PHP
+    ReportGoodPetExp1 = 1001;  //宠物经验1
+    ReportGoodPetExp2 = 1002;  //宠物经验2
+    ReportGoodPetExp3 = 1003;  //宠物经验3
+    ReportGoodPetExp4 = 1004;  //宠物经验4
+    ReportGoodPetExp5 = 1005;  //宠物经验5
+    ReportGoodPetExp6 = 1006;  //宠物经验6
+    ReportGoodPetExp7 = 1007;  //宠物经验7
+    //    ReportGoodPetSelf10 = 1099; //预留
+    ReportGoodPet1 = 1101;  //宠物1 注意不要和宠物碎片搞混了
+    ReportGoodPet2 = 1102;  //宠物2
+    ReportGoodPet3 = 1103;  //宠物3
+    ReportGoodPet4 = 1104;  //宠物4
+    ReportGoodPet5 = 1105;  //宠物5
+    ReportGoodPet6 = 1106;  //宠物6
+    //    ReportGoodPetSelf10 = 1199; //预留
+
+    ReportGoodChestBox      = 1107;  // 抽奖宝箱
+    ReportGoodPet7          = 1120;  // 雪球宠物，冰粉活动相关
+    ReportGoodPetTrialCard7 = 1110;  // 雪球宠物体验卡
+    ReportGoodPetTrialCard1 = 1111;  // 金鱼宠物体验卡
+
+    // 活动 3000 开始
+    ReportGoodHammy           = 3000;  // 哈米蛋糕
+    ReportGoodFamilyTreeWater = 3001;  // 公会浇水积分
+
+    // 其他 6000 开始
+}
+
+enum ReportMod1 {
+    ReportMod1Empty           = 0;
+    ReportMod1Action          = 1;   // 活动
+    ReportMod1BigMap          = 2;   // 大地图
+    ReportMod1Build           = 3;   // 建筑
+    ReportMod1MineShell       = 4;   // 矿工
+    ReportMod1Pet             = 5;   // 宠物
+    ReportMod1Pay             = 6;   // 商城支付
+    ReportMod1Dungeon         = 7;   // 副本
+    ReportMod1Family          = 10;  // 家族
+    ReportMod1Play            = 12;  // 转盘
+    ReportMod1Card            = 13;  // 卡片
+    ReportMod1Friend          = 15;  // 好友
+    ReportMod1MsgCenterd      = 16;  // 消息中心
+    ReportMod1Guide           = 19;  // 新手注册
+    ReportMod1CollpaseProtect = 25;  // 破产保护
+    ReportMod1Chat            = 26;  // 聊天
+    ReportMod1ThrirdPay       = 27;  // 第三方支付调用
+    ReportMod1FastPay         = 28;  // 快捷支付
+    ReportMod1GuardCard       = 29;  // 守护神卡片
+    ReportMod1Advert          = 30;  // 广告
+    ReportMod1SingleRecharge  = 32;  // 单笔充值
+    ReportMod1System          = 33;  // 系统发放
+    ReportMod1Admin           = 34;  // 后台
+    ReportMod1Notification    = 35;  // 推送
+    ReportMod1FuncCompensate  = 36;  // 功能补偿
+    ReportMod1TwPayment       = 37;  // 台湾储值中心
+    ReportMod1PayCancel       = 38;  // 支付取消
+    ReportMod1CodaShop        = 40;  // codaShop支付
+    ReportMod1Share           = 41;  //分享
+}
+
+enum ReportMod2 {
+    ReportMod2Empty                = 0;
+    ReportMod2ShopADGiftBox        = 1;    // 商城广告礼盒
+    ReportMod2DailyTask            = 2;    // 每日任务
+    ReportMod2Login                = 4;    // 累积登录
+    ReportMod2Box                  = 5;    // 定点宝箱
+    ReportMod2CallBack             = 6;    // 召回
+    ReportMod2FirstPay             = 7;    // 首充
+    ReportMod2Friend               = 8;    // 好友
+    ReportMod2OlTime               = 9;    // 在线抽奖
+    ReportMod2Slingshot            = 10;   // 弹弓
+    ReportMod2Union                = 11;   // 工会
+    ReportMod2RankingList          = 12;   // 排行榜
+    ReportMod2Build                = 14;   // 建造
+    ReportMod2GoldMine             = 15;   // 矿岛
+    ReportMod2Shop                 = 17;   // 商城
+    ReportMod2Pet                  = 18;   // 宠物
+    ReportMod2Dungeon              = 19;   // 副本
+    ReportMod2Mark                 = 20;   // 升星活动
+    ReportMod2CumuReward           = 22;   // 八天签到
+    ReportMod2ActInvite            = 24;   // 邀请好友
+    ReportMod2BeyondFriend         = 42;   // 超越好友
+    ReportMod2Pic                  = 48;   // 拼图
+    ReportMod2MagicPlay            = 49;   // 超级转盘
+    ReportMod2MainTask             = 50;   // 主线任务
+    ReportMod2GiftPackage          = 51;   // 礼包活动
+    ReportMod2UserRelationship     = 52;   // 漂流瓶活动
+    ReportMod2UserRelation         = 54;   // 私密关系
+    ReportMod2WeeklyPaper          = 55;   // 周报
+    ReportMod2CloseFriend          = 56;   // 密友活动
+    ReportMod2TaskCenter           = 57;   // 任务中心
+    ReportMod2CumuRecharge         = 58;   // 累计充值
+    ReportMod2Villain              = 60;   // 恶人榜
+    ReportMod2NewerSignIn          = 61;   // 新手八天连续签到
+    ReportMod2Happy                = 62;   // 欢乐夺宝
+    ReportMod2WheelEvent           = 63;   // 转盘事件
+    ReportMod2wheelSkin            = 64;   // 转盘皮肤
+    ReportMod2SearchFriend         = 65;   // 好友搜索
+    ReportMod2FriendCard           = 66;   // 好友名片
+    ReportMod2StarAction           = 68;   // 星星活动
+    ReportMod2DiscountCard         = 69;   // 打折卡
+    ReportMod2CumnRecharge         = 70;   // 累计充值
+    ReportMod2OnetimePackage       = 71;   // 一次性充值
+    ReportMod2OptionalPackage      = 72;   // 选择性充值
+    ReportMod2ContinuousPackage    = 73;   // 连续多天充值
+    ReportMod2RecommendFriend      = 74;   // 自动推荐好友
+    ReportMod2DepthInvite          = 75;   // 深度邀请
+    ReportMod2Recuritment          = 76;   // 海岛招聘
+    ReportMod2Push                 = 78;   // 推送上报
+    ReportMod2Competition          = 79;   // 建岛竞赛
+    ReportMod2SingleRecharge       = 80;   // 单笔充值活动
+    ReportMod2DiamondSubscribe     = 81;   // 订阅钻石VIP
+    ReportMod2ConstellationObserve = 82;   // 星座观察
+    ReportMod2StarBox              = 83;   // 成长宝箱
+    ReportMod2Tournament           = 84;   // 个人竞标赛
+    ReportMod2FamilyDonate         = 85;   // 工会碎片捐赠
+    ReportMod2DiamondPromote       = 87;   // 促钻石消耗
+    ReportMod2WishTree             = 88;   // 许愿树
+    ReportMod2Friendlist           = 89;   // 好友列表
+    ReportMod2TapjoyWall           = 90;   // 积分墙
+    ReportMod2FriendGivePower      = 91;   // 好友赠送体力
+    ReportMod2BET                  = 92;   // BET玩法
+    ReportMod2ResponseUpgrade      = 93;   // 反馈优化
+    ReportMod2GameCross            = 94;   // 游戏互推
+    ReportMod2FruitSeller          = 95;   // 水果商人
+    ReportMod2FruitAction          = 96;   // 水果活动
+    ReportMod2GrowthFunc           = 97;   // 成长基金
+    ReportMod2SkinSystem           = 98;   // 皮肤系统
+    ReportMod2Guess                = 100;  // 砸蛋活动
+    ReportMod2BulletinPicture      = 101;  // 公告大图
+    ReportMod2Pass                 = 102;  // 通行证活动
+    ReportMod2PayExtraTimes        = 104;  // 深度付费转盘
+    ReportMod2PigAdventrue         = 105;  // 猪猪大冒险活动
+    ReportMod2ScratchCard          = 106;  // 刮刮卡
+    ReportMod2Bingo                = 107;  // Bingo邀请活动
+    ReportMod2BigPack              = 108;  // 节日礼包
+    ReportMod2Hammy                = 109;  // 哈米派对上报
+    ReportMod2BindAccount          = 110;  // 绑定账户入口
+    ReportMod2FamilyTree           = 111;  // 公会种树
+    ReportMod2DailyPackage         = 112;  // 每日礼包
+    ReportMod2PassIslandUnlock     = 113;  // 新过岛解锁
+    ReportMod2EarningOnline        = 114;  // 真人网赚活动
+    ReportMod2Luna                 = 115;  // 露娜寻宝
+    ReportMod2Minecraft            = 116;  // 挖矿寻宝
+    ReportMod2TrackingPreAuthority = 117;  // ios授权弹框
+    ReportMod2PlanetUpgdrade       = 118;  // 过岛刺激活动
+    ReportMod2GoldCardExchange     = 119;  // 金卡交换
+    ReportMod2BonusExchange        = 120;  // 兑换码
+    ReportMod2UnionChampion        = 121;  // 公会锦标赛
+    ReportMod2NoticeBoard          = 122;  // 公告板
+    ReportMod2FuncUnlock           = 123;  // 功能解锁
+    ReportMod2GuardCardExchange    = 124;  // 守护神宝箱回收
+    ReportMod2GroupBanner          = 125;  // 加入群组
+    ReportMod2Share                = 126;  // 分享奖励
+}
+
+enum ReportMod3 {
+    ReportMod3Empty             = 0;
+    ReportMod3BuyBigItemDiamond = 1;   // 超级礼包
+    ReportMod3FirstPay          = 2;   // 首充礼包
+    ReportMod3Common            = 3;   // 密友-体力界面
+    ReportMod3Boss              = 4;   // 密友-副本界面
+    ReportMod3Brid              = 5;   // 密友-弹弓界面
+    ReportMod3SceneGiftBag      = 6;   // 场景礼包
+    ReportMod3SecondPay         = 7;   // 二充礼包
+    ReportMod3ThirdPay          = 8;   // 三充礼包
+    ReportMod3MultiPay          = 9;   // 多充礼包
+    ReportMod3BuyFruit          = 10;  // 购买水果,(客户端：主界面)
+    ReportMod3BuildUI           = 11;  // 建岛界面
+    ReportMod3Menu              = 12;  // 主菜单
+    ReportMod3Shop              = 13;  // 商城
+    ReportMod3WheelEvent        = 14;  // 转盘事件
+    ReportMod3AdditionalGiftBag = 15;  // 加增礼包
+    ReportMod3FriendHelp        = 16;  // 好友礼包
+    ReportMod3BigPack           = 17;  // 节日礼包
+    ReportMod3Pass              = 19;  // 通信证
+    ReportMod3ChestBox          = 20;  // 抽奖宝箱
+    ReportMod3MultiStagePack    = 21;  // 多段式礼包
+    ReportMod3AchievementPack   = 22;  // 成就礼包
+}
+
+enum ReportGrantType {
+    ReportGrantTypeEmpty              = 0;
+    ReportGrantTypePushGrant          = 1;    //opr 最大
+    ReportGrantTypeRewardGrant        = 214;  //奖励发放
+    ReportGrantTypeSystemGrant        = 219;  //系统赠送
+    ReportGrantTypeMyCard             = 221;  //mycard
+    ReportGrantTypeTrueMoney          = 222;  //trueMoney
+    ReportGrantTypeAIS                = 223;  //ais
+    ReportGrantTypeLimitBoxGuardCard  = 224;
+    ReportGrantTypeLimitBoxActionCard = 225;
+    // 1000
+}
+
+enum ReportConsumeType {
+    ReportConsumeTypeEmpty      = 0;
+    ReportConsumeTypeTili       = 203;  //体力消耗
+    ReportConsumeTypeProp       = 204;  //道具消耗
+    ReportConsumeTypeActionCard = 205;  // 标记主题卡片
+    // 2000
+}
+
+// t_hammy类型
+enum ReportHammyType {
+    ReportHammyTypeEmpty        = 0;
+    ReportHammyTypeLottery      = 1;
+    ReportHammyTypeComplete     = 2;
+    ReportHammyTypeLotteryLevel = 3;
+}
+
+enum ReportUserActionItemID {
+    ReportUserActionItemIDDefault = 0;
+
+    ReportUserActionItemIDPetFreeMp = 3082;  // 宠物魔力定时恢复满推送
+}
+
+// t_user_action action_type
+enum ReportActionType {
+    ReportActionTypeInit            = 0;
+    ReportActionTypeClick           = 1;  // 点击
+    ReportActionTypeExchangeSuccess = 17;
+    ReportActionTypeBuySuccess      = 19;  // 购买成功
+
+    ReportActionTypeGuessRevive        = 41;  // 砸蛋复活
+    ReportActionTypeGuessExit          = 42;  // 砸蛋离开领奖
+    ReportActionTypeGuessFullTicket    = 43;  // 砸蛋集满机票
+    ReportActionTypeGuessSuccess       = 44;  // 砸蛋成功
+    ReportActionTypeGuessFail          = 45;  // 砸蛋失败
+    ReportActionTypeEarningOnlineApply = 55;  // 网赚活动申请成功
+    ReportActionTypePassRewardFree     = 57;  // 通行证普通领取
+    ReportActionTypePassRewardPay      = 58;  // 通行证付费领取
+    ReportActionTypePassReceiveAll     = 59;  // 通行证一键领取
+}
+
+enum ReportPartnerType {
+    ReportPartnerTypeDefalult    = 0;
+    ReportPartnerTypeUpayVnp     = 1;     // 越南UPAY_VNP
+    ReportPartnerTypeUpayVit     = 2;     // 越南UPAY_VTT
+    ReportPartnerTypeUpayZing    = 3;     // 越南UPAY_ZING
+    ReportPartnerTypeUpayGate    = 4;     // 越南UPAY_GATE
+    ReportPartnerTypeUpayMomopay = 5;     // 越南UPAY_MOMOPAY
+    ReportPartnerTypeTHMol       = 6;     // 泰国MOL
+    ReportPartnerTypeTWMyCard    = 7;     // 台湾MYCARD
+    ReportPartnerTypeTHMolPre    = 8;     // 泰国MOL预支付
+    ReportPartnerTypeTHMolAfter  = 9;     // 泰国MOL后付费
+    ReportPartnerTypeTHMolWallet = 10;    // 泰国MOL电子钱包
+    ReportPartnerTypeOfficial    = 3001;  //官方
+}
+
+// 快捷兑换上报前后端协议
+message ExchangeReport {
+    ReportMod1 Mod1 = 1;
+    ReportMod2 Mod2 = 2;
+    ReportMod3 Mod3 = 3;
+}
+
+// 物品类型
+enum ReportProductChangeType {
+    ReportProductChangeTypeGrant   = 0;  // 发放
+    ReportProductChangeTypeConsume = 1;  // 消耗
+}
+
+enum ReportAttackAction {
+    ReportAttackActionDefault = 0;  // 默认
+    ReportAttackActionSelect  = 1;  // 主动选择
+}
+
+enum ReportAttackType {
+    ReportAttackTypeDefault = 0;  // 默认
+    ReportAttackTypeRevenge = 1;  // 复仇
+    ReportAttackTypeFriend  = 2;  // 社交好友
+    ReportAttackTypeRobot   = 3;  // 机器人
+}
+
+enum ReportRewardType {
+    ReportRewardTypeNone   = 0;   //
+    ReportRewardTypeAttack = 1;   // 炮
+    ReportRewardTypeShield = 2;   // 盾
+    ReportRewardTypeSteal  = 3;   // 偷
+    ReportRewardTypeTili   = 4;   // 体力
+    ReportRewardTypeScore  = 5;   // 积分
+    ReportRewardTypeMoney1 = 6;   // 1档金币
+    ReportRewardTypeMoney2 = 7;   // 2档金币
+    ReportRewardTypeMoney3 = 8;   // 3档金币
+    ReportRewardTypeMoney4 = 9;   // 4档金币
+    ReportRewardTypeMoney5 = 10;  // 5档金币
+    ReportRewardTypeMoney6 = 11;  // 6档金币
+    ReportRewardTypeScore1 = 12;  // 1档积分
+    ReportRewardTypeScore2 = 13;  // 2档积分
+    ReportRewardTypeScore3 = 14;  // 3档积分
+    ReportRewardTypeScore4 = 15;  // 4档积分
+    ReportRewardTypeScore5 = 16;  // 5档积分
+    ReportRewardTypeScore6 = 17;  // 6档积分
+}
+
+enum ReportPetActionType {
+    ReportPetActionTypeNone               = 0;
+    ReportPetActionTypePetGrant           = 1;  // 宠物add
+    ReportPetActionTypeFreeMagicConsume   = 2;  // 免费魔力瓶消耗
+    ReportPetActionTypeNormalMagicConsume = 3;  // 普通魔力瓶消耗
+    ReportPetActionTypePetUpgrade         = 4;  // 升级
+    ReportPetActionTypePetSkillRun        = 5;  // 使用技能
+}

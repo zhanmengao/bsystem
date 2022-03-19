@@ -1,0 +1,1 @@
+powershell install-WindowsFeature -Name AD-Domain-Services -IncludeManagementTools 

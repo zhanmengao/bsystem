@@ -1,0 +1,48 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Other">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="命名双工">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hh;hpp;hxx;hm;inl;inc;xsd</Extensions>
+    </Filter>
+    <Filter Include="匿名双工">
+      <UniqueIdentifier>{48cdfc82-a052-40ec-8baa-75b8902b4af1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="abstract">
+      <UniqueIdentifier>{7fd0ed27-5008-45c2-a9b6-f85a8972d599}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="NamePipe.cpp">
+      <Filter>Other</Filter>
+    </ClCompile>
+    <ClCompile Include="IPC2CScpp.cpp">
+      <Filter>Other</Filter>
+    </ClCompile>
+    <ClCompile Include="IPCAnonManager.cpp">
+      <Filter>匿名双工</Filter>
+    </ClCompile>
+    <ClCompile Include="IPCNameManager.cpp">
+      <Filter>命名双工</Filter>
+    </ClCompile>
+    <ClCompile Include="Pipe.cpp">
+      <Filter>Other</Filter>
+    </ClCompile>
+    <ClCompile Include="main.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="IPCAnonManager.h">
+      <Filter>匿名双工</Filter>
+    </ClInclude>
+    <ClInclude Include="IPCNameManager.h">
+      <Filter>命名双工</Filter>
+    </ClInclude>
+    <ClInclude Include="AbstractIPC.h">
+      <Filter>abstract</Filter>
+    </ClInclude>
+  </ItemGroup>
+</Project>

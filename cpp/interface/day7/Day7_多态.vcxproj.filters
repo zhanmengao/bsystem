@@ -1,0 +1,43 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Day7_多态">
+      <UniqueIdentifier>{ab730cfd-d408-4264-b304-40896f2d990d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Other">
+      <UniqueIdentifier>{fee1253c-3380-4f52-8bac-ce18717ed47c}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="dm03_vptr指针的分步初始化.cpp">
+      <Filter>Day7_多态</Filter>
+    </ClCompile>
+    <ClCompile Include="dm04_父类指针和子类指针的步长.cpp">
+      <Filter>Day7_多态</Filter>
+    </ClCompile>
+    <ClCompile Include="dm05_纯虚函数抽象类语法基础.cpp">
+      <Filter>Day7_多态</Filter>
+    </ClCompile>
+    <ClCompile Include="dm06_多继承的二义性.cpp">
+      <Filter>Day7_多态</Filter>
+    </ClCompile>
+    <ClCompile Include="dm07_抽象类在多继承中的应用.cpp">
+      <Filter>Day7_多态</Filter>
+    </ClCompile>
+    <ClCompile Include="dm08_面向抽象类编程计算程序员工资.cpp">
+      <Filter>Day7_多态</Filter>
+    </ClCompile>
+    <ClCompile Include="dm01_多态原理探究.cpp">
+      <Filter>Day7_多态</Filter>
+    </ClCompile>
+    <ClCompile Include="dm02_证明vptr指针的存在.cpp">
+      <Filter>Day7_多态</Filter>
+    </ClCompile>
+    <ClCompile Include="几何体表面积和体积.cpp">
+      <Filter>Other</Filter>
+    </ClCompile>
+    <ClCompile Include="程序员工资.cpp">
+      <Filter>Other</Filter>
+    </ClCompile>
+  </ItemGroup>
+</Project>

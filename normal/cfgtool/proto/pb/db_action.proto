@@ -1,0 +1,503 @@
+syntax = "proto3";
+package pb;
+
+import "enum.proto";
+import "struct.proto";
+import "table_action.proto";
+
+//3d通行证
+message PassData {
+    passDetail data = 1;
+}
+
+// 过岛活动
+message PlanetUpgradeData {
+    int32 IsReward           = 1;  // 是否领过过岛奖励
+    int32 Planet             = 2;  // 岛屿ID
+    bool  IsTriggerUnlimited = 3;  // 是否触发不限时冲岛活动
+}
+
+// 多段礼包
+message MultiStagePackStorageData {
+    int32 modelID  = 1;  // 模型id
+    int32 curStage = 2;  // 玩家当前所在挡位
+    int32 buyTimes = 3;  // 当前挡位已购买次数
+}
+
+// 多充礼包
+message MultiPayPackStorageData {
+    int32           buyTimes   = 1;  // 已购买次数，在每次拉info时初始化为0，每次购买发货后更新
+    multiPayCfgItem multiPay   = 2;
+    int64           maxTime    = 3;  // 首次触发时初始化时间为 当前时间+展示时间
+    int32           MultiPayID = 4;  //
+}
+
+/***********************************挖矿 开始******************************/
+message MineStorageData {
+    int64                     bombNum         = 1;   // 炸弹数量
+    int64                     shovelNum       = 2;   // 铲子数量
+    int64                     fireworkNum     = 3;   // 烟花数量
+    int64                     refreshNum      = 4;   // 刷新地图次数
+    int64                     receivePieceNum = 5;   // 接受宝贝次数
+    int64                     sendPieceNum    = 6;   // 赠送宝贝次数
+    bool                      isNewUser       = 7;   // 是否新用户 true 表示已领奖
+    repeated int64            minePiece       = 8;   // 挖矿碎片
+    map<int32, MineMapColumn> map             = 9;   // 挖矿地图,保留12个
+    int64                     finishTime      = 10;  // 上次完成时间
+    int64                     endTime         = 11;  // 活动结束时间
+}
+
+message MineMapStorage {
+    map<int32, MineMapColumn> map = 1;  // 挖矿地图
+}
+
+message MineData {
+    int64                      bombNum         = 1;   // 炸弹数量
+    int64                      shovelNum       = 2;   // 铲子数量
+    int64                      fireworkNum     = 3;   // 烟花数量
+    int64                      refreshPrice    = 4;   // 刷新地图价格
+    int64                      receivePieceNum = 5;   // 接受宝贝次数
+    int64                      sendPieceNum    = 6;   // 送宝贝次数
+    repeated int64             minePiece       = 7;   // 挖矿碎片
+    repeated MineMapColumn     map             = 8;   // 挖矿地图
+    int64                      remainTime      = 9;   // 剩余秒数
+    bool                       isReward        = 10;  // 是否已领取新手奖励
+    int32                      refreshInterval = 11;  // 刷新时间
+    MinePieceExchangeCountData exchangeData    = 12;  // 用户的兑奖数据
+}
+message MinePieceExchangeCountData {
+    int32 exchangeNum   = 1;  // 兑换奖励次数
+    int32 exchangeLimit = 2;  // 兑奖最大次数
+}
+
+message MineMapColumn {
+    repeated MineMapItem mapColumn = 1;
+    int32                row       = 2;  // 行号
+}
+
+message MineMapItem {
+    MapGridType               type       = 1;  // 格子类型
+    repeated CommonRewardItem reward     = 2;  // 奖励
+    int32                     num        = 3;  // 剩余操作次数
+    bool                      isExcavate = 4;  // 是否已挖
+}
+/***********************************挖矿 开始******************************/
+
+// 通用活动数据,  hash useraction:uid  field:familyTree value:pb FamilyTreeActionData
+message FamilyTreeData {
+    int64                    planet             = 1;  // 加入时planet
+    int64                    familyID           = 2;  // 加入时公会id, 如果需要的话
+    int64                    lockStage          = 3;  // 如果需要锁定阶段使用
+    DataStatus               dataStatus         = 4;  // 数据状态处理
+    map<int64, RewardStatus> rewardStagesCommon = 5;  // 阶段领奖状态1
+    map<int64, RewardStatus> rewardStagesLock   = 6;  // 阶段领奖状态2
+    //    int64 endTime = 3; // 开始时间, 结束时间, 领奖时间都根据aid读取最新配置
+}
+
+////////////////////////////////////////////////////////////////////////////////////
+// 哈米派对
+message HammyData {
+    int64             actionEndTime = 1;  // 活动结束时间
+    map<int64, bool>  stageReceived = 2;  // 阶段奖励领取状态<id: received>
+    int64             lockPlanet    = 3;  // 锁定的岛屿（由于金币系数，策划约定奖励不能变更）
+    int64             lotteryTimes  = 4;  // 抽奖的总次数
+    int64             cake          = 5;  // 用户当前的蛋糕数
+    map<int64, int64> floor         = 6;  // 保底数据
+}
+
+// 哈米派对公告板
+message HammyBoardData {
+    repeated HammyBoard list = 1;  // 广播列表
+}
+
+// 保底数据
+message HammyFloor {
+    int64 id           = 1;
+    int64 triggerTimes = 2;
+}
+
+// 转盘事件存储
+message WheelEventData {
+    int64            SID        = 1;  // 活动sid
+    string           ConfigID   = 2;  // 分层配置ID（房间ID）
+    int64            StartTime  = 3;  // 活动开始时间
+    int64            EndTime    = 4;  // 活动开始时间
+    int64            Score      = 5;  // 积分数量
+    int64            Level      = 6;  // 已完成的档位
+    map<int64, bool> Claimed    = 7;  // 奖励领取标记
+    map<int64, bool> ClaimedVIP = 8;  // VIP额外奖励领取标记
+    int32            MaxLevel   = 9;  // 新手炮最大档位
+
+    int32 LaseScoreBet = 10;  // 最后一次加积分的bet
+}
+
+// 网赚
+message EarningOnlineData {
+    // 邀请成功领奖档位列表, 包括邀请人信息
+    // 当前红包币
+    int64                                Coin          = 1;
+    repeated EarningOnlineInviteDataItem Invites       = 2;
+    map<int32, EarningOnlineStageInfo>   StageInfo     = 3;  // 阶段限制
+    CommonRewardItem                     LotteryReward = 4;  // 抽奖中奖类型
+    int32                                LotteryMust   = 5;  // 抽奖中奖必中
+    bool                                 GuidReward    = 6;  // 是否领取过引导奖励
+    bool                                 FirstMust     = 7;  // 第一次必中逻辑
+}
+
+message EarningOnlineInviteDataItem {
+    int64 Uid      = 1;
+    bool  IsReward = 2;
+}
+
+// 网赚活动阶段信息
+message EarningOnlineStageInfo {
+    int32 StageLimit  = 1;  // 阶段限制
+    int32 StageStatus = 2;  // 阶段状态,1 表明曾经提现过
+}
+
+message ActionBaseData {
+    bool  IsCompensate = 1;  // 下线后是否补偿过
+    int64 EndTime      = 2;  // 活动结束时间
+}
+
+// 副本玩家信息
+// key dgnplayer:活动开始时间:uid ttl 活动结束时间-活动开始时间
+message DungeonPlayerInfo {
+    int32             AttackNum      = 1;   // 攻击次数
+    int32             RemainAttack   = 2;   // 剩余炮弹个数
+    int32             CallNum        = 3;   // 免费召唤石数量
+    int64             AttackTime     = 4;   // 上一次攻击时间
+    int64             CallTime       = 5;   // 上一次召唤时间
+    string            DungeonID      = 6;   // 副本ID
+    DungeonGuideInfo  Guide          = 9;   // 引导标志
+    DungeonDoubleInfo DoubleSt       = 10;  // 双倍状态
+    int32             HasInvited     = 11;  // 是否收到邀请 1 收到
+    int32             PropsCallNum   = 12;  // 召唤石道具
+    ActionBaseData    ActionBaseData = 13;  // 活动基础数据
+}
+
+// 副本引导信息
+message DungeonGuideInfo {
+    int32  Count     = 1;
+    string DungeonID = 2;
+}
+
+// 双倍信息
+message DungeonDoubleInfo {
+    int32  AttackNum  = 1;  // 攻击数量 达到一定次数后进入双倍状态
+    int32  PerfectNum = 2;  // perfect数量
+    string DungeonID  = 3;  // 副本信息
+    int64  DoubleTime = 4;  // 双倍时间
+}
+
+// 副本历史信息
+message DungeonHistoryList {
+    string DungeonID = 1;  // 副本ID
+    int32  Hp        = 2;  // 血量
+    int32  RemainHp  = 3;  // 剩余血量
+    int32  Status    = 4;  // 状态 剩余血量为0是 status=-1 否则 status=-2
+}
+
+// 副本怪物信息
+// key dgnBossInfo:活动开始时间:副本ID ttl 活动结束时间-活动开始时间
+message DungeonBossInfo {
+    int32             BossID     = 1;  // BossID
+    int32             Hp         = 2;  // 血量
+    int32             RemainHp   = 3;  // 剩余血量
+    int64             EndTime    = 4;  // 结束时间
+    int64             WeakTime   = 5;  // 虚弱时间
+    map<int64, int32> DamageList = 6;  // 伤害列表  <uid,伤害>
+    string            DungeonID  = 7;  // 副本ID
+}
+
+// 副本奖励信息
+// key dgnreward:活动开始时间:uid ttl 活动结束时间-活动开始时间
+message DungeonRewardMsgInfo {
+    repeated DungeonRewardMsg MsgList = 1;
+}
+
+message DungeonRewardMsg {
+    string                    DungeonID = 1;   // 副本ID
+    repeated CommonRewardItem Rewards   = 2;   // 奖励
+    int32                     Status    = 3;   // 状态 1 击败
+    int32                     Rank      = 4;   // 排行
+    int32                     AddRate   = 5;   // 用户奖励加成
+    int64                     FinalUid  = 6;   // 最终击败Boss的玩家的UID
+    int32                     Readed    = 7;   // 奖励是否已经领取
+    int64                     FriendUID = 8;   // 好友UID
+    int32                     Damage    = 9;   // 伤害
+    int32                     RemainHp  = 10;  // 剩余血量
+    int32                     Hp        = 11;  // 血量
+    string                    Master    = 12;  // 昵称
+    int32                     CurPic    = 13;  // 头像框
+    string                    FBPic     = 14;  // fb头像
+    int64                     EndTime   = 15;  // 结束时间
+    string                    Name      = 16;  // 名字
+    int32                     Vip       = 17;  // vip
+}
+
+// 竞标赛玩家数据
+// field starComp
+message StarCompUserData {
+    bool              IsStage    = 1;  // 是否有阶段
+    map<int32, int32> StageData  = 2;  // 阶段数据,是否有领取过某一个阶段阶段
+    string            CompID     = 3;  // 房间ID
+    STAR_COMP_STATUS  Status     = 4;  // 状态
+    int32             TotalScore = 5;  // 总分
+    int64             EndTime    = 6;  // 结束时间
+    int32             Planet     = 7;  // 玩家参与的活动时的岛屿数
+}
+
+// 竞标赛机器人数据
+message StarCompRobotData {
+    int32       InitStar  = 1;  // 机器人初始星星数
+    int32       TotalStar = 2;  // 机器人总共的星星数
+    bool        IsSuper   = 3;  // 是否是超级机器人
+    int32       Avatar    = 4;  // 头像框
+    int64       RobotUID  = 5;  // 机器人UID
+    RobotConfig RobotCfg  = 6;  //机器人配置
+}
+
+// 竞标赛房间数据
+message StarCompRoomData {
+    int64                         InitTime           = 1;  // 初始化时间
+    bool                          IsStage            = 2;  // 是否是阶段
+    int32                         MaxNum             = 3;  // 房间最大人数
+    int32                         Count              = 4;  // 房间当前人数
+    map<int64, StarCompRank>      StarCompRank       = 5;  // 玩家分数
+    map<int64, StarCompRobotData> RobotData          = 6;  // 机器人数据
+    int64                         RobotStarTime      = 7;  // 普通机器人加入房间时间
+    int64                         SuperRobotStarTime = 8;  // 超级机器人加入房间时间
+    string                        CompID             = 9;  // 房间ID
+}
+
+// 竞标赛阶段奖励内容
+message SavingRewardCfg {
+    int32                     Index     = 1;  // 宝箱ID
+    int32                     NeedScore = 2;  // 需要多少分
+    repeated CommonRewardItem Reward    = 3;  // 奖励
+    int32                     HasOpened = 4;  // 是否已经领过该宝箱
+}
+
+//存储结构
+message LunaStorageData {
+    repeated int32 stageReward = 1;  // 阶段奖励领取状态
+    int32          score       = 2;  // 用户累计积分
+    bool           isPlay      = 3;  // 是否第一次游玩标志位
+}
+
+message LunaData {
+    repeated int32 stageReward = 1;  // 阶段奖励领取状态
+    int32          score       = 2;  // 用户累计积分
+}
+
+// 冰封玩家数据
+message SealUserData {
+    int64              UID            = 1;
+    SealZhuanPanStatus zhuanpanStatus = 2;  // 冰封转盘数据
+}
+
+// 冰封转盘状态
+message SealZhuanPanStatus {
+    repeated int32 SealedID = 1;  // 冰封的格子,解封就把格子ID从数据中删除
+}
+
+// 冰封转盘事件数据
+message SealZhuanPanEvent {
+    int64      Tili       = 1;  // 用户体力值
+    string     RewardType = 2;  // 转盘事件类型
+    string     RewardID   = 3;  // 格子的ID
+    SealTarget SealTarget = 4;  // 冰封目标的人
+    int32      Multiple   = 5;  // 倍数
+}
+
+// 冰封目标的人
+message SealTarget {
+    int64        UID         = 1;
+    string       Name        = 2;
+    string       Sex         = 3;
+    string       CurPic      = 4;
+    int64        CurFlag     = 5;
+    string       FbPic       = 6;
+    int64        Vip         = 7;
+    SealZhuanPan Zhuanpan    = 8;
+    int64        AvatarFrame = 9;
+    int64        Star        = 10;
+}
+
+// 冰封的转盘
+message SealZhuanPan {
+    int32          ZhuanpanID  = 1;  // 被冰封人的转盘ID
+    repeated int32 SealReplace = 2;  // 替换的格子ID
+    repeated int32 SealedID    = 3;  // 被冰封的格子
+    int32          SkinID      = 4;  // 转盘皮肤ID
+}
+
+// 活动积分数据
+// 只存结果的次数,比如玩家转到炮且倍数2,则数据是转到炮的次数为两次
+// 具体积分计算逻辑需要根据实际业务读取配置表乘以次数
+//message ActionScoreData {
+//    ActionScore SimpleAttack = 1;  // 简单炮数据=>转到炮
+//    ActionScore SimpleSteal  = 2;  // 简单偷数据=>转到偷
+//}
+//
+//// 活动积分结构
+//message ActionScore {
+//    int32 Num        = 1;  // 次数
+//    int64 UpdateTime = 2;  // 更新时间
+//}
+
+message ActionScoreData {
+    int32 Score      = 1;  // 分数
+    int64 UpdateTime = 2;  // 更新时间
+}
+
+message DemoActionCompensationData {
+    ActionBaseData ActionBaseData = 1;
+}
+
+// 活动补偿的UID列表
+message ActionCompensationUIDsData {
+    repeated int64 UIDs = 1;
+}
+
+// 节日礼包数据存储
+message BigPackData {
+    int32                 current     = 1;  // 当前档位
+    int32                 finished    = 2;  // 买完活动所有礼包标志
+    int32                 modeId      = 3;  // 模型id
+    repeated BigPackLevel bigPackInfo = 4;  // 当前挡位配置
+}
+
+// 超级礼包数据
+message BigItemInfoData {
+    int32  Buy        = 1;
+    int32  ItemID     = 2;
+    int32  ModeID     = 3;
+    int32  FirstDay   = 4;
+    int32  ExpireTime = 5;
+    string BigItemID  = 6;
+}
+
+// 超级礼包每日限制数据
+message BigItemDailyLimitData {
+    map<string, BigItemDailyLimitItem> BuyLimit     = 1;  // 购买次数限制
+    map<string, BigItemDailyLimitItem> TriggerLimit = 2;  // 弹出次数限制
+}
+
+message BigItemDailyLimitItem {
+    string BigItemID = 1;
+    int32  Count     = 2;
+}
+
+// 邀请活动
+message UserInviteData {
+    repeated UserInviteItem         InviteSuccessUIDs = 1;  // 邀请成功的UID
+    map<int32, UserInviteStageItem> InviteStageItem   = 2;  // 邀请的阶段奖励
+    int32                           TotalInviteNum    = 3;  // 总共邀请的人数
+}
+
+message UserInviteStageItem {
+    int32 Stage    = 1;
+    bool  IsReward = 2;
+}
+
+message UserInviteItem {
+    int64 UID      = 1;
+    bool  IsReward = 2;  // 是否领过奖
+}
+
+// 砸蛋
+message GuessData {
+    bool                      IsDied      = 1;   //是否死亡状态
+    uint32                    Tickets     = 2;   // 用户已经收集的船票数， status为0时有效
+    uint32                    Round       = 3;   //当前轮数，一轮包含多局， 从0开始表示第一轮
+    uint32                    Level       = 4;   //当前局数， 从1开始表示第一局
+    uint32                    OpenPos     = 5;   //用户开牌时， 选择的位置
+    uint32                    ReviveCount = 6;   //用户复活次数
+    repeated CommonRewardItem Rewards     = 7;   //用户已经积累的奖励
+    uint32                    LootLevel   = 8;   //生成loot配置时的level
+    uint32                    LootID      = 9;   //生成loot配置时的id
+    uint32                    JoinSecond  = 10;  //加入活动时间
+}
+
+// 掉落
+message WheelCardData {
+    uint32                         Day               = 1;  // 天
+    map<uint32, WheelCardDataItem> BehaviorGroupData = 2;  // behavior对应的卡牌数据
+}
+
+message WheelCardDataItem {
+    uint32          Planet                 = 1;  // 岛屿
+    uint32          BehaviorGroup          = 2;  // 行为分组
+    repeated uint32 CardGroups             = 3;  // 牌组
+    uint32          CurrentCardGroupSerial = 4;  // 当前牌组序号, 从1开始
+    repeated uint32 Cards                  = 5;  // 生成时随机, 每次从头往后取
+}
+message TradeSceneData {
+    repeated TradeItem List = 1;
+}
+
+// 交易系统信息
+message TradeData {
+    // 用户交易条目信息
+    // map[TradeScene]TradeSceneData
+    map<int32, TradeSceneData> List = 1;
+}
+
+message ActionTradeData {
+    repeated CommonProp SendReward  = 1;
+    repeated CommonProp TotalReward = 2;
+}
+
+message ActionDayLimit {
+    int32 Day         = 1;
+    int32 SendNum     = 2;  // 赠送次数
+    int32 ReceiveNum  = 3;  // 接受次数
+    int32 ExchangeNum = 4;  // 兑换次数
+    int32 RewardNum   = 5;  // 领奖次数
+}
+
+// 小鸟弹弓
+message SlingshotData {
+    int32                         SnowBall          = 1;  // 雪球数量
+    int32                         MagicBottle       = 2;  // 仙女棒数量
+    repeated int32                Box               = 3;  // 礼盒内容
+    ActionTradeData               BabyReward        = 4;  // 赠送宝贝总数
+    int64                         NextMagicTime     = 5;  // 刷新时间
+    int64                         CreateTime        = 6;  // 创建时间
+    repeated int64                OtherUser         = 7;  // 别的进入
+    repeated SlingshotShotMsgItem ShotMsg           = 8;  // 攻击记录
+    ActionDayLimit                DayLimit          = 9;  // 每日限制
+    int32                         ExchangeRewardNum = 10;
+}
+
+//--------水果商人(begin)-------
+// 后台redis存储数据
+message FruitOrder {
+    int32        OrderID     = 1;
+    int32        FruitType   = 2;  // 水果类型
+    RewardStatus OrderStatus = 3;  // 订单的状态。完成订单（即领取玩奖励）、未完成订单（即未领取完奖励
+};
+
+message FruitCollection {
+    int32 TotalNumber = 1;  // 非交易获取的数量
+    int32 TradeNumber = 2;  // 交易获取的水果数量
+};
+
+message FruitData {
+    int32                       RefreshTimes     = 1;  // 用户剩余几次参与水果商人活动
+    ActivityStatus              ActionStatus     = 2;  // 水果商人活动状态。完成一批订单、未完成一批订单
+    int64                       ActionFinishTime = 3;  // 完成一批订单的时间戳
+    int32                       ActionRewardID   = 4;  // 活动大奖
+    map<int32, FruitOrder>      OrderInfo        = 5;  // 订单编号 => 订单。该用户所有的订单
+    map<int32, FruitCollection> CollectionInfo   = 6;  // FruitType => 已经收集水果数量.
+};
+//--------水果商人(end)-------
+
+/********************** 拼图相关 ************************/
+message PicData {
+    PicBaseData    Base     = 1;
+    ActionDayLimit DayLimit = 2;  // 每日限制
+}
+/********************** 拼图相关 ************************/

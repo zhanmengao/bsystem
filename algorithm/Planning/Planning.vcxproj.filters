@@ -1,0 +1,68 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="源文件">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="动态规划">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="贪心">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hh;hpp;hxx;hm;inl;inc;xsd</Extensions>
+    </Filter>
+    <Filter Include="蛮力">
+      <UniqueIdentifier>{ba48adf1-b790-4309-97c0-03c6974118d0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="动态规划\Java">
+      <UniqueIdentifier>{b1ca4065-6e31-4b12-b90a-3e453dd14926}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="递归">
+      <UniqueIdentifier>{5c1f8f6d-28c4-4905-b5be-d13bee2e50b8}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\..\Normal\Java\com\Snake\MyFloyd.java">
+      <Filter>贪心</Filter>
+    </None>
+    <None Include="..\..\Normal\Java\动态规划\Tn.java">
+      <Filter>动态规划\Java</Filter>
+    </None>
+    <None Include="..\..\Normal\Java\动态规划\MaxSum.java">
+      <Filter>动态规划\Java</Filter>
+    </None>
+    <None Include="..\..\Normal\Java\动态规划\LCS.java">
+      <Filter>动态规划\Java</Filter>
+    </None>
+    <None Include="..\..\Normal\Java\动态规划\Jiecheng.java">
+      <Filter>动态规划\Java</Filter>
+    </None>
+    <None Include="..\..\Normal\Java\动态规划\CutRod.java">
+      <Filter>动态规划\Java</Filter>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\..\Normal\TestQuestions\算法竞赛第七章_蛮力法\算法竞赛第七章_蛮力法\除法.cpp">
+      <Filter>蛮力</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Normal\TestQuestions\算法竞赛第七章_蛮力法\算法竞赛第七章_蛮力法\最大子乘积.cpp">
+      <Filter>蛮力</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Normal\TestQuestions\算法竞赛第二章\算法竞赛第二章\2.4阶乘之和_动态规划方法.cpp">
+      <Filter>动态规划</Filter>
+    </ClCompile>
+    <ClCompile Include="main.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Coin.h">
+      <Filter>动态规划</Filter>
+    </ClInclude>
+    <ClInclude Include="maxArray.h">
+      <Filter>递归</Filter>
+    </ClInclude>
+  </ItemGroup>
+</Project>

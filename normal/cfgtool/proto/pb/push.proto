@@ -1,0 +1,18 @@
+syntax="proto3";
+package pb;
+
+// 推送数据结构，PHP通过事件系统调Go时使用
+message PushTaskEvent {
+    int64  Uid  = 1; // uid
+    string title = 2;
+    string content = 3;
+}
+
+// 走tqsrv的定时推送任务事件(tqsrv -> kafka timer topic)
+message TimerPushTaskEvent {
+    int64 Uid = 1;
+    int64 AddTime = 2; // 任务添加时间
+    int64 ExecuteTime = 3; // 任务需要被触发的时间
+    string TaskType = 4; // 任务类型
+    bytes Data = 5; // 任务所需要的数据，由业务自定义
+}

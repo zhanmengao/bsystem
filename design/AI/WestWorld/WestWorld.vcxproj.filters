@@ -1,0 +1,66 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="源文件">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="头文件">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hh;hpp;hxx;hm;inl;inc;xsd</Extensions>
+    </Filter>
+    <Filter Include="资源文件">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="面向接口编程">
+      <UniqueIdentifier>{8e0df0a9-9c36-40d9-85ac-13f3e56914ce}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Utils">
+      <UniqueIdentifier>{7b1a8e85-2321-4d3f-b1f4-8ee81e0f8ea8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="矿工">
+      <UniqueIdentifier>{e4b74591-6ebd-48ac-9271-ea093644a0ca}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="State.Machine.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="Miner.cpp">
+      <Filter>矿工</Filter>
+    </ClCompile>
+    <ClCompile Include="MinerStatus.cpp">
+      <Filter>矿工</Filter>
+    </ClCompile>
+    <ClCompile Include="TelegramManager.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Telegram.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="StateMachine.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="TelegramManager.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="State.h">
+      <Filter>面向接口编程</Filter>
+    </ClInclude>
+    <ClInclude Include="BaseGameEntity.h">
+      <Filter>面向接口编程</Filter>
+    </ClInclude>
+    <ClInclude Include="Position.hpp">
+      <Filter>Utils</Filter>
+    </ClInclude>
+    <ClInclude Include="Miner.h">
+      <Filter>矿工</Filter>
+    </ClInclude>
+    <ClInclude Include="MinerStatus.h">
+      <Filter>矿工</Filter>
+    </ClInclude>
+  </ItemGroup>
+</Project>

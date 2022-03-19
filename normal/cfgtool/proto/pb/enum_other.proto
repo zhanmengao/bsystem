@@ -1,0 +1,144 @@
+syntax = "proto3";
+package pb;
+
+// 队员操作枚举
+enum EnumUnionCompetitionMemberOperation {
+    MemberOperationNone        = 0;
+    MemberOperationLeftButton  = 1;
+    MemberOperationRightButton = 2;
+}
+
+// 队长命令枚举
+enum EnumUnionCompetitionCaptainCommand {
+    CaptainCommandNone         = 0;
+    CaptainCommandSpeedUpLeft  = 1;
+    CaptainCommandSpeedUpRight = 2;
+    CaptainCommandTurnLeft     = 3;
+    CaptainCommandTurnRight    = 4;
+    CaptainCommandEnd          = 5;
+}
+
+// 船舷
+enum EnumUnionCompetitionShipSide {
+    ShipSideNone  = 0;
+    ShipSideLeft  = 1;
+    ShipSideRight = 2;
+}
+
+enum EnumUnionCompetitionMemberOperationResult {
+    MemberOperationResultNone    = 0;
+    MemberOperationResultCorrect = 1;
+    MemberOperationResultWrong   = 2;
+}
+
+//赛程
+enum EnumUnionCompetitionRoundType {
+    CompetitionRoundTypeNone      = 0;
+    CompetitionRoundTypeEarly     = 1;  //初赛
+    CompetitionRoundTypeSemiFinal = 2;  //半决赛
+    CompetitionRoundTypeFinal     = 3;  //决赛
+}
+
+//本轮内时间点
+enum EnumUnionCompetitionRoundScheduleType {
+    CompetitionRoundScheduleTypeNone       = 0;
+    CompetitionRoundScheduleTypeNotStarted = 1;  //本轮比赛未开始
+    CompetitionRoundScheduleTypeStandBy    = 2;  //本轮比赛各就位，开始倒计时60秒
+    CompetitionRoundScheduleTypeRunning    = 3;  //本轮比赛正在比赛
+    CompetitionRoundScheduleTypeFinish     = 4;  //本轮比赛已结束
+}
+
+//帧动作
+enum UnionCompetitionFSyncActionType {
+    FrameActionTypeNone                    = 0;
+    FrameActionTypeTeamJoin                = 1;
+    FrameActionTypeMemberOperationCorrect  = 2;
+    FrameActionTypeMemberOperationWrong    = 3;
+    FrameActionTypeCaptainCommandSpeedUp   = 4;
+    FrameActionTypeCaptainCommandTurnLeft  = 5;
+    FrameActionTypeCaptainCommandTurnRight = 6;
+    FrameActionTypeMemberInsufficient      = 7;
+    FrameActionTypeMemberSufficient        = 8;
+    FrameActionTypeCompetitionFinish       = 9;
+}
+
+enum ConstantPayCenterBuyType {
+    ConstBuyTypeUnknown = 0;
+
+    ConstBuyTypeBigPackCash    = 113;  // 节日礼包购买（现金）
+    ConstBuyTypeBigPackCoin    = 114;  // 节日礼包购买（金币）（包含免费，价格配0）
+    ConstBuyTypeBigPackDiamond = 115;  // 节日礼包购买（钻石）
+}
+
+enum LANGUAGE_TYPE {
+    LANGUAGE_NONE                = 0;
+    LANGUAGE_ENGLISH             = 1;
+    LANGUAGE_CHINESE             = 2;
+    LANGUAGE_CHINESE_TRADITIONAL = 3;
+}
+
+enum REWARD_TYPE {
+    NONE        = 0;
+    BABY        = 1;
+    BROKEN      = 3;
+    DIAMOND     = 4;
+    DUNGEONGUN  = 5;
+    FISH        = 6;
+    HEART       = 7;
+    MAGICBOTTLE = 8;
+    MERCY       = 9;
+    MINISHIELD  = 10;
+    MONEY       = 11;
+    PIECE       = 12;
+    POLICE      = 13;
+    POWPIC      = 14;
+    POWPICAT8   = 15;
+    SENT        = 16;
+    SNOWBALL    = 17;
+    SPEAKER     = 18;
+    SUMMON      = 19;
+    TILI        = 20;
+    TITLE       = 21;
+    TONGJILING  = 22;
+    UMBRELLA    = 23;
+    VIP         = 24;
+    PET1        = 25;
+    PET2        = 26;
+    PET3        = 27;
+    PET4        = 28;
+    PET5        = 29;
+    PET6        = 30;
+    PET7        = 31;
+    PET_PIECE   = 32;  //假的道具，只是展示随机宠物碎片，发的时候展示实际的碎片
+    PROP_RAND   = 33;  //假的道具，只是展示随机道具盒子
+}
+
+enum ATTACK_DEFEND_TYPE {
+    None             = 0;
+    ShieldDefend     = 1;
+    TurtleDefend     = 2;
+    MiniShieldDefend = 3;
+    Manta            = 9;
+}
+
+// 开奖状态
+enum ScratchCardPositionType {
+    ScratchCardPositionTypeNoWin    = 0;  // 未中
+    ScratchCardPositionTypeWin      = 1;  // 中了
+    ScratchCardPositionTypeMultiple = 2;  // 翻倍
+}
+
+// 购买类型
+enum ScratchCardBuyType {
+    ScratchCardBuyTypeNormal   = 0;  // 正常, 原价购买
+    ScratchCardBuyTypeDiscount = 1;  // 折扣购买
+    ScratchCardBuyTypeTicket   = 2;  // 剩余ticket购买
+    ScratchCardBuyTypeMultiple = 3;  // 保持倍数购买
+}
+
+// 卡状态, 是否刮完
+enum ScratchCardStatus {
+    ScratchCardStatusDefault = 0;  //卡片未生成
+    ScratchCardStatusOpen    = 1;  // 卡已生成, 未刮完
+    ScratchCardStatusEnd     = 2;  // 卡已刮完
+}

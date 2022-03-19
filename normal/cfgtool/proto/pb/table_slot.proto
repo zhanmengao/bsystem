@@ -1,0 +1,431 @@
+syntax = "proto3";
+package pb;
+
+import "struct.proto";
+import "struct_slot.proto";
+
+message SlotNewbieMustConfig {
+    uint32 TiliCount = 1;
+    uint32 WheelItem = 2;
+    uint32 SubItem   = 3;  // 转盘子项
+    uint32 SubValue  = 4;  // 转盘子项数值
+    uint32 Planet    = 5;  // 岛屿
+}
+
+//message NewbieWheelConfigAry {
+//    repeated NewbieWheelConfig Ary = 1;
+//}
+
+// @cfg:SlotNewbieCfg|group:SlotNewbieMustConfig|Planet:uint32 #
+message SlotNewbieMust1ConfigAry {
+    repeated SlotNewbieMustConfig Ary = 1;
+}
+
+// @cfg:SlotNewbieCfg|group:SlotNewbieMustConfig|Planet:uint32 #
+message SlotNewbieMust2ConfigAry {
+    repeated SlotNewbieMustConfig Ary = 1;
+}
+
+// @cfg:SlotNewbieCfg|group:SlotNewbieMustConfig|Planet:uint32 #
+message SlotNewbieMust3ConfigAry {
+    repeated SlotNewbieMustConfig Ary = 1;
+}
+
+// @cfg:SlotNewbieCfg|group:SlotNewbieMustConfig|Planet:uint32 #
+message SlotNewbieMust4ConfigAry {
+    repeated SlotNewbieMustConfig Ary = 1;
+}
+
+// @cfg:SlotNewbieCfg|group:SlotNewbieMustConfig|Planet:uint32 #
+message SlotNewbieMust5ConfigAry {
+    repeated SlotNewbieMustConfig Ary = 1;
+}
+
+// bet倍数开启体力配置
+message SlotBetMultipleConfig {
+    uint32 Multiple          = 1;  // bet倍数
+    uint32 MinEnergy         = 2;  // 最小体力
+    uint32 MaxEnergy         = 3;  // 最大体力
+    int32  UnlockPlanet      = 4;  // 解锁岛屿
+    int32  UnlockEventPlanet = 5;  // 活动解锁岛屿
+    int32  MinEnergyEvent    = 6;  // 最小体力
+    int32  MaxEnergyEvent    = 7;  // 最大体力
+}
+
+// @cfg:SlotCfg|list:SlotBetMultipleConfig #
+// @cfg:SlotCfg|map:SlotBetMultipleConfig|Multiple:uint32 #
+message SlotBetMultipleConfigAry {
+    repeated SlotBetMultipleConfig Ary = 1;
+}
+
+message SlotPlanetConfig {
+    uint32            PlanetID = 1;
+    repeated SlotItem Items    = 2;
+    uint32            CfgId    = 3;  // 新手分层用id
+}
+
+// 基础岛屿配置
+// @cfg:SlotCfg|map:SlotPlanetConfig|PlanetID:uint32 #
+message SlotPlanetConfigAry {
+    repeated SlotPlanetConfig Ary = 1;
+}
+
+// 基础新手岛屿配置
+// @cfg:SlotCfg|group:SlotPlanetConfig|PlanetID:uint32 #
+message SlotNewbiePlanetConfigAry {
+    repeated SlotPlanetConfig Ary = 1;
+}
+
+message SlotBetProtectConfig {
+    uint32          Planet    = 1;
+    uint32          StopLevel = 2;
+    uint32          StopRoom  = 3;
+    repeated uint32 Modes     = 4;  // 牌组模型列表
+}
+
+message SlotSpecialProtectConfig {
+    uint32          MinBet          = 1;  // 最小bet数
+    uint32          MaxBet          = 2;  // 最大bet数
+    uint32          SpecialType     = 3;  // 特殊条件类型
+    uint64          Param           = 4;  // 特殊条件参数
+    uint32          DailyTriggerNum = 5;  // 每天触发次数限制
+    string          NextTimes       = 6;  // 触发该轮后，以后面的概率来转几次 ,隔开
+    repeated uint32 Modes           = 7;  // 牌组对应模型列表
+}
+
+// @cfg:SlotProtectCfg|group:SlotSpecialProtectConfig|SpecialType:uint32 #
+message SlotSpecialProtectConfigAry {
+    repeated SlotSpecialProtectConfig Ary = 1;
+}
+
+// 牌组概率
+message SlotCardBaseConfig {
+    int32          BasicCardNum           = 1;  // 基础卡组每组数量
+    repeated int32 BasicCardFillGrid      = 2;  // 基础卡组补足数量,所用格子 (填写的值是1-10非索引)
+    int32          IsOpen                 = 3;  // 是否开启
+    int32          OpenWaterline          = 4;  // 是否开启水线模式
+    int32          IsWaterlineWheelAction = 5;  // 是否水线模式计算转盘事件活动收益
+}
+
+message SlotCardLevelWaterLineLimit {
+    int32  Value      = 1;  // 水线值
+    int32  ValueFloat = 2;  // 水线值浮动
+    string LimitModes = 3;  // 对应模型列表
+}
+
+message SlotCardLevelConfig {
+    int32          MinBet = 1;  // 最小bet 左闭
+    int32          MaxBet = 2;  // 最大bet 右闭
+    repeated int32 Modes  = 3;  // 对应模型列表
+
+    int32                                DefaultWater          = 4;  // 默认水量
+    string                               DefaultWaterlineModes = 5;  // 默认水量
+    repeated SlotCardLevelWaterLineLimit WaterlineHighLimits   = 6;  // 水线配置 上限限制
+    repeated SlotCardLevelWaterLineLimit WaterlineLowLimits    = 7;  // 水线配置 下限限制
+
+    string ActionID  = 10;  // 在线活动
+    int64  ActionSID = 11;  // 在线活动的SID
+}
+
+// 水线期望收益定义
+message SlotWaterlineExpectConfig {
+    int32 Planet = 1;
+    int64 Expect = 2;  // 消耗1体力期望金币收益
+}
+
+// 牌组定义
+message SlotCardDefineConfig {
+    int32          Mode          = 1;  // 模型
+    int32          No            = 2;  // 模型序号
+    repeated int32 GridRandCount = 3;  // 转盘对应格子出现次数; (10个元素表示十格 程序读出来是0-9)
+}
+
+// @cfg:SlotCardCfg|struct:SlotCardBaseConfig #
+message SlotCardBaseConfigAry {
+    repeated SlotCardBaseConfig Ary = 1;
+}
+// @cfg:SlotCardCfg|list:SlotCardLevelConfig #
+message SlotCardLevelConfigAry {
+    repeated SlotCardLevelConfig Ary = 1;
+}
+
+// @cfg:SlotCardCfg|group:SlotCardDefineConfig|mode:int32 # map[mode]
+message SlotCardDefineConfigAry {
+    repeated SlotCardDefineConfig Ary = 1;
+}
+// @cfg:SlotCardCfg|map:SlotWaterlineExpectConfig|planet:int32 #
+message SlotWaterlineExpectConfigAry {
+    repeated SlotWaterlineExpectConfig ary = 1;
+}
+
+// 偷
+message SlotStealBaseConfig {
+    uint64 FriendMinMoney        = 1;  // 好友池最低入池金额
+    uint32 FriendRandTopNum      = 2;  // 好友池有效随机选取数
+    uint32 FriendCKCanStolenRate = 3;  // CK可偷取比例(%)
+    uint32 FriendStolenLockLimit = 4;  // 被偷时同时被玩家锁定数
+    uint32 FriendLockCD          = 5;  // 锁定CD时间
+    uint32 FriendCKChangeCD      = 6;  // CK切换CD时间
+    uint32 FriendStolenCD        = 7;  // 被好友偷CD时间
+}
+
+// @cfg:SlotStealPoolCfg|struct:SlotStealBaseConfig #
+message SlotStealBaseConfigAry {
+    repeated SlotStealBaseConfig Ary = 1;
+}
+
+message SlotStealFriendConfig {
+    uint32 Planet               = 1;  //
+    uint32 DayPeerLimitTimes    = 2;  // 被偷点对点上限
+    uint32 DayTotalLimitTimes   = 3;  // 被偷全局上限
+    uint64 LargeMoneyChange     = 4;  // 被偷大额金币变化
+    uint64 LimitMoney           = 5;  // 岛屿偷取金币限制
+    uint64 LimitMoneyFloat      = 6;  // 岛屿偷取金币浮动值
+    uint64 DayPoolLimitMoney    = 7;  // 好友池偷取金额上限(则偷取机器人), 更新时乘以bet的实际金额
+    uint64 LimitCardCoefficient = 8;  // 岛屿偷取金币限制牌型系数
+}
+
+// @cfg:SlotStealPoolCfg|map:SlotStealFriendConfig|Planet:uint32 #
+message SlotStealFriendConfigAry {
+    repeated SlotStealFriendConfig Ary = 1;
+}
+
+message SlotStealFriendLimitCardGroupConfig {
+    uint64 Money = 1;  // 牌型(基础金币数)
+}
+
+// @cfg:SlotStealPoolCfg|list:SlotStealFriendLimitCardGroupConfig #
+message SlotStealFriendLimitCardGroupConfigAry {
+    repeated SlotStealFriendLimitCardGroupConfig Ary = 1;
+}
+
+message SlotStealResultConfig {
+    uint32                          MinBet                = 1;   // 最小bet数
+    uint32                          MaxBet                = 2;   // 最大bet数
+    uint32                          BigPercent            = 3;   // 大奖占比%
+    uint32                          Little1Percent        = 4;   // 小奖1占比%
+    uint32                          Little2Percent        = 5;   // 小奖2占比%
+    uint32                          BigWeight             = 6;   // 空奖时大奖出现权重
+    uint32                          Little1Weight         = 7;   // 空奖时小奖1出现权重
+    uint32                          Little2Weight         = 8;   // 空奖时小奖2出现权重
+    uint32                          EmptyProbability      = 9;   // 空奖概率%
+    uint32                          EmptyExtraProbability = 10;  // 空奖额外奖励概率%
+    repeated CommonWeightRewardItem EmptyExtraReward      = 11;  // 空奖额外奖励配置
+}
+
+// @cfg:SlotStealCfg|list:SlotStealResultConfig #
+message SlotStealResultConfigAry {
+    repeated SlotStealResultConfig Ary = 1;
+}
+
+message SlotStealStrategyConfig {
+    uint32 Serial = 1;  // 排序
+    uint32 Type   = 2;  // 类型 （1：机器人，0：好友）
+}
+
+// @cfg:SlotStealCfg|list:SlotStealStrategyConfig #
+message SlotStealStrategyConfigAry {
+    repeated SlotStealStrategyConfig Ary = 1;
+}
+
+message SlotStealRobotConfig {
+    uint32 Planet              = 1;  //
+    uint64 NormalMin           = 2;  // 机器人CK金额低值
+    uint64 NormalMax           = 3;  // 机器人CK金额高值
+    uint64 NoFriendMin         = 4;  // 无好友CK金额低值
+    uint64 NoFriendMax         = 5;  // 无好友CK金额高值
+    uint32 NoFriendIntervalMin = 6;  // 无好友间隔设置
+    uint32 NoFriendIntervalMax = 7;  // 无好友间隔设置
+}
+
+// @cfg:SlotStealCfg|map:SlotStealRobotConfig|Planet:uint32 #
+message SlotStealRobotConfigAry {
+    repeated SlotStealRobotConfig Ary = 1;
+}
+
+message SlotStealAutoRobotBaseConfig {
+    uint32 LoginAfterMin  = 1;  // 登陆偷取触发时间
+    uint32 LoginAfterMax  = 2;  // 登陆偷取触发时间
+    uint32 LogoutAfterMin = 3;  // 下线触发时间
+    uint32 LogoutAfterMax = 4;  // 下线触发时间
+}
+
+// @cfg:SlotStealPoolCfg|struct:SlotStealAutoRobotBaseConfig #
+message SlotStealAutoRobotBaseConfigAry {
+    repeated SlotStealAutoRobotBaseConfig Ary = 1;
+}
+
+message SlotStealAutoRobotLimitConfig {
+    uint32 Planet         = 1;  // 岛屿
+    uint32 StealTimesMin  = 2;  // 机器人偷取次数下限
+    uint32 StealTimesMax  = 3;  // 机器人偷取次数上限
+    uint64 LargeCondition = 4;  // 大额金币触发条件
+    uint32 LargeTimesAdd  = 5;  // 大额金币偷取次数增加
+    uint64 LargeMoneyAdd  = 6;  // 大额金币被偷金额每次增加
+}
+
+// @cfg:SlotStealPoolCfg|map:SlotStealAutoRobotLimitConfig|Planet:uint32 #
+message SlotStealAutoRobotLimitConfigAry {
+    repeated SlotStealAutoRobotLimitConfig Ary = 1;
+}
+
+// 机器人
+message SlotRobotFakeConfig {
+    uint32 PlanetRandChangeLeft  = 1;  // 随机岛屿
+    uint32 PlanetRandChangeRight = 2;  // 随机岛屿
+    uint32 ShieldRate            = 3;  // 是否有盾牌(%)
+    // 玩家岛屿状态从25个建筑50个状态中进行随机
+    // 机器人星星=当前岛屿*25
+}
+
+// @cfg:SlotRobotCfg|struct:SlotRobotFakeConfig #
+message SlotRobotFakeConfigAry {
+    repeated SlotRobotFakeConfig Ary = 1;
+}
+
+// 前端专用。动画相关配置
+// 图标含义配置
+message SlotIconTypesConfig {
+    string LetterID = 1;  // 老虎机第几列
+    string Name     = 2;  // 对应图标名称
+}
+message SlotIconTypesConfigAry {
+    repeated SlotIconTypesConfig Ary = 1;
+}
+
+// 图标顺序配置
+message SlotIconsConfig {
+    int32           Index = 1;  // 老虎机第几列
+    repeated string Sort  = 2;  // 排列顺序，从下往上
+}
+message SlotIconsConfigAry {
+    repeated SlotIconsConfig Ary = 1;
+}
+
+// 依据结果展示，最终三列图标内容的配置
+message SlotShowTypeConfigAry {
+    repeated SlotShowTypeConfig Ary = 1;
+}
+message SlotShowTypeConfig {
+    SlotItem             Result   = 1;  // 转动结果 Type 和 Param
+    string               xExclude = 2;  // x代表的图标不包括。。。
+    string               yExclude = 3;
+    string               zExclude = 4;
+    repeated ShowOutType ShowOut  = 5;  //牌型
+}
+message ShowOutType {
+    string type   = 1;
+    int32  weight = 2;
+}
+
+// 依据结果，选择动画表现的配置
+message SlotAnimWeightConfigAry {
+    repeated SlotAnimWeightConfig Ary = 1;
+}
+message SlotAnimWeightConfig {
+    string            Result = 1;  // 三列结果 ：111、112、AAA等
+    repeated SlotAnim Anim   = 2;  // 展示的动画结果和权重
+}
+message SlotAnim {
+    string type      = 1;  // 动画的类型 1、很快 2、快速、3 中等、 4 很慢 5 慢速  配置成形如 "111"
+    int32  weight    = 2;  // 动画权重
+    int32  leastTime = 3;  // 最少时间
+}
+
+// 老虎机快速转动的配置
+message SlotFastConfigAry {
+    repeated SlotFastConfig Ary = 1;
+}
+message SlotFastConfig {
+    int32                  Order   = 1;
+    string                 Type    = 2;
+    int32                  Open    = 3;  // 0-关闭 >0 打开, autoNum的类型时有特殊意义
+    int32                  RestNum = 4;  // 快速转多少次内不再触发
+    repeated SlotFastLevel Level   = 5;
+}
+
+message SlotFastLevel {
+    int32 min = 1;  // 最小体力值
+    int32 max = 2;  // 最大体力值
+    int32 num = 3;  // 以当前倍数可转至少num次
+}
+
+//  ================= 机器人工具（开始） ===============
+// 无盾机器攻击
+message SlotFireRobotNoShieldConfig {
+    uint32 Times           = 1;  // 第n次攻击
+    int64  FireStartSecond = 2;  // 无盾后攻击的开始秒数
+    int64  FireEndSecond   = 3;  // 无盾后攻击的结束秒数
+}
+
+// 无盾机器攻击
+// @cfg:SlotFireRobotNoShieldCfg|map:SlotFireRobotNoShieldConfig|Times:uint32 #
+message SlotFireRobotNoShieldConfigAry {
+    repeated SlotFireRobotNoShieldConfig Ary = 1;
+}
+
+// 有盾攻击
+message SlotFireRobotHasShieldConfig {
+    uint32 PlanetID        = 1;  // 岛屿的id
+    uint32 MaxTriggerTimes = 2;  // 有盾攻击次数
+}
+
+// 有盾攻击
+// @cfg:SlotFireRobotHasShieldCfg|map:SlotFireRobotHasShieldConfig|PlanetID:uint32 #
+message SlotFireRobotHasShieldConfigAry {
+    repeated SlotFireRobotHasShieldConfig Ary = 1;
+}
+
+// 打炮选择好友还是机器人
+message SlotFireSelectWeightConfig {
+    uint32 PlanetID     = 1;  // 岛屿的id
+    int32  FriendWeight = 2;  // 好友的权重
+    int32  RobotWeight  = 3;  // 机器人权重
+}
+
+// 打炮选择好友还是机器人
+// @cfg:SlotFireSelectWeightCfg|map:SlotFireSelectWeightConfig|PlanetID:uint32 #
+message SlotFireSelectWeightConfigAry {
+    repeated SlotFireSelectWeightConfig Ary = 1;
+}
+
+// 好友标签选择
+message SlotFireFriendFlagConfig {
+    int64                                LimitOfflineSecond     = 1;  // 离线多少秒过期
+    uint32                               PlanetID               = 2;  // 岛屿的id
+    int32                                LimitOfFiredByAttacker = 3;  // 点对点上线
+    int32                                LimitOfDay             = 4;  // 每天的限制
+    repeated SlotFireFriendNoShieldEntry NoShield               = 5;  // 无盾
+}
+
+// 无盾被攻击的次数
+message SlotFireFriendNoShieldEntry {
+    int64 IntervalSecond = 1;  // 间隔的秒数
+    int32 Times          = 2;  // 被打的数量
+}
+
+// 打炮选择好友还是机器人
+// @cfg:SlotFireFriendFlagCfg|map:SlotFireFriendFlagConfig|PlanetID:uint32 #
+message SlotFireFriendFlagConfigAry {
+    repeated SlotFireFriendFlagConfig Ary = 1;
+}
+
+// 打炮基本配置
+message SlotFireConfig {
+    int64 RobotProtectRatio = 1;  // 机器人被打盾防护的概率(50代表50%)
+    int64 ShieldedMin       = 2;  // 有盾时间间隔最小值
+    int64 ShieldedInterval  = 3;  // 有盾攻击时间间隔区间随机值
+}
+
+// @cfg:SlotFireCfg|struct:SlotFireConfig #
+message SlotFireConfigAry {
+    repeated SlotFireConfig Ary = 1;
+}
+
+message SlotFireBaseConfig {
+    int64 RobotProtectRatio = 1;  // 机器人被打盾防护的概率(50代表50%)
+    int64 ShieldedMin       = 2;  // 有盾时间间隔最小值
+    int64 ShieldedInterval  = 3;  // 有盾攻击时间间隔区间随机值
+}
+
+//  ================= 机器人工具（结束） ===============

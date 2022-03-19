@@ -1,0 +1,230 @@
+﻿using System.Collections.Generic;
+using System.Diagnostics;
+
+namespace SmsComputerMonitor
+{
+    public static class PerformanceCategoryEnums
+    {
+        #region Fields and Properties
+
+        private static readonly Dictionary<PerformanceCategoryEnum, string>
+            ThisEnumDictionary = new Dictionary<PerformanceCategoryEnum, string>
+            {
+               {PerformanceCategoryEnum.NetclrExceptions,                         ".NET CLR Exceptions"                                      },
+               {PerformanceCategoryEnum.NetclrInterop,                            ".NET CLR Interop"                                         },
+               {PerformanceCategoryEnum.NetclrJit,                                ".NET CLR Jit"                                             },
+               {PerformanceCategoryEnum.NetclrLoading,                            ".NET CLR Loading"                                         },
+               {PerformanceCategoryEnum.NetclrLocksAndThreads,                    ".NET CLR LocksAndThreads"                                 },
+               {PerformanceCategoryEnum.NetclrMemory,                             ".NET CLR Memory"                                          },
+               {PerformanceCategoryEnum.NetclrRemoting,                           ".NET CLR Remoting"                                        },
+               {PerformanceCategoryEnum.NetclrSecurity,                           ".NET CLR Security"                                        },
+               {PerformanceCategoryEnum.BitLocker,                                "BitLocker"                                                },
+               {PerformanceCategoryEnum.BranchCache,                              "BranchCache"                                              },
+               {PerformanceCategoryEnum.Browser,                                  "Browser"                                                  },
+               {PerformanceCategoryEnum.Cache,                                    "Cache"                                                    },
+               {PerformanceCategoryEnum.ClientSideCaching,                        "Client Side Caching"                                      },
+               {PerformanceCategoryEnum.DatabaseToInstances,                      "Database ==> Instances"                                   },
+               {PerformanceCategoryEnum.DatabaseToTableClasses,                   "Database ==> TableClasses"                                },
+               {PerformanceCategoryEnum.Database,                                 "Database"                                                 },
+               {PerformanceCategoryEnum.Dns64Global,                              "DNS64 Global"                                             },
+               {PerformanceCategoryEnum.EventTracingforWindowsSession,            "Event Tracing for Windows Session"                        },
+               {PerformanceCategoryEnum.EventTracingforWindows,                   "Event Tracing for Windows"                                },
+               {PerformanceCategoryEnum.FaxService,                               "Fax Service"                                              },
+               {PerformanceCategoryEnum.FileSystemDiskActivity,                   "FileSystem Disk Activity"                                 },
+               {PerformanceCategoryEnum.GenericIkEv1AuthIPandIkEv2,               "Generic IKEv1, AuthIP, and IKEv2"                         },
+               {PerformanceCategoryEnum.HttpService,                              "HTTP Service"                                             },
+               {PerformanceCategoryEnum.HyperVDynamicMemoryIntegrationService,    "Hyper-V Dynamic Memory Integration Service"               },
+               {PerformanceCategoryEnum.HyperVHypervisor,                         "Hyper-V Hypervisor"                                       },
+               {PerformanceCategoryEnum.Icmp,                                     "ICMP"                                                     },
+               {PerformanceCategoryEnum.IcmPv6,                                   "ICMPv6"                                                   },
+               {PerformanceCategoryEnum.IphttpsGlobal,                            "IPHTTPS Global"                                           },
+               {PerformanceCategoryEnum.IpsecAuthIpiPv4,                          "IPsec AuthIP IPv4"                                        },
+               {PerformanceCategoryEnum.IpsecAuthIpiPv6,                          "IPsec AuthIP IPv6"                                        },
+               {PerformanceCategoryEnum.IpsecConnections,                         "IPsec Connections"                                        },
+               {PerformanceCategoryEnum.IpsecDriver,                              "IPsec Driver"                                             },
+               {PerformanceCategoryEnum.IpsecIkEv1IPv4,                           "IPsec IKEv1 IPv4"                                         },
+               {PerformanceCategoryEnum.IpsecIkEv1IPv6,                           "IPsec IKEv1 IPv6"                                         },
+               {PerformanceCategoryEnum.IpsecIkEv2IPv4,                           "IPsec IKEv2 IPv4"                                         },
+               {PerformanceCategoryEnum.IpsecIkEv2IPv6,                           "IPsec IKEv2 IPv6"                                         },
+               {PerformanceCategoryEnum.Ipv4,                                     "IPv4"                                                     },
+               {PerformanceCategoryEnum.Ipv6,                                     "IPv6"                                                     },
+               {PerformanceCategoryEnum.LogicalDisk,                              "LogicalDisk"                                              },
+               {PerformanceCategoryEnum.Memory,                                   "Memory"                                                   },
+               {PerformanceCategoryEnum.MicrosoftWinsockBsp,                      "Microsoft Winsock BSP"                                    },
+               {PerformanceCategoryEnum.MsdtcBridge3000,                          "MSDTC Bridge 3.0.0.0"                                     },
+               {PerformanceCategoryEnum.MsdtcBridge4000,                          "MSDTC Bridge 4.0.0.0"                                     },
+               {PerformanceCategoryEnum.NbtConnection,                            "NBT Connection"                                           },
+               {PerformanceCategoryEnum.NetworkAdapter,                           "Network Adapter"                                          },
+               {PerformanceCategoryEnum.NetworkInterface,                         "Network Interface"                                        },
+               {PerformanceCategoryEnum.NumaNodeMemory,                           "NUMA Node Memory"                                         },
+               {PerformanceCategoryEnum.Objects,                                  "Objects"                                                  },
+               {PerformanceCategoryEnum.OfflineFiles,                             "Offline Files"                                            },
+               {PerformanceCategoryEnum.PacerPipe,                                "Pacer Pipe"                                               },
+               {PerformanceCategoryEnum.PagingFile,                               "Paging File"                                              },
+               {PerformanceCategoryEnum.PerProcessorNetworkActivityCycles,        "Per Processor Network Activity Cycles"                    },
+               {PerformanceCategoryEnum.PerProcessorNetworkInterfaceCardActivity, "Per Processor Network Interface Card Activity"            },
+               {PerformanceCategoryEnum.PhysicalNetworkInterfaceCardActivity,     "Physical Network Interface Card Activity"                 },
+               {PerformanceCategoryEnum.PhysicalDisk,                             "PhysicalDisk"                                             },
+               {PerformanceCategoryEnum.PrintQueue,                               "Print Queue"                                              },
+               {PerformanceCategoryEnum.Process,                                  "Process"                                                  },
+               {PerformanceCategoryEnum.ProcessorInformation,                     "Processor Information"                                    },
+               {PerformanceCategoryEnum.Processor,                                "Processor"                                                },
+               {PerformanceCategoryEnum.RasPort,                                  "RAS Port"                                                 },
+               {PerformanceCategoryEnum.RasTotal,                                 "RAS Total"                                                },
+               {PerformanceCategoryEnum.Ras,                                      "RAS"                                                      },
+               {PerformanceCategoryEnum.Redirector,                               "Redirector"                                               },
+               {PerformanceCategoryEnum.RemoteFxSynth3DvscvmDevice,               "RemoteFX Synth3D VSC VM Device"                           },
+               {PerformanceCategoryEnum.SearchIndexer,                            "Search Indexer"                                           },
+               {PerformanceCategoryEnum.SmbServerShares,                          "SMB Server Shares"                                        },
+               {PerformanceCategoryEnum.SmbServer,                                "SMB Server"                                               },
+               {PerformanceCategoryEnum.SmSvcHost3000,                            "SMSvcHost 3.0.0.0"                                        },
+               {PerformanceCategoryEnum.SmSvcHost4000,                            "SMSvcHost 4.0.0.0"                                        },
+               {PerformanceCategoryEnum.Synchronization,                          "Synchronization"                                          },
+               {PerformanceCategoryEnum.SynchronizationNuma,                      "SynchronizationNuma"                                      },
+               {PerformanceCategoryEnum.System,                                   "System"                                                   },
+               {PerformanceCategoryEnum.TcpipPerformanceDiagnostics,              "TCPIP Performance Diagnostics"                            },
+               {PerformanceCategoryEnum.TcPv4,                                    "TCPv4"                                                    },
+               {PerformanceCategoryEnum.TcPv6,                                    "TCPv6"                                                    },
+               {PerformanceCategoryEnum.Telephony,                                "Telephony"                                                },
+               {PerformanceCategoryEnum.TeredoClient,                             "Teredo Client"                                            },
+               {PerformanceCategoryEnum.TeredoRelay,                              "Teredo Relay"                                             },
+               {PerformanceCategoryEnum.TeredoServer,                             "Teredo Server"                                            },
+               {PerformanceCategoryEnum.TerminalServicesSession,                  "Terminal Services Session"                                },
+               {PerformanceCategoryEnum.TerminalServices,                         "Terminal Services"                                        },
+               {PerformanceCategoryEnum.Thread,                                   "Thread"                                                   },
+               {PerformanceCategoryEnum.UdPv4,                                    "UDPv4"                                                    },
+               {PerformanceCategoryEnum.UdPv6,                                    "UDPv6"                                                    },
+               {PerformanceCategoryEnum.Usb,                                      "USB"                                                      },
+               {PerformanceCategoryEnum.Wfp,                                      "WFP"                                                      },
+               {PerformanceCategoryEnum.WfPv4,                                    "WFPv4"                                                    },
+               {PerformanceCategoryEnum.WfPv6,                                    "WFPv6"                                                    },
+               {PerformanceCategoryEnum.WindowsTimeService,                       "Windows Time Service"                                     },
+               {PerformanceCategoryEnum.WinNaticmp,                               "WinNAT ICMP"                                              },
+               {PerformanceCategoryEnum.WinNattcp,                                "WinNAT TCP"                                               },
+               {PerformanceCategoryEnum.WinNatudp,                                "WinNAT UDP"                                               },
+               {PerformanceCategoryEnum.WinNat,                                   "WinNAT"                                                    },
+
+            };
+
+        public enum PerformanceCategoryEnum
+        {
+            NetclrExceptions,
+            NetclrInterop,
+            NetclrJit,
+            NetclrLoading,
+            NetclrLocksAndThreads,
+            NetclrMemory,
+            NetclrRemoting,
+            NetclrSecurity,
+            BitLocker,
+            BranchCache,
+            Browser,
+            Cache,
+            ClientSideCaching,
+            DatabaseToInstances,
+            DatabaseToTableClasses,
+            Database,
+            Dns64Global,
+            EventTracingforWindowsSession,
+            EventTracingforWindows,
+            FaxService,
+            FileSystemDiskActivity,
+            GenericIkEv1AuthIPandIkEv2,
+            HttpService,
+            HyperVDynamicMemoryIntegrationService,
+            HyperVHypervisor,
+            Icmp,
+            IcmPv6,
+            IphttpsGlobal,
+            IpsecAuthIpiPv4,
+            IpsecAuthIpiPv6,
+            IpsecConnections,
+            IpsecDriver,
+            IpsecIkEv1IPv4,
+            IpsecIkEv1IPv6,
+            IpsecIkEv2IPv4,
+            IpsecIkEv2IPv6,
+            Ipv4,
+            Ipv6,
+            LogicalDisk,
+            Memory,
+            MicrosoftWinsockBsp,
+            MsdtcBridge3000,
+            MsdtcBridge4000,
+            NbtConnection,
+            NetworkAdapter,
+            NetworkInterface,
+            NumaNodeMemory,
+            Objects,
+            OfflineFiles,
+            PacerPipe,
+            PagingFile,
+            PerProcessorNetworkActivityCycles,
+            PerProcessorNetworkInterfaceCardActivity,
+            PhysicalNetworkInterfaceCardActivity,
+            PhysicalDisk,
+            PrintQueue,
+            Process,
+            ProcessorInformation,
+            Processor,
+            RasPort,
+            RasTotal,
+            Ras,
+            Redirector,
+            RemoteFxSynth3DvscvmDevice,
+            SearchIndexer,
+            SmbServerShares,
+            SmbServer,
+            SmSvcHost3000,
+            SmSvcHost4000,
+            Synchronization,
+            SynchronizationNuma,
+            System,
+            TcpipPerformanceDiagnostics,
+            TcPv4,
+            TcPv6,
+            Telephony,
+            TeredoClient,
+            TeredoRelay,
+            TeredoServer,
+            TerminalServicesSession,
+            TerminalServices,
+            Thread,
+            UdPv4,
+            UdPv6,
+            Usb,
+            Wfp,
+            WfPv4,
+            WfPv6,
+            WindowsTimeService,
+            WinNaticmp,
+            WinNattcp,
+            WinNatudp,
+            WinNat
+        }
+        #endregion
+
+        #region  Methods
+
+        public static string GetCategoryHelp(PerformanceCategoryEnum eEnum)
+        {
+            if (ThisEnumDictionary.ContainsKey(eEnum))
+            {
+                var thisCategory = new PerformanceCounterCategory(ThisEnumDictionary[eEnum]);
+                return thisCategory.CategoryHelp;
+            }
+            return "No such PerformanceCategoryEnum!";
+        }
+        public static string GetCategoryNameString(PerformanceCategoryEnum eEnum)
+        {
+            if (ThisEnumDictionary.ContainsKey(eEnum))
+            {
+                return ThisEnumDictionary[eEnum];
+            }
+            return "No such PerformanceCategoryEnum!";
+        }
+
+
+        #endregion
+    }
+}

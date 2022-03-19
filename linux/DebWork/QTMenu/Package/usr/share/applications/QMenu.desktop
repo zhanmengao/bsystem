@@ -1,0 +1,7 @@
+[Desktop Entry]
+Name=QTMenu
+Type=Application
+Exec=/opt/QMenu/QMenu.sh
+Icon=/opt/QMenu/resources/browser.png
+Comment="released_on_2019_02_25"
+Terminal=false

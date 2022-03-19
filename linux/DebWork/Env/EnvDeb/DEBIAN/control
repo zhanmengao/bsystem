@@ -1,0 +1,12 @@
+Package: Env
+Version: 1.0
+Architecture: all
+Maintainer: WangBiyu
+Installed-Size: 128
+Recommends:
+Suggests:
+Section: devel
+Priority: optional
+Multi-Arch: foreign
+Description: Show hardware info
+

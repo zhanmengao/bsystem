@@ -1,0 +1,598 @@
+syntax = "proto3";
+package pb;
+
+import "struct.proto";
+
+// UID列表 OPR后台UID推送超级礼包
+message UIDList {
+    string id   = 1;
+    string name = 2;
+    int64  time = 3;
+    uint32 num  = 4;
+}
+
+// UID列表统计
+message UIDLists {
+    repeated UIDList lists = 1;
+}
+
+//存储过期时间
+message CallBackCircle {
+    int32          recordTime = 1;  //今天第一次展示的时间，用户跨天刷新当天用户
+    repeated int32 todayList  = 2;  //今天需要展示的用户
+    repeated int32 list       = 3;  //累计的用户
+}
+
+message CarnivalBoomLine {
+    uint32 lineNum = 1;
+    uint32 state   = 2;
+    uint32 fUid    = 3;
+    uint32 isSafe  = 4;
+    string name    = 5;  //装弹人的名字
+}
+
+message CarinvalBoomBuild {
+    uint32                    buildId     = 1;
+    uint32                    addBoomTime = 2;
+    uint32                    addBoomUser = 3;  //装弹人uid
+    repeated CarnivalBoomLine lineInfo    = 4;
+    uint32                    curPic      = 5;
+    string                    fbpic       = 6;
+    string                    name        = 7;
+    int32                     multiple    = 8;  //是否是多倍
+    repeated uint32           downList    = 9;  //用户运行拆炸弹的uid列表
+}
+
+message CarnivalBoom {
+    repeated CarinvalBoomBuild boomInfo      = 1;
+    uint32                     userBoomNum   = 2;  //用户当天被装了多少个炸弹
+    uint32                     boomTimestamp = 3;  //对userBoomNum每天清零用
+}
+
+message CarnivalRewardItem {
+    uint32 id         = 1;  //奖励ID
+    uint32 times      = 2;  //领奖次数
+    uint32 rewardTime = 3;  //领奖时间
+}
+
+//炸弹 兑奖、碎片信息
+message CarnivalReward {
+    uint32                      piece      = 1;
+    repeated CarnivalRewardItem rewardInfo = 2;
+}
+message chatPlayPool {
+    uint32          collect     = 1;
+    uint32          cdEnd       = 2;
+    uint32          status      = 3;
+    uint32          rewardEnd   = 4;
+    uint32          lastCollect = 5;
+    repeated uint32 list        = 6;
+}
+message DailyPack {
+    uint32 count       = 1;  // 购买数量
+    string dailyPackID = 2;  // 礼包ID
+    int64  modeID      = 3;  // 模型ID
+}
+
+message Diligent {
+    uint32 rewardStatus = 1;  // 领奖状态，只会存2，代表已经领过奖励
+    uint32 isProtect    = 2;  // 是否触发空岛保护，0是，1否
+}
+
+message DisCardItem {
+    string type   = 1;  //道具的类型
+    int64  num    = 2;  //如果是 disCard num 代表卡片剩余的时间戳 , 同一个折扣的卡，也需要各自展示
+    int32  param  = 3;  //如果是 disCard param代表多送或者折扣力度 分母为100 eg: 30/100 , 多送 30% 或者 折扣 30%
+    int32  cardId = 4;  //卡片ID，用于使用卡片的时候标志使用那一张卡片， id时时间戳
+}
+
+message DisCard {
+    repeated DisCardItem cardList = 1;  //用户拥有的卡片列表
+    int32                payMoney = 2;  //用户刷出活动时已经支付的费用，根据费用来确定打折卡发放权重
+    int32                incrId   = 3;  //用来做卡片ID自增
+    int32                useTimes = 4;  //使用卡片的次数
+    int32                useTime  = 5;  //最近一次使用卡片的时间
+}
+
+message Skill {
+    uint32 type       = 1;
+    uint32 level      = 2;
+    uint64 effectTime = 3;
+    int32  value      = 4;
+}
+
+message GrownFunds {
+    int32              lock   = 1;  //是否解锁【0-未解锁，1-已解锁】
+    repeated GrownFund reward = 2;  //奖励
+}
+
+message GrownFund {
+    int32                     id     = 1;  //序号
+    string                    remark = 2;  //备注
+    int32                     star   = 3;  //星星数
+    repeated CommonRewardItem reward = 4;  //奖励
+    int32                     status = 5;  //状态【0-初始状态，1-可领取，2-已领取】
+}
+
+message handBookItem {
+    int32 planetId    = 1;  //图鉴岛屿
+    int32 lightTime   = 2;  //图鉴点亮时间
+    int32 curseLv     = 3;  //诅咒等级
+    int32 curseStatus = 4;  //是否领取2（完成1）
+}
+
+message handBook {
+    repeated handBookItem light = 1;
+}
+
+message MagicWheel {
+    uint32 lastTotal  = 1;
+    uint32 energy     = 2;
+    uint32 dailyTimes = 3;
+    uint32 expireTime = 4;
+    string type       = 5;
+    uint32 times      = 6;
+    uint32 subTimes   = 7;
+    string lastType   = 8;
+    uint32 lastTimes  = 9;
+}
+
+message MainTask {
+    string taskId    = 1;  //当前主线任务ID
+    uint32 target    = 2;  //任务需要完成的次数
+    uint32 real      = 3;  //实际完成的数量
+    uint32 isReward  = 4;  //是否已经领奖
+    uint32 totalTili = 5;  //体力相关任务，记录刷出任务时，转盘消耗的体力
+    int64  getMoney  = 6;  //金币相关任务，记录刷出任务时，转盘得到的金币
+    string preTask   = 7;  //可以提前完成任务的id
+}
+
+message messageItem {
+    uint32 uid        = 1;
+    uint32 type       = 2;
+    uint32 picId      = 3;
+    uint32 time       = 4;
+    uint32 expPicId   = 5;
+    uint32 changeType = 6;
+    string msgId      = 7;
+}
+
+message message {
+    repeated messageItem msg = 1;
+}
+
+message OfflineGuard {
+    repeated OfflineGuardBuildingItem building    = 1;
+    int32                             times       = 2;  //当天触发奖励的次数
+    int64                             triggerTime = 3;  //最近一次触发的时间
+}
+
+message OfflineGuardBuildingItem {
+    string buildingId = 1;
+    int32  value      = 2;
+}
+
+message Online {
+    uint64 uid            = 1;
+    string mtkey          = 2;
+    string status         = 3;
+    string time           = 4;
+    string device         = 5;
+    string version        = 6;
+    string channel        = 7;
+    string platform       = 8;
+    string lang           = 9;
+    string name           = 10;
+    string client_ip      = 11;
+    string siteuid        = 12;
+    string plat_id        = 13;
+    string moneyChange    = 14;
+    string cur_planet     = 15;
+    string deviceToken    = 16;
+    string access_token   = 17;
+    string country        = 18;
+    string vip            = 19;
+    string loginType      = 20;
+    string gameAppId      = 21;
+    string LoginChannel   = 22;
+    string Network        = 23;
+    string TelecomOper    = 24;
+    string SystemSoftware = 25;
+    string SystemHardware = 26;
+    string clientOS       = 27;
+    string clientZone     = 28;
+    string clientMac      = 29;
+    string secret         = 30;
+    uint32 socialFriNum   = 31;
+    string fRank          = 32;
+    uint32 roomId         = 33;
+    string rVersion       = 34;
+}
+
+message pic {
+    int32  p1               = 1;
+    int32  p2               = 2;
+    int32  p3               = 3;
+    int32  p4               = 4;
+    int32  p5               = 5;
+    int32  p6               = 6;
+    int32  p7               = 7;
+    int32  p8               = 8;
+    int32  p9               = 9;
+    int32  l1               = 10;  //被锁的碎片
+    int32  l2               = 11;
+    int32  l3               = 12;
+    int32  l4               = 13;
+    int32  l5               = 14;
+    int32  l6               = 15;
+    int32  l7               = 16;
+    int32  l8               = 17;
+    int32  l9               = 18;
+    int32  rewardLimit      = 19;
+    int32  recvCount        = 20;
+    int32  recvTime         = 21;
+    int32  sendCount        = 22;
+    int32  sendTime         = 23;
+    int32  isTake           = 24;
+    int32  reward           = 25;  //随机奖励ID
+    int64  money            = 26;  //累计消耗金币的数量
+    int32  todayNum         = 27;  //今天消耗金币得到碎片数量
+    int32  moneyTime        = 28;  //最近一次获得消耗金币的时间，跨天重置 todayNum
+    int32  zpCount          = 29;  //发碎片
+    int32  hasGet           = 30;  //体力获得碎片的个数
+    int32  doubleState      = 31;
+    int32  doubleEndTime    = 32;
+    int32  totalNum         = 33;
+    int64  tiliTime         = 34;  //体力获得碎片的时间戳，跨天重新计算
+    string c1               = 35;  //正在交易的碎片 uid_timeStamp // timeStamp过期时间戳
+    string c2               = 36;
+    string c3               = 37;
+    string c4               = 38;
+    string c5               = 39;
+    string c6               = 40;
+    string c7               = 41;
+    string c8               = 42;
+    string c9               = 43;
+    uint32 changeTime       = 44;
+    uint32 changeCount      = 45;
+    uint32 rewardTime       = 46;
+    uint32 todayRewardCount = 47;
+    string changeList       = 48;
+    int32  extraRewardLimit = 49;  //用户看广告后额外增加的领奖上限
+}
+
+message PigAdventure {
+    uint32         status   = 1;  //当前状态， 0：未初始化， 1：已经初始
+    uint32         position = 2;  //用户当前进度，从0开始
+    repeated int32 builds   = 3;  //建筑状态，数组，共5个
+    uint32         planet   = 4;  //用户参加活动时的岛屿
+}
+
+message RecentlyDaysItem {
+    int32 day   = 1;  //天数， 一般是，uninx时间除以86400
+    int64 value = 2;  //数值
+}
+
+message RecentlyDaysData {                //用户最近天数数据
+    repeated RecentlyDaysItem items = 1;  //数据清单
+}
+
+message RecruitmentInviteList {
+    repeated int32 fUidList = 1;
+}
+
+// 支付存储
+
+message PayRecords {
+    repeated PayRecord records = 1;  //用户支付记录数
+}
+
+message PayRecord {
+    uint32 time   = 1;  //存储时间戳
+    uint32 amount = 2;  //支付金额
+}
+
+message Subscribe {
+    string orderId         = 1;  // 订单ID
+    string goodsId         = 2;  // 订阅的商品id
+    uint32 date            = 3;  // 领奖的日期，格式为20181016
+    uint32 startTime       = 4;  // 订阅的开始时间戳
+    uint32 endTime         = 5;  // 订阅的结束时间戳
+    string purchaseToken   = 6;  // 订阅支付token, 用来查询续订信息
+    string originalOrderId = 7;  // 订阅初始订单
+}
+
+message SuperWheel {
+    int32  wheelId      = 1;
+    string wheelType    = 2;
+    int32  wheelVal     = 3;
+    int32  getTili      = 4;
+    int32  subTili      = 5;
+    int32  wheelCount   = 6;
+    int64  getMoney     = 7;
+    int64  subMoney     = 8;
+    int32  tiliCount    = 9;
+    int32  carnivalTili = 10;  //嘉年华模式消耗的体力
+}
+
+message RecruitmentItem {
+    int32 type   = 1;
+    int32 status = 2;
+    int32 fUid   = 3;
+}
+
+message Recruitmen {
+    int32                    recruimtEndTime   = 1;
+    repeated RecruitmentItem recruimtentList   = 6;  //海盗招聘列表
+    int32                    recruimtStartTime = 7;
+}
+
+message AttackerItem {
+    int32 attackerUid = 1;  // 攻击者的用户ID
+    int32 building    = 2;  // 被攻击的建筑物索引
+}
+
+message DestinyItem {
+    int32 id    = 1;  //配置文件唯一编号
+    int32 type  = 2;  //类型1-money, 2-tili
+    int32 value = 3;  //值
+}
+
+message UserDataExt {
+    uint64                guideMark    = 1;  // 引导bit标记位
+    int32                 gainCoin     = 2;  // 嘉年华接金币玩法，0-没有转到，>0-代表倍数
+    int32                 help         = 3;  //转盘互助标志
+    int32                 maxHelp      = 4;  //互助多倍
+    int32                 backUserBit  = 5;  //回归体验标志
+    Recruitmen            recruimtent  = 6;  //海盗招聘列表
+    repeated AttackerItem attackerList = 7;  // 攻击者列表
+    DestinyItem           destiny      = 8;  // 运气存储值
+}
+
+message userInfoForPlat {
+    uint32 qq_svip_end = 1;
+    uint32 qq_vip_end  = 2;
+    string f_rank      = 3;  //['type' => ['time', 'msg']]
+    string f_income    = 4;  //['time', 'msg']
+    uint32 source      = 5;
+    string reaseon     = 6;
+    uint32 starttime   = 7;
+    uint32 endtime     = 8;
+    string gameCenter  = 9;
+}
+
+message userInfoSurplus {
+    uint32 friendCount = 1;  //好友个数冗余段
+    uint32 vip         = 2;  //vip冗余字段
+    uint32 star        = 3;  //冗余星星数
+    uint32 familyId    = 4;
+    string familyName  = 5;
+    uint32 icon        = 6;
+    uint32 beProtect   = 7;
+    uint32 protect     = 8;
+    string nick        = 9;
+    string first_name  = 10;
+    int32  secondlast  = 11;
+    string nickName    = 12;
+}
+
+message RedLogic {
+    uint32 friends       = 1;
+    uint32 settings      = 2;
+    uint32 family        = 3;
+    uint32 dungeon       = 4;
+    uint32 pic           = 5;
+    uint32 slingshot     = 6;
+    uint32 luckdraw      = 7;
+    uint32 box           = 8;
+    uint32 invite        = 9;
+    uint32 cumuReward    = 10;
+    uint32 callback      = 11;
+    uint32 starUp        = 12;
+    uint32 earningOnline = 13;  // 网赚活动
+}
+
+message ZhuanpanTimes {
+    uint32 allTimes            = 1;
+    uint32 stealTimes          = 2;
+    uint32 attackTimes         = 3;
+    uint32 shieldTimes         = 4;
+    uint32 tiliTimes           = 5;
+    uint32 tiliCost            = 6;
+    string starCompRoom        = 7;  //市长玩法房间ID
+    int64  starCompRoomEndTime = 8;  //市长玩法房间的结束时间
+}
+
+/*****************************钻石制造机 开始**********************/
+message DiamondMakerInfo {
+    uint32 makeTimes = 1;  //已经使用制造的次数
+    uint32 payTimes  = 2;  //支付增加的额外次数
+}
+
+message DiamondMakerListItem {
+    string name = 1;  //用户名字
+    uint32 num  = 2;  //得到的钻石数量
+    uint32 time = 3;  //制造钻石的时间
+}
+/*****************************钻石制造机 结束**********************/
+
+/*******************************水果 开始*************************/
+message FruitSimpleReward {
+    int32  id       = 1;
+    string subType  = 2;
+    int32  number   = 3;
+    int32  status   = 4;
+    int32  rewardId = 5;
+}
+
+message FruitFinalReward {
+    int32 id       = 1;
+    int32 status   = 2;
+    int32 rewardId = 3;
+}
+
+message FruitExtra {
+    string subType  = 1;
+    int32  num      = 2;
+    int32  tradeNum = 3;  //不可交易的碎片
+}
+
+message Fruit {
+    repeated FruitSimpleReward simple  = 1;
+    FruitFinalReward           final   = 2;
+    repeated FruitExtra        extra   = 3;
+    int32                      refresh = 4;
+}
+/*******************************水果 结束*************************/
+
+message StarRankItem {
+    int32  uid        = 1;
+    string name       = 2;
+    string fbpic      = 3;
+    int32  vip        = 4;
+    string familyName = 5;
+    int32  icon       = 6;
+    int32  star       = 7;
+    string sex        = 8;
+    int32  cur_pic    = 9;
+    int32  cur_flag   = 10;
+    int32  rank       = 11;
+}
+
+message StarRank {
+    repeated StarRankItem starRank = 1;
+}
+
+message usertj {
+    uint32       cur_planet                  = 1;
+    uint32       attacked_time               = 2;
+    int32        shield                      = 3;
+    int32        planet_diff                 = 4;
+    int32        rand                        = 5;
+    uint32       planet_num                  = 6;
+    uint32       invite                      = 7;
+    uint32       arcTimes                    = 8;
+    uint32       proTime                     = 9;
+    uint32       protectTime                 = 10;
+    uint32       uid                         = 11;
+    uint32       star                        = 12;
+    uint32       beTongji                    = 13;  //被通缉的次数
+    int32        dateAndTimes                = 14;  // 被打日期与次数，格式：030503, 表示3月5号被打了3次
+    int32        boomFull                    = 15;  //是否已经被装满炸弹
+    int32        isOnline                    = 16;  //是否在线，0 不在线，1 在线
+    int32        newbieTime                  = 17;  //用户过新手的unix时间（秒）
+    int32        attackedNum                 = 18;  // 被打次数
+    int64        attack_total                = 19;  // 猪来了字段信息
+    int64        attack_defense              = 20;
+    int64        attack_damage               = 21;
+    int64        attack_destroy              = 22;
+    int64        attack_money                = 23;
+    int64        steal_total                 = 24;
+    int64        steal_succ                  = 25;
+    int64        steal_fail                  = 26;
+    int64        steal_money                 = 27;
+    int64        attacked_total              = 28;
+    int64        attacked_defense            = 29;
+    int64        attacked_damage             = 30;
+    int64        attacked_destroy            = 31;
+    int64        attacked_money              = 32;
+    int64        stealed_total               = 33;
+    int64        stealed_money               = 34;
+    int64        get_money                   = 35;
+    int64        attacked_friend             = 36;
+    int64        times                       = 37;
+    int64        dateShieldZeroAttackedTimes = 38;  //每天盾为0被打
+    int64        dateAndFriTimes             = 39;  // 当天被好友打的次数
+    userSealData sealData                    = 40;  // 用户冰封数据
+}
+
+// 用户冰封数据
+message userSealData {
+    int64 SealLastTime   = 1;  // 上一次冰封的时间
+    int64 SealedLastTime = 2;  // 上一次被冰封的时间
+    int64 SealNum        = 3;  // 冰封次数
+    int64 SealedNum      = 4;  // 被冰封次数
+    int64 SealedWeight   = 5;  // 被冰封的权重
+    int64 SealIsland     = 6;  // 岛屿
+    int32 SealBoundCells = 7;  // 冰封的格子数
+    int64 SealTiliNum    = 8;  // 体力存量
+}
+
+message ActionCardItem {
+    int32 cardID = 1;  // 卡片ID, groupID * 100 + cardIndex [0-8]
+    int32 num    = 2;  // 拥有卡片数量
+}
+
+// 通用键值对：key value均为int
+message KeyValuePairIntInt {
+    uint32 key   = 1;
+    uint32 value = 2;
+}
+
+// 通用键值对：key value均为string
+message KeyValuePairStringString {
+    string key   = 1;
+    string value = 2;
+}
+
+//建筑状态
+message BuildingData {
+    int32 lv             = 1;  // 当前建筑等级
+    float hp             = 2;  // 血量
+    int32 bombLeftSecond = 3;  // 炸弹倒计时 -1 没有炸弹
+}
+//岛屿状态回包
+message PlanetData {
+    int32                 curPlanet = 1;  //当前岛屿
+    repeated BuildingData building  = 2;
+    int32                 star      = 3;  // 星星数
+    int32                 shield    = 4;  // 盾牌数
+}
+
+// 成就礼包购买
+message Achievement {
+    repeated AchievementItem  items       = 1;  // 弹出次数
+    int64                     lastPopTime = 2;  // 最后弹窗的时间戳
+    AchievementConfig         lockItem    = 3;  // 锁定岛屿触发的礼包
+    repeated CommonRewardItem lockBuyItem = 4;  // 锁定购买的奖励
+}
+
+message AchievementItem {
+    int32 id  = 1;  // 编号
+    int32 num = 2;  // 购买次数
+}
+
+message AchievementConfig {
+    int32 limit     = 1;  // 购买上限
+    int32 condition = 2;  // 条件组
+    int32 minPay    = 3;  // 最小付费
+    int32 maxPay    = 4;  // 最高付费
+    int32 id        = 5;  // 购买
+    int32 PID       = 6;  // 商品ID
+}
+
+// 通用奖励结构,param为额外参数
+message RewardItem {
+    string type   = 1;  //道具的类型
+    int64  num    = 2;  //道具的值数量，如果maxNum 不为0 就是道具的最小范围 如果这个值是 -1 那么就代表是随机数量
+    int32  param  = 3;  //piece 和 baby 的 额外参数 多少好号
+    int64  maxNum = 4;  // 如果为0 不使用， 如果大于0 表示这是个范围奖励，maxNum表示最大值 num表示最小值
+    string img    = 5;  // img 使用的图片 八天登入 幸运抽奖 商城
+    // int32 rare = 6;      // 是否为稀有奖励 1:稀有 配置中心中配置， 先占用个位置
+    // int32 broadcast = 7; // 是否需要广播 1:需要
+    repeated RewardItem innerReward = 8;  //礼物中 还可以再开出礼物
+}
+
+message UserDataExtProp {
+    uint64 mustControlTimes = 1;  // 必中控制数据 岛屿取整1000, 次数取余1000
+}
+
+message WeightNextToPlanet {
+    int64                           id    = 1;
+    repeated WeightNextToPlanetItem items = 2;
+}
+
+message WeightNextToPlanetItem {
+    int64 type       = 1;
+    int64 remainTime = 2;
+}

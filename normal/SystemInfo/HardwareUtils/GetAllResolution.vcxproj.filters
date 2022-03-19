@@ -1,0 +1,56 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="资源文件">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="源文件">
+      <UniqueIdentifier>{43a240a4-90bb-4c25-b606-2c11bddb4209}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Monit">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hpp;hxx;hm;inl;inc;xsd</Extensions>
+    </Filter>
+    <Filter Include="KeyMouse">
+      <UniqueIdentifier>{d56b4fe0-70e2-4a07-aa9d-00be5b240054}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="GetAllResolutionInfo.h">
+      <Filter>Monit</Filter>
+    </ClInclude>
+    <ClInclude Include="EDID.h">
+      <Filter>Monit</Filter>
+    </ClInclude>
+    <ClInclude Include="MonitUtils.h">
+      <Filter>Monit</Filter>
+    </ClInclude>
+    <ClInclude Include="HardwareUtils.h">
+      <Filter>KeyMouse</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="GetAllResolutionInfo.cpp">
+      <Filter>Monit</Filter>
+    </ClCompile>
+    <ClCompile Include="OtherDisplay.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="Display.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="DisplayModel.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="main.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="EDID.cpp">
+      <Filter>Monit</Filter>
+    </ClCompile>
+    <ClCompile Include="..\SystemInfo\SysInfo.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+  </ItemGroup>
+</Project>

@@ -1,0 +1,257 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="源文件">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="头文件">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hh;hpp;hxx;hm;inl;inc;xsd</Extensions>
+    </Filter>
+    <Filter Include="资源文件">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="Routinue">
+      <UniqueIdentifier>{36480dd2-76de-4663-a396-73599b2ee085}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Utils">
+      <UniqueIdentifier>{62aff24b-ae16-46aa-b34a-2930084fb245}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="CollectRoutinue">
+      <UniqueIdentifier>{8fd3dfab-8bd8-4f10-b1e7-300cd64e9283}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="UserRoutinue">
+      <UniqueIdentifier>{d34e5310-f7e9-4457-ab4b-85f7f57d0afa}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="ReadMe.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="stdafx.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="targetver.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="Resource.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="VEIDP_NEW.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\File\FileManager\SocketCtrl\SocketCtrlCommon\ThreadBase.h">
+      <Filter>Routinue</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\File\FileManager\SocketCtrl\SocketCtrlCommon\ThreadManager.h">
+      <Filter>Routinue</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\File\FileManager\SocketCtrl\SocketCtrlCommon\ThreadMsg.h">
+      <Filter>Routinue</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\File\FileManager\SocketCtrl\SocketCtrlCommon\LogThread.h">
+      <Filter>Routinue</Filter>
+    </ClInclude>
+    <ClInclude Include="CollectRoutinue.h">
+      <Filter>CollectRoutinue</Filter>
+    </ClInclude>
+    <ClInclude Include="UserRoutinue.h">
+      <Filter>UserRoutinue</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\File\FileManager\FileManager\FileManager.h">
+      <Filter>Utils</Filter>
+    </ClInclude>
+    <ClInclude Include="THREAD_ID.h">
+      <Filter>Routinue</Filter>
+    </ClInclude>
+    <ClInclude Include="Config.h">
+      <Filter>UserRoutinue</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\Network\MQ\RocketMQ\PushConsumer\RockMQConsuUtils.h">
+      <Filter>Utils</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\Network\MQ\RocketMQ\RocketMQ\RockMQProduUtils.h">
+      <Filter>Utils</Filter>
+    </ClInclude>
+    <ClInclude Include="UserMessage.h">
+      <Filter>UserRoutinue</Filter>
+    </ClInclude>
+    <ClInclude Include="MSG_ID.h">
+      <Filter>Routinue</Filter>
+    </ClInclude>
+    <ClInclude Include="CollectMessage.h">
+      <Filter>CollectRoutinue</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\SystemInfo\WMI\CtrlWmi.h">
+      <Filter>Utils</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\SystemInfo\WMI\WMIDef.h">
+      <Filter>Utils</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\SystemInfo\WMI\WMIUtils.h">
+      <Filter>Utils</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\SystemInfo\SystemInfo\SysInfoUtils.h">
+      <Filter>Utils</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Setting\Readini\INIManager.hpp">
+      <Filter>Utils</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\C++space\Convert\Convert\Convert.h">
+      <Filter>Utils</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\C++space\Convert\Convert\CppConvert.h">
+      <Filter>Utils</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Windows\AppManager\AppManager\Apps.h">
+      <Filter>Utils</Filter>
+    </ClInclude>
+    <ClInclude Include="Utils.h">
+      <Filter>Utils</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Process\WindowsProcessHelper\Fork\ForkUtils.h">
+      <Filter>Utils</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Process\WindowsProcessHelper\CreateProcess\ProcessHelper.h">
+      <Filter>Utils</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\Network\SocketEncode\SocketEncode\base64.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\File\FileManager\FileManager\DiskManager.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Setting\WDesktop\LnkUtils.h">
+      <Filter>Utils</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Process\WindowsProcessHelper\CreateProcess\ProcessMonitBase.h">
+      <Filter>Utils</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Process\WindowsProcessHelper\CreateProcess\ProcessMonitWMI.h">
+      <Filter>Utils</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\SystemInfo\HardwareUtils\EDID.h">
+      <Filter>Utils</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\SystemInfo\HardwareUtils\GetAllResolutionInfo.h">
+      <Filter>Utils</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\SystemInfo\HardwareUtils\MonitUtils.h">
+      <Filter>Utils</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\File\FileManager\FileManager\FileAttrHelper.h">
+      <Filter>Utils</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\algorithm\Normal\byd\stb\CString.h">
+      <Filter>Utils</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Process\ThreadPool\ThreadPool\PthreadPool.h">
+      <Filter>Routinue</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="stdafx.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="VEIDP_NEW.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\File\FileManager\SocketCtrl\SocketCtrlCommon\ThreadBase.cpp">
+      <Filter>Routinue</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\File\FileManager\SocketCtrl\SocketCtrlCommon\ThreadManager.cpp">
+      <Filter>Routinue</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\File\FileManager\SocketCtrl\SocketCtrlCommon\LogThread.cpp">
+      <Filter>Routinue</Filter>
+    </ClCompile>
+    <ClCompile Include="CollectRoutinue.cpp">
+      <Filter>CollectRoutinue</Filter>
+    </ClCompile>
+    <ClCompile Include="UserRoutinue.cpp">
+      <Filter>UserRoutinue</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\File\FileManager\FileManager\FileManager.cpp">
+      <Filter>Utils</Filter>
+    </ClCompile>
+    <ClCompile Include="UserMessage.cpp">
+      <Filter>UserRoutinue</Filter>
+    </ClCompile>
+    <ClCompile Include="Config.cpp">
+      <Filter>UserRoutinue</Filter>
+    </ClCompile>
+    <ClCompile Include="CollectMessage.cpp">
+      <Filter>CollectRoutinue</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\SystemInfo\WMI\CtrlWmi.cpp">
+      <Filter>Utils</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\SystemInfo\WMI\WMIUtils.cpp">
+      <Filter>Utils</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\SystemInfo\SystemInfo\SysInfoUtils.cpp">
+      <Filter>Utils</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\C++space\Convert\Convert\Convert.cpp">
+      <Filter>Utils</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Windows\AppManager\AppManager\Apps.cpp">
+      <Filter>Utils</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Process\WindowsProcessHelper\Fork\ForkUtils.cpp">
+      <Filter>Utils</Filter>
+    </ClCompile>
+    <ClCompile Include="WinMessage.cpp">
+      <Filter>UserRoutinue</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Process\WindowsProcessHelper\CreateProcess\ProcessHelper_Info.cpp">
+      <Filter>Utils</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Time\Time\WinTime.cpp">
+      <Filter>Utils</Filter>
+    </ClCompile>
+    <ClCompile Include="CollectLogic.cpp">
+      <Filter>CollectRoutinue</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\File\FileManager\FileManager\DiskManager.cpp">
+      <Filter>Utils</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\Network\SocketEncode\SocketEncode\base64.cpp">
+      <Filter>Utils</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\USB\WUSBDevice\USBUtils.cpp">
+      <Filter>Utils</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Setting\WDesktop\LnkUtils.cpp">
+      <Filter>Utils</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\SystemInfo\HardwareUtils\EDID.cpp">
+      <Filter>Utils</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\SystemInfo\HardwareUtils\GetAllResolutionInfo.cpp">
+      <Filter>Utils</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\File\FileManager\FileManager\FileAttrHelper.cpp">
+      <Filter>Utils</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\algorithm\Normal\byd\stb\CString.c">
+      <Filter>Utils</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Process\ThreadPool\ThreadPool\PthreadPool.cpp">
+      <Filter>Routinue</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Process\ThreadPool\ThreadPool\PthreadPool_BlockQueue.cpp">
+      <Filter>Routinue</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Process\ThreadPool\ThreadPool\PthreadPool_Manager.cpp">
+      <Filter>Routinue</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="veidp.rc">
+      <Filter>头文件</Filter>
+    </ResourceCompile>
+  </ItemGroup>
+</Project>

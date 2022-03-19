@@ -1,0 +1,16 @@
+syntax = "proto3";
+
+package pb;
+
+// server专用配置
+
+// 网关
+// @cfg:ServerGateConfig|map:ServerGateSystemEventDeliveryConfig|SystemEventType:int32 # 网关事件转发
+message ServerGateSystemEventDeliveryConfigAry {
+    repeated ServerGateSystemEventDeliveryConfig Ary = 1;
+}
+
+message ServerGateSystemEventDeliveryConfig {
+    int32 SystemEventType     = 1;
+    repeated string ToServers = 2; // 转发的srv名字
+}

@@ -1,0 +1,151 @@
+syntax = "proto3";
+package pb;
+
+import "rpc.proto";
+import "table_other.proto";
+import "struct.proto";
+import "enum.proto";
+
+
+// ============================================== login
+
+message AccountCheckReq {
+}
+
+message AccountCheckRsp {
+    RpcRspHead  Head                                    = 1;
+    string Version                                      = 2;  // 当前版本号
+    string MiniVersion                                  = 3;  // 最小版本号
+    string NewVersion                                   = 4;  // 新版版本号
+    string UpdateMsg                                    = 5;  // 更新日志
+    string UpdateUrl                                    = 6;  // 更新链接
+    string CommentUrl                                   = 7;  // 评论链接
+    bool   ShowFbTili                                   = 8;
+    uint32 FbTili                                       = 9;
+
+    string CdnRoot                                      = 20;  // cdn地址
+//    string AppRoot                                      = 21;  // app地址
+    string ReportApi                                    = 22; // 上报地址
+    bool  OpenReport                                    = 23; // //上报开关
+    string ShareCgi                                     = 24;
+    string FbPicLink                                    = 25;
+    string ConfCdnRoot                                  = 26;
+    bool   UseSymCrypt                                  = 27; // 请求是否加密
+    string Cgi                                          = 28; // 服务器下发地址
+    bool IsReview                                       = 29; // 是否审核状态
+
+
+    repeated I18NLocalV2Config I18NLocal                  = 50; // i18N配置表 I18NLocalConfigAry
+    repeated I18NLocalV2SwitchConfig  I18NLocalSwitch     = 51; // i18N开关配置表  I18NLocalSwitchConfigAry
+}
+
+// 非命令字接口
+message AccountLoginReq {
+    LoginType LoginType         = 1;
+    string  DeviceToken         = 2; // 登陆接口会根据前端其他尝试生成, 并回传; 在nginx转发一致性hash有用到
+    string  DeviceModel         = 3; //
+    string  Openudid            = 4; //
+    string  ClientOs            = 5; //
+    string  ClientMac           = 6; //
+    string  ClientZone          = 7; //
+    string  Googldidad          = 8; //
+    string  Idfa                = 9; //
+    string  Adjustid            = 10; //
+    string  Tracker             = 11; //
+    string  AccessToken         = 12; // access token
+    string  OpenID              = 13; // 第三方uid
+    string  Name                = 14;
+    string  Email               = 15;
+}
+
+message LoginInfo {
+    int64  Uid             = 1; //
+    LoginType LoginType    = 2; //fb/游客...
+    string OpenID          = 3; //第三方平台id
+    string AccessToken     = 4; //第三方 AccessToken
+
+    string Country         = 10; //根据ip计算
+    string ClientIP        = 11; //读取请求的ip
+
+    string DeviceToken     = 20; // 服务端生成deviceToken; 返回前端之前需要特殊编码
+
+    //用户信息
+    string Siteuid         = 30;  //
+    string Name            = 31;  //
+    SexType Sex            = 32;
+    //    string Avatar          = 32;
+}
+
+
+message GameInfoSync {
+    bool       IsNewer         = 1; // 是否新玩家（用于首次上报注册完成）
+    uint32     CreateTime      = 2; // 注册时间
+    string     Country         = 3; // 国家
+    int32      TimeZone        = 4; // 时区
+    string     MtKey           = 5; //
+    string     SKey            = 6; //
+    string     Secret          = 7; //
+    string     DeviceToken     = 8; //
+    string     BindEmail       = 9; //已绑定邮箱
+    uint32     LoginTimeStamp  = 10; // 登录时间戳
+
+
+    string GaeBytes            = 20; // 配置md5信息
+//    bool ActivePoint           = 21; //上报开关
+    bool     AdAuth            = 21; // 是否需要弹广告授权（欧洲用户）
+    PushSwitchInfo PushSwitch  = 22; //推送分时间开关信息
+    repeated string BrodacastAddrs  = 23; //广播地址
+    ChatInfo ChatInfo          = 24; // 聊天服信息
+    BroadInfo BroadInfo        = 25; // 滚动条
+    bool CanGetBindReward      = 26; // 可以展示fb绑定奖励
+}
+
+// 新手引导
+message GuideInfo {
+    uint32 GuideStep                    = 1; // 新手步数
+    uint32 GuideID                      = 2; //配置id
+    uint64 GuideMark                    = 3; // 各功能引导标志位
+    repeated UserProfile GuideUsersInfo = 4; // 新手引导机器人信息
+}
+
+// 滚动条
+message BroadInfo {
+    uint32 BroadTime = 1;
+    repeated uint32 Planets = 2; //展示岛屿
+    uint32 StartTime = 3;
+    uint32 EndTime = 4;
+}
+
+// 推送开关
+message PushSwitchInfo {
+    repeated UserPushSwitchConfig Cfg = 1;
+    repeated uint32          OpenedID = 2; // 打开的id
+}
+
+// 聊天服信息
+message ChatInfo {
+    string Addr = 1;
+    string Sign = 2;
+    string ID   = 3;
+    string Region = 4;
+    SexType   Sex = 5;
+}
+
+message AccountLoginRsp {
+    RpcRspHead   Head              = 1;
+
+    GameInfoSync InfoSync          = 2;
+    UserProfile Profile            = 3;
+    PlanetDetail Planet            = 4;
+    GuideInfo Guide                = 5;
+}
+
+// 游戏内绑定
+message GameBindReq {
+    LoginType LoginType    = 1; //fb/游客...
+    string    AccessToken  = 2; //
+}
+
+message GameBindRsp {
+    RpcRspHead Head = 1;
+}

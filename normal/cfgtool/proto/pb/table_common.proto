@@ -1,0 +1,19 @@
+syntax = "proto3";
+
+package pb;
+
+message PushLanguageConfig {
+    string lang    = 1;  // 推送语言
+    string content = 2;  // 推送文案
+    string title   = 3;  // 推送标题
+}
+
+message PushLanguageRowConfig {
+    uint32                      id      = 1;  // 编号
+    repeated PushLanguageConfig content = 2;
+}
+
+// charlie: 这个表纯净版本可以不要了
+message PushLanguageConfigAry {
+    repeated PushLanguageRowConfig ary = 1;
+}

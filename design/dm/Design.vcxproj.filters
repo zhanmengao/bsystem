@@ -1,0 +1,121 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="源文件">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="头文件">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hh;hpp;hxx;hm;inl;inc;xsd</Extensions>
+    </Filter>
+    <Filter Include="资源文件">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="dm01_类和类之间的关系.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="dm02_开闭原则.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="dm03_依赖倒置原则.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="dm04_单例_懒汉式.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="dm05_单例_饿汉式.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="dm06_懒汉式多线程问题.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="dm07_懒汉式线程同步Dlg.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="dm08_简单工厂模式.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="dm09_工厂模式.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="dm10_抽象工厂模式.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="dm11_建造者模式_问题抛出.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="dm12_建造者模式.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="dm12_原型模式.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="dm13_代理模式a.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="dm14_装饰模式.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="dm15_适配器模式.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="dm16_桥接模式.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="dm17_组合模式.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="dm18_外观模式.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="dm19_享元模式.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="dm20_模板模式.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="dm21_命令模式1.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="dm21_命令模式2.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="dm22_责任链模式_问题的抛出.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="dm22_责任链模式2.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="dm23_策略模式.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="dm24_中介者模式.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="dm24_中介者模式2.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="dm25_观察着模式.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="dm26_备忘录模式.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="dm27_访问者模式.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="dm28_状态模式.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="dm29_解释器模式.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="dm30_迭代器模式.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+  </ItemGroup>
+</Project>

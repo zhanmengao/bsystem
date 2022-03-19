@@ -1,0 +1,425 @@
+syntax = "proto3";
+
+package pb;
+
+import "enum.proto";
+
+// 宠物的信息
+message PetInfo {
+    repeated PetDataItem Pets  = 1;  // 宠物数据
+    PetPropInfo          Props = 2;
+}
+message PetPropInfo {
+    int64          ExpNum         = 1;  // 经验值数量
+    MagicHeartData MagicHeartData = 2;  // 魔力瓶数据
+}
+
+// 单个pet信息
+message PetDataItem {
+    int32             Id                 = 1;  // 宠物id
+    int32             Lv                 = 2;  // 当前等级
+    int32             Mp                 = 3;  // 当前魔力
+    int64             Exp                = 4;  // 当前经验
+    PetExperienceCard ExperienceCardData = 5;  // 宠物体验卡 如果该字段为空表明玩家真正拥该宠物
+    PetUpgradeInfo    UpgradeInfo        = 6;  // 升级信息
+}
+// 魔力瓶数据
+message MagicHeartData {
+    int32 FreeNum   = 1;  // 免费魔力瓶数量
+    int32 NormalNum = 2;  // 其他魔力瓶数量
+    int64 LastTime  = 3;  // 免费魔力瓶计时起始时间，即上一次用完魔力瓶时间
+}
+// 宠物体验卡相关数据，使用宠物和拉list接口时刷新
+message PetExperienceCard {
+    int64 EndTime = 1;  // 到期时间
+}
+
+message PetSkill {
+    PetDataItem Pet           = 1;  // 使用的宠物
+    int64       Rate          = 2;  // 使用技能对应的比率
+    bytes       PetSkillExtra = 3;  // 宠物技能的额外信息
+}
+
+// 离线时宠物升级的信息缓存，拉list接口时使用即清空
+message PetUpgradeInfo {
+    int32 PreLv    = 1;  // 升级前等级
+    int32 PreMp    = 2;  // 升级前魔力
+    int64 PreExp   = 3;  // 升级前经验
+    int32 PreMaxMP = 4;  // 升级前最大魔力
+    int64 PreUpExp = 5;  // 升级前升级所需经验
+    int64 PreRate  = 6;  // 升级前rate
+    int64 AddStars = 7;  // 升级时新增的星星数
+}
+message CommonProp {
+    string Name  = 1;  // 道具名称
+    int64  Param = 2;  // 道具参数
+    int64  Count = 3;  // 道具数量
+}
+
+// 交易方信息
+message TradeSide {
+    int64      UID  = 1;
+    CommonProp Prop = 2;
+}
+
+message SlingshotShotMsgItem {
+    int64 UID      = 1;
+    int64 ShotTime = 2;  // 攻击时间
+    bool  IsRead   = 3;  // 是否已读
+}
+
+// 交易条目信息
+message TradeItem {
+    string      TradeID     = 1;  // 交易编号
+    TradeScene  Scene       = 2;  // 交易场景
+    int64       CreateTime  = 3;  // 创建时间
+    int64       ExpireTime  = 4;  // 过期时间
+    TradeStatus TradeStatus = 5;  // 当前交易状态
+    TradeSide   SrcInfo     = 6;  // 发起方信息
+    TradeSide   DestInfo    = 7;  // 接收方信息
+    bool        IsRead      = 8;  // 是否已读
+    int64       DeleteTime  = 9;  // 消息的清理时间，到期之后直接清理
+}
+
+// 通行证
+message passDetail {
+    uint32      payLock      = 1;  // 是否解锁付费
+    uint32      passMedal    = 2;  // 用户拥有的当前档位的勋章数
+    passReceive reward       = 3;  // 用户已解锁的档位的信息
+    uint32      curPassLevel = 4;  // 当前已解锁到的档位
+}
+
+//用户已解锁的档位的信息
+message passReceive {
+    map<uint32, bool> free = 1;  // 免费奖励档位信息<档位,是否领取>
+    map<uint32, bool> pay  = 2;  // 付费奖励档位信息<档位,是否领取>
+}
+
+/********************** 多充礼包 ***************************/
+message multiPayCfgItem {
+    int32  modelID    = 1;  // 用户分层id
+    int32  productId  = 2;  // 商品productId
+    int32  buyLimit   = 3;  // 单次弹出的购买限制
+    int32  price      = 4;  // 价格
+    string disImgName = 5;  // 折扣标签图
+    string skinName   = 6;  // 皮肤资源名
+}
+
+/********************** 用户数据 开始***********************/
+message userInfoBasic {  // 旧版本逐步替换掉
+    int64  uid          = 1;
+    string name         = 2;
+    int32  cur_pic      = 3;
+    int32  star         = 4;
+    string sex          = 5;
+    string fbpic        = 6;
+    string familyName   = 7;
+    int32  isSubscribed = 8;
+    int32  icon         = 9;
+    int64  avatarFrame  = 10;
+}
+
+message UserProfileInfo {
+    string  Name = 1;
+    SexType Sex  = 2;
+
+    uint32 CurPic      = 3;
+    string FbPic       = 4;
+    int64  AvatarFrame = 5;
+    uint32 CurPlanet   = 6;
+    int64  Star        = 7;
+}
+
+message UserProfileProperty {
+    int64          Money      = 1;
+    int64          Tili       = 2;
+    int64          Shield     = 3;
+    int64          Star       = 5;
+    UserPlanetInfo PlanetInfo = 6;
+    int64          Diamond    = 7;  // 钻石
+}
+
+message UserProfileFamily {
+    uint32 Icon       = 1;
+    string FamilyName = 2;
+    int32  FamilyId   = 3;
+    int32  Position   = 4;  // 家族职位，考虑换成枚举（1-会长 2- 副会长 3-长老 4- 成员 5- 默认？）
+}
+
+message UserProfile {
+    int64               Uid      = 1;  // 用户id
+    UserProfileInfo     Info     = 2;  // 用户基本信息(星星数和岛屿信息从这里拿)
+    UserProfileProperty Property = 3;  // 用户经济
+    UserProfileFamily   Family   = 4;  // 用户家族
+}
+/********************** 用户数据 开始***********************/
+
+/******************奖励相关 开始*************/
+// 通用奖励结构,param为额外参数
+message CommonRewardItem {
+    string                    type        = 1;  // 道具的类型
+    int64                     num         = 2;  // 道具的值数量，如果maxNum 不为0 就是道具的最小范围 如果这个值是 -1 那么就代表是随机数量
+    int32                     param       = 3;  // piece 和 baby 的 额外参数 多少好号
+    int64                     maxNum      = 4;  // 如果为0 不使用， 如果大于0 表示这是个范围奖励，maxNum表示最大值 num表示最小值
+    string                    img         = 5;  // img 使用的图片 八天登入 幸运抽奖 商城
+    int32                     rare        = 6;  // 是否为稀有奖励 1:稀有 配置中心中配置， 先占用个位置
+    int32                     broadcast   = 7;  // 是否需要广播 1:需要
+    repeated CommonRewardItem innerReward = 8;  // 礼物中 还可以再开出礼物
+    string                    rewardDesc  = 9;  // 道具描述
+}
+
+message CommonWeightRewardItem {
+    CommonRewardItem rewardItem = 1;
+    uint32           weight     = 2;
+}
+
+message CommonRewardData {
+    repeated CommonAmountItem amount   = 1;  // 全量
+    repeated CommonRewardItem reward   = 2;  // 奖励
+    repeated string           isChange = 3;  // 到达上限的道具
+    repeated string           needPop  = 4;  // 到达上限的道具
+}
+
+// 通用奖励全量
+message CommonAmountItem {
+    string type        = 1;  // 道具的类型
+    int64  num         = 2;  // 道具的值数量
+    int32  param       = 3;  // 额外参数
+    int64  exceedLimit = 4;  // 是否超出限制（0-否，1-是）
+    string popType     = 5;  // 弹窗类型
+}
+/******************奖励相关 结束*************/
+
+// 岛屿区间
+message PlanetRange {
+    int64 min = 1;
+    int64 max = 2;
+}
+
+//转盘Item
+message ZhuanPanShowItem {
+    string key                = 1;
+    uint32 value              = 2;
+    uint32 privateWeight      = 3;
+    uint32 privateBoundWeight = 4;  //阀值
+}
+
+// 中奖广播
+message RewardBoard {
+    string                    username = 1;  // 用户名
+    repeated CommonRewardItem reward   = 2;  // 奖励
+}
+
+//逻辑条件
+message Condition {
+    ConditionType   Type     = 1;
+    int64           Value    = 2;
+    string          StrValue = 3;
+    repeated string StrList  = 4;  //注意， 配置里面不使用该字段
+}
+
+/******************转盘相关 开始*************/
+message Zhuanpan {
+    int64  uid         = 1;
+    string rewardType  = 2;
+    int64  rewardValue = 3;
+    int32  rewardId    = 4;
+    int32  multiple    = 5;
+    int64  timestamp   = 6;
+    string version     = 7;
+    string device      = 8;
+    string channel     = 9;
+    string language    = 10;
+    string country     = 11;
+    string mtkey       = 12;
+    string skey        = 13;
+    int32  curPlanet   = 14;
+    int32  star        = 15;
+    string clientOS    = 16;
+    string siteuid     = 17;
+    int32  vip         = 18;
+    string gameAppId   = 19;
+    string clientMac   = 20;
+    string clientZone  = 21;
+    string IP          = 22;
+    int32  isGuest     = 23;
+    int32  wheelType   = 24;
+    int32  subTili     = 25;  //实际扣了多少体力
+}
+/******************转盘相关 开始*************/
+
+// 哈米公告板
+message HammyBoard {
+    string                    username = 1;  // 用户名
+    repeated CommonRewardItem reward   = 2;  // 奖励
+}
+
+// 副本击败信息
+message DungeonFailed {
+    int32 Damage   = 1;  // 伤害
+    int32 Rank     = 2;  // 排名
+    int32 RemainHp = 3;  // 剩余血量
+    int32 Hp       = 4;  // 血量
+    int32 Percent  = 5;  // 剩余血量的百分比
+}
+
+// 副本攻击信息
+message AttackInfo {
+    int32 PerfectMax     = 1;  // 完美一击最大值
+    int32 PerfectMin     = 2;  // 完美一击最小值
+    int32 AttackMax      = 3;  // 普通攻击最大值
+    int32 AttackMin      = 4;  // 普通攻击最小值
+    int32 RangeTime      = 5;  // 狂暴时间
+    int32 RagePerfectNum = 6;  // 连续完美一击进入狂暴
+    int32 RageAttackNum  = 7;  // 连续普通攻击进入狂暴
+}
+
+// 副本奖励tips信息
+message RewardTips {
+    repeated CommonRewardItem Reward    = 1;  // 奖励
+    int32                     MinDamage = 2;  //
+    int32                     MDamage   = 3;  //
+    int32                     BaseRate  = 4;  // 奖池概率
+}
+
+// 伤害排行榜信息
+message DamageRankInfo {
+    int64  UID    = 1;  // 玩家UID
+    string Name   = 2;  // 玩家姓名
+    int32  Damage = 3;  // 伤害
+}
+
+// 副本信息
+message DungeonInfo {
+    repeated CommonRewardItem Reward    = 1;  // 奖励
+    int32                     Damage    = 2;  // 伤害
+    int32                     Status    = 3;  // 1 击败
+    string                    DungeonID = 4;  // 副本ID
+    int32                     Rank      = 5;  //
+    int32                     AddRate   = 6;  //
+}
+
+// 好友副本信息
+message DungeonFriendInfo {
+    repeated DamageRankInfo RankList   = 1;   // 伤害列表
+    string                  DungeonID  = 2;   // 副本ID
+    int64                   UID        = 3;   // 好友uid
+    int32                   Hp         = 4;   // 血量
+    int32                   RemainHp   = 5;   // 剩余血量
+    int64                   RemainTime = 6;   // 剩余时间
+    int32                   Percent    = 7;   // 血量剩余百分比
+    string                  Name       = 8;   // 好友姓名
+    int32                   CurPic     = 9;   // 当前头像
+    string                  FBPic      = 10;  // fb头像
+    int32                   HasFight   = 11;  //
+    int64                   CreateTime = 12;  // 副本创建时间
+    int32                   Status     = 13;  // -1 击败 -2 正常
+}
+
+// 奖励列表
+message DungeonRewardList {
+    int64                     UID       = 1;
+    int32                     Damage    = 2;   // 伤害
+    int64                     EndTime   = 3;   // 结束时间
+    string                    Name      = 4;   // 姓名
+    int32                     CurPic    = 6;   // 头像
+    string                    FBPic     = 7;   // fb头像
+    int32                     IsShot    = 8;   //
+    int32                     AddRate   = 9;   //
+    string                    Type      = 10;  //
+    repeated CommonRewardItem Result    = 11;  // 奖励
+    string                    DungeonID = 13;  // 副本ID
+    int32                     Index     = 14;  // 排序因子 1 是 可以领取 2 是奖励已经领取完毕 3 是奖励过期
+}
+
+// 哈米抽奖
+message HammyLottery {
+    int64 multiple = 1;
+    int64 cost     = 2;
+}
+
+// 竞标赛排行榜
+message StarCompRank {
+    userInfoBasic BasicInfo         = 1;
+    int32         Score             = 2;
+    int64         UpdateScoreTimeMs = 3;  // 更新分数时间
+}
+
+// 冰封玩法复仇列表
+message SealEnemyList {
+    repeated SealEnemy list = 1;
+}
+
+// 冰封玩法复仇结构
+message SealEnemy {
+    int64 SealUID      = 1;  // 冰封人的UID
+    int64 SealNum      = 2;  // 冰封次数
+    int64 SealLastTime = 3;  // 上一次冰封时间
+}
+
+// 邮件内容的配置表
+message MailLanguage {
+    string MailLanguageKey = 1;
+    string MailMailTitle   = 2;
+    string MailSubTitle    = 3;
+    string MailContent     = 4;
+}
+
+// 岛屿建筑
+message UserPlanetBuilding {
+    uint32         Index  = 1;  // 对应的建筑
+    uint32         Level  = 2;  // 对应的等级
+    BuildingStatus Status = 3;  // 状态
+}
+
+message UserPlanetInfo {
+    uint32                      Planet    = 1;
+    repeated UserPlanetBuilding Buildings = 2;
+}
+
+message BigPackLevel {
+    int32 total   = 1;  // 档位可买次数
+    int32 bought  = 2;  // 档位已买次数
+    int32 pid     = 3;  // 商城PID
+    int64 levelId = 5;  // 档位ID
+}
+
+// 用户解锁
+message FuncUnlock {
+    repeated string Unlock = 1;
+}
+
+// 返回的用户岛屿相关信息
+message PlanetDetail {
+    uint32 CfgId     = 1;  // 岛屿配置的cfgId
+    uint32 MaxPlanet = 2;  // 最大岛屿配置
+}
+
+message BaseEventScoreConfig {
+    int32  id     = 1;
+    int32  score  = 2;
+    int32  online = 3;
+    string group  = 4;
+}
+
+/********************** 拼图相关 ************************/
+message UserPic {
+    map<uint32, uint32> HoldPic  = 1;  // 拼图号 1-9 : 数量
+    PicHoldType         TypeInfo = 2;  // 类型
+}
+
+message PayExtra {
+    uint32                    Price  = 1;  // 价格 单位砖石
+    repeated CommonRewardItem Reward = 2;  // 额外奖励内容
+    uint32                    Limit  = 3;  // 剩余兑换的次数 配置减去已兑换
+}
+
+message PicBaseData {
+    repeated UserPic   UserPic        = 1;  // 好友交易次数
+    uint32             RewardCount    = 2;  // 奖励已经领取数量
+    uint32             PayRewardCount = 3;  // 付费领奖次数
+    uint32             CompleteNum    = 4;  // 完成拼图套数
+    uint32             SpecialPicNum  = 5;  // 拥有的万能碎片数量
+    bool               IsComplete     = 6;  // 是否完成拼图
+}
+/********************** 拼图相关 ************************/

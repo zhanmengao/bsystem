@@ -1,0 +1,1398 @@
+syntax = "proto3";
+package pb;
+
+import "struct.proto";
+import "rpc.proto";
+import "struct_other.proto";
+import "report.proto";
+import "error.proto";
+import "enum_other.proto";
+import "enum.proto";
+import "db_old.proto";
+import "rpc_other.proto";
+import "table.proto";
+import "table_other.proto";
+import "interface_common.proto";
+
+message BeyondFriendResportRsp {
+    int32 ret = 1;
+}
+
+message StarCompRankRsp {
+    int32                     ret      = 1;  //错误码， 0表示成功， 其他失败
+    repeated StarCompRankItem rankList = 2;
+}
+
+message StarCompRankItem {
+    userInfoBasic basicInfo = 1;
+    int32         score     = 2;
+    int32         addScore  = 3;
+    int32         attacked  = 4;
+    int32         attack    = 5;
+}
+
+message SlingshotMsg {
+    uint64 fuid       = 1;
+    uint32 id         = 2;
+    uint32 time       = 3;
+    uint32 type       = 4;
+    uint32 expId      = 5;
+    uint32 changeType = 6;
+    uint32 msgId      = 7;
+}
+
+message SlingshotMsgList {
+    repeated SlingshotMsg list = 1;
+}
+
+message SlingshotStealMsgRsp {
+    int32                 ret  = 1;  //0 成功 其他错误
+    repeated SlingshotMsg list = 2;  //消息列表
+}
+
+// 定时推送处理任务请求
+message TimerPushHandleTaskReq {
+    string taskID  = 1;  // 任务ID
+    string taskTyp = 2;  // 任务类型
+}
+
+/*
+ * 用户撕裂关系
+ */
+message RelationPerson {
+    int32  uid          = 1;
+    string fbPic        = 2;  //用户头像URL
+    string name         = 3;  //用户名
+    int32  relationType = 4;  //关系描述ID
+    int32  pointer      = 5;  //指向 1(其它)，2(本人)
+}
+
+message UserRelationShipRsp {
+    int32                   ret        = 1;  //返回码
+    int32                   wordID     = 2;  //属性判词ID
+    repeated RelationPerson personList = 3;  //用户列表
+}
+
+message DemoRpcReq {
+    int64 uid = 1;
+}
+
+message DemoRpcRsp {
+    RpcRspHead Head = 1;
+    int64      uid  = 2;
+    string     name = 3;
+}
+
+///////////////////////////////用户信息（2.17.0）开始///////////////////////////////////
+enum UserInfoModifyType {
+    UserInfoModifyDefault = 0;
+    UserInfoModifyAvatar  = 1;  // 修改头像框
+}
+
+message UserInfoModifyReq {
+    UserInfoModifyType type     = 1;  // 修改字段
+    int64              newFrame = 2;  // 新头像框ID
+}
+
+message UserInfoModifyRsp {
+    RpcRspHead Head = 1;
+}
+
+// 奖励返回
+message RewardRpcCompatible {
+    int64 AddStar = 1;
+}
+
+message RewardRpcRsp {
+    RpcRspHead       Head = 1;
+    CommonRewardData Data = 2;
+}
+
+// 奖励请求
+message RewardRpcReq {
+    repeated CommonRewardItem rewards = 1;  // 奖励
+    ReportEnum enum                   = 2;
+    bool isLimit                      = 3;
+}
+
+message BigPackDetailReq {
+}
+
+// action/detail 活动详情响应
+message BigPackDetailRsp {
+    RpcRspHead            Head     = 1;
+    int32                 current  = 2;  // 当前档位
+    int32                 finished = 3;  // 买完活动所有礼包标志
+    repeated BigPackLevel levels   = 4;  // 档位配置
+    int32                 group    = 5;  // 分组ID，对应配置表levelId最高位
+    int32                 ModeID   = 6;
+}
+
+/********************通信协议 开始***********************/
+message BingoDetailReward {
+    // 布局ID从0开始编号，与奖励格子下标相同，领奖接口使用此ID标识要领取的奖励
+    uint32           id     = 1;  // 布局ID
+    repeated uint32  digits = 2;  // 领奖所需的数字ID: BingoDetailDigit.id
+    CommonRewardData reward = 3;  // 奖励内容
+}
+
+message BingoDetailDigit {
+    // 布局ID续接BingoDetailReward.ID，此ID仅用于布局前端格子展示
+    uint32 id    = 1;  // 布局ID
+    uint32 digit = 2;  // 道具ID
+    uint32 num   = 3;  // 拥有数量
+}
+
+message BingoInviteReward {
+    uint32           uid    = 1;  // 被邀请好友UID
+    CommonRewardData reward = 2;  // 奖励内容
+}
+
+// bingo/info 活动详细数据
+message BingoInfoRsp {
+    SYHM_ERR                   ret     = 1;  // 接口状态
+    repeated BingoDetailDigit  digits  = 2;  // 数字信息
+    repeated BingoDetailReward rewards = 3;  // 奖励信息
+    repeated uint32            map     = 4;  // 布局信息
+    repeated uint32            invites = 5;  // 已邀请成功但未领取数字的uid列表
+}
+
+// bingo/reward 活动领奖
+message BingoRewardRsp {
+    SYHM_ERR          ret    = 1;  // 接口状态
+    BingoDetailReward next   = 2;  // 下一档奖励
+    CommonRewardData  reward = 3;  // 本次领奖收到的内容
+
+    // 数字信息, 当因道具不足领奖失败时通过此字段推送最新道具存量信息到前端
+    repeated BingoDetailDigit digits = 4;
+}
+
+// bingo/invited 领取邀请好友的奖励(数字)
+message BingoInvitedRsp {
+    SYHM_ERR                   ret     = 1;  // 接口状态
+    repeated BingoInviteReward rewards = 2;  // 邀请所得奖励
+}
+/********************通信协议 结束***********************/
+
+message CarinvalBoomLineRsp {
+    uint32 lineNum = 1;
+    uint32 state   = 2;
+    uint32 fUid    = 3;
+    string name    = 4;  //装弹人的名字
+}
+
+message CarinvalBoomQueryRsp {
+    int32                        ret      = 1;  //返回码0 正确 > 0错误
+    int32                        curPic   = 2;  //用户系统头像
+    string                       fbPic    = 3;  //用户app头像
+    uint64                       boomId   = 4;  //炸弹ID buildingID + timeStamp
+    repeated CarinvalBoomLineRsp line     = 5;  //各条线的状态
+    string                       name     = 6;  //装弹人名字
+    int32                        expire   = 7;  //爆炸倒计时
+    repeated uint32              downList = 8;  //用户运行拆炸弹的uid列表
+}
+
+message CarinvalBoomDownRsp {
+    int32                        ret        = 1;  //返回码0 正确 > 0错误
+    int32                        boom       = 2;  //拆线后的状态 0 拆错了 1 爆炸 2拆对了
+    repeated CarinvalBoomLineRsp line       = 3;  //各条线的状态
+    CommonRewardData             data       = 4;  //奖励
+    PlanetData                   planet     = 5;  //建筑信息
+    ATTACK_DEFEND_TYPE           defendType = 6;  //防御
+}
+
+//碎片领奖pb
+message CarinvalBoomRewardRsp {
+    int32  ret       = 1;  //返回码0 正确 > 0错误
+    uint32 boomPiece = 2;  //碎片数量
+}
+
+message CSCommonRsp {
+    int32  ret  = 1;
+    string data = 2;
+}
+
+message FamilyInfoRsp {
+    int32                    ret           = 1;  //错误码， 0表示成功， 其他失败
+    int32                    isSigned      = 2;
+    int32                    isDemoted     = 3;
+    int32                    familyID      = 4;
+    string                   name          = 5;
+    string                   patriarchName = 6;
+    int32                    patriarchUid  = 7;
+    int32                    creator       = 8;
+    int32                    icon          = 9;
+    int32                    activeness    = 10;
+    int32                    joinOp        = 11;
+    int32                    joinStar      = 12;
+    string                   notice        = 13;
+    int32                    srvTime       = 14;
+    int32                    recruited     = 15;
+    int32                    memNum        = 16;
+    int32                    level         = 17;
+    int32                    contribution  = 18;
+    int32                    rank          = 19;
+    int32                    totalStar     = 20;
+    repeated FamilyMemberRsp memberList    = 21;  //家族成员列表
+    int32                    kicking       = 22;
+    int32                    maxKicking    = 23;
+}
+
+message FamilySecondInfoRsp {
+    int32                      ret                 = 1;  //错误码， 0表示成功， 其他失败
+    int32                      expire              = 2;  //家族排行榜，本赛季的结束时间，单位秒 仅限贡献榜
+    int32                      hasSeasonRankReward = 3;  //判断是否有上个赛季的贡献排行榜奖励
+    repeated FamilySendInfoRsp sendInfoList        = 4;
+}
+
+// 24小时记录数据
+message FamilySendInfoRsp {
+    string                         mode     = 1;  //赠送模块名
+    uint32                         max      = 2;  //最大赠送次数
+    uint32                         send     = 3;  //用户已赠送次数
+    repeated FamilySendInfoItemRsp infoList = 4;  //赠送列表
+}
+
+message FamilySendInfoItemRsp {
+    int64 sendUID = 1;  //赠送则uid
+    int32 ID      = 2;  //物品ID
+}
+
+message FamilyMemberRsp {
+    userInfoBasic basicInfo    = 1;
+    int32         position     = 2;
+    int32         contribution = 3;
+    int32         today        = 4;
+    int32         week         = 5;
+    int32         joinTime     = 6;
+    int32         online       = 7;
+    int32         lasttime     = 8;
+}
+
+message FamilyRankRsp {
+    int32                      ret      = 1;  //错误码， 0表示成功， 其他失败
+    repeated FamilyRankItemRsp rankList = 2;  //家族排行榜列表
+    FamilyRankItemRsp          mine     = 3;  //用户所在家族排名信息
+    int32                      mineRank = 4;  //用户所在家族排名
+    int32                      expire   = 5;  //本赛季的结束时间，单位秒 仅限贡献榜使用
+    int32                      lastRank = 6;  //上个赛季的排名，仅限贡献榜使用
+    int32                      isOn     = 7;  //当前赛季是否开启
+}
+
+message FamilyRankItemRsp {
+    int32  familyID = 1;
+    int32  score    = 2;  //排行榜值， 该值为star或者ctb贡献值
+    int32  icon     = 3;
+    string name     = 4;
+    int32  level    = 5;
+}
+
+message FriendHelpRsp {
+    int32            ret       = 1;
+    CommonRewardData data      = 2;  //奖励格式
+    int32            multiple  = 3;  //多倍标志
+    string           siteuid   = 4;  //好友的siteuid
+    int32            friSrc    = 5;  //是否是好友
+    int32            limitType = 6;  //不能用卡的枚举
+}
+
+message FriendHelpRewardRsp {
+    int32            ret  = 1;
+    CommonRewardData data = 2;  //奖励格式
+    string           name = 3;  //领取了谁的奖励
+    FriendHelpItem   next = 4;  //下一个奖励的信息
+    int32            type = 5;  //什么类型的卡
+}
+
+message FriendHelpInfoRsp {
+    int32          ret    = 1;
+    FriendHelpItem next   = 4;  //下一个奖励的信息
+    int32          isFull = 5;  //是否已经满了
+}
+
+message GuardCardInfoRsp {
+    int32                        ret                  = 1;   // 错误码 0 正确 >0 有错
+    repeated GuardCardItem       cardList             = 2;   // 拥有卡片列表
+    repeated uint32              completeGroupList    = 3;   // 哪些卡组已经凑齐领奖了
+    uint32                       sendMax              = 4;   // 卡片当天赠送上限
+    uint32                       sendTimes            = 5;   // 当天赠送的次数
+    uint32                       showPlanet           = 6;   // 解锁岛屿
+    string                       sendFrdType          = 7;   // 可以赠送的好友类型
+    repeated GuardCardSendItem   sendCntList          = 8;   // 好友赠送次数列表
+    int32                        sendStartTime        = 9;   // 赠送开启时间倒计时
+    int32                        sendEndTime          = 10;  // 赠送结束倒计时
+    int32                        openGroup            = 11;  // 告知前段开放的卡组
+    int32                        godCardNum           = 12;  // 万能卡片数量
+    int32                        ext                  = 13;  // 扩展标志字段，1：卡片系统升级补偿可领取
+    repeated GuardCardBoxNumItem cardBoxItem          = 14;  // 标识卡牌宝箱能开出多少张卡
+    int32                        godCardRemainTime    = 15;  // 万能卡剩余倒计时，没有-1
+    int32                        offlineGodCardExpire = 16;  // 离线期间万能卡失效传1，其他传0
+}
+
+// 卡片赠送接口
+message GuardCardSendRsp {
+    int32 ret          = 1;  // 错误码 0 正确 >0 有错
+    int32 isSuc        = 2;  // 是否赠送成功，增加的原因是如果赠送成功，返回空字符串前端解析失败
+    int32 fySendAddCtb = 3;  // 如果是家族赠送， 该字段为赠送后获取的贡献值， 为0表示没有贡献值
+    int32 addStar      = 4;  // 赠送后， 增加的星星数
+}
+
+message GuardCardMessageItem {
+    uint64 fuid   = 1;  // 赠送卡片的好友的uid
+    uint32 cardId = 2;  // 卡片ID, groupId * 100 + cardIndex [0-8]
+    uint32 time   = 3;  // 赠送后距离现在的时间 ，单位秒数
+    uint32 type   = 4;  // 消息类型 0 send  1 接收
+}
+
+message GuardCardMessageRsp {
+    int32                         ret     = 1;  // 错误码 0 正确 >0 有错
+    repeated GuardCardMessageItem list    = 2;  // 消息列表
+    int32                         isEmpty = 3;  // 是空数据
+}
+
+// 卡片集齐领奖接口
+message GuardCardCompleteRsp {
+    int32            ret  = 1;  // 错误码 0 正确 >0 有错
+    CommonRewardData data = 2;  // 奖励信息
+}
+
+// 卡片兑换接口
+message GuardCardExchangeRsp {
+    int32            ret  = 1;  // 错误码 0 正确 >0 有错
+    CommonRewardData data = 2;  // 奖励信息
+}
+
+// 2.16.0升级守护神卡片,获取有变化的卡片列表
+message GuardCardUpgradeInfoRsp {
+    int32            ret     = 1;  // 错误码 0 正确 >0 有错
+    repeated int32   cards   = 2;  // 有升级补偿可领取的卡片Id列表
+    CommonRewardData rewards = 3;  // 补偿奖励信息
+}
+
+// 2.16.0升级守护神卡片,领取补偿奖励
+message GuardCardUpgradeRewardRsp {
+    int32            ret  = 1;  // 错误码 0 正确 >0 有错
+    CommonRewardData data = 2;  // 奖励信息
+}
+
+// 万能卡倒计时
+message GuardGodCardExpireRsp {
+    int32 ret    = 1;  // 错误码 0 正确 >0 有错
+    int32 expire = 2;  // 有效时间
+}
+
+message GuardCardExchangeRewardRsp {
+    int32            ret  = 1;  // 错误码 0 正确 >0 有错
+    CommonRewardData data = 2;  // 奖励信息
+}
+
+// 通缉完成 type=1
+message MessageCenterMessageItemWantedFinish {
+    uint32 attackCount = 1;
+    uint32 uidCount    = 2;
+}
+
+message MessageCenterMessageItemAttackCommon {
+    uint32       buildingID = 1;
+    SlotFireType fireType   = 2;
+}
+
+message MessageCenterMessageItemSteal {
+    int64 stealMoney = 1;
+}
+
+// 系统消息 type=6
+message MessageCenterMessageItemSystemMessage {
+    string desc  = 1;
+    string title = 2;
+    string img   = 3;
+}
+
+// 被别人通缉 type=7
+message MessageCenterMessageItemWantedByOthers {
+    string tjType = 1;
+    uint32 tj     = 2;
+}
+
+// 好友响应通缉 type=8
+message MessageCenterMessageItemSomeoneHelpWanted {
+    string tName   = 1;
+    int64  money   = 2;  //客户端没有用
+    uint32 wantUid = 3;
+}
+
+// 好友发出通缉 type=9
+message MessageCenterMessageItemFriendsWanted {
+    string tName   = 1;
+    int64  money   = 2;  //客户端没有用
+    uint32 wantUid = 3;
+}
+
+// 宠物修复建筑，无额外字段 type=10
+// message MessageCenterMessageItemPetRepair {
+// }
+
+// 家族 type=11
+message MessageCenterMessageItemUnion {
+    string familyName = 1;
+    string sign       = 2;
+    uint32 position   = 3;
+    uint32 icon       = 4;
+    string name       = 5;
+}
+
+//// 邀请奖励（置顶） type=101
+//message MessageCenterMessageItemInviteReward {
+//	 uint32 count = 2;
+//	 uint32 tili = 3;
+//}
+
+// 系统奖励(金币，体力) type=102, type=103
+message MessageCenterMessageItemSystemReward {
+    repeated CommonRewardItem reward = 1;
+}
+
+// 召回奖励 type=104
+//message MessageCenterMessageItemRecallReward {
+//}
+
+// 可编辑奖励 type=106
+message MessageCenterMessageItemCanEditReward {
+    repeated CommonRewardItem reward = 1;
+    string                    title  = 3;
+    string                    img    = 4;
+}
+
+// 邀请活动奖励，只具备跳转功能，不能领取。 type=108
+message MessageCenterMessageItemInviteActionReward {
+    uint32 index = 1;
+}
+
+//// 邀请后续奖励 type=109
+//message MessageCenterMessageItemInviteFollowUpReward {
+//	 string getStar = 1;
+//	 string id = 2;
+//}
+
+// 问卷调研 type=1001
+message MessageCenterMessageItemAsk {
+    string askUrl = 1;
+}
+
+// 保护卡 type=114
+message MessageCenterMessageItemProtectProp {
+    uint32          subType    = 1;
+    uint32          count      = 2;
+    repeated string names      = 3;
+    string          attackName = 4;
+}
+
+// 警察卡 type=112
+message MessageCenterMessageItemPoliceProp {
+    int64 money = 1;
+}
+
+// 求饶卡 type=111
+message MessageCenterMessageItemMercyProp {
+    int64 money = 1;
+}
+
+// 被魔鬼鱼攻击 type=19
+message MessageCenterMessageItemManta {
+    uint32 decShield = 1;
+}
+
+// 贵族保险柜消息 type=30
+message MessageCenterMessageItemVIPClaim {
+    int64  money = 1;
+    uint32 cType = 2;
+}
+
+// 炸弹玩法消息 type = 115
+message MessageCenterMessageItemCarnivalBoom {
+    repeated CommonRewardItem reward     = 1;
+    int32                     subType    = 2;
+    ATTACK_DEFEND_TYPE        defendType = 3;
+}
+
+message MessageCenterMessageItemFrdHelp {
+    int32 subType = 2;
+}
+
+// 子消息
+message MessageCenterMessageItemSubMessage {
+    uint32 subType = 1;
+
+    // 通缉相关子消息 subtype=0
+    uint32 tj    = 2;
+    string tName = 3;
+
+    // 宠物相关子消息 subtype=1,2,3,4,5,6,7公用
+    uint32 petId = 4;
+    // 金鱼，偷取更多金币
+    int64 petAddMoney = 5;
+    // 电鳗，破盾
+    uint32 shield = 6;
+    // 乌龟，防御
+    uint32 dfType = 7;
+
+    // 保护好友相关子消息 subtype=101,102,103,104公用
+    string name = 8;
+}
+
+// 单条消息数据,specdata数据根据type按类型解码
+message MessageCenterMessageItem {
+    uint32 type = 1;
+    string name = 2;
+    uint32 sex  = 3;
+    uint32 time = 4;
+    uint32 star = 5;
+    uint32 vip  = 6;
+
+    uint32 friSrc = 7;
+    uint32 curPic = 8;
+    string fbPic  = 9;
+
+    uint32                                      uid            = 10;
+    string                                      tName          = 11;
+    int32                                       id             = 12;
+    int32                                       status         = 13;
+    int32                                       isReward       = 14;
+    repeated MessageCenterMessageItemSubMessage subMessageList = 15;
+
+    bytes specData  = 16;
+    int32 showTime  = 17;  //前端展示的时间
+    int32 subType   = 18;  //用于只单纯需要一个子类型的消息, specData 比较复杂
+    int32 expire    = 19;  //前端展示消息过期倒计时
+    int32 expireSrv = 20;  //服务器的倒计时，时间戳
+
+    int64 avatarFrame = 21;  //头像框
+}
+
+message GlobalMailItem {
+    int32 ID        = 1;  // 邮件ID，插入邮件记录的mysql
+    int64 BeginDate = 2;  // 开始时间
+    int64 EndDate   = 3;  // 结束时间
+}
+
+message GlobalMailList {
+    map<int32, GlobalMailItem> List = 1;  // 全员邮件列表
+}
+
+message GlobalMailLangContent {
+    string Lang      = 1;  // 语言
+    string MainTitle = 2;  // 主标题
+    string SubTitle  = 3;  // 副标题
+    string Content   = 4;  // 邮件内容
+}
+
+message GlobalMailItemData {
+    int32                          ID          = 1;  // 邮件ID，插入邮件记录的mysql
+    int32                          SubType     = 2;  // 邮件子类型
+    bytes                          SpecData    = 3;  // 子邮件数据
+    repeated CommonRewardItem      Reward      = 4;  // 邮件奖励
+    repeated GlobalMailLangContent ContentList = 5;  // 多语言内容数据
+}
+
+// 邮件条目
+message MessageCenterMailItem {
+    uint32 type     = 1;
+    uint32 time     = 2;
+    uint32 id       = 3;
+    uint32 status   = 4;
+    uint32 isReward = 5;
+    uint32 expire   = 6;
+
+    uint32 beginDate = 7;
+    uint32 endDate   = 8;
+    string mainTitle = 9;
+    string subTitle  = 10;
+    string content   = 11;
+
+    MessageCenterMailItemReward reward   = 12;
+    string                      showTime = 13;  // 前端展示的时间
+    int32                       reason   = 14;  // 邮件奖励发放原因
+    int32                       subType  = 15;  // 用于标识邮件子类型
+    bytes                       specData = 16;
+}
+
+message MessageCenterMailQuestionnaire {
+    string questionnaireLink = 1;  // 调查问卷链接
+}
+
+// 邮件奖励
+message MessageCenterMailItemReward {
+    repeated CommonRewardItem reward = 1;
+}
+
+// 消息中心数据回包
+message MessageCenterRsp {
+    int32                             ret           = 1;
+    repeated MessageCenterMessageItem messageList   = 2;  // 消息数据
+    repeated MessageCenterMailItem    mailList      = 3;  // 邮件数据
+    uint32                            serverTime    = 4;  //服务器当前时间
+    repeated GlobalEmailExpire        GlobalMailIDs = 5;  // 已发的全员邮件ID
+}
+
+message GlobalEmailExpire {
+    int32 ID     = 1;  // 邮件
+    int64 Expire = 2;  // 有效时间
+}
+
+// 消息中心的请求
+message MessageCenterReq {
+    RequestHead head = 1;
+    uint32 auto      = 2;
+}
+
+enum PayType {
+    PayTypeAndroid = 0;
+    PayTypeIOS     = 1;
+    PayTypeMol     = 2;
+}
+
+message payExchangeListReq {
+    PayType type = 1;
+}
+
+message ExchangeReq {
+    string Pid = 1;  // 商品编号
+    int64  Num = 2;  // 商品数量
+}
+
+message ExchangeRsp {
+    pb.RpcRspHead    Head    = 1;
+    CommonRewardData reward  = 2;  // 奖励内容
+    int64            diamond = 3;  // 用户剩余钻石数
+}
+
+//
+message PayDeliveryReq {
+    PayType type       = 1;  // 支付类型
+    string  receipt    = 2;  // google和ios支付数据，
+    string  signature  = 3;  // google支付凭证(ios可以不传)
+    string  isSystemOp = 4;  // ios特有参数
+    string  disCardId  = 5;  // 打折卡id
+}
+
+message PayOrderReq {
+    PayType type = 1;  // 支付类型
+    string  pid  = 2;  // 商品编号
+}
+
+message PayOrderRsp {
+    pb.RpcRspHead Head    = 1;
+    int64         orderId = 2;  // 订单编号
+}
+
+message PaycenterListRsp {
+    int32                 ret            = 1;  //错误码， 0表示成功， 其他失败
+    repeated OaPayProduct list           = 2;
+    repeated PayDisItem   disPayList     = 3;
+    string                adjustCurrency = 4;
+}
+
+message OaPayProduct {
+    string             type = 1;
+    repeated OaPayItem list = 2;
+}
+
+message OaPayItem {
+    string                    pid          = 1;
+    int32                     buyType      = 2;  //购买类型
+    int32                     price        = 3;  //价格
+    int32                     dis          = 4;
+    int32                     flag         = 5;
+    int32                     image        = 6;  //展示图片
+    int32                     addDiamond   = 7;
+    string                    name         = 8;  //名字
+    string                    desc         = 9;  //描述
+    int32                     discountRate = 10;
+    int32                     buyTimes     = 11;  //购买次数
+    int32                     buyLimit     = 12;  //购买限制
+    int32                     subType      = 13;
+    int32                     off          = 14;
+    string                    srcPid       = 15;
+    string                    type         = 16;
+    repeated CommonRewardItem buyItem      = 17;  //购买商品得到的道具
+    int32                     ext          = 18;
+    int32                     moreGetNum   = 19;
+    int32                     bgType       = 20;  // 背景框类型
+    int32                     bgQuality    = 21;  // 背景框品质
+    int32                     group        = 22;  // 分组
+}
+
+message PayDisItem {
+    uint32 type   = 1;
+    int32  expire = 2;
+}
+
+/*************2.19.0商城改版(开始）***********************/
+// 获取商城配置
+message PaycenterInfoReq {
+}
+
+message PaycenterInfoRsp {
+    RpcRspHead                Head       = 1;
+    repeated PaycenterItem    list       = 2;
+    repeated PaycenterDisItem disPayList = 3;
+}
+
+message PaycenterItem {
+    string                    pid           = 1;
+    int64                     price         = 2;
+    int32                     groupType     = 3;
+    int32                     buyType       = 4;   // 购买类型
+    string                    subType       = 5;   // 子类型
+    int32                     buyLimit      = 6;   // 每日购买限制
+    int32                     buyTimes      = 7;   // 已购买次数
+    int32                     flag          = 8;   // 文字标签
+    string                    productId     = 9;   // 商品id,部分上报用到
+    int32                     bgQuality     = 10;  // 金框还是银框
+    int32                     bgType        = 11;  // 框规格
+    string                    backImg       = 12;  // 背景图，支持'|'隔开
+    repeated CommonRewardItem buyItem       = 13;  //购买商品得到的道具
+    int32                     discountPrice = 14;  // 减价数量（真的折扣），对应ShopDiscount
+    int32                     moreGetNum    = 15;  // 加赠数量 ，对应ShopDiscount
+}
+
+message PaycenterDisItem {
+    int32 groupType = 1;  // 商城分组Id
+    int32 expire    = 2;  // 打折商品过期时间
+}
+
+/*************2.19.0商城改版(结束）***********************/
+
+//rank/get 回包
+message RankRsp {
+    int32             ret  = 1;  //错误码， 0表示成功， 其他失败
+    int32             self = 2;  //用户排名
+    repeated RankItem list = 3;
+}
+
+message RankItem {
+    userInfoBasic basicInfo = 1;
+    int32         curseLv   = 2;
+    int32         rank      = 3;
+}
+
+// zhuanpan destiny
+message ScratchCardZhuanpanDestiny {
+    repeated uint32              wins       = 1;  //三个获奖号码
+    repeated ScratchCardPosition positions  = 2;  //刮卡状态
+    repeated ScratchCardWinItem  scrolls    = 3;  //其他 滚动信息
+    CommonRewardData             rewardData = 4;  // 其他 卡片刮完时, 发奖;
+}
+
+//info接口返回值
+message ScratchCardInfoRsp {
+    SYHM_ERR                    ret       = 1;  //错误码
+    ScratchCardCfg              config    = 2;  //配置
+    ScratchCardCondition        condition = 3;  //判断条件及状态开关
+    ScratchCardData             data      = 4;  //用户真实数据
+    uint32                      bonusPool = 5;  //其他 奖金池
+    repeated ScratchCardWinItem scrolls   = 6;  //其他 滚动信息
+}
+
+//open接口返回值
+message ScratchCardOpenRsp {
+    SYHM_ERR             ret        = 1;
+    ScratchCardCfg       config     = 2;  //配置
+    ScratchCardCondition condition  = 3;  //判断条件及状态开关
+    CommonRewardData     rewardData = 4;  // 其他 卡片刮完时, 发奖;
+}
+
+//exchange接口返回值 钻石购买
+message ScratchCardExchangeRsp {
+    SYHM_ERR ret           = 1;
+    uint32   diamond       = 2;  //剩余钻石
+    uint32   remainderCard = 3;  //剩余卡数量
+}
+
+//钻石购买信息
+message ScratchCardBuy {
+    uint32 price                    = 1;  //购买卡片消耗的钻石数量
+    uint32 discountedPrice          = 2;  //折后价格
+    uint32 exchangeTicketPrice      = 3;  //钻石兑换剩余所需要劵的钻石数量
+    uint32 retainMultiplePrice      = 4;  //保持倍数的价格
+    uint32 retainMultipleRewardCard = 5;  //保持倍数奖励card
+    uint32 defaultBuyCardNum        = 6;  //正常或折扣购买张数
+}
+
+// 判断条件
+message ScratchCardCondition {
+    ScratchCardStatus status           = 1;  // 卡片是否生成,是否刮完
+    bool              isDiscount       = 2;  //是否开启打折
+    bool              isExchangeTicket = 3;  //是否开启钻石兑换劵
+    bool              isRetainMultiple = 4;  //是否可保持倍数
+    bool              isCollectTicket  = 5;  //是否收集劵
+    bool              isBegin          = 6;  //是否新手
+}
+
+//配置信息
+message ScratchCardCfg {
+    repeated ScratchCardEventConfigItem eventCfg     = 1;  //转盘事件收集
+    ScratchCardTicketConfigItem         ticketCfg    = 2;  //积分劵配置
+    ScratchCardBuy                      buy          = 3;  //钻石购买信息
+    bool                                showMultiple = 4;  //是否显示翻倍
+}
+
+// 卡数据格式定义  //当前用户数据
+message ScratchCardData {
+    uint32            uid            = 1;
+    uint32            remainderCard  = 2;   //剩余卡数量
+    uint32            totalCard      = 3;   //总卡数量
+    uint32            ticket         = 4;   //当前劵
+    uint32            ticketStage    = 5;   //劵领取阶段
+    ScratchCardStatus status         = 6;   //刮卡状态
+    uint32            preMultiple    = 7;   //当前中奖保持为原倍数, 不中奖清零
+    uint32            multiple       = 8;   //倍数
+    ScratchCard       card           = 9;   //卡片信息
+    bool              isFirst        = 10;  //首次生成数据
+    int64             startTime      = 11;  //开始时间, 秒数
+    int64             updateNanoTime = 12;  //更新时间, 纳秒数
+    uint32            ticketCard     = 13;  //劵奖励卡
+}
+
+message ScratchCard {
+    repeated uint32              wins             = 1;  //三个获奖号码
+    repeated ScratchCardPosition positions        = 2;  //刮卡状态
+    uint32                       openCount        = 3;  //已开奖数量
+    uint32                       openLastPosition = 4;  //最后一次开奖位置
+}
+
+message ScratchCardPosition {
+    uint32                  position = 1;  //位置
+    uint32                  num      = 2;  //展示数字, 状态ScratchCardOpenMultiple翻倍时无效恒为0
+    ScratchCardPositionType status   = 3;  //状态
+    CommonRewardItem        reward   = 4;  //奖励内容
+    bool                    isOpen   = 5;  //是否打开
+    uint32                  rewardID = 6;  //奖励id
+}
+
+//中奖人信息
+message ScratchCardWinItem {
+    uint32           uid    = 1;
+    string           name   = 2;
+    int64            time   = 3;  //时间戳
+    CommonRewardItem reward = 4;  //中奖信息
+}
+
+message ScratchCardEventConfigItem {
+    string event  = 1;  //转盘事件类型
+    uint32 ticket = 2;  //活动劵数量
+}
+
+message ScratchCardTicketConfigItem {
+    uint32 stage  = 1;  //活动劵阶段
+    uint32 ticket = 2;  //活动劵所需数量
+    uint32 card   = 3;  //奖励卡片数
+}
+
+//--------------协议-----------------
+
+// 进入前请求服务器给到后台的通信地址信息，此协议通过普通的http请求给到
+message UnionCompetitionQueryServerReq {
+    RequestHead head = 1;
+}
+
+message UnionCompetitionQueryServerRsp {
+    int32  ret     = 1;
+    string IP      = 2;
+    uint32 tcpPort = 3;
+    uint32 udpPort = 4;
+}
+
+message UnionCompetitionClientRuntimeConfig {
+    int64 speedUpUnit        = 1;
+    int64 speedDownUnit      = 2;
+    int64 speedMax           = 3;
+    int64 speedMin           = 4;
+    int64 speedDownOnCollide = 5;
+}
+
+// 进入
+message UnionCompetitionEnterReq {
+    uint32 clientVersion = 1;
+}
+message UnionCompetitionEnterRsp {
+    int32                               ret                 = 1;
+    UnionCompetitionArenaInfo           arenaInfo           = 2;
+    UnionCompetitionRoundProcessInfo    roundProcessInfo    = 3;
+    uint64                              serverMilli         = 4;
+    uint32                              maxFrameIndex       = 5;
+    uint32                              maxImpFrameIndex    = 6;
+    UnionCompetitionClientRuntimeConfig clientRuntimeConfig = 7;
+}
+
+// 断线请求恢复
+message UnionCompetitionRestoreReq {
+}
+message UnionCompetitionRestoreRsp {
+    int32                            ret              = 1;
+    UnionCompetitionArenaInfo        arenaInfo        = 2;
+    UnionCompetitionRoundProcessInfo roundProcessInfo = 3;
+    repeated FSyncFrame              frameList        = 4;
+    uint64                           serverMilli      = 5;
+}
+
+// 请求退出
+message UnionCompetitionWantExitReq {
+}
+message UnionCompetitionWantExitRsp {
+    int32 ret = 1;
+}
+
+// UDP ping包
+message UnionCompetitionUDPPingReq {
+}
+message UnionCompetitionUDPPingRsp {
+    int32 ret = 1;
+}
+
+// 请求切换船舷
+message UnionCompetitionSwitchSideReq {
+}
+message UnionCompetitionSwitchSideRsp {
+    int32 ret = 1;
+}
+
+// 赛场变化通知包(仅下行包)，目的在于当有新队伍加入的时候通知前端
+message UnionCompetitionArenaInfoNotify {
+    UnionCompetitionArenaInfo arenaInfo   = 1;
+    uint64                    serverMilli = 2;
+}
+
+// 新队伍加入通知
+message UnionCompetitionArenaTeamJoinNotify {
+    UnionCompetitionTeamInfo teamInfo    = 1;
+    uint64                   serverMilli = 2;
+}
+
+// 切换船舷通知包(仅下行包)
+message UnionCompetitionSwitchSideNotify {
+    uint32                       uid         = 1;
+    EnumUnionCompetitionShipSide side        = 2;
+    uint64                       serverMilli = 3;
+}
+
+// 队员全量变化通知包(仅下行包)，有人进入或者退出时使用
+message UnionCompetitionMemberChangedNotify {
+    repeated UnionCompetitionTeamMemberInfo memberList  = 1;
+    uint64                                  serverMilli = 2;
+}
+
+// 船长变化通知包(仅下行包)，由于船长变化的频率不高，单独列一个协议
+message UnionCompetitionCaptainChangedNotify {
+    UnionCompetitionTeamCaptainInfo captain     = 1;
+    uint64                          serverMilli = 2;
+}
+
+// 船长命令
+message UnionCompetitionCaptainCommandReq {
+    EnumUnionCompetitionCaptainCommand command = 2;
+}
+message UnionCompetitionCaptainCommandRsp {
+    int32  ret             = 1;
+    uint64 nextCommandTime = 2;  //什么时候可以发送下次命令
+}
+
+// 船长命令通知包(仅下行包)
+message UnionCompetitionCaptainCommandNotify {
+    EnumUnionCompetitionCaptainCommand command           = 1;
+    uint64                             serverMilli       = 2;
+    uint32                             secondsToResponse = 3;
+}
+
+// 船员操作
+message UnionCompetitionMemberOperationReq {
+    EnumUnionCompetitionMemberOperation operation = 2;
+}
+message UnionCompetitionMemberOperationRsp {
+    int32                              ret            = 1;
+    UnionCompetitionFSyncActionType    actType        = 2;
+    EnumUnionCompetitionCaptainCommand captainCommand = 3;
+}
+
+message UnionCompetitionMemberOperationResult {
+    uint32                                    uid    = 1;
+    EnumUnionCompetitionMemberOperationResult result = 2;
+}
+
+// 本赛程进度数据
+message UnionCompetitionRoundProcessInfo {
+    EnumUnionCompetitionRoundType         roundType         = 1;  //初赛，半决赛，决赛
+    EnumUnionCompetitionRoundScheduleType roundScheduleType = 2;  //时间点
+    uint64                                timeStartAt       = 3;  //本时间段开始于
+    uint64                                timeEndAt         = 4;  //本时间段即将结束于
+}
+
+// 本赛程进度通知包(仅下行包)
+message UnionCompetitionProcessInfoNotify {
+    UnionCompetitionRoundProcessInfo roundProcessInfo = 1;
+    uint64                           serverMilli      = 2;
+}
+
+// 给udp服务器发送login包
+message UnionCompetitionUdpLoginReq {
+}
+message UnionCompetitionUdpLoginRsp {
+    int32 ret = 1;
+}
+
+message FSyncAction {
+    uint32 actType = 1;  // 这里取UnionCompetitionFSyncActionType枚举的值
+    uint32 param1  = 2;  // 此值固定填写用户uid
+    uint32 param2  = 3;  // 此值固定填写用户teamId
+    uint32 param3  = 4;  // 保留位,根据不同actType有不同取值
+    uint32 param4  = 5;  // 保留位,根据不同actType有不同取值
+    uint32 param5  = 6;  // 保留位,根据不同actType有不同取值
+}
+message FSyncFrame {
+    uint32               frameIndex    = 1;
+    uint32               impFrameIndex = 2;
+    repeated FSyncAction actionList    = 3;
+}
+message FSyncFrameNotify {
+    repeated FSyncFrame frameList        = 1;
+    uint32              maxFrameIndex    = 2;
+    uint32              maxImpFrameIndex = 3;
+}
+message FSyncFrameSegment {
+    uint32 start = 1;
+    uint32 end   = 2;
+}
+message FSyncResendFrameReq {
+    repeated FSyncFrameSegment segmentList = 1;
+}
+message FSyncResendFrameRsp {
+    int32 ret = 1;
+}
+
+message UnionCompetitionSettlementTeam {
+    UnionCompetitionTeamBaseInfo baseInfo  = 1;
+    uint32                       timeUsed  = 2;  //单位毫秒
+    uint32                       roomRank  = 3;  //房间内排名
+    uint32                       worldRank = 4;  //世界排名
+    uint32                       promoted  = 5;  //是否晋级
+}
+
+// 船到达终点时的结算通知包(仅下行包)
+message UnionCompetitionSettlementNotify {
+    uint64                                  serverMilli  = 1;
+    repeated UnionCompetitionSettlementTeam teamList     = 2;
+    CommonRewardData                        rewardData   = 3;
+    uint32                                  nextCompTime = 4;  //距离下一场比赛的开始时间，单位秒， 0表示没有下一场比赛
+}
+// 结算增量通知包，由于队伍是陆续到达终点，所以需要在后面队伍到达时通知前面已经到达终点的队伍
+message UnionCompetitionSettlementIncrementalNotify {
+    uint64                         serverMilli = 1;
+    UnionCompetitionSettlementTeam team        = 2;
+}
+
+// 通知队员成为船长
+message UnionCompetitionBeCaptainNotify {
+    uint64 serverMilli = 1;
+}
+
+// 船到达终点时的领奖
+message UnionCompetitionTakeRewardReq {
+}
+
+message UnionCompetitionTakeRewardRsp {
+    int32                     ret    = 1;
+    repeated CommonRewardData reward = 2;
+}
+
+message UnionCompetitionRankItem {
+    string name     = 1;  // 公会名
+    uint32 timeUsed = 2;  // 单位毫秒
+    uint32 rank     = 3;  // 排名
+    uint32 teamID   = 4;  //公会ID
+}
+
+// 船队船员信息
+message UnionCompetitionUserInfo {
+    uint32 uid   = 1;
+    string name  = 2;
+    string fbpic = 3;
+    int32  vip   = 4;
+    string sex   = 5;
+    // int64 getTime = 6; //获取到该数据的服务器unix时间
+}
+
+message UnionCompetitionMemberListReq {
+    uint32 teamID = 4;  //公会ID
+}
+
+message UnionCompetitionMemberListRsp {
+    int32                             ret        = 1;
+    repeated UnionCompetitionUserInfo memberList = 2;
+}
+
+// 船长切换req
+message UnionCompetitionExchangeCaptainReq {
+    uint32 teamID = 1;
+    uint32 UID    = 2;  //切换为船长的队员uid
+}
+
+// 船长切换rsp
+message UnionCompetitionExchangeCaptainRsp {
+    int32 ret = 1;
+}
+
+// 船赛排行版
+message UnionCompetitionRankReq {
+    RequestHead head = 1;
+}
+// 船赛排行版
+message UnionCompetitionRankRsp {
+    int32                             ret      = 1;
+    repeated UnionCompetitionRankItem rankList = 2;  //只推前128
+    UnionCompetitionRankItem          selfRank = 3;  //自己工会的排名
+}
+
+// 船赛报名信息
+message UnionCompetitionApplyInfoReq {
+    RequestHead head = 1;
+}
+
+// 船赛报名信息
+message UnionCompetitionApplyInfoRsp {
+    int32                            ret                = 1;
+    int32                            timeRemain         = 2;  // 距离开赛standby状态的秒数，-1为当天没有比赛或者比赛已经结束
+    int32                            enterBeforeStandby = 3;  // 可以提前开赛standby状态多少秒进入赛场
+    UnionCompetitionRoundProcessInfo roundProcessInfo   = 4;  //当前比赛状态
+    int32                            isPromoted         = 5;  //是否晋级，1为晋级，0位未晋级，默认晋级
+    string                           startTime          = 6;  //如果有比赛，该字段存储当天的比赛时间，格式为 HH:mm:ss
+    string                           onlineWeek         = 7;  //保存周几开赛，用"|"竖线分隔多个时间
+}
+
+// 船赛报名
+message UnionCompetitionApplyReq {
+    RequestHead head = 1;
+}
+
+// 船赛报名
+message UnionCompetitionApplyRsp {
+    int32  ret     = 1;
+    uint32 isApply = 2;  // 是否报名 0未报名 1已经报名
+}
+
+// 胜利上报
+message UnionCompetitionReachFinishLineReq {
+    uint32 teamId     = 1;
+    uint32 frameIndex = 2;
+}
+
+message UnionCompetitionReachFinishLineRsp {
+    int32 ret = 1;
+}
+
+enum EnumUnionCompetitionKickOutReason {
+    KickOutUnkown         = 0;
+    KickOutUnpromoted     = 1;
+    KickOutGameOver       = 2;
+    KickOutServerMaintain = 3;
+}
+
+// 队伍被踢出去通知包(仅下行包)
+message UnionCompetitionKickOutNotify {
+    EnumUnionCompetitionKickOutReason reason = 1;
+}
+
+//TCP.UDP Package HEAD
+//4Bytes :  uint  bodyLength
+//2Byte  :  short magic
+//2Byte  :  short version
+//4Bytes :  uint  uid
+//4Bytes :  uint  cmdId
+//4Bytes :  uint  seq
+//4Bytes :  uint  cksum
+
+// 心跳包，用于服务器保持在线
+message OnlineReq {
+}
+message OnlineRsp {
+    int32 ret = 1;
+}
+
+//userfriend/listNew 回包
+message UserfriendListRsp {
+    int32                      ret    = 1;  //错误码， 0表示成功， 其他失败
+    int32                      free   = 2;
+    int32                      cur    = 3;
+    int32                      max    = 4;
+    int32                      expire = 5;
+    repeated UserfriendItemRsp list   = 6;
+}
+
+message UserfriendItemRsp {
+    int64 UID          = 1;
+    int32 isSubscribed = 2;  //订阅状态
+    int32 star         = 3;  //星星数
+    int32 status       = 4;  //用位保存的赠送体力状态
+}
+
+//rank/get 回包
+message VideoADPullRsp {
+    int32                       ret  = 1;  // 错误码， 0表示成功， 其他失败
+    int32                       auth = 2;  // 用户授权标识
+    repeated VideoADPullItemRsp list = 3;
+}
+
+message VideoADPullItemRsp {
+    int32         popCount    = 1;  // 已弹出次数
+    int32         rewardCount = 2;  // 已领奖次数
+    int32         ad          = 3;  // 广告开关
+    int32         share       = 4;  // 分享开关
+    VideoADConfig cfg         = 5;  // 广告场景配置
+    VideoADList   adList      = 6;  // 广告收纳列表
+}
+
+message VideoADList {
+    int32                    expireAt = 1;  // 奖励列表过期时间
+    repeated VideoADListItem list     = 2;  // 奖励列表
+}
+
+message VideoADListItem {
+    repeated CommonRewardItem reward = 1;  // 奖励列表
+    string                    param  = 2;  // 领奖参数
+}
+
+// 广告礼盒存储结构
+message VideoADGiftBoxItem {
+    string giftBoxID           = 1;  // 礼盒ID
+    int64  giftBoxRewardTime   = 2;  // 上次的领奖时间
+    int64  giftBoxRewardCounts = 3;  // 领奖次数
+}
+
+message VideoADGiftBox {
+    map<string, VideoADGiftBoxItem> list = 1;
+}
+
+/*
+ * weeklyPaper - 岛主周报结构,成员如下:
+ *  weeklyTitle: 周报主题
+ *  battleList: 周报战报
+ */
+message WeeklyPaperRsp {
+    int32                 ret         = 1;
+    WeeklyTitle           weeklyTitle = 2;
+    repeated WeeklyBattle battleList  = 3;
+}
+
+/*
+ * WeeklyBattle - 周报战报,成员如下：
+ *  battleType: 版块类型，类型定义如下：
+ *       - 11：我的死敌
+ *       - 12：我的好兄弟
+ *       - 13: 通缉要犯
+ *       - 14：守护天使
+ *       - 15：疯狂神偷
+ *  uid: 玩家UID
+ *  imageURL: 玩家头像URL
+ *  name: 玩家名
+ *  dataList： battleType版块所属的数据集合
+*/
+message WeeklyBattle {
+    int32          battleType = 1;
+    int32          uid        = 2;
+    string         imageURL   = 3;
+    string         name       = 4;
+    repeated int32 dataList   = 5;
+}
+
+/*
+ * WeeklyTitle - 周报主题,成员如下：
+ *  titleID: 主题ID，定义如下：
+ *       - 11：邂逅缘分
+ *       - 12：偶遇之财
+ *       - 13: 绿帽指数
+ *       - 14：新年红包
+ *       - 15: 交易大亨
+ *  wordID: 主题词ID，该ID与主题ID共同确立主题词，定义如下：
+ *       - 11: 单身狗
+ *       - 12: 目标出现
+ *       - 13: 他/她在身边
+ *       - 14: 命犯桃花
+ *
+ *       - 11: 听天由命
+ *       - 12: 运气不错
+ *       - 13: 道破天机
+ *       - 14: 扼住咽喉
+ *
+ *       - 11: 头顶草原
+ *       - 12: 一顶绿帽
+ *       - 13: 残存的爱
+ *       - 14: 心中唯一
+ *
+ *       - 11: 无缘红包
+ *       - 12: 小试红包
+ *       - 13: 恭喜发财
+ *       - 14: 红包滚滚来
+ *
+ *       - 11: 独行侠
+ *       - 12: 小生意
+ *       - 13: 乐于助人
+ *       - 14: 交易大亨
+ *  dataList： 主题对应所属的数据
+*/
+message WeeklyTitle {
+    int32           titleID  = 1;
+    int32           wordID   = 2;
+    repeated string dataList = 3;
+}
+
+message RewardSendRsp {
+    SYHM_ERR         ret  = 1;  //错误码
+    CommonRewardData data = 2;
+}
+
+message GetProfileReq {
+    int64 uid = 1;
+}
+
+message GetProfileRsp {
+    RpcRspHead        Head      = 1;
+    int32             worldRank = 2;
+    int32             localRank = 3;
+    UserProfileFamily family    = 4;
+    UserProfileInfo   profile   = 5;
+}
+
+message UpdateProfileReq {
+    SexType sex           = 1;
+    string  signature     = 2;
+    string  address       = 3;
+    int32   constellation = 4;
+    int32   platNum       = 5;
+}
+
+message UpdateProfileRsp {
+    RpcRspHead Head = 1;
+}
+
+message ShareCheckReq {
+    string shareName = 1;  //分享名称
+}
+
+message ShareCheckData {
+    int32       rewardCount = 1;
+    ShareConfig cfg         = 2;
+}
+
+message ShareCheckRsp {
+    RpcRspHead              Head = 1;
+    repeated ShareCheckData data = 2;
+}
+
+message ShareRewardReq {
+    string shareName = 1;  //分享名称
+    string channel   = 2;  //分享渠道
+}
+
+message ShareRewardRsp {
+    RpcRspHead       Head = 1;
+    CommonRewardData data = 2;
+}

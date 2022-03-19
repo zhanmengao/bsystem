@@ -1,0 +1,117 @@
+#!/bin/bash
+#
+# A script for creating release packages. The release packages are create in the home directory.
+#
+# Windows installer:
+# - ensure latest build was successful
+# - ensure cfg files etc are included (win_installer/cppcheck.wxs)
+#
+# self check, fix critical issues:
+# ./cppcheck -D__CPPCHECK__ --library=cppcheck-lib --enable=style --inconclusive --inline-suppr --suppress=bitwiseOnBoolean --suppress=shadowFunction --suppress=useStlAlgorithm --suppress=*:externals/picojson.h cli gui/*.cpp --suppress=functionConst --suppress=functionStatic -q lib
+#
+# check --bug-hunting output:
+# make clean && make -j4 USE_Z3=yes && ./cppcheck -D__CPPCHECK__ --bug-hunting lib
+#
+# Update translations
+#   lupdate gui.pro
+#
+# Update copyright year
+# git diff 2.3 -- */*.cpp */*.h | grep '^diff --git a/' | sed 's|.* b/||' | xargs sed -i 's/Copyright (C) 2007-20[12]./Copyright (C) 2007-2021/'
+# git diff | grep '^diff --git a/'
+#
+# Make sure "cppcheck --errorlist" works. For example with:
+# make test
+# ./cppcheck --errorlist > errlist.xml && xmllint --noout errlist.xml
+#
+# Update AUTHORS using output from:
+# git log --format='%aN' 1.81..HEAD | sort -u > AUTHORS2 && diff -y AUTHORS AUTHORS2 | less
+#
+# Update version numbers in:
+# sed -i "s/[12].[0-9][0-9]*.99/2.1/" cli/main.cpp
+# sed -i "s/[12].[0-9][0-9]*/2.1/" cmake/versions.cmake
+# sed -i "s/MINOR [0-9][0-9]*/MINOR 1/" lib/version.h
+# sed -i "s/[12].[0-9][0-9]* dev/2.1/" win_installer/productInfo.wxi
+# sed -i "s/[12].[0-9][0-9]*/2.1/" win_installer/productInfo.wxi
+# sed -i "s/subtitle: Version 2[.0-9]*/subtitle: Version 2.2/" man/*.md
+# Verify:
+# grep '\.99' */*.[ch]* && grep '[0-9][0-9] dev' */*.[ch]*
+# git commit -a -m "1.43: Set versions"
+#
+# Update the Makefile:
+# make dmake && ./dmake --release
+# git commit -a -m "1.43: Updated Makefile"
+#
+# Build and test the windows installer
+#
+# Tag:
+# git tag 1.43
+# git push --tags
+#
+# Create a release folder on sourceforge:
+# https://sourceforge.net/projects/cppcheck/files/cppcheck/
+#
+# Create release:
+# ./createrelease 1.43
+#
+# Restore the Makefile:
+# make dmake && ./dmake
+# git commit -a -m "Makefile: Set debug mode"
+#
+# Update download link on index.php main page
+#
+#
+# write a news
+#
+# save "cppcheck --doc" output on wiki, write new release date on wikis
+#
+# compile new democlient:
+# ssh -t danielmarjamaki,cppcheck@shell.sourceforge.net create
+# ./build-cppcheck.sh 1.43
+#
+# run daca with new release
+# 1. edit tools/donate-cpu-server.py. Update OLD_VERSION and VERSION
+# 2. scp tools/donate-cpu-server.py danielmarjamaki@cppcheck1.osuosl.org:/var/daca@home/
+#
+# self check, fix stylistic issues:
+# ./cppcheck -D__CPPCHECK__ --library=cppcheck-lib --enable=style --inconclusive --inline-suppr --suppress=bitwiseOnBoolean --suppress=shadowFunction --suppress=useStlAlgorithm --suppress=*:externals/picojson.h cli gui/*.cpp lib
+
+
+# Tag to use
+tag=$1
+
+# Name of release
+releasename=cppcheck-$tag
+
+set -e
+
+cd ~/cppcheck
+
+mkdir -p upload
+
+make clean
+
+# Create archives..
+git archive --format=tar --prefix=$releasename/ $tag | gzip > upload/$releasename.tar.gz
+git archive --format=tar --prefix=$releasename/ $tag | bzip2 > upload/$releasename.tar.bz2
+git archive --format=zip -9 --prefix=$releasename/ $tag > upload/$releasename.zip
+cd upload
+scp $releasename.* danielmarjamaki,cppcheck@frs.sourceforge.net:/home/frs/project/c/cp/cppcheck/cppcheck/$tag/
+rm $releasename.*
+cd ..
+
+# Generate the manual.pdf, manual.html and version.txt
+make -j4
+./cppcheck --version > upload/version.txt
+cd ~/cppcheck/man
+./buildman.sh
+mv manual.pdf ../upload/
+mv manual.html ../upload/
+mv reference-cfg-format.pdf ../upload/
+mv reference-cfg-format.html ../upload/
+
+cd ~/cppcheck/upload
+scp * danielmarjamaki,cppcheck@web.sourceforge.net:htdocs/
+
+cd ~/cppcheck
+rm -rf upload
+

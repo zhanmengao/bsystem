@@ -1,0 +1,36 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.23107.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Convert", "Convert\Convert.vcxproj", "{CA7B3D0E-8AC4-475F-9188-65B154B98C38}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "cast", "cast\cast.vcxproj", "{70020493-7E54-4228-8B1C-C2D364EB526F}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Win32 = Debug|Win32
+		Debug|x64 = Debug|x64
+		Release|Win32 = Release|Win32
+		Release|x64 = Release|x64
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{CA7B3D0E-8AC4-475F-9188-65B154B98C38}.Debug|Win32.ActiveCfg = Debug|Win32
+		{CA7B3D0E-8AC4-475F-9188-65B154B98C38}.Debug|Win32.Build.0 = Debug|Win32
+		{CA7B3D0E-8AC4-475F-9188-65B154B98C38}.Debug|x64.ActiveCfg = Debug|Win32
+		{CA7B3D0E-8AC4-475F-9188-65B154B98C38}.Release|Win32.ActiveCfg = Release|Win32
+		{CA7B3D0E-8AC4-475F-9188-65B154B98C38}.Release|Win32.Build.0 = Release|Win32
+		{CA7B3D0E-8AC4-475F-9188-65B154B98C38}.Release|x64.ActiveCfg = Release|Win32
+		{70020493-7E54-4228-8B1C-C2D364EB526F}.Debug|Win32.ActiveCfg = Debug|Win32
+		{70020493-7E54-4228-8B1C-C2D364EB526F}.Debug|Win32.Build.0 = Debug|Win32
+		{70020493-7E54-4228-8B1C-C2D364EB526F}.Debug|x64.ActiveCfg = Debug|x64
+		{70020493-7E54-4228-8B1C-C2D364EB526F}.Debug|x64.Build.0 = Debug|x64
+		{70020493-7E54-4228-8B1C-C2D364EB526F}.Release|Win32.ActiveCfg = Release|Win32
+		{70020493-7E54-4228-8B1C-C2D364EB526F}.Release|Win32.Build.0 = Release|Win32
+		{70020493-7E54-4228-8B1C-C2D364EB526F}.Release|x64.ActiveCfg = Release|x64
+		{70020493-7E54-4228-8B1C-C2D364EB526F}.Release|x64.Build.0 = Release|x64
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

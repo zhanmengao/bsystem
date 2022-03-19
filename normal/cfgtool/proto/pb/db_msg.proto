@@ -1,0 +1,22 @@
+syntax = "proto3";
+package pb;
+
+import "enum.proto";
+
+// 复仇基本条目信息
+message MsgRevengeEntry {
+    MsgEntry            msgEntry                  = 1;    // 通用信息
+    int64               AttackerUID               = 2;    // 攻击者uid
+    SlotFireResultType  FireResultType            = 3;    // 攻击结果
+}
+
+// 复仇列表
+message MsgRevenge {
+    repeated MsgRevengeEntry List                  = 1;     // 列表
+}
+
+// 基本通用信息
+message MsgEntry {
+    int64               CreateTimestamp           = 1;    // 创建的时间
+    int64               ExpiredTimestamp          = 2;    // 过期时间
+}

@@ -1,0 +1,52 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Day4_操作符重载">
+      <UniqueIdentifier>{a66a6f5e-5a64-455a-8b01-868830827013}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Other">
+      <UniqueIdentifier>{77043a09-6eb4-4405-b9b3-1a3111e052a8}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="dm03_运算符重载正规的写法.cpp">
+      <Filter>Day4_操作符重载</Filter>
+    </ClCompile>
+    <ClCompile Include="dm04_重载=操作符.cpp">
+      <Filter>Day4_操作符重载</Filter>
+    </ClCompile>
+    <ClCompile Include="dm07_逻辑与和逻辑或运算符重载说明.cpp">
+      <Filter>Day4_操作符重载</Filter>
+    </ClCompile>
+    <ClCompile Include="dm17_面向对象模型this指针练习.cpp">
+      <Filter>Day4_操作符重载</Filter>
+    </ClCompile>
+    <ClCompile Include="dm18_面向对象模型_全局函数成员函数.cpp">
+      <Filter>Day4_操作符重载</Filter>
+    </ClCompile>
+    <ClCompile Include="dm21_友元函数和友元类.cpp">
+      <Filter>Day4_操作符重载</Filter>
+    </ClCompile>
+    <ClCompile Include="demo01_运算符重载快速入门.cpp">
+      <Filter>Day4_操作符重载</Filter>
+    </ClCompile>
+    <ClCompile Include="demo02_运算符重载的两种方法.cpp">
+      <Filter>Day4_操作符重载</Filter>
+    </ClCompile>
+    <ClCompile Include="demo04_重载=操作符.cpp">
+      <Filter>Day4_操作符重载</Filter>
+    </ClCompile>
+    <ClCompile Include="demo21_友元函数和友元类.cpp">
+      <Filter>Day4_操作符重载</Filter>
+    </ClCompile>
+    <ClCompile Include="dm01_运算符重载入门技术推演.cpp">
+      <Filter>Day4_操作符重载</Filter>
+    </ClCompile>
+    <ClCompile Include="dm02_运算符重载的两种方法.cpp">
+      <Filter>Day4_操作符重载</Filter>
+    </ClCompile>
+    <ClCompile Include="实现全变为成员函数.cpp">
+      <Filter>Other</Filter>
+    </ClCompile>
+  </ItemGroup>
+</Project>

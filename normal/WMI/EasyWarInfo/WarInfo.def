@@ -1,0 +1,21 @@
+LIBRARY	"EasyWarInfo"
+EXPORTS
+	GetOS							@1
+	GetCPUInfo					@2
+	GetBiosInfo					@3
+	GetMemorySlots			@4
+	GetMonitors					@5
+	GetNetworkAdapters	@6
+	GetPrinters					@7
+	GetSoundDevices			@8
+	GetStoragePeripherals	@9
+	GetVideoAdapters		@10
+	GetModems					@11
+	GetSystemPorts			@12
+	GetSystemControllers	@13
+	GetSystemSlots			@14
+	GetCpuInfo					@15
+	BeginGetHardInfo			@16
+	EndGetHardInfo			@17
+	GetKeyBoards				@18
+	GetPointingDevices		@19

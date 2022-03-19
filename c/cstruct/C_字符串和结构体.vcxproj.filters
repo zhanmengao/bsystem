@@ -1,0 +1,93 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="资源文件">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="Day4_结构体">
+      <UniqueIdentifier>{7b6da172-f0ca-4aa7-9da6-526421b33b85}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Day2_字符串">
+      <UniqueIdentifier>{eb042bdb-7812-400e-9828-56855985a075}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="类">
+      <UniqueIdentifier>{d6c322b1-dc81-4372-8dd2-8b84c072186f}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\CClass\main.c">
+      <Filter>类</Filter>
+    </ClCompile>
+    <ClCompile Include="..\C_Point\Day2\dm01_习题.c">
+      <Filter>Day2_字符串</Filter>
+    </ClCompile>
+    <ClCompile Include="..\C_Point\Day2\dm02_铁律1强化.c">
+      <Filter>Day2_字符串</Filter>
+    </ClCompile>
+    <ClCompile Include="..\C_Point\Day2\dm03_间接赋值的技术推演.c">
+      <Filter>Day2_字符串</Filter>
+    </ClCompile>
+    <ClCompile Include="..\C_Point\Day2\dm04_指针的输入和输出特性.c">
+      <Filter>Day2_字符串</Filter>
+    </ClCompile>
+    <ClCompile Include="..\C_Point\Day2\dm05_字符串基本操作.c">
+      <Filter>Day2_字符串</Filter>
+    </ClCompile>
+    <ClCompile Include="..\C_Point\Day2\dm06_一级指针内存模型建立.c">
+      <Filter>Day2_字符串</Filter>
+    </ClCompile>
+    <ClCompile Include="..\C_Point\Day2\dm07_字符串做函数参数.c">
+      <Filter>Day2_字符串</Filter>
+    </ClCompile>
+    <ClCompile Include="..\C_Point\Day2\dm08_项目开发字符串模型strstr_while.c">
+      <Filter>Day2_字符串</Filter>
+    </ClCompile>
+    <ClCompile Include="..\C_Point\Day4\结构体\dm01_结构体基本操作.c">
+      <Filter>Day4_结构体</Filter>
+    </ClCompile>
+    <ClCompile Include="..\C_Point\Day4\结构体\dm02_结构体做函数参数.c">
+      <Filter>Day4_结构体</Filter>
+    </ClCompile>
+    <ClCompile Include="..\C_Point\Day4\结构体\dm03_结构体做函数参数进阶.c">
+      <Filter>Day4_结构体</Filter>
+    </ClCompile>
+    <ClCompile Include="..\C_Point\Day4\结构体\dm04_结构做函数参数进阶2.c">
+      <Filter>Day4_结构体</Filter>
+    </ClCompile>
+    <ClCompile Include="..\C_Point\Day5\dm05_结构体的深copy和浅copy.c">
+      <Filter>Day4_结构体</Filter>
+    </ClCompile>
+    <ClCompile Include="..\C_Point\Day5\dm05_强化训练考试.c">
+      <Filter>Day4_结构体</Filter>
+    </ClCompile>
+    <ClCompile Include="..\C_Point\Day5\dm06_结构体的高级话题.c">
+      <Filter>Day4_结构体</Filter>
+    </ClCompile>
+    <ClCompile Include="..\C_Point\Day5\结构体作业参考.c">
+      <Filter>Day4_结构体</Filter>
+    </ClCompile>
+    <ClCompile Include="..\C_Point\printf\printFormat.c">
+      <Filter>资源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="..\C_Point\printf\putgetChar.c">
+      <Filter>资源文件</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\CClass\file.h">
+      <Filter>类</Filter>
+    </ClInclude>
+    <ClInclude Include="..\CClass\msg.h">
+      <Filter>类</Filter>
+    </ClInclude>
+    <ClInclude Include="..\CClass\routinue.h">
+      <Filter>类</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="..\CClass\CMakeLists.txt">
+      <Filter>资源文件</Filter>
+    </Text>
+  </ItemGroup>
+</Project>

@@ -1,0 +1,82 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="C++Primer入门">
+      <UniqueIdentifier>{31b92924-31f7-43e6-b6f1-01ce72af510a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="C++Primer变量与基本类型">
+      <UniqueIdentifier>{223b7115-94d5-45b8-b93c-e9dcea351009}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="课程">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="dm01_hello.cpp">
+      <Filter>课程</Filter>
+    </ClCompile>
+    <ClCompile Include="dm02_err.cpp">
+      <Filter>课程</Filter>
+    </ClCompile>
+    <ClCompile Include="dm03_namespace.cpp">
+      <Filter>课程</Filter>
+    </ClCompile>
+    <ClCompile Include="dm04_实用性增强_register_类型检查.cpp">
+      <Filter>课程</Filter>
+    </ClCompile>
+    <ClCompile Include="dm05_struct类型加强.cpp">
+      <Filter>课程</Filter>
+    </ClCompile>
+    <ClCompile Include="dm06_bool类型.cpp">
+      <Filter>课程</Filter>
+    </ClCompile>
+    <ClCompile Include="dm07_三目运算符功能增强.cpp">
+      <Filter>课程</Filter>
+    </ClCompile>
+    <ClCompile Include="dm08_const的基础用法.cpp">
+      <Filter>课程</Filter>
+    </ClCompile>
+    <ClCompile Include="dm09_引用的基础知识.cpp">
+      <Filter>课程</Filter>
+    </ClCompile>
+    <ClCompile Include="dm10_引用本质探究.cpp">
+      <Filter>课程</Filter>
+    </ClCompile>
+    <ClCompile Include="dm11_函数返回值是一个引用.cpp">
+      <Filter>课程</Filter>
+    </ClCompile>
+    <ClCompile Include="C++Primer1入门\第十六题.cpp">
+      <Filter>C++Primer入门</Filter>
+    </ClCompile>
+    <ClCompile Include="C++Primer2变量与基本类型\Sales_data.cpp">
+      <Filter>C++Primer变量与基本类型</Filter>
+    </ClCompile>
+    <ClCompile Include="C++Primer2变量与基本类型\TestSales.cpp">
+      <Filter>C++Primer变量与基本类型</Filter>
+    </ClCompile>
+    <ClCompile Include="C++Primer2变量与基本类型\习题2.34.cpp">
+      <Filter>C++Primer变量与基本类型</Filter>
+    </ClCompile>
+    <ClCompile Include="C++Primer2变量与基本类型\习题2.35.cpp">
+      <Filter>C++Primer变量与基本类型</Filter>
+    </ClCompile>
+    <ClCompile Include="C++Primer2变量与基本类型\习题2.38.cpp">
+      <Filter>C++Primer变量与基本类型</Filter>
+    </ClCompile>
+    <ClCompile Include="dm12_类型转换.cpp">
+      <Filter>课程</Filter>
+    </ClCompile>
+    <ClCompile Include="main.cpp">
+      <Filter>课程</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="C++Primer2变量与基本类型\Sales_data.h">
+      <Filter>C++Primer变量与基本类型</Filter>
+    </ClInclude>
+    <ClInclude Include="Array.h">
+      <Filter>C++Primer变量与基本类型</Filter>
+    </ClInclude>
+  </ItemGroup>
+</Project>

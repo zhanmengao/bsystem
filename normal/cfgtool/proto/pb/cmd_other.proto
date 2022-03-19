@@ -1,0 +1,35 @@
+syntax = "proto3";
+package pb;
+
+// 命令字
+enum CmdId {
+    CmdIdNone                            = 0;
+    CmdIdOnline                          = 200001;
+    CmdIdUDPPing                         = 200002;
+    CmdIdUnionCompetitionEnter           = 201001;
+    CmdIdUnionCompetitionExit            = 201003;
+    CmdIdUnionCompetitionCaptainCommand  = 201005;
+    CmdIdUnionCompetitionMemberOperation = 201007;
+    CmdIdUnionCompetitionSwitchSide      = 201009;
+    CmdIdUnionCompetitionRestore         = 201011;
+
+    CmdIdUnionCompetitionArenaInfoNotify             = 201013;
+    CmdIdUnionCompetitionSwitchSideNotify            = 201014;
+    CmdIdUnionCompetitionMemberChangedNotify         = 201015;
+    CmdIdUnionCompetitionCaptainChangedNotify        = 201016;
+    CmdIdUnionCompetitionCaptainCommandNotify        = 201017;
+    CmdIdUnionCompetitionProcessInfoNotify           = 201020;
+    CmdIdUnionCompetitionSettlementNotify            = 201021;
+    CmdIdUnionCompetitionSettlementIncrementalNotify = 201022;
+    CmdIdUnionCompetitionArenaTeamJoinNotify         = 201023;
+    CmdIdUnionCompetitionKickOutNotify               = 201024;
+    CmdIdUnionCompetitionBeCaptainNotify             = 201025;
+
+    CmdIdUnionCompetitionMemberList      = 201060;
+    CmdIdUnionCompetitionExchangeCaptain = 201061;
+
+    CmdIdUnionCompetitionFrameSync           = 202000;
+    CmdIdUnionCompetitionUdpLogin            = 202003;
+    CmdIdUnionCompetitionTeamReachFinishLine = 202005;
+    CmdIdFSyncResendFrameReq                 = 202007;
+}

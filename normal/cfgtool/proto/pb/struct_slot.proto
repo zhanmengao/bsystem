@@ -1,0 +1,148 @@
+syntax = "proto3";
+
+package pb;
+
+import "enum.proto";
+import "struct.proto";
+
+// slot item
+message SlotItem {
+    string Type  = 1;
+    uint32 Param = 2;
+    int64  Value = 3;
+}
+
+message SlotAmount {
+    int64 Money  = 1;
+    int64 Tili   = 2;
+    int64 Shield = 3;
+}
+
+// 老虎机结果结构体
+message SlotResult {
+    SlotItem   Item     = 1;
+    uint32     ID       = 2;
+    uint32     Multiple = 3;  //倍数
+    int64      Total    = 4;  //乘以倍数的数量
+    SlotAmount Amount   = 5;  //全量
+}
+
+message SlotRobotInfo {
+    int64          RobotTrueStar   = 1;
+    UserPlanetInfo RobotPlanetInfo = 2;
+}
+
+// 偷
+message SlotStealCK {
+    UserProfile Profile   = 1;
+    int64       LockMoney = 2;  //锁定ck时的金额
+}
+message SlotStealTarget {
+    UserProfile Profile   = 1;
+    int64       LockMoney = 2;  //锁定ck时的金额
+    uint32      Multiple  = 3;  //倍数
+}
+
+message SlotFirePlayEntry {
+    UserProfile Profile         = 1;  // 被攻击者的用户信息
+    int64       OfflineTime     = 2;  // 离线时间
+    bool        IsEmptyBuilding = 3;  // 没有建筑不能被攻击了
+}
+
+// 炮结构体
+message SlotFireTarget {
+    SlotFirePlayEntry Target = 1;
+}
+
+// 好友结构体
+message SlotFireFriend {
+    SlotFirePlayEntry Target = 1;
+}
+
+// 复仇列表
+message SlotFireRevenge {
+    SlotFirePlayEntry  Target         = 1;
+    SlotFireResultType FireResultType = 2;
+}
+
+// 转到炮返回的炮的相关信息
+message SlotFireInfo {
+    repeated SlotFireFriend  Friends    = 1;  // 好友列表
+    repeated SlotFireRevenge Revenges   = 2;  // 复仇列表
+    SlotFireTarget           Fire       = 3;  // 被打对象
+    int64                    DefaultUID = 4;  // 默认的被攻击者的uid
+    uint32                   Multiple   = 5;  // 倍数
+}
+
+message SlotStolenTag {
+    int64 Uid   = 1;
+    int64 Money = 2;
+}
+
+message SlotStealSelectFriendLimit {
+    uint32 Planet    = 1;  // 岛屿
+    uint32 CardIndex = 2;  // 手牌序号从1开始
+}
+
+message SlotStealSelectInfo {
+    uint32 Serial                   = 1;  // 选择序列, 登陆时更新
+    uint32 RobotStrategyHighTimes   = 2;  // 机器人策略高值第几次触发
+    uint32 RobotStrategyHighCurrent = 3;  // 机器人策略高值当前次数
+
+    uint32 TagDay                   = 4;  // 标签数据, 天字段
+    int64  TagDayStealedFriendMoney = 5;  // 偷取好友金币数
+
+    SlotStealSelectFriendLimit SelectFriendLimit = 6;  // 好友锁定限制
+}
+
+message SlotStealPlayerInfo {
+    int64               Uid           = 1;
+    uint32              Multiple      = 2;
+    bool                IsRobot       = 3;
+    UserProfileProperty RobotProperty = 4;
+    PetDataItem         PetItem       = 5;
+}
+
+message SlotStolenLockInfo {
+    int64               Uid           = 1;
+    int64               LockMoney     = 2;
+    bool                IsRobot       = 3;
+    UserProfileProperty RobotProperty = 4;
+}
+
+// a(SlotStealPlayerInfo)偷b(SlotStolenLockInfo)的行为
+message SlotStealBehaviorInfo {
+    SlotStealPlayerInfo StealPlayerInfo = 1;
+    SlotStolenLockInfo  StolenLockInfo  = 2;
+    int64               TrueStealMoney  = 3;  // 乘以倍数后的真实金额
+    int64               TimeMs          = 4;
+    int64               DigStealMoney   = 5;  // 挖取到的金额, 没有乘以倍数
+
+    UserProfileProperty StealProperty = 6;
+    int32               PetID         = 7;
+    int64               PetMoney      = 8;  //宠物偷取加成的金额，没有乘倍数
+}
+
+// b(SlotStolenLockInfo)被偷a(SlotStealPlayerInfo)的行为
+message SlotStolenBehaviorInfo {
+    SlotStealPlayerInfo StealPlayerInfo = 1;
+    SlotStolenLockInfo  StolenLockInfo  = 2;
+    int64               TrueStealMoney  = 3;  // 乘以倍数后的真实金额
+    int64               TrueStolenMoney = 4;
+    int64               TimeMs          = 5;
+    int64               DigStealMoney   = 6;  // 挖取到的金额, 没有乘以倍数
+
+    UserProfileProperty StealProperty  = 7;
+    UserProfileProperty StolenProperty = 8;
+}
+
+// 转盘转到炮需要存储的信息
+message SlotFirePlayerInfo {
+    int64  Uid            = 1;  // 选中的目标用户id
+    uint32 Multiple       = 2;  // 倍数
+    int64  DefaultTarget  = 3;  // 默认目标可能是好友或者机器人
+    bool   IsDefaultRobot = 4;  // 默认目标使用的是机器人
+    int64  RandTarget     = 5;  // 随机的目标
+}
+
+// 用户

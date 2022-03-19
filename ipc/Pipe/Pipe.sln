@@ -1,0 +1,28 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.25420.1
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Pipe", "Pipe.vcxproj", "{DCBDD66C-20B3-4A9C-BA22-B51EF72487FC}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "PipeClient", "..\WindowsPipe\PipeClient.vcxproj", "{4795E0B3-EDAF-41AE-8258-CC4022056E60}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|x86 = Debug|x86
+		Release|x86 = Release|x86
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{DCBDD66C-20B3-4A9C-BA22-B51EF72487FC}.Debug|x86.ActiveCfg = Debug|Win32
+		{DCBDD66C-20B3-4A9C-BA22-B51EF72487FC}.Debug|x86.Build.0 = Debug|Win32
+		{DCBDD66C-20B3-4A9C-BA22-B51EF72487FC}.Release|x86.ActiveCfg = Release|Win32
+		{DCBDD66C-20B3-4A9C-BA22-B51EF72487FC}.Release|x86.Build.0 = Release|Win32
+		{4795E0B3-EDAF-41AE-8258-CC4022056E60}.Debug|x86.ActiveCfg = Debug|Win32
+		{4795E0B3-EDAF-41AE-8258-CC4022056E60}.Debug|x86.Build.0 = Debug|Win32
+		{4795E0B3-EDAF-41AE-8258-CC4022056E60}.Release|x86.ActiveCfg = Release|Win32
+		{4795E0B3-EDAF-41AE-8258-CC4022056E60}.Release|x86.Build.0 = Release|Win32
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

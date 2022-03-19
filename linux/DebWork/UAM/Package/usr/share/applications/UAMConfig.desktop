@@ -1,0 +1,7 @@
+[Desktop Entry]
+Name=UAMConfig
+Type=Application
+Exec=/opt/vesystem/uam/UAMConfig.sh
+Icon=/opt/vesystem/uam/logo_2.png
+Comment="released_on_2019_02_25"
+Terminal=false

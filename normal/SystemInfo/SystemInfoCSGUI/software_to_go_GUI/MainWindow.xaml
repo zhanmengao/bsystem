@@ -1,0 +1,165 @@
+﻿<Window x:Class="software_to_go_GUI.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:software_to_go_GUI"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="600" Width="800" Loaded="Window_Loaded">
+    <Window.Resources>
+        <local:MyConverter x:Key="aac"/>
+        <local:StringConverter x:Key="commandsettingConverter"/>
+        <local:WorkTypeConverter x:Key="workConverter"/>
+    </Window.Resources>
+    <Grid>
+        <TabControl >
+            <TabItem Header="概览信息">
+                <Grid>
+                  
+                    <Grid.RowDefinitions>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+                    <GroupBox Grid.Row="0" Header="Dashboard" Margin="5" Grid.ColumnSpan="2">
+                        <StackPanel x:Name="ww">
+                            <TextBlock>主机类型：</TextBlock>
+                            <TextBlock MinWidth="100" x:Name="host_type_block" Text="{Binding Path=Host_type}"/>
+                            <TextBlock>主机IP：</TextBlock>
+                            <TextBlock MinWidth="100" x:Name="host_ip_block" Text="{Binding Path=Host_ip}"/>
+                            <TextBlock>工作模式</TextBlock>
+                            <TextBlock x:Name="work_type_block" Text="{Binding Path=Work_type}"/>
+                            
+                           
+                            
+                        </StackPanel>
+                    </GroupBox>
+                    <GroupBox Grid.Row="1" Header="设置" Margin="5" Grid.ColumnSpan="2">
+                        <StackPanel>
+                            <TextBlock>ip:</TextBlock>
+                            <TextBox ToolTip="etcd 地址" Width="140" x:Name="etcd_addr_textbox" Text="{Binding Path=Etcd_addr}" ></TextBox>
+                            <TextBlock>port:</TextBlock>
+                            <TextBox ToolTip="etcd 端口" Width="140" x:Name="etcd_port_textbox" Text="{Binding Path=Etcd_port}" ></TextBox>
+                            <Button x:Name="test_ETCD_btn" Click="TestETCD_btn_Click">测试</Button>
+                            <Button x:Name="save_ETCD_btn" Click="Save_ETCD_btn_Click">保存etcd</Button>
+                            <RadioButton Content="会话托管" GroupName="w" IsChecked="{Binding Path=Work_type, Converter={StaticResource workConverter},ConverterParameter=0}" x:Name="rd1"/>
+                            <RadioButton Content="独占模式" GroupName="w" IsChecked="{Binding Path=Work_type, Converter={StaticResource workConverter},ConverterParameter=1}" x:Name="rd2"/>
+                            <Button x:Name="save_config_btn" Click="Save_config_btn_Click">保存设置</Button>
+                        </StackPanel>
+                    </GroupBox>
+                </Grid>
+            </TabItem>
+            <TabItem Header="本地程序" Name="tab_local">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="500"/>
+                        <RowDefinition Height="auto"/>
+                    </Grid.RowDefinitions>
+                    <Grid Grid.Row="0">
+                        <ListView x:Name="listview_local" Height="auto" SelectionChanged="Listview_local_SelectionChanged" >
+                            <ListView.View>
+                                <GridView>
+                                    <GridView.Columns>
+                                        <GridViewColumn Width="auto">
+                                            <GridViewColumn.CellTemplate>
+                                                <DataTemplate>
+                                                    <Image Source="{Binding Path=ImageStr,Converter={StaticResource aac}}" Width="25" Height="auto"/>
+                                                </DataTemplate>
+                                            </GridViewColumn.CellTemplate>
+                                        </GridViewColumn>
+                                        <GridViewColumn Header="程序名" Width="180">
+                                            <GridViewColumn.CellTemplate>
+                                                <DataTemplate>
+                                                    <TextBlock Text="{Binding Path=Name}" ToolTip="{Binding Path=Name}"/>
+                                                </DataTemplate>
+                                            </GridViewColumn.CellTemplate>
+                                        </GridViewColumn>
+                                        <GridViewColumn Header="路径" Width="200">
+                                            <GridViewColumn.CellTemplate>
+                                                <DataTemplate>
+                                                    <TextBlock Text="{Binding Path=Path}" ToolTip="{Binding Path=Path}"/>
+                                                </DataTemplate>
+                                            </GridViewColumn.CellTemplate>
+                                        </GridViewColumn>
+                                        <GridViewColumn Header="参数" Width="180">
+                                            <GridViewColumn.CellTemplate>
+                                                <DataTemplate>
+                                                    <TextBlock Text="{Binding Path=RequiredCommandLine}" ToolTip="{Binding Path=RequiredCommandLine}"/>
+                                                </DataTemplate>
+                                            </GridViewColumn.CellTemplate>
+                                        </GridViewColumn>
+                                        <GridViewColumn Header="描述" Width="180" >
+                                            <GridViewColumn.CellTemplate>
+                                                <DataTemplate>
+                                                    <TextBlock Text="{Binding Path=Description}" ToolTip="{Binding Path=Description}"/>
+                                                </DataTemplate>
+                                            </GridViewColumn.CellTemplate>
+                                        </GridViewColumn>
+                                    </GridView.Columns>
+                                </GridView>
+                            </ListView.View>
+                        </ListView>
+                    </Grid>
+                    <Grid Grid.Row="1" Margin="5">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition/>
+                            <ColumnDefinition/>
+                        </Grid.ColumnDefinitions>
+                        <Grid Grid.Column="0">
+                            <Button Content="浏览" Width="100" Click="Open_btn_Click"/>
+                        </Grid>
+                        <Grid Grid.Column="1">
+                            <Button Content="发布" Width="100" x:Name="publish_btn" Click="Publish_btn_Click"/>
+                        </Grid>
+                    </Grid>
+
+
+                </Grid>
+            </TabItem>
+            <TabItem Header="已发布" x:Name="tab_remote">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="500"/>
+                        <RowDefinition Height="auto"/>
+
+                    </Grid.RowDefinitions>
+                    <Grid Grid.Row="0">
+                        <ListView x:Name="listview_remote" Height="auto" SelectionChanged="Listview_remote_SelectionChanged">
+                            <ListView.View>
+                                <GridView>
+                                    <GridView.Columns>
+                                        <GridViewColumn Width="auto">
+                                            <GridViewColumn.CellTemplate>
+                                                <DataTemplate>
+                                                    <Image />
+                                                </DataTemplate>
+                                            </GridViewColumn.CellTemplate>
+                                        </GridViewColumn>
+                                        <GridViewColumn Header="程序名"  Width="180" DisplayMemberBinding="{Binding Path=Name}"/>
+                                        <GridViewColumn Header="路径" Width="200" DisplayMemberBinding="{Binding Path=Path}"/>
+                                        <GridViewColumn Header="参数设置" Width="100" DisplayMemberBinding="{Binding Path=CommandLineSetting,Converter={StaticResource commandsettingConverter}}"/>
+                                        <GridViewColumn Header="参数" Width="180" DisplayMemberBinding="{Binding Path=RequiredCommandLine}"/>
+                                    </GridView.Columns>
+                                </GridView>
+                            </ListView.View>
+                        </ListView>
+                    </Grid>
+                    <Grid Grid.Row="1" Margin="5">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition/>
+                            <ColumnDefinition/>
+                        </Grid.ColumnDefinitions>
+                        <Grid Grid.Column="0">
+                            <!--<Button Content="按钮" Width="100"/>-->
+                        </Grid>
+                        <Grid Grid.Column="1">
+                            <Button Content="移除" Width="100" x:Name="remove_btn" Click="Remove_btn_Click"/>
+                        </Grid>
+                    </Grid>
+
+
+                </Grid>
+            </TabItem>
+        </TabControl>
+
+    </Grid>
+</Window>

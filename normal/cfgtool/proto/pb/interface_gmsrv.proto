@@ -1,0 +1,29 @@
+syntax = "proto3";
+package pb;
+
+import "rpc.proto";
+
+// 获取cos密钥
+message CosTmpSecretReq {
+}
+
+message CosTmpSecretRsp {
+    RpcRspHead Head      = 1;
+    string     AppID     = 2;  //
+    string     Region    = 3;  //
+    string     SecretID  = 4;  // 临时密钥
+    string     SecretKey = 5;  // 临时密钥
+    string     Token     = 6;
+    int64      StartTime = 7;   // 临时密钥有效期开始时间
+    int64      EndTime   = 8;   // 临时密钥有效期结束时间
+    string     Bucket    = 9;   //
+    string     URI       = 10;  /// 上传文件相对cos bucket 路径
+}
+
+// 日志上报成功后上报的用户状态
+message CosTmpStatusReportReq {
+}
+
+message CosTmpSecretStatusReportRsp {
+    RpcRspHead Head = 1;
+}

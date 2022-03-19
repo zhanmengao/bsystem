@@ -1,0 +1,122 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Other">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="Process">
+      <UniqueIdentifier>{b4d53f09-8f24-47dd-a361-b829c8551ee3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="资源文件">
+      <UniqueIdentifier>{ad2fae88-6d1f-444b-80c6-cc90710b5ceb}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ProcessMonit">
+      <UniqueIdentifier>{d401f04d-4dbe-4079-a79c-73f8c617718d}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="Other.cpp">
+      <Filter>Other</Filter>
+    </ClCompile>
+    <ClCompile Include="Other2.cpp">
+      <Filter>Other</Filter>
+    </ClCompile>
+    <ClCompile Include="Other3.cpp">
+      <Filter>Other</Filter>
+    </ClCompile>
+    <ClCompile Include="Other4.cpp">
+      <Filter>Other</Filter>
+    </ClCompile>
+    <ClCompile Include="PrivilegeUp.cpp">
+      <Filter>Other</Filter>
+    </ClCompile>
+    <ClCompile Include="ProcessHelper_Info.cpp">
+      <Filter>Process</Filter>
+    </ClCompile>
+    <ClCompile Include="DebugEvent.cpp">
+      <Filter>Other</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Windows\DLLProject\DLL注入\DLLUtils.cpp">
+      <Filter>资源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\C++space\Convert\Convert\Convert.cpp">
+      <Filter>资源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="main.cpp" />
+    <ClCompile Include="..\Fork\ForkUtils.cpp">
+      <Filter>资源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="SessionManager_Global.cpp">
+      <Filter>资源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="SessionManager_Get.cpp">
+      <Filter>资源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="SessionManager_CEXE.cpp">
+      <Filter>资源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="SessionManager_CDLL.cpp">
+      <Filter>资源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\SystemInfo\SystemInfo\WMI\WMIUtils.cpp">
+      <Filter>资源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\SystemInfo\SystemInfo\WMI\CtrlWmi.cpp">
+      <Filter>资源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\File\FileManager\FileManager\FileAttrHelper.cpp">
+      <Filter>资源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\File\FileManager\FileManager\FileManager.cpp">
+      <Filter>资源文件</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Other.hpp">
+      <Filter>Other</Filter>
+    </ClInclude>
+    <ClInclude Include="PrivilegeUp.h">
+      <Filter>Other</Filter>
+    </ClInclude>
+    <ClInclude Include="ProcessHelper.h">
+      <Filter>Process</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Windows\DLLProject\DLL注入\DLLUtils.h">
+      <Filter>资源文件</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\C++space\Convert\Convert\Convert.h">
+      <Filter>资源文件</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Fork\ForkUtils.h">
+      <Filter>资源文件</Filter>
+    </ClInclude>
+    <ClInclude Include="ProcessElevationUtils.h">
+      <Filter>Process</Filter>
+    </ClInclude>
+    <ClInclude Include="ProcessMonitWMI.h">
+      <Filter>ProcessMonit</Filter>
+    </ClInclude>
+    <ClInclude Include="ProcessMonitBase.h">
+      <Filter>ProcessMonit</Filter>
+    </ClInclude>
+    <ClInclude Include="ProcessMonitList.h">
+      <Filter>ProcessMonit</Filter>
+    </ClInclude>
+    <ClInclude Include="SessionManager.h">
+      <Filter>资源文件</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\SystemInfo\SystemInfo\WMI\WMIUtils.h">
+      <Filter>资源文件</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\SystemInfo\SystemInfo\WMI\CtrlWmi.h">
+      <Filter>资源文件</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\File\FileManager\FileManager\FileAttrHelper.h">
+      <Filter>资源文件</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\File\FileManager\FileManager\FileManager.h">
+      <Filter>资源文件</Filter>
+    </ClInclude>
+  </ItemGroup>
+</Project>

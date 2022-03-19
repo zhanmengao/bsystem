@@ -1,0 +1,156 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Logic">
+      <UniqueIdentifier>{3de781b3-8b06-42e6-91c9-0594f6d02740}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Utils">
+      <UniqueIdentifier>{4cbd1c13-2e2c-4b8e-955e-9ace50db9d6e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Common">
+      <UniqueIdentifier>{d395695a-b257-4562-a540-af3ce7f81be2}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="WindowManager.cpp">
+      <Filter>Logic</Filter>
+    </ClCompile>
+    <ClCompile Include="MouseManager.cpp">
+      <Filter>Logic</Filter>
+    </ClCompile>
+    <ClCompile Include="KeyboardManager.cpp">
+      <Filter>Logic</Filter>
+    </ClCompile>
+    <ClCompile Include="ClipboardManager.cpp">
+      <Filter>Logic</Filter>
+    </ClCompile>
+    <ClCompile Include="Tools.cpp">
+      <Filter>Utils</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Process\WindowsProcessHelper\CreateProcess\SessionManager_CDLL.cpp">
+      <Filter>Utils</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Process\WindowsProcessHelper\CreateProcess\SessionManager_CEXE.cpp">
+      <Filter>Utils</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Process\WindowsProcessHelper\CreateProcess\SessionManager_Get.cpp">
+      <Filter>Utils</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Process\WindowsProcessHelper\CreateProcess\SessionManager_Global.cpp">
+      <Filter>Utils</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Process\WindowsProcessHelper\CreateProcess\ProcessHelper_Info.cpp">
+      <Filter>Utils</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\C++space\Convert\Convert\Convert.cpp">
+      <Filter>Utils</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Time\Time\WinTime.cpp">
+      <Filter>Utils</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Process\WindowsProcessHelper\Fork\ChildProcess.cpp">
+      <Filter>Utils</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\Paint\GDI\PicHelper\PicHelper\PicHelper.cpp">
+      <Filter>Utils</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Windows\DLLProject\DLL注入\DLLUtils.cpp">
+      <Filter>Utils</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Windows\WNDUtils\WNDUtils\WindowHelper.cpp">
+      <Filter>Utils</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Process\WindowsProcessHelper\Fork\ForkUtils.cpp">
+      <Filter>Utils</Filter>
+    </ClCompile>
+    <ClCompile Include="Main.cpp">
+      <Filter>Common</Filter>
+    </ClCompile>
+    <ClCompile Include="LogManager.cpp">
+      <Filter>Common</Filter>
+    </ClCompile>
+    <ClCompile Include="Define.cpp">
+      <Filter>Common</Filter>
+    </ClCompile>
+    <ClCompile Include="Config.cpp">
+      <Filter>Common</Filter>
+    </ClCompile>
+    <ClCompile Include="ListenerManager.cpp">
+      <Filter>Logic</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\File\FileManager\FileManager\FileAttrHelper.cpp">
+      <Filter>Utils</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\File\FileManager\FileManager\FileManager.cpp">
+      <Filter>Utils</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="WindowManager.h">
+      <Filter>Logic</Filter>
+    </ClInclude>
+    <ClInclude Include="MouseManager.h">
+      <Filter>Logic</Filter>
+    </ClInclude>
+    <ClInclude Include="KeyboardManager.h">
+      <Filter>Logic</Filter>
+    </ClInclude>
+    <ClInclude Include="ClipboardManager.h">
+      <Filter>Logic</Filter>
+    </ClInclude>
+    <ClInclude Include="Tools.h">
+      <Filter>Utils</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Process\WindowsProcessHelper\CreateProcess\ProcessHelper.h">
+      <Filter>Utils</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Process\WindowsProcessHelper\CreateProcess\SessionManager.h">
+      <Filter>Utils</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\C++space\Convert\Convert\Convert.h">
+      <Filter>Utils</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Time\Time\Time.hpp">
+      <Filter>Utils</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Time\Time\WinTime.h">
+      <Filter>Utils</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Process\WindowsProcessHelper\Fork\ChildProcess.h">
+      <Filter>Utils</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\Paint\GDI\PicHelper\PicHelper\PicHelper.h">
+      <Filter>Utils</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Windows\DLLProject\DLL注入\DLLUtils.h">
+      <Filter>Utils</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Windows\WNDUtils\WNDUtils\WindowHelper.h">
+      <Filter>Utils</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Process\WindowsProcessHelper\Fork\ForkUtils.h">
+      <Filter>Utils</Filter>
+    </ClInclude>
+    <ClInclude Include="LogManager.h">
+      <Filter>Common</Filter>
+    </ClInclude>
+    <ClInclude Include="ListenerBase.h">
+      <Filter>Common</Filter>
+    </ClInclude>
+    <ClInclude Include="Define.h">
+      <Filter>Common</Filter>
+    </ClInclude>
+    <ClInclude Include="Config.h">
+      <Filter>Common</Filter>
+    </ClInclude>
+    <ClInclude Include="ListenerManager.h">
+      <Filter>Logic</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\File\FileManager\FileManager\FileAttrHelper.h">
+      <Filter>Utils</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\File\FileManager\FileManager\FileManager.h">
+      <Filter>Utils</Filter>
+    </ClInclude>
+  </ItemGroup>
+</Project>

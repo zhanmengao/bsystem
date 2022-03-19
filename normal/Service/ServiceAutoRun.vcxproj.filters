@@ -1,0 +1,44 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Other1">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hh;hpp;hxx;hm;inl;inc;xsd</Extensions>
+    </Filter>
+    <Filter Include="Book">
+      <UniqueIdentifier>{9131c232-9158-4465-86c8-16e4487ab08d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Utils">
+      <UniqueIdentifier>{b683c43b-0feb-41cc-9164-765ed2a14fd8}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Service.h">
+      <Filter>Other1</Filter>
+    </ClInclude>
+    <ClInclude Include="ServiceCtrl.h">
+      <Filter>Utils</Filter>
+    </ClInclude>
+    <ClInclude Include="ServiceOperate.h">
+      <Filter>Book</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="Service.cpp">
+      <Filter>Other1</Filter>
+    </ClCompile>
+    <ClCompile Include="ServiceCtrl.cpp">
+      <Filter>Utils</Filter>
+    </ClCompile>
+    <ClCompile Include="AutoRun_Service_Test.cpp">
+      <Filter>Book</Filter>
+    </ClCompile>
+    <ClCompile Include="ServiceTest.cpp">
+      <Filter>Book</Filter>
+    </ClCompile>
+    <ClCompile Include="StartStop.cpp">
+      <Filter>Other1</Filter>
+    </ClCompile>
+    <ClCompile Include="main.cpp" />
+  </ItemGroup>
+</Project>

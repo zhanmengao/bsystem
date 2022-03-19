@@ -1,0 +1,356 @@
+syntax = "proto3";
+package pb;
+
+import "rpc.proto";
+import "table_action.proto";
+import "struct.proto";
+import "enum.proto";
+import "interface_other.proto";
+import "table.proto";
+import "db_base.proto";
+
+// 标签系统运营中心工具，查询/设置某个tagMod的标签
+message TagSystemToolReq {
+    TagMod      TagMod    = 1;  // 标签类型
+    TagOpType   TagOpType = 2;  // 操作类型
+    TagDataItem TagData   = 3;  // 标签数据
+}
+message TagSystemToolRsp {
+    RpcRspHead  Head    = 1;
+    TagDataItem TagData = 2;  // 标签id
+}
+
+// 1.获取宠物列表
+message PetListReq {
+}
+
+message PetListRsp {
+    RpcRspHead                Head            = 1;
+    PetInfo                   Pets            = 2;
+    CommonRewardData          MagicFreeReward = 3;  // 有免费的魔力瓶发放
+    PetUpgradeInfo            UpgradeInfo     = 4;  // 宠物升级信息
+    repeated PetRecoveryBuild Build           = 5;  // 海星修复建筑
+}
+
+// 2.宠物喂养
+message PetFeedReq {
+    int32       Id       = 1;
+    PetFeedType FeedType = 2;  //类型 免费魔力瓶，一般魔力瓶，经验值
+    int64       FeedNum  = 3;  //数量
+}
+
+message PetFeedRsp {
+    RpcRspHead  Head  = 1;
+    PetDataItem Pet   = 2;
+    PetPropInfo Props = 3;
+}
+
+// 海星修复
+message PetRecoveryBuild {
+    UserPlanetBuilding PreBuilding   = 1;  // 修复前建筑状态
+    UserPlanetBuilding AfterBuilding = 2;  // 修复后建筑状态
+}
+
+// 透传客户端数据接口
+// 获取
+message StorageByClientDataGetReq {
+    repeated ClientDataSubType SubType = 1;
+}
+message StorageByClientDataGetRsp {
+    RpcRspHead                   head = 1;
+    repeated StorageByClientData Data = 2;
+}
+// 设置
+message StorageByClientDataSetReq {
+    repeated StorageByClientData data = 1;
+}
+message StorageByClientDataSetRsp {
+    RpcRspHead head = 1;
+}
+// 前端维护一个（SubType -> Type(Data)）的字典做解析。
+// 后台存储hash： key-> StorageByClient:{uid}   field-> {SubType}
+// 透传给客户端的数据，由客户端自己维护，客户端需要限制数据量，后台也会做最大限制
+message StorageByClientData {
+    ClientDataSubType SubType = 1;  // 子场景名
+    bytes             Data    = 2;  //  具体数据
+}
+
+// SceneSubsidy pull
+message SceneSubsidyPullActivityReq {
+}
+message SceneSubsidyPullActivityRsp {
+    RpcRspHead                 head = 1;
+    repeated SceneActivityItem list = 2;  // 场景信息
+}
+message SceneActivityItem {
+    int32              popCount    = 1;  // 已弹出次数
+    int32              rewardCount = 2;  // 已领奖次数
+    int32              ad          = 3;  // 广告开关
+    int32              share       = 4;  // 分享开关
+    SceneSubsidyConfig sceneList   = 5;  // 场景配置
+}
+
+// SceneSubsidy reward
+message SceneSubsidyRewardReq {
+    int32 SceneId = 1;
+}
+message SceneSubsidyRewardRsp {
+    RpcRspHead       head   = 1;
+    CommonRewardData reward = 2;
+}
+
+// SceneSubsidy pop
+message SceneSubsidyPopReq {
+    int32 SceneId = 1;
+}
+message SceneSubsidyPopRsp {
+    RpcRspHead head = 1;
+}
+
+// SceneSubsidy Check
+message SceneSubsidyCheckReq {
+    int32 SceneId = 1;
+}
+message SceneSubsidyCheckRsp {
+    RpcRspHead head  = 1;
+    bytes      extra = 2;
+}
+
+// 新手引导绑定奖励
+message NewUserGuideBindRewardReq {
+}
+message NewUserGuideBindRewardRsp {
+    RpcRspHead       head   = 1;
+    CommonRewardData reward = 2;  // 绑定奖励
+}
+
+// 新手引导
+message NewUserGuideProcessReq {
+    int32               step        = 1;  // 玩家当前到的新手引导步数
+    UserProfileProperty userProfile = 2;  // 玩家基本信息
+}
+
+message NewUserGuideProcessRsp {
+    RpcRspHead       head           = 1;
+    CommonRewardData completeReward = 2;  // 新手引导完成奖励
+}
+
+// ============================================== 头像框
+// 使用头像框
+message AvatarFrameUseReq {
+    int64 FrameId = 1;  // 想要使用的头像框
+}
+
+message AvatarFrameUseRsp {
+    RpcRspHead Head = 1;
+}
+
+// 头像框展示
+message AvatarFrameListReq {}
+
+enum AvatarFrameStat {
+    AvatarFrameStatLocked = 0;  // 未解锁
+    AvatarFrameStatOwned  = 1;  // 已拥有
+    AvatarFrameStatUsing  = 2;  // 正在使用
+}
+
+message AvatarFrameConfigItem {
+    int64           avatarID     = 1;  // 头像框ID
+    AvatarFrameStat stat         = 2;  // 头像框状态
+    int64           onlineSec    = 3;  // 上线剩余时间
+    string          starNumColor = 4;  // 头像下方星星数数字颜色值(9b4217)
+    string          bundleName   = 5;  // 头像框ab名
+}
+
+message AvatarFrameListRsp {
+    RpcRspHead                        Head   = 1;
+    map<int64, AvatarFrameConfigItem> config = 2;  // 头像框配置
+}
+// ============================================== 头像框end
+
+// 建岛评星发奖请求
+message EvaluationStarRewardReq {
+    int32 EvaluationStarNum = 1;  // 评价的星星数
+}
+
+message EvaluationStarRewardRsp {
+    RpcRspHead                Head    = 1;
+    repeated CommonRewardData rewards = 2;
+}
+
+// 建岛分享发奖请求
+message PlanetShareRewardReq {
+}
+
+message PlanetShareRewardRsp {
+    RpcRspHead                Head    = 1;
+    repeated CommonRewardData rewards = 2;
+}
+
+message PlanetInfoReq {
+    int64 uid = 1;
+}
+message PlanetInfoRsp {
+    RpcRspHead     Head       = 1;
+    UserPlanetInfo PlanetInfo = 2;  // 岛屿建筑信息
+}
+
+// 操作岛屿请求
+message PlanetOperationReq {
+    UserPlanetBuilding OperatorBuilding = 1;  // 操作的建筑
+}
+
+message PlanetOperationRsp {
+    RpcRspHead      Head       = 1;
+    UserPlanetInfo  PlanetInfo = 2;  // 岛屿建筑信息
+    int64           Money      = 3;  // 玩家金币数量
+    int64           Star       = 4;  // 星星数
+    bool            IsFull     = 5;  // 是否满岛
+    PlanetOperation Operation  = 6;  // 玩家具体的操作类型
+    NextPlanetExtra Extra      = 7;  // 过岛时额外的字段
+}
+
+message NextPlanetExtra {
+    bool                      IsMark      = 1;  // 是否可评星
+    repeated CommonRewardData Reward      = 2;  // 奖励
+    repeated CommonRewardItem ShareReward = 3;  // 过岛分享奖励
+}
+
+// 好友列表
+message FriendListRpcReq {  // 详情
+    bool IsLogin = 1;       //是否是登陆时
+}
+
+message FriendListRpcRsp {
+    RpcRspHead Head = 1;
+}
+
+message FriendSendRpcReq {  // 赠送体力
+}
+
+message FriendSendRpcRsp {
+    RpcRspHead Head = 1;
+}
+
+message FriendReceiveRpcReq {  // 获得好友送给我的体力
+}
+
+message FriendReceiveRpcRsp {
+    RpcRspHead Head = 1;
+}
+
+message ActionOfflineEventReq {
+    ActionConfig AcfConfig = 1;
+}
+
+message ActionOfflineEventRsp {
+    RpcRspHead Head = 1;
+}
+
+// 活动修改
+message ActionChangeReq {
+    string ActID = 1;  // 活动ID
+    bytes  Data  = 2;  // 具体数据内容
+}
+
+message ActionChangeRsp {
+    RpcRspHead Head = 1;
+}
+
+// 转盘事件活动修改
+message ActionWheelEventChange {
+    string ChangeType = 1;  // 修改类型
+}
+
+// 获取功能解锁状态
+message GetFuncUnlockStatusReq {
+    string ID = 1;
+}
+
+message GetFuncUnlockStatusRsp {
+    RpcRspHead       Head   = 1;
+    FuncUnLockStatus Status = 2;
+}
+
+// 上报推送token
+message ReportTokenReq {
+    string Token = 1;
+}
+
+message ReportTokenRsp {
+    RpcRspHead Head = 1;
+}
+
+// 消息中心
+message MsgCenterListReq {
+    uint32 MessageType = 1;  // 消息类型 0 - 全部 1-未读
+}
+
+message MsgCenterListRsp {
+    RpcRspHead                        Head        = 1;
+    repeated MessageCenterMessageItem messageList = 2;  // 消息数据
+    repeated MessageCenterMailItem    mailList    = 3;  // 邮件数据
+    int64                             serverTime  = 4;  // 服务器当前时间
+}
+
+// 消息中心领奖
+message MsgCenterRewardReq {
+    repeated int64 messageID = 1;  // 消息ID
+}
+
+message MsgCenterRewardRsp {
+    RpcRspHead       Head    = 1;
+    CommonRewardData rewards = 2;  // 发放奖励
+}
+
+// 发送邮件
+message MsgCenterMailSendReq {
+    int64                     beginDate = 1;  // 开始时间
+    int64                     endDate   = 2;  // 结束时间
+    string                    mainTitle = 3;  // 主标题
+    string                    subTitle  = 4;  // 副标题
+    string                    content   = 5;  // 内容
+    uint32                    subType   = 6;  // 邮件子类型
+    bytes                     specData  = 7;  // 子消息
+    repeated CommonRewardItem reward    = 8;  // 奖励
+}
+
+message MsgCenterMailSendRsp {
+    RpcRspHead Head = 1;
+}
+
+// 修改邮件状态
+message MsgCenterMailStatusChangeReq {
+    repeated int64 messageID = 1;  // 消息ID
+}
+
+message MsgCenterMailStatusChangeRsp {
+    RpcRspHead Head = 1;
+}
+
+message MsgCenterGlobalMailStoreReq {
+    GlobalMailItem     MailItem = 1;
+    GlobalMailItemData MailData = 2;
+}
+
+message MsgCenterGlobalMailStoreRsp {
+    RpcRspHead Head = 1;
+}
+
+// 邀请成功异步转发请求
+message UserInviteSuccessReq {
+    int64 InvitedUID  = 1;  // 被邀请者的UID
+    int32 SceneID     = 2;  // 场景ID
+    int32 Destination = 3;  // 分享步骤
+}
+
+message UserInviteSuccessRsp {
+    RpcRspHead Head = 1;
+}
+
+message PHPUserInviteSuccessReq {
+}
+
+message PHPUserInviteSuccessRsp {
+    RpcRspHead Head = 1;
+}

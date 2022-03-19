@@ -1,0 +1,178 @@
+syntax = "proto3";
+package pb;
+
+import "rpc.proto";
+import "struct.proto";
+import "struct_slot.proto";
+import "enum.proto";
+
+// 老虎机
+enum SlotDetailRpcType {
+    SlotDetailRpcTypeLogin       = 0;  // 登陆流程调用
+    SlotDetailRpcTypeAfterNewbie = 1;  // 过完新手引导调用
+}
+
+message SlotDetailRpcReq {       // 详情, 是否有未完成的打炮偷, ck信息
+    SlotDetailRpcType Type = 1;  // 调用场景类型
+}
+
+message SlotDetailRpcRsp {
+    RpcRspHead          Head                = 1;
+    string              UnusedType          = 2;
+    SlotFireInfo        UnusedFire          = 3;
+    SlotStealTarget     UnusedSteal         = 4;
+    SlotStealCK         CK                  = 6;
+    int64               NextRecoverTime     = 7;  // 0表示不需要倒计时
+    UserProfileProperty UserProfileProperty = 8;  // 用户资产数据同步
+                                                  //    SlotFireInfo FireInfo                       = 9; // 没消费掉炮，炮的相关信d'd息
+    PlanetDetail planet = 10;                     //岛屿额外的信息
+}
+
+message SlotRecoverRpcReq {  //兑换, 体力恢复
+}
+
+message SlotRecoverRpcRsp {
+    RpcRspHead Head            = 1;
+    int64      NextRecoverTime = 2;  // 0表示不需要倒计时
+    int64      TiliIncr        = 3;
+    int64      TiliAmount      = 4;
+}
+
+message SlotPlayRpcReq {  // 摇老虎机
+    uint32 Multiple = 1;
+}
+
+// 转转盘的返回
+message SlotPlayRpcRsp {
+    RpcRspHead      Head        = 1;
+    SlotResult      Result      = 2;
+    SlotStealTarget StealTarget = 3;
+    SlotFireInfo    FireInfo    = 4;  // 转到炮，炮的相关信息
+}
+
+message SlotStealRpcReq {  // 偷
+    //    repeated uint32 SelectedIDs = 1; // 4选3
+    PetID PetId = 1;  //宠物id
+}
+
+// 偷取结果
+enum SlotStealResultItemType {
+    SlotStealResultItemTypeEmpty  = 0;  //空
+    SlotStealResultItemTypeBig    = 1;  //大奖
+    SlotStealResultItemTypeLittle = 2;  //小奖
+}
+
+message SlotStealResultItem {
+    SlotStealResultItemType Type   = 1;
+    int64                   Money  = 2;
+    CommonRewardData        Reward = 3;  //额外的奖励如空位宝箱奖励
+}
+
+message SlotStealRpcRsp {
+    RpcRspHead                   Head         = 1;
+    repeated SlotStealResultItem ResultList   = 2;  // 结果列表
+    int64                        MoneyAmount  = 3;  // 金币全量
+    SlotStealCK                  CK           = 4;  // 新的CK信息
+    bool                         IsSelectedCK = 5;  // 是否选中ck
+    PetSkill                     PetSkill     = 6;  //宠物技能
+}
+
+message SlotStealPoolLoginRpcReq {
+    UserProfileProperty Property       = 1;  // 当前用户信息
+    bool                CheckAndLock   = 2;  //
+    int64               LockedFriendCK = 3;  // 当前用户锁定的ck uid
+    repeated int64      FriendUids     = 4;  //
+}
+
+message SlotStealPoolLoginRpcRsp {
+    RpcRspHead    Head          = 1;
+    bool          LockSuccess   = 2;  //
+    SlotStolenTag LockStolenTag = 3;  //
+    bool          UpdateCKInfo  = 4;  // 是否更新了ck信息
+}
+
+message SlotStealPoolLockRpcReq {   // 锁定
+    repeated int64 FriendUids = 1;  //
+}
+
+message SlotStealPoolLockRpcRsp {
+    RpcRspHead    Head          = 1;
+    bool          LockSuccess   = 2;  //
+    SlotStolenTag LockStolenTag = 3;
+}
+
+message SlotStealPoolStealedRpcReq {
+    SlotStealBehaviorInfo StealBehaviorInfo = 1;
+    bool                  NeedNextLock      = 2;
+    repeated int64        FriendUids        = 3;  //
+}
+
+message SlotStealPoolStealedRpcRsp {
+    RpcRspHead    Head          = 1;
+    bool          LockSuccess   = 2;  //
+    SlotStolenTag LockStolenTag = 3;
+}
+
+// 打炮的请求
+message SlotFireReq {
+    int64        TargetUid  = 1;  // 目标用户uid
+    SlotFireType FireType   = 2;  // 大炮的类型
+    uint32       Multiple   = 3;  // bet数 （不会使用，用来验证）
+    uint32       BuildingID = 4;  // 建筑的id
+}
+
+// 打炮的结果返回
+message SlotFireRsp {
+    RpcRspHead         Head        = 1;
+    int64              Money       = 2;  // 基础的金币
+    int64              GlobalMoney = 3;  // 更新后的金币存量
+    SlotFireResultType ResultType  = 4;  // 大炮结果类型
+    uint32             Multiple    = 6;  // 实际bet数
+}
+
+message SlotStealStatReq {
+}
+
+message SlotStealStatRsp {
+    RpcRspHead    Head = 1;
+    SlotStealData Data = 2;
+}
+
+message SlotStealData {
+    uint32 DayTotalLimitTimes = 1;  // 被偷上限
+    uint32 DayTotalStolen     = 2;  // 被偷次数
+    uint32 DayStealTimesMax   = 3;  // 被机器人偷上限
+    uint32 DayTotalRobot      = 4;  // 被机器人偷次数
+    uint32 RobotTimeSecond    = 5;  // 机器人偷触发时间
+    int64  DayPoolLimitMoney  = 6;  // 被好友偷金额上限
+    int64  StealMoney         = 7;  // 被好友偷金额
+}
+
+message SlotFireStatReq {
+}
+
+message SlotFireStatRsp {
+    RpcRspHead   Head = 1;
+    SlotFireData Data = 2;
+}
+
+message SlotFireData {
+    uint32 ShieldFireLimitTimes   = 1;  // 有盾(机器人+人)被打上限
+    uint32 ShieldFireTimes        = 2;  // 有盾（机器人+人）被打次数
+    uint32 NoShieldFireLimitTimes = 3;  // 无盾被机器人打上限
+    uint32 NoShieldFireTimes      = 4;  // 无盾被机器人打次数
+    int64  Shield                 = 5;  // 当前盾牌数
+    uint32 ShieldFireTimeSecond   = 6;  // 有盾被机器人打触发时间
+    uint32 NoShieldFireTimeSecond = 7;  // 无盾被机器人打触发时间
+    uint32 FriendFireLimitTimes   = 8;  // 无盾被好友打上限
+    uint32 FriendFireTimes        = 9;  // 无盾被好友打次数
+}
+
+message SlotUserStatReq {
+}
+
+message SlotUserStatRsp {
+    RpcRspHead    Head      = 1;
+    SlotStealData StealData = 2;
+    SlotFireData  FireData  = 3;
+}

@@ -1,0 +1,71 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Other">
+      <UniqueIdentifier>{76da3162-30da-4e9f-b3fa-ca11ce0f4ee1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Day6_继承">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="demo13_类型兼容性原则遇上函数重写.cpp">
+      <Filter>Day6_继承</Filter>
+    </ClCompile>
+    <ClCompile Include="dm01_继承的基本语法.cpp">
+      <Filter>Day6_继承</Filter>
+    </ClCompile>
+    <ClCompile Include="dm02_单个类的访问控制.cpp">
+      <Filter>Day6_继承</Filter>
+    </ClCompile>
+    <ClCompile Include="dm03_派生类访问控制综合训练.cpp">
+      <Filter>Day6_继承</Filter>
+    </ClCompile>
+    <ClCompile Include="dm04_类型兼容性原则.cpp">
+      <Filter>Day6_继承</Filter>
+    </ClCompile>
+    <ClCompile Include="dm05_继承中构造和析构.cpp">
+      <Filter>Day6_继承</Filter>
+    </ClCompile>
+    <ClCompile Include="dm06_继承和组合混搭下的构造和析构.cpp">
+      <Filter>Day6_继承</Filter>
+    </ClCompile>
+    <ClCompile Include="dm07_继承中的同名成员变量和函数.cpp">
+      <Filter>Day6_继承</Filter>
+    </ClCompile>
+    <ClCompile Include="dm08_继承中的static关键字.cpp">
+      <Filter>Day6_继承</Filter>
+    </ClCompile>
+    <ClCompile Include="dm09_多继承语法.cpp">
+      <Filter>Day6_继承</Filter>
+    </ClCompile>
+    <ClCompile Include="dm10_多继承的二义性.cpp">
+      <Filter>Day6_继承</Filter>
+    </ClCompile>
+    <ClCompile Include="dm11_多继承原理抛砖.cpp">
+      <Filter>Day6_继承</Filter>
+    </ClCompile>
+    <ClCompile Include="dm13_类型兼容性原则遇上函数重写.cpp">
+      <Filter>Day6_继承</Filter>
+    </ClCompile>
+    <ClCompile Include="dm14_多态案例.cpp">
+      <Filter>Day6_继承</Filter>
+    </ClCompile>
+    <ClCompile Include="dm15_虚析构函数.cpp">
+      <Filter>Day6_继承</Filter>
+    </ClCompile>
+    <ClCompile Include="dm16_重载重写重定义.cpp">
+      <Filter>Day6_继承</Filter>
+    </ClCompile>
+    <ClCompile Include="我的多态.cpp">
+      <Filter>Other</Filter>
+    </ClCompile>
+    <ClCompile Include="兼容性原则.cpp">
+      <Filter>Other</Filter>
+    </ClCompile>
+    <ClCompile Include="继承中的构造析构.cpp">
+      <Filter>Other</Filter>
+    </ClCompile>
+  </ItemGroup>
+</Project>

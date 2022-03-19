@@ -1,0 +1,154 @@
+syntax = "proto3";
+package pb;
+
+/*
+ * syhm_errno.proto - 基本错误码文件
+ * Author: 小白龙 <lightmen@aladinfun.com>
+ *
+ * 错误码规则：
+ * 错误码分为 基本错误码 和 业务错误码
+ *
+ * 基本错误码定义在base_errno.proto文件
+ * 基本错误码编码范围为 1 ~ 99999，并且这99999个基本错误码划分两类：
+ * 一类为系统级别的错误码，编码范围为 1 ~ 9999，定义系统函数级别的错误码；
+ * 另一类为项目自定义基本错误码，编码范围为 10000 ~ 99999。
+ *
+ * 业务错误码定义在syhm_errno.proto文件
+ * 业务错误码从100000开始，前两位用来划分模块，后四位定义具体错误码
+ *
+ * 添加错误码规则：
+ * 1. 编码连续 的错误码之间 不允许 空行，特殊情况除外，比如两个不同业务起始之间的错误码；
+ * 2. 编码不连续 的错误码之间 必须 空行；
+ * 3. 每个错误码后续必须写注释注明错误原因；
+ * 4. 为了代码美观需要，连续行错误码之间注意对齐；
+ * 5. 错误码命令规则： E_{模块名}_{错误说明缩写}，其中{模块名}针对项目级别错误码,可省略；
+*/
+enum BASE_ERR {
+    RET_SUCCESS = 0;  //return success
+
+    //系统级别的错误码，编码范围为 1 ~ 9999
+    E_PERM   = 1;  /* Operation not permitted */
+    E_NOENT  = 2;  /* No such file or directory */
+    E_SRCH   = 3;  /* No such process */
+    E_INTR   = 4;  /* Interrupted system call */
+    E_IO     = 5;  /* I/O error */
+    E_NXIO   = 6;  /* No such device or address */
+    E_A2BIG  = 7;  /* Argument list too long */
+    E_NOEXEC = 8;  /* Exec format error */
+    E_BADF   = 9;  /* Bad file number */
+    E_CHILD  = 10; /* No child processes */
+    E_AGAIN  = 11; /* Try again */
+    E_NOMEM  = 12; /* Out of memory */
+    E_ACCES  = 13; /* Permission denied */
+    E_FAULT  = 14; /* Bad address */
+    E_NOTBLK = 15; /* Block device required */
+    E_BUSY   = 16; /* Device or resource busy */
+    E_EXIST  = 17; /* File exists */
+    E_XDEV   = 18; /* Cross-device link */
+    E_NODEV  = 19; /* No such device */
+    E_NOTDIR = 20; /* Not a directory */
+    E_ISDIR  = 21; /* Is a directory */
+    E_INVAL  = 22; /* Invalid argument */
+    E_NFILE  = 23; /* File table overflow */
+    E_MFILE  = 24; /* Too many open files */
+    E_NOTTY  = 25; /* Not a typewriter */
+    E_TXTBSY = 26; /* Text file busy */
+    E_FBIG   = 27; /* File too large */
+    E_NOSPC  = 28; /* No space left on device */
+    E_SPIPE  = 29; /* Illegal seek */
+    E_ROFS   = 30; /* Read-only file system */
+    E_MLINK  = 31; /* Too many links */
+    E_PIPE   = 32; /* Broken pipe */
+    E_DOM    = 33; /* Math argument out of domain of func */
+    E_RANGE  = 34; /* Math result not representable */
+
+    E_NAMETOOLONG    = 36;  /* File name too long */
+    E_NOLCK          = 37;  /* No record locks available */
+    E_NOSYS          = 38;  /* Invalid system call number */
+    E_NOTEMPTY       = 39;  /* Directory not empty */
+    E_LOOP           = 40;  /* Too many symbolic links encountered */
+    E_NOMSG          = 42;  /* No message of desired type */
+    E_IDRM           = 43;  /* Identifier removed */
+    E_CHRNG          = 44;  /* Channel number out of range */
+    E_L2NSYNC        = 45;  /* Level 2 not synchronized */
+    E_L3HLT          = 46;  /* Level 3 halted */
+    E_L3RST          = 47;  /* Level 3 reset */
+    E_LNRNG          = 48;  /* Link number out of range */
+    E_UNATCH         = 49;  /* Protocol driver not attached */
+    E_NOCSI          = 50;  /* No CSI structure available */
+    E_L2HLT          = 51;  /* Level 2 halted */
+    E_BADE           = 52;  /* Invalid exchange */
+    E_BADR           = 53;  /* Invalid request descriptor */
+    E_XFULL          = 54;  /* Exchange full */
+    E_NOANO          = 55;  /* No anode */
+    E_BADRQC         = 56;  /* Invalid request code */
+    E_BADSLT         = 57;  /* Invalid slot */
+    E_BFONT          = 59;  /* Bad font file format */
+    E_NOSTR          = 60;  /* Device not a stream */
+    E_NODATA         = 61;  /* No data available */
+    E_TIME           = 62;  /* Timer expired */
+    E_NOSR           = 63;  /* Out of streams resources */
+    E_NONET          = 64;  /* Machine is not on the network */
+    E_NOPKG          = 65;  /* Package not installed */
+    E_REMOTE         = 66;  /* Object is remote */
+    E_NOLINK         = 67;  /* Link has been severed */
+    E_ADV            = 68;  /* Advertise error */
+    E_SRMNT          = 69;  /* Srmount error */
+    E_COMM           = 70;  /* Communication error on send */
+    E_PROTO          = 71;  /* Protocol error */
+    E_MULTIHOP       = 72;  /* Multihop attempted */
+    E_DOTDOT         = 73;  /* RFS specific error */
+    E_BADMSG         = 74;  /* Not a data message */
+    E_OVERFLOW       = 75;  /* Value too large for defined data type */
+    E_NOTUNIQ        = 76;  /* Name not unique on network */
+    E_BADFD          = 77;  /* File descriptor in bad state */
+    E_REMCHG         = 78;  /* Remote address changed */
+    E_LIBACC         = 79;  /* Can not access a needed shared library */
+    E_LIBBAD         = 80;  /* Accessing a corrupted shared library */
+    E_LIBSCN         = 81;  /* .lib section in a.out corrupted */
+    E_LIBMAX         = 82;  /* Attempting to link in too many shared libraries */
+    E_LIBEXEC        = 83;  /* Cannot exec a shared library directly */
+    E_ILSEQ          = 84;  /* Illegal byte sequence */
+    E_RESTART        = 85;  /* Interrupted system call should be restarted */
+    E_STRPIPE        = 86;  /* Streams pipe error */
+    E_USERS          = 87;  /* Too many users */
+    E_NOTSOCK        = 88;  /* Socket operation on non-socket */
+    E_DESTADDRREQ    = 89;  /* Destination address required */
+    E_MSGSIZE        = 90;  /* Message too long */
+    E_PROTOTYPE      = 91;  /* Protocol wrong type for socket */
+    E_NOPROTOOPT     = 92;  /* Protocol not available */
+    E_PROTONOSUPPORT = 93;  /* Protocol not supported */
+    E_SOCKTNOSUPPORT = 94;  /* Socket type not supported */
+    E_OPNOTSUPP      = 95;  /* Operation not supported on transport endpoint */
+    E_PFNOSUPPORT    = 96;  /* Protocol family not supported */
+    E_AFNOSUPPORT    = 97;  /* Address family not supported by protocol */
+    E_ADDRINUSE      = 98;  /* Address already in use */
+    E_ADDRNOTAVAIL   = 99;  /* Cannot assign requested address */
+    E_NETDOWN        = 100; /* Network is down */
+    E_NETUNREACH     = 101; /* Network is unreachable */
+    E_NETRESET       = 102; /* Network dropped connection because of reset */
+    E_CONNABORTED    = 103; /* Software caused connection abort */
+    E_CONNRESET      = 104; /* Connection reset by peer */
+    E_NOBUFS         = 105; /* No buffer space available */
+    E_ISCONN         = 106; /* Transport endpoint is already connected */
+    E_NOTCONN        = 107; /* Transport endpoint is not connected */
+    E_SHUTDOWN       = 108; /* Cannot send after transport endpoint shutdown */
+    E_TOOMANYREFS    = 109; /* Too many references: cannot splice */
+    E_TIMEDOUT       = 110; /* Connection timed out */
+    E_CONNREFUSED    = 111; /* Connection refused */
+    E_HOSTDOWN       = 112; /* Host is down */
+    E_HOSTUNREACH    = 113; /* No route to host */
+    E_ALREADY        = 114; /* Operation already in progress */
+    E_INPROGRESS     = 115; /* Operation now in progress */
+
+    E_ISNAM       = 120; /* Is a named type file */
+    E_REMOTEIO    = 121; /* Remote I/O error */
+    E_DQUOT       = 122; /* Quota exceeded */
+    E_NOMEDIUM    = 123; /* No medium found */
+    E_MEDIUMTYPE  = 124; /* Wrong medium type */
+    E_CANCELED    = 125; /* Operation Canceled */
+    E_NOKEY       = 126; /* Required key not available */
+    E_KEYEXPIRED  = 127; /* Key has expired */
+    E_KEYREVOKED  = 128; /* Key has been revoked */
+    E_KEYREJECTED = 129; /* Key was rejected by service */
+}

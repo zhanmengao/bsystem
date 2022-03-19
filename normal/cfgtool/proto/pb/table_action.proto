@@ -1,0 +1,799 @@
+syntax = "proto3";
+package pb;
+
+import "struct.proto";
+import "table.proto";
+
+/*************活动上下线(开始）***********************/
+message ActionConfig {
+    string          id               = 1;
+    string          name             = 2;
+    int64           stay             = 3;
+    repeated string device           = 4;
+    string          country          = 5;
+    string          btn              = 6;
+    string          go               = 7;
+    string          tip              = 8;
+    string          content          = 9;
+    string          version          = 10;
+    int64           isTest           = 11;
+    int64           startTime        = 12;  // 1.9.0弃用
+    int64           endTime          = 13;  // 1.9.0弃用
+    string          platform         = 14;
+    int64           position         = 15;
+    int64           order            = 16;
+    string          startDate        = 17;  // 1.9.0弃用
+    string          endDate          = 18;  // 1.9.0弃用
+    int64           sid              = 19;
+    int64           iosReview        = 20;
+    string          posAndOrder      = 21;
+    int64           operate          = 22;
+    string          jumpOrText       = 23;
+    string          image            = 24;
+    int64           showCountdown    = 25;  // 是否展示倒计时， 1展示，0 不展示
+    string          fomatStartTime   = 26;  // 格式化开始时间，eg: 20181031 12:12:00
+    string          fomatEndTime     = 27;  // 格式化结束时间，eg: 20181031 20:12:00
+    string          location         = 28;  // 图标位置 版本 1.11.0 使用
+    int64           priority         = 29;  // 优先级即活动在对应列表中的位置, 越小优先级越高 建议优先级从 100开始 然后下一级是200 预留一些中间的空位
+    int64           showIsland       = 30;  // 0 /1 这个活动是否要在 建岛界面的右上展示
+    int64           startRemain      = 31;  // 活动需要多久提前展示
+    int64           iconBgType       = 32;  // icon是否需要背景
+    string          mode             = 33;  // 活动模式
+    string          maxVersion       = 34;  // 最大版本号
+    int64           endRemain        = 35;  // 活动结束前多久倒计时  单位：s
+    int32           showPlanet       = 36;  // 岛屿限制
+    int32           showMaxPlanet    = 37;  // 最大岛屿限制
+    string          skinName         = 38;  // 皮肤名字
+    int64           onlinePush       = 39;  // 是否开启上线推送
+    string          onlinePushMsgId  = 40;  // 上线推送消息配置ID
+    int64           offlinePush      = 41;  // 是否开启下线推送
+    string          offlinePushMsgId = 42;  // 下线推送消息配置ID
+}
+
+// @cfg:ActionConfig:ActionConfig|group:ActionConfig|Id:string
+message ActionConfigAry {
+    repeated ActionConfig ary = 1;
+}
+/*************活动上下线(结束）***********************/
+
+// 转盘事件限时加赠活动
+message WheelLimitedTimeRewardConfig {
+    int32                     level  = 1;  // 档位
+    repeated CommonRewardItem reward = 2;
+}
+
+// @cfg:WheelEventCfg:WheelLimitedTimeRewardConfig|map:WheelLimitedTimeRewardConfig|Level:int32 #map[Stage]
+message WheelLimitedTimeRewardConfigAry {
+    repeated WheelLimitedTimeRewardConfig ary = 1;
+}
+
+/************* 转盘事件（2.19.0）开始 *********************/
+// 转盘事件分房间标签保护的黑名单
+// @cfg:WheelEventTagCfg|list:TagTriggerBlackBase
+message WheelEventRoomTagTriggerBlackConfigAry {
+    repeated TagTriggerBlackBase Ary = 1;
+}
+// @cfg:WheelEventTagCfg|list:WheelEventRoomTagConfig
+// @cfg:WheelEventTagCfg|map:WheelEventRoomTagConfig|TagID:int32
+message WheelEventRoomTagConfigAry {
+    repeated WheelEventRoomTagConfig Ary = 1;
+}
+message WheelEventRoomTagConfig {
+    int32  TagID    = 1;  // 触发的标签
+    string ConfigId = 2;  // 配置ID
+}
+
+message WheelEventRoomConfig {
+    uint32 low      = 1;  // 体力下限
+    uint32 high     = 2;  // 体力上限
+    uint32 configId = 3;  // 配置ID
+}
+
+message WheelEventConfig {
+    uint32                        vipPopCount = 1;  // vip气泡弹出次数
+    uint32                        vipShowTime = 2;  // vip气泡弹出时间(秒)
+    repeated WheelEventRoomConfig rooms       = 3;  // 不同体力区间的配置ID
+}
+
+// @cfg:WheelEventCfg:WheelEventConfig|struct:WheelEventConfig|
+message WheelEventConfigAry {
+    repeated WheelEventConfig ary = 1;
+}
+
+message WheelEventScoreConfig {
+    BaseEventScoreConfig base = 1;
+    int32                type = 2;  // 活动类型ID
+}
+
+// deprecated
+message WheelEventScoreConfigAry {
+    repeated WheelEventScoreConfig ary = 1;
+}
+
+// @cfg:WheelEventCfg:WheelEventScoreConfig|list:WheelEventScoreConfig
+message WheelEventScoreNewConfigAry {
+    repeated WheelEventScoreConfig ary = 1;
+}
+
+message WheelEventBaseConfig {
+    int32  id     = 1;  // 编号(1、打炮伤害，2、打炮盾，3、偷取成功，4、偷取失败，5、互助，6、单个打炮，7、单个偷取，8、运气，9嘉年华)
+    string banner = 2;  // banner图
+    string icon   = 3;  // icon图
+}
+
+// @map|Id|int32|WheelEventBaseConfig||map[id]WheelEventBaseConfig
+message WheelEventBaseConfigAry {
+    repeated WheelEventBaseConfig ary = 1;
+}
+
+message WheelEventRewardLevel {
+    uint32                    param  = 1;  // 累计分数
+    repeated CommonRewardItem reward = 2;  // 奖励列表
+}
+
+message WheelEventRewardConfig {
+    uint32 id = 1;  // 活动事件ID 对应Action sid
+    // deprecated
+    repeated WheelEventRewardLevel level        = 2;  // 各等级奖励配置（已弃用）
+    int32                          minPlanet    = 3;  // 岛屿下限
+    int32                          maxPlanet    = 4;  // 岛屿上限
+    uint32                         vipAddReward = 5;  // vip用户加成奖励百分比， 基数为100
+    uint32                         duration     = 6;  // 活动对每个用户的开放时间
+}
+
+message WheelEventLevelsConfig {
+    uint32                id      = 1;  // 转盘事件子活动id
+    uint32                level   = 2;  // 奖励所属等级
+    WheelEventRewardLevel rewards = 3;  // 奖励内容
+}
+
+// @cfg:WheelEventCfg:WheelEventRewardConfig|map:WheelEventRewardConfig|Id:uint32
+message WheelEventRewardConfigAry {
+    repeated WheelEventRewardConfig ary = 1;
+}
+
+// @map|Id|uint32|WheelEventRewardConfig||map[id]WheelEventRewardConfig
+message WheelEventNewbieRewardConfigAry {
+    repeated WheelEventRewardConfig ary = 1;
+}
+
+// @list|WheelEventLevelsConfig||
+message WheelEventLevelsConfigAry {
+    repeated WheelEventLevelsConfig ary = 1;
+}
+
+// @cfg:WheelEventCfg:WheelEventLevels1Config|group:WheelEventLevelsConfig|Id:uint32
+message WheelEventLevels1ConfigAry {
+    repeated WheelEventLevelsConfig ary = 1;
+}
+
+// @cfg:WheelEventCfg:WheelEventLevels2Config|group:WheelEventLevelsConfig|Id:uint32
+message WheelEventLevels2ConfigAry {
+    repeated WheelEventLevelsConfig ary = 1;
+}
+
+// @cfg:WheelEventCfg:WheelEventLevels3Config|group:WheelEventLevelsConfig|Id:uint32
+message WheelEventLevels3ConfigAry {
+    repeated WheelEventLevelsConfig ary = 1;
+}
+
+// @cfg:WheelEventCfg:WheelEventLevels4Config|group:WheelEventLevelsConfig|Id:uint32
+message WheelEventLevels4ConfigAry {
+    repeated WheelEventLevelsConfig ary = 1;
+}
+
+// @cfg:WheelEventCfg:WheelEventLevels5Config|group:WheelEventLevelsConfig|Id:uint32
+message WheelEventLevels5ConfigAry {
+    repeated WheelEventLevelsConfig ary = 1;
+}
+
+// @cfg:WheelEventCfg:WheelEventLevels6Config|group:WheelEventLevelsConfig|Id:uint32
+message WheelEventLevels6ConfigAry {
+    repeated WheelEventLevelsConfig ary = 1;
+}
+
+// @cfg:WheelEventCfg:WheelEventLevels7Config|group:WheelEventLevelsConfig|Id:uint32
+message WheelEventLevels7ConfigAry {
+    repeated WheelEventLevelsConfig ary = 1;
+}
+
+// @cfg:WheelEventCfg:WheelEventLevels8Config|group:WheelEventLevelsConfig|Id:uint32
+message WheelEventLevels8ConfigAry {
+    repeated WheelEventLevelsConfig ary = 1;
+}
+
+// @cfg:WheelEventCfg:WheelEventLevels9Config|group:WheelEventLevelsConfig|Id:uint32
+message WheelEventLevels9ConfigAry {
+    repeated WheelEventLevelsConfig ary = 1;
+}
+
+// @cfg:WheelEventCfg:WheelEventLevels10Config|group:WheelEventLevelsConfig|Id:uint32
+message WheelEventLevels10ConfigAry {
+    repeated WheelEventLevelsConfig ary = 1;
+}
+
+// @cfg:WheelEventCfg:WheelEventLevels11Config|group:WheelEventLevelsConfig|Id:uint32
+message WheelEventLevels11ConfigAry {
+    repeated WheelEventLevelsConfig ary = 1;
+}
+
+// @cfg:WheelEventCfg:WheelEventLevels12Config|group:WheelEventLevelsConfig|Id:uint32
+message WheelEventLevels12ConfigAry {
+    repeated WheelEventLevelsConfig ary = 1;
+}
+
+// @cfg:WheelEventCfg:WheelEventLevels13Config|group:WheelEventLevelsConfig|Id:uint32
+message WheelEventLevels13ConfigAry {
+    repeated WheelEventLevelsConfig ary = 1;
+}
+
+// @cfg:WheelEventCfg:WheelEventLevels101Config|group:WheelEventLevelsConfig|Id:uint32
+message WheelEventLevels101ConfigAry {
+    repeated WheelEventLevelsConfig ary = 1;
+}
+
+// @cfg:WheelEventCfg:WheelEventLevels102Config|group:WheelEventLevelsConfig|Id:uint32
+message WheelEventLevels102ConfigAry {
+    repeated WheelEventLevelsConfig ary = 1;
+}
+
+// @cfg:WheelEventCfg:WheelEventLevels103Config|group:WheelEventLevelsConfig|Id:uint32
+message WheelEventLevels103ConfigAry {
+    repeated WheelEventLevelsConfig ary = 1;
+}
+
+// @cfg:WheelEventCfg:WheelEventLevels104Config|group:WheelEventLevelsConfig|Id:uint32
+message WheelEventLevels104ConfigAry {
+    repeated WheelEventLevelsConfig ary = 1;
+}
+
+// @cfg:WheelEventCfg:WheelEventLevels105Config|group:WheelEventLevelsConfig|Id:uint32
+message WheelEventLevels105ConfigAry {
+    repeated WheelEventLevelsConfig ary = 1;
+}
+/************* 转盘事件（2.19.0）结束 *********************/
+
+/************* 公会种树（2.18.0）开始 *********************/
+message FamilyTreeBaseConfig {
+    int64 bulkRewardCond = 1;  //一键领取奖励条件
+}
+
+// @cfg:FamilyTreeCfg:FamilyTreeBaseConfig|struct:FamilyTreeBaseConfig
+message FamilyTreeBaseConfigAry {
+    repeated FamilyTreeBaseConfig ary = 1;
+}
+
+message FamilyTreeRewardConfig {
+    int64                     stage             = 1;  //档位
+    int64                     plateLevel        = 2;  //底板等级
+    int64                     score             = 3;  //积分数
+    int64                     unlockPlanet      = 4;  //开启岛屿
+    int64                     unlockFamilyLevel = 5;  //公会等级
+    repeated CommonRewardItem commonReward      = 6;  //奖励通用
+    repeated CommonRewardItem lockReward        = 7;  //锁定奖励
+}
+
+// @cfg:FamilyTreeCfg:FamilyTreeRewardConfig|list:FamilyTreeRewardConfig|Stage:int64
+message FamilyTreeRewardConfigAry {
+    repeated FamilyTreeRewardConfig ary = 1;
+}
+
+// @cfg:FamilyTreeCfg:FamilyTreeScoreConfig|map:FamilyTreeScoreConfig|Event.Id:int32
+message FamilyTreeScoreConfig {
+    BaseEventScoreConfig event = 1;
+}
+message FamilyTreeScoreConfigAry {
+    repeated FamilyTreeScoreConfig ary = 1;
+}
+
+message FamilyTreeAvatarConfig {
+    int64  score = 1;  //积分
+    string num   = 2;  //头像数
+}
+message FamilyTreeAvatarConfigAry {
+    repeated FamilyTreeAvatarConfig ary = 1;
+}
+/************* 公会种树（2.18.0）结束 *********************/
+
+/**************************星星竞赛（开始）*******************************/
+message StarCompConfig {
+    int64 duration        = 1;   // 每场比赛持续时间，单位分钟
+    int64 interval        = 2;   // 比赛开赛间隔时间，单位分钟
+    int64 minNum          = 3;   // 一个房间的最小人数，人数不足需要添加机器人
+    int64 maxNum          = 4;   // 一个房间最大人数
+    int64 maxRewardRank   = 5;   // 排名前多少可以拿奖
+    int64 addRobotTime    = 6;   // 开赛多少分钟后，自动添加机器人
+    int64 robotStarTime   = 7;   // 机器人随机增加星星的间隔时间，单位分钟
+    int64 maxNumWithRobot = 8;   // 如果添加机器人，机器人和用户最大人数
+    int64 broadcastTime   = 9;   // 广播玩家名次下降的时间，单位分钟
+    int64 broadcastRank   = 10;  // 下降到该名次后，广播
+    int64 broadcastLimit  = 11;  // 每日广播次数限制
+    int64 maxRewardTime   = 12;  // /活动下线前多少小时允许领奖,单位分钟
+    int64 stageOpen       = 13;  // 积累奖励开关
+    int64 remainNotAllow  = 14;  // 活动下线前多少时间不允许加入活动,单位分钟
+    int32 isOpen          = 15;  // 活动开关
+}
+
+//@cfg:StarCompCfg|struct:StarCompConfig #struct
+message StarCompConfigAry {
+    repeated StarCompConfig ary = 1;
+}
+
+message StarCompLevelConfig {
+    int64 level                = 1;   // 房间等级
+    int64 minPlanet            = 3;   // 该等级，用户需要的最小岛屿, 已弃用
+    int64 maxPlanet            = 4;   // 该等级，用户需要的最大岛屿，负数表示距离最大岛屿数, 已弃用
+    int64 minTili              = 5;   // 用户最小体力存量
+    int64 maxTili              = 6;   // 用户最大体力存量
+    int64 robotStar            = 7;   // 机器人的初始星星数
+    int64 minRobotStar         = 8;   // 机器人的最小随机加星星数
+    int64 maxRobotStar         = 9;   // 机器人的最大随机加星星数
+    int64 robotStarTime        = 10;  // 超级机器人随机增加星星的间隔时间，单位分钟
+    int64 robotNum             = 11;  // 机器人加入数量
+    int64 superRobotStar       = 12;  // 超级机器人的初始星星数
+    int64 superRobotMinStar    = 13;  // 超级机器人的最小随机加星星数
+    int64 superRobotMaxStar    = 14;  // 超级机器人的最大随机加星星数
+    int64 superRobotStarTime   = 15;  // 超级机器人随机增加星星的间隔时间，单位分钟
+    int64 superRobotNum        = 16;  // 超级机器人加入数量
+    int64 maxNum               = 17;  // 一个房间最大人数
+    int64 robotStarPerMin      = 18;  // 机器人每次加积分最小阈值
+    int64 robotStarPerMax      = 19;  // 机器人每次加积分最大阈值
+    int64 superRobotStarPerMin = 20;  // 超级机器人每次加积分最小阈值
+    int64 superRobotStarPerMax = 21;  // 超级机器人每次加积分最大阈值
+    int64 sid                  = 22;  // 活动sid
+}
+
+// @cfg:StarCompCfg|groupmap:StarCompLevelConfig|Sid:int64|Level:int64
+message StarCompLevelConfigAry {
+    repeated StarCompLevelConfig ary = 1;
+}
+// 建岛竞标赛旧的奖励配置，新版本上线，此配置不再用
+message StarCompRewardConfig {
+    int64                     id         = 1;  // 名次id
+    repeated CommonRewardItem rewardList = 2;  // 奖励列表
+}
+message StarCompRewardConfigAry {
+    repeated StarCompRewardConfig ary = 1;
+}
+
+// 建岛竞标赛新的奖励配置
+message StarCompRewardNewConfig {
+    int64                     id         = 1;  // 名次id
+    int64                     rewardId   = 2;  // 等级
+    repeated CommonRewardItem rewardList = 3;  // 奖励列表
+    int64                     sid        = 4;  //
+}
+
+// @cfg:StarCompCfg|groupmaplist:StarCompRewardNewConfig|Sid:int64|rewardId:int64
+message StarCompRewardNewConfigAry {
+    repeated StarCompRewardNewConfig ary = 1;
+}
+
+// 阶段奖励
+message StarCompStageRewardConfig {
+    int64                     id         = 1;  // 阶段
+    int64                     score      = 2;  // 所需分数
+    repeated CommonRewardItem rewardList = 3;  // 奖励列表
+    int64                     sid        = 4;
+}
+
+// @cfg:StarCompCfg|groupmap:StarCompStageRewardConfig|sid:int64|id:int64
+message StarCompStageRewardConfigAry {
+    repeated StarCompStageRewardConfig ary = 1;
+}
+
+// 阶段奖励系数
+message StarCompStageRewardCoefficientConfig {
+    int64 planet      = 1;  // 岛屿
+    int64 stage1      = 2;  // 阶段1
+    int64 stage2      = 3;  // 阶段2
+    int64 stage3      = 4;  // 阶段3
+    int64 coefficient = 5;  // 系数, 百分比
+}
+
+message StarCompStageRewardCoefficientConfigAry {
+    repeated StarCompStageRewardCoefficientConfig ary = 1;
+}
+
+// 锦标赛标签触发配置
+// @cfg:StarCompTagCfg|list:StarCompRoomTagConfig
+// @cfg:StarCompTagCfg|map:StarCompRoomTagConfig|TagID:int32
+message StarCompRoomTagConfigAry {
+    repeated StarCompRoomTagConfig Ary = 1;
+}
+message StarCompRoomTagConfig {
+    int32 TagID         = 1;  // 触发的标签
+    int32 RobotConfigID = 2;  // 房间机器人配置ID
+    int32 RoomLevel     = 3;  // 房间等级
+}
+// 锦标赛分房间标签保护的黑名单
+// @cfg:StarCompTagCfg|list:TagTriggerBlackBase
+message StarCompRoomTagTriggerBlackConfigAry {
+    repeated TagTriggerBlackBase Ary = 1;
+}
+
+// 锦标赛标签保护机器人特殊的配置
+// @cfg:StarCompTagCfg|group:RoomRobotConfig|RobotConfigID:int32
+message RoomRobotConfigAry {
+    repeated RoomRobotConfig Ary = 1;
+}
+message RoomRobotConfig {
+    int32       RobotConfigID = 1;  // 房间机器人配置ID
+    int32       RobotID       = 2;  // 机器人id
+    RobotConfig RobotInfo     = 3;  // 机器人信息
+    int64       RobotNum      = 4;  // 机器人数量
+}
+message RobotConfig {
+    int64 RobotBaseStar   = 1;  // 机器人的初始星星数
+    int64 MinRobotStar    = 2;  // 机器人的最小随机加星星数
+    int64 MaxRobotStar    = 3;  // 机器人的最大随机加星星数
+    int64 RobotStarPerMin = 4;  // 机器人每次加积分最小阈值
+    int64 RobotStarPerMax = 5;  // 机器人每次加积分最大阈值
+    int64 RobotStarTime   = 6;  // 机器人随机增加星星的间隔时间，单位分钟
+}
+
+// 建岛竞标赛打炮配置
+//message StarCompAttackConfig {
+//    int64 isOn = 1; // 是否开启建岛竞标赛打炮
+//    int64 attackedLimit = 2; // 用户每日被打限制数
+//}
+//message StarCompAttackConfigAry {
+//    repeated StarCompAttackConfig ary = 1;
+//}
+
+message StarCompZhuanpanConfig {
+    string type  = 1;  // 转盘类型， fire：炮，steal：偷，help：互助
+    int64  value = 2;  // 该类型添加的积分
+}
+message StarCompZhuanpanConfigAry {
+    repeated StarCompZhuanpanConfig ary = 1;
+}
+
+message StarCompZhuanpanNewConfig {
+    BaseEventScoreConfig base = 1;
+}
+
+//@cfg:StarCompCfg|map:StarCompZhuanpanNewConfig|base.Id:int32
+message StarCompZhuanpanNewConfigAry {
+    repeated StarCompZhuanpanNewConfig ary = 1;
+}
+/**************************星星竞赛（结束）******************************/
+
+/*********************************** 公会竞标赛(开始) ***************************/
+message UnionStarCompConfig {
+    int32 initTime      = 1;  // 比赛前收集数据时间，单位分钟
+    int32 playTime      = 2;  // 比赛持续时间，单位分钟
+    int32 rewardTime    = 3;  // 比赛完后用户领奖时间，单位分钟
+    int32 maxNum        = 4;  // 一个房间最大人数
+    int32 maxRewardRank = 5;  // 排名前多少可以拿奖
+}
+message UnionStarCompConfigAry {
+    repeated UnionStarCompConfig ary = 1;
+}
+
+message UnionStarCompRewardConfig {
+    int32                     id         = 1;  // 名次
+    repeated CommonRewardItem rewardList = 2;  // 奖励列表
+}
+
+message UnionStarCompRewardConfigAry {
+    repeated StarCompRewardConfig ary = 1;
+}
+/*********************************** 公会竞标赛(结束) ***************************/
+
+/*********************通行证（开始）****************************/
+// @cfg:PassConfig:PassBaseConfig|struct:PassBaseConfig
+message PassBaseConfig {
+    int32                     popTime       = 1;  // 提示框每日可弹出次数
+    repeated CommonRewardItem specialReward = 2;  // 特别奖励
+    upgradeProp               upgradeProps  = 3;
+}
+
+message upgradeProp {
+    int64 upgradePrice = 1;  // 加速一档所需的价格
+    int32 buyType      = 2;  // 购买类型
+}
+
+message PassBaseConfigAry {
+    repeated PassBaseConfig ary = 1;
+}
+
+// @cfg:PassConfig|map:BaseEventScoreConfig|Id:int32 #
+message PassMedalScoreConfigAry {
+    repeated BaseEventScoreConfig ary = 1;
+}
+
+// @cfg:PassConfig:PassRewardConfigList|list:PassRewardConfig
+// @cfg:PassConfig:PassRewardConfigMap|map:PassRewardConfig|Id:int32
+message PassRewardConfig {
+    int32          id        = 1;  // 序号
+    int32          needMedal = 2;  // 需要的勋章数
+    PassRewardItem reward    = 3;  // 奖励
+    int32          bigPrize  = 4;  // 是否大奖（0-否，1-是）
+    int32          popUp     = 5;  // 是否弹出提示框（1-为弹，0为不弹）
+}
+
+message PassRewardItem {
+    repeated CommonRewardItem free = 1;  // 免费的奖励
+    repeated CommonRewardItem pay  = 2;  // 付费的奖励
+}
+
+message PassRewardConfigAry {
+    repeated PassRewardConfig ary = 1;
+}
+
+/*****************翻牌活动(开始)************************/
+message GuessConfig {
+    //    uint32 id             = 1;  // 0或者不填表示所有用户， 1表示新手用户
+    int64  ReviveDiamond = 2;  // 首次复活需要的钻石
+    uint32 ReviveRate    = 3;  // 下次复活翻倍数， 基数100
+    //    uint32 minPlanet      = 4;  // 参加活动需要的最小岛屿， 0表示没有限制
+    //    uint32 maxPlanet      = 5;  // 参加活动需要的最大岛屿， 0表示没有限制
+    //    uint32 maxPlayHours   = 6;  // 用户最大参与小时数, 0表示没有限制
+    uint32 MaxOpenTickets  = 7;  // 开启活动需要的最大机票数， 0表示该字段没意义
+    uint32 LogicType       = 8;  // 复活逻辑类型
+    uint32 JoinLimitSecond = 9;  // 参加活动秒数限制
+}
+
+// @cfg:GuessCfg|struct:GuessConfig
+message GuessConfigAry {
+    repeated GuessConfig Ary = 1;
+}
+
+message GuessNewConfig {
+    uint32 Level    = 2;  // 关卡级别
+    uint32 PropType = 3;  // 复活道具类型
+    int64  PropNum  = 4;  // 复活道具数量
+}
+
+// @cfg:GuessCfg|map:GuessNewConfig|level:uint32 #map[level]
+message GuessNewConfigAry {
+    repeated GuessNewConfig Ary = 1;
+}
+
+//message GuessEventConfig {
+//    string event   = 1;  // 获取机票数的事件
+//    uint32 tickets = 2;  // 一次事件获取的机票数
+//}
+
+// @cfg:GuessCfg|map:BaseEventScoreConfig|Id:int32 #
+message GuessEventConfigAry {
+    repeated BaseEventScoreConfig Ary = 1;
+}
+
+message GuessLevelsConfig {
+    uint32          ID        = 1;  // 关卡ID
+    uint32          Special   = 2;  // 是否为特殊局
+    repeated uint32 LootID    = 3;  // 掉落ID
+    uint32          WinWeight = 4;  // 成功权重（0~100）
+}
+
+// @cfg:GuessCfg|map:GuessLevelsConfig|ID:uint32 #map[ID]
+message GuessLevelsConfigAry {
+    repeated GuessLevelsConfig Ary = 1;
+}
+
+message GuessLootConfig {
+    uint32           LootID  = 1;  // ID
+    uint32           Weight  = 2;  // 权重
+    CommonRewardItem Rewards = 3;  // 奖励
+}
+
+// @cfg:GuessCfg|list:GuessLootConfig #list
+message GuessLootConfigAry {
+    repeated GuessLootConfig Ary = 1;
+}
+
+message GuessTicketConfig {
+    uint32 Round  = 1;  // 轮数
+    uint32 Ticket = 2;  // 该轮需要的机票数
+}
+
+// @cfg:GuessCfg|map:GuessTicketConfig|round:uint32 #map[round]
+message GuessTicketConfigAry {
+    repeated GuessTicketConfig Ary = 1;
+}
+
+/*****************翻牌活动(结束)************************/
+
+/*******牌组掉落算法********/
+message WheelCardConfig {
+    uint32 CurPlanet     = 1;  // 岛屿
+    uint32 BehaviorType  = 2;  // 行为类型
+    uint32 BehaviorGroup = 3;  // 行为分组, 每一个分组对应一份卡片池子, 多个行为可以共用一个池子
+    string CardGroups    = 4;  // 牌组定义, 逗号分隔
+}
+
+// @cfg:WheelCardCfg|groupmap:WheelCardConfig|CurPlanet:uint32|BehaviorType:uint32
+message WheelCardConfigAry {
+    repeated WheelCardConfig Ary = 1;
+}
+
+message WheelCardDefineConfig {
+    uint32           CardGroup = 1;  // 牌组
+    uint32           CardID    = 2;  // 牌型序号(每一个牌组内部唯一)
+    uint32           CardNum   = 3;  // 数量
+    CommonRewardItem Reward    = 4;  // 奖励
+}
+
+// @cfg:WheelCardCfg|groupmap:WheelCardDefineConfig|CardGroup:uint32|CardID:uint32
+message WheelCardDefineConfigAry {
+    repeated WheelCardDefineConfig Ary = 1;
+}
+/*******牌组掉落算法********/
+
+/*****************************弹弓***************************/
+message SlingshotConfig {
+    int32 Recover         = 1;
+    int32 MagicBottle     = 2;
+    int32 BottleNum       = 3;
+    int32 ReceiveLimit    = 4;
+    int32 SendLimit       = 5;
+    int32 ExchangeLimit   = 6;   // 每天兑换限制
+    int32 MaxGiftNum      = 7;   // 最大礼盒数量
+    int32 MinGiftNum      = 8;   // 最小礼盒数量
+    int32 TradeExpireTime = 9;   // 交易过期时间
+    int32 StartSnowBall   = 10;  // 活动开始时雪球数量
+    int32 RemainWindBell  = 11;  // 打好友剩余风铃数
+}
+
+// @cfg:Slingshot|struct:SlingshotConfig
+message SlingshotConfigAry {
+    repeated SlingshotConfig Ary = 1;
+}
+
+// @cfg:Slingshot|list:SlingshotShotConfig
+message SlingshotShotConfig {
+    int32                     Rate       = 1;
+    repeated CommonRewardItem RewardItem = 2;
+}
+
+message SlingshotShotConfigAry {
+    repeated SlingshotShotConfig Ary = 1;
+}
+
+// @cfg:Slingshot|list:SlingshotShotConfig
+message SlingshotFriendShotConfigAry {
+    repeated SlingshotShotConfig Ary = 1;
+}
+
+// 碎片兑换奖励
+message BabyRewardConfig {
+    string                    index   = 1;
+    repeated CommonRewardItem rewards = 2;
+    int32                     level   = 3;
+}
+
+// @cfg:Slingshot|map:BabyRewardConfig|index:string
+message BabyRewardConfigAry {
+    repeated BabyRewardConfig ary = 1;
+}
+/*****************************弹弓***************************/
+
+/*****************************水果商人***************************/
+message FruitOrderRewardConfig {
+    int32                     ID            = 1;  // 水果订单ID,即配置文件中的编号
+    int32                     RequireNumber = 2;  // 完成订单需要地水果数量
+    int32                     Weight        = 3;  // 奖励的权重
+    repeated CommonRewardItem Reward        = 4;  // 奖励
+};
+
+// @cfg:FruitCfg|map:FruitOrderRewardConfig|ID:int32 #map[ID]
+message FruitOrderRewardConfigAry {
+    repeated FruitOrderRewardConfig Ary = 1;
+};
+
+message FruitFinalRewardConfig {
+    int32                     ID     = 1;  // 参与水果商人次数ID
+    repeated int32            Weight = 2;  // 表示每次参与水果商人获取的奖励权重
+    repeated CommonRewardItem Reward = 3;  // 奖励
+};
+
+// @cfg:FruitCfg|map:FruitFinalRewardConfig|ID:int32 #map[ID]
+message FruitFinalRewardConfigAry {
+    repeated FruitFinalRewardConfig Ary = 1;
+};
+
+message FruitWeightConfig {
+    int32 FruitType   = 1;  // 水果类型
+    int32 DropWeight  = 2;  // 老虎机掉落权重
+    int32 OrderWeight = 3;  // 该种水果生成一个订单的概率
+};
+
+// @cfg:FruitCfg|map:FruitWeightConfig|FruitType:int32 #map[FruitType]
+message FruitWeightConfigAry {
+    repeated FruitWeightConfig Ary = 1;
+};
+
+// 每次refresh活动再次参与时，花钻石的配置
+message FruitRefreshConfig {
+    int32 RefreshTimes = 1;  // 参与水果商人活动次数
+    int32 DiamondCost  = 2;  // 第times次参与水果活动需要的钻石数量
+};
+
+// @cfg:FruitCfg|map:FruitRefreshConfig|RefreshTimes:int32 #map[RefreshTimes]
+message FruitRefreshConfigAry {
+    repeated FruitRefreshConfig Ary = 1;
+};
+
+message FruitBaseConfig {
+    int32 RefreshLimit    = 1;  // 每天参与水果商人的限制次数
+    int64 RefreshDuration = 2;  // 每次完成活动的限制再次参与活动时长
+    int32 OrderNumber     = 3;  // 开启的水果订单个数
+    int32 ExpireDuration  = 4;  // 交换请求过期时间
+};
+
+// @cfg:FruitCfg|struct:FruitBaseConfig
+message FruitBaseConfigAry {
+    repeated FruitBaseConfig Ary = 1;
+};
+
+/***********拼图奖励********************************/
+message PicConfig {
+    int64                     Sid             = 1;
+    uint32                    SendMax         = 2;   // 发送碎片接受次数
+    uint32                    RandRewardTotal = 3;   // 随机奖励数量
+    repeated uint32           Rate            = 4;   // 碎片概率 9 张 单位 %
+    repeated CommonRewardItem Reward          = 5;   // 奖励范围
+    uint32                    MaxSet          = 6;   // 最多能得多少套
+    uint32                    RecvMax         = 7;   // 接收碎片最大次数
+    repeated CommonRewardItem GuideReward     = 8;   // 引导奖励
+    uint32                    RewardLimit     = 9;   // 最大领奖次数
+    uint32                    ChangeLimit     = 10;  // 交易次数限制
+    uint32                    PayLimit        = 11;  // new 支付获取奖励的最多次数，为0时前端不展示入口
+}
+
+//@cfg:PicCfg|map:PicConfig|Sid:int64 #map[Sid]
+message PicConfigAry {
+    repeated PicConfig Ary = 1;
+}
+
+//交易配置
+message PicChangeConfig {
+    uint32 Count     = 1;  // 交易消息数量
+    uint32 Expire    = 2;  // 交易消息过期时间， 单位秒
+    uint32 CountDown = 3;  // 交易消息倒计时时间， 单位秒
+}
+
+//@cfg:PicCfg|struct:PicChangeConfig
+message PicChangeConfigAry {
+    repeated PicChangeConfig Ary = 1;
+}
+
+/***随机道具****/
+//@cfg:PicCfg|list:RandRewardConfig
+message RandRewardConfigAry {
+    repeated RandRewardConfig Ary = 1;
+}
+
+message RandRewardConfig {
+    repeated CommonRewardItem Reward = 1;  // 奖励集合
+    uint32                    Rate   = 2;  // 权重
+}
+
+/***奖励限制****/
+//@cfg:PicCfg|list:LimitRewardConfig
+message LimitRewardConfigAry {
+    repeated LimitRewardConfig Ary = 1;
+}
+
+message LimitRewardConfig {
+    uint32                    Rate      = 1;  // 活动周期内兑换（第1-100次）的概率
+    uint32                    RewardMin = 2;  //  已经兑换次数范围 最小
+    uint32                    RewardMax = 3;  //  已经兑换次数范围 最大
+    repeated CommonRewardItem Reward    = 4;  // 奖励范围
+}
+
+/********扩大宝箱的奖励（开始）迁移到活动配置中********/
+message PayRewardConfig {
+    uint32                    ID     = 1;
+    uint32                    Price  = 2;
+    repeated CommonRewardItem Reward = 3;
+}
+
+//@cfg:PicCfg|map:PayRewardConfig|ID:uint32 #map[ID]
+message PayRewardConfigAry {
+    repeated PayRewardConfig Ary = 1;
+}
+/********扩大宝箱的奖励（结束）********/
+/***********拼图奖励结束****************************/

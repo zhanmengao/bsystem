@@ -1,0 +1,75 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="偏特化">
+      <UniqueIdentifier>{c459bf0f-4d07-400d-9f34-c2b4b6b5631b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="复数">
+      <UniqueIdentifier>{26396ccd-368e-4a80-9e93-015078ba5ce7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Vector">
+      <UniqueIdentifier>{d4a94767-c018-4c23-ab93-912627354484}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="全特化">
+      <UniqueIdentifier>{4201c8e2-9704-411e-8633-e9756fbe8c06}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="dm01_为什么会有函数模板和基本语法.cpp">
+      <Filter>全特化</Filter>
+    </ClCompile>
+    <ClCompile Include="dm02_函数模板当函数参数强化.cpp">
+      <Filter>全特化</Filter>
+    </ClCompile>
+    <ClCompile Include="dm03_函数模板遇上函数重载.cpp">
+      <Filter>全特化</Filter>
+    </ClCompile>
+    <ClCompile Include="dm04_函数模板和普通函数在一起调用规则研究.cpp">
+      <Filter>全特化</Filter>
+    </ClCompile>
+    <ClCompile Include="dm05_模板机制剖析.cpp">
+      <Filter>全特化</Filter>
+    </ClCompile>
+    <ClCompile Include="dm06_类模板基本语法.cpp">
+      <Filter>全特化</Filter>
+    </ClCompile>
+    <ClCompile Include="dm10_类模板中的static关键字.cpp">
+      <Filter>全特化</Filter>
+    </ClCompile>
+    <ClCompile Include="ClassPartital.cpp">
+      <Filter>偏特化</Filter>
+    </ClCompile>
+    <ClCompile Include="FuncPartitial.cpp">
+      <Filter>偏特化</Filter>
+    </ClCompile>
+    <ClCompile Include="dm09_复数类_所有函数都写在类的外部(h和cpp分开).cpp">
+      <Filter>复数</Filter>
+    </ClCompile>
+    <ClCompile Include="dm08_复数类_所有函数都写在类的外部(在一个cpp中).cpp">
+      <Filter>复数</Filter>
+    </ClCompile>
+    <ClCompile Include="dm07_复数类_所有函数都写在类的内部.cpp">
+      <Filter>复数</Filter>
+    </ClCompile>
+    <ClCompile Include="MyVector_test.cpp">
+      <Filter>Vector</Filter>
+    </ClCompile>
+    <ClCompile Include="MyVector.cpp">
+      <Filter>Vector</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="dm09_complex.h">
+      <Filter>复数</Filter>
+    </ClInclude>
+    <ClInclude Include="Complex.hpp">
+      <Filter>复数</Filter>
+    </ClInclude>
+    <ClInclude Include="Complex.h">
+      <Filter>复数</Filter>
+    </ClInclude>
+    <ClInclude Include="MyVector.h">
+      <Filter>Vector</Filter>
+    </ClInclude>
+  </ItemGroup>
+</Project>

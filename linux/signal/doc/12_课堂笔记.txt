@@ -1,0 +1,41 @@
+1. 信号的概念
+
+	基本的属性。--- 软中断  --- 延时性
+
+	信号4要素。 
+
+2. 产生信号 5 种
+
+	kill 
+
+	alarm函数。
+
+	setitimer函数。
+
+3. 信号集操作函数。  
+
+	自定义集合：  5函数 emptyset  fillset  addset  delset  ismember
+
+	信号屏蔽字   sigprocmask
+
+	未决信号集   sigpending
+
+
+4. 信号的捕捉
+
+	注册信号捕捉函数。
+
+	signal()
+
+	sigaction函数。(重点)
+
+		struct sigaction:  sa_handler  
+
+				   sa_mask
+
+				   sa_flags = 0; 
+
+
+
+
+
