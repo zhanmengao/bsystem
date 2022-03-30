@@ -1,1 +1,0 @@
-/usr/bin/gcc -g   CMakeFiles/sig.dir/sigaction.c.o CMakeFiles/sig.dir/sigset.c.o  -o sig 
