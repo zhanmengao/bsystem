@@ -9,6 +9,7 @@ func main() {
 	go runAfter()
 	go runTicker()
 	go runTick()
+	go runTimer()
 	select {}
 }
 
@@ -19,8 +20,21 @@ func runAfter() {
 		select {
 		case <-tm:
 			count++
-			fmt.Println("after ",count)
+			fmt.Println("after ", count)
 			tm = time.After(time.Duration(count) * time.Second)
+		}
+	}
+}
+
+func runTimer() {
+	count := 0
+	tm := time.NewTimer(time.Duration(count) * time.Second)
+	for {
+		select {
+		case <-tm.C:
+			count++
+			fmt.Println("timer ", count)
+			tm.Reset(time.Duration(count) * time.Second)
 		}
 	}
 }
@@ -32,7 +46,7 @@ func runTicker() {
 		select {
 		case <-tm.C:
 			count++
-			fmt.Println("ticker ",count)
+			fmt.Println("ticker ", count)
 		}
 	}
 }
@@ -44,7 +58,7 @@ func runTick() {
 		select {
 		case <-tm:
 			count++
-			fmt.Println("tick ",count)
+			fmt.Println("tick ", count)
 		}
 	}
 }
