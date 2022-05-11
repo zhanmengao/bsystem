@@ -2,10 +2,9 @@ package tm
 
 import (
 	"container/list"
+	"github.com/panjf2000/ants/v2"
 	"sync"
 	"time"
-
-	"forevernine.com/midplat/base_server/freequeue"
 )
 
 var (
@@ -13,6 +12,6 @@ var (
 	onceList *list.List
 	wake     chan *timerJob
 	timer    *time.Timer
-	jobQueue *freequeue.FreeQueue
+	jobQueue *ants.Pool
 	index    int
 )

@@ -1,10 +1,11 @@
-package xtime
+package main
 
 import (
 	"fmt"
 	"regexp"
 	"time"
 )
+
 var (
 	offset         int64
 	offsetDuration time.Duration
