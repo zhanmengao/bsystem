@@ -1,12 +1,12 @@
 package antsqueue
 
-type userRequestList struct {
+type UserRequestList struct {
 	request chan func()
 	UID     string
 }
 
-func newUserRequestList(sz int) *userRequestList {
-	return &userRequestList{
+func NewUserRequestList(sz int) *UserRequestList {
+	return &UserRequestList{
 		request: make(chan func(), sz),
 	}
 }

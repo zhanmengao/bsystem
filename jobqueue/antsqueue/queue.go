@@ -5,55 +5,63 @@ import (
 	"sync"
 )
 
-type AntsJobQueue struct {
+type AntsQueue struct {
 	queue *ants.PoolWithFunc
-	job   chan *userRequestList //放func的channel
+	job   chan func() //放func的channel
 	close chan struct{}
 	wg    sync.WaitGroup
 	//用户的请求列表
-	userRequest sync.Map
 }
 
-func NewAntsJobQueue(sz int) *AntsJobQueue {
-	ret := &AntsJobQueue{
-		job:   make(chan *userRequestList, sz),
+func NewAntsQueue(sz int) *AntsQueue {
+	ret := &AntsQueue{
+		job:   make(chan func(), sz),
 		close: make(chan struct{}, 0),
 	}
-	ret.queue, _ = ants.NewPoolWithFunc(sz, ret.do)
+	ret.queue, _ = ants.NewPoolWithFunc(sz, ret.do, ants.WithPanicHandler(panicHandler))
 	return ret
 }
 
-func (q *AntsJobQueue) do(iUser interface{}) {
-	u := iUser.(*userRequestList)
-	for {
-		select {
-		case f := <-u.request:
-			f()
-		default:
-			return
-		}
-	}
-}
-
-func (q *AntsJobQueue) Run() {
+func (q *AntsQueue) Run() {
 	defer q.queue.Release()
+	defer close(q.job)
+	defer close(q.close)
 	for {
 		select {
-		case u := <-q.job:
-			q.queue.Invoke(u)
+		case f := <-q.job:
+			q.queue.Invoke(f)
 		case <-q.close:
 			//取出所有消息，处理完return
+			q.clear()
+			q.wg.Wait()
 		}
 	}
 }
+func (q *AntsQueue) PushJob(f func()) {
+	q.wg.Add(1)
+	q.job <- f
+}
 
-func (q *AntsJobQueue) clear() {
+func (q *AntsQueue) Close() {
+	if q.close != nil {
+		q.close <- struct{}{}
+	}
+}
+func (q *AntsQueue) Wait() {
+	q.wg.Wait()
+}
+
+func (q *AntsQueue) do(iFunc interface{}) {
+	f := iFunc.(func())
+	f()
+	q.wg.Done()
+}
+func (q *AntsQueue) clear() {
 	for {
 		select {
-		case u := <-q.job:
-			q.queue.Invoke(u)
+		case f := <-q.job:
+			q.queue.Invoke(f)
 		default:
-			close(q.job)
 			return
 		}
 	}

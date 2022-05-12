@@ -3,7 +3,6 @@ package jobqueue
 import (
 	"container/list"
 	"errors"
-	"fmt"
 	"sync"
 	"sync/atomic"
 )
@@ -49,22 +48,23 @@ func NewOrderJobQueue(size int) (q *OrderJobQueue, err error) {
 		ch:         make(chan *orderJob, size),
 		bList:      list.New(),
 		lockMap:    make(map[string]bool),
-		doneCh:     make(chan *orderJobDone, size),				//已经完成的调用
-		idleWorker: make([]chan *orderJob, 0, size),			//空闲工作者队列
+		doneCh:     make(chan *orderJobDone, size),  //已经完成的调用
+		idleWorker: make([]chan *orderJob, 0, size), //空闲工作者队列
 
-		closed:     orderqStatRunning,
-		closeWg:    sync.WaitGroup{},
-		closeCh:    make(chan bool, size),
+		closed:  orderqStatRunning,
+		closeWg: sync.WaitGroup{},
+		closeCh: make(chan bool, size),
 	}
+	return
+}
 
-	for i := 0; i < size; i++ {
+func (q *OrderJobQueue) Run() {
+	for i := 0; i < q.size; i++ {
 		w := newOrderWorker()
 		q.idleWorker = append(q.idleWorker, w.ch)
 		go w.work(q.doneCh, q.closeCh, &q.closeWg)
 	}
-
-	go q.loop()
-	return
+	q.loop()
 }
 
 // queue errors
@@ -75,7 +75,7 @@ var (
 )
 
 // Push push job to queue
-func (q *OrderJobQueue) Push(k string, cb func()) error {
+func (q *OrderJobQueue) PushJob(k string, cb func()) error {
 	n := atomic.LoadInt32(&q.closed)
 	if n == orderqStatClosed || n == orderqStatGracefulClosed {
 		return ErrOrderQueueClosed
@@ -107,6 +107,9 @@ func (q *OrderJobQueue) Close() {
 	}
 	// q.size + 1, extra 1 is for "loop" goroutine
 	q.closeWg.Add(q.size + 1)
+}
+
+func (q *OrderJobQueue) Wait() {
 	q.closeWg.Wait()
 }
 
@@ -149,7 +152,7 @@ func (q *OrderJobQueue) loop() {
 		//取出已经完成的调用
 		select {
 		case dn := <-q.doneCh:
-			q.idleWorker = append(q.idleWorker, dn.ch)					//加到空闲
+			q.idleWorker = append(q.idleWorker, dn.ch) //加到空闲
 			//清除锁
 			delete(q.lockMap, dn.key)
 		default:
@@ -198,7 +201,6 @@ func (q *OrderJobQueue) doAJob(j *orderJob) {
 	//尝试获取锁（一个布尔值），
 	if b := q.lockMap[j.key]; b {
 		if q.bList.Len() >= q.size {
-			fmt.Println(fmt.Sprintf("order queue's backup list is full, key: %s", j.key))
 		} else {
 			//未能获取锁，将任务推到候补队列(list)，返回
 			q.bList.PushBack(j)

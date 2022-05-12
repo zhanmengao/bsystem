@@ -19,6 +19,7 @@ type tWorker struct {
 	fullFlag int32         //队列清空时为0，队列有东西就是>0
 	fullList *list.List
 	fullLock sync.Mutex
+	wg       sync.WaitGroup
 }
 
 func NewWorker(cap int32) *tWorker {
@@ -31,7 +32,8 @@ func NewWorker(cap int32) *tWorker {
 }
 
 func (worker *tWorker) push(job *tJob) {
-	if worker.fullFlag == 0 && worker.casAdd(job){
+	worker.wg.Add(1)
+	if worker.fullFlag == 0 && worker.casAdd(job) {
 	} else {
 		//队列满，加到fullList
 		worker.fullLock.Lock()
@@ -63,31 +65,52 @@ func (worker *tWorker) doFullList() {
 	}
 }
 
-func (worker *tWorker) run(closeCh <-chan struct{}, wg *sync.WaitGroup) {
+func (worker *tWorker) run(closeCh <-chan struct{}) {
 	for {
-		if worker.isFull(){
+		if worker.isFull() {
 			select {
 			case w := <-worker.ch:
 				worker.casDel()
 				w.f()
+				worker.wg.Done()
 			default:
 			}
-		}else{
+		} else {
 			select {
 			case w := <-worker.ch:
 				worker.casDel()
 				w.f()
+				worker.wg.Done()
 			case <-worker.fullCh:
 				//遍历list，尽可能取出请求放到ch
 				worker.doFullList()
 			case <-closeCh:
-				wg.Done()
+				worker.clear()
+				worker.Wait()
 				return
 			}
 		}
 	}
 }
 
+func (worker *tWorker) Wait() {
+	worker.wg.Wait()
+}
+
+func (worker *tWorker) clear() {
+	defer close(worker.ch)
+	for {
+		select {
+		case w := <-worker.ch:
+			worker.casDel()
+			w.f()
+			worker.wg.Done()
+		case <-worker.fullCh:
+			//遍历list，尽可能取出请求放到ch
+			worker.doFullList()
+		}
+	}
+}
 func (worker *tWorker) isFull() bool {
 	if len(worker.ch) >= cap(worker.ch) {
 		return true

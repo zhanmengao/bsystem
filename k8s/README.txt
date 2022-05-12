@@ -12,6 +12,36 @@ Kubelet：运行在节点上的服务，可读取容器清单（container manife
 
 kubectl： Kubernetes 的命令行配置工具。
 
+指令式命令
+使用指令式命令时，用户可以在集群中的活动对象上进行操作。用户将操作传给 kubectl 命令作为参数或标志。
+
+这是开始或者在集群中运行一次性任务的推荐方法。因为这个技术直接在活跃对象上操作，所以它不提供以前配置的历史记录。
+通过创建 Deployment 对象来运行 nginx 容器的实例：
+kubectl create deployment nginx --image nginx
+
+
+指令式对象配置
+在指令式对象配置中，kubectl 命令指定操作（创建，替换等），可选标志和 至少一个文件名。指定的文件必须包含 YAML 或 JSON 格式的对象的完整定义。
+创建配置文件中定义的对象：
+kubectl create -f nginx.yaml
+
+删除两个配置文件中定义的对象：
+kubectl delete -f nginx.yaml -f redis.yaml
+
+通过覆盖活动配置来更新配置文件中定义的对象：
+kubectl replace -f nginx.yaml
+
+
+声明式对象配置
+使用声明式对象配置时，用户对本地存储的对象配置文件进行操作，但是用户 未定义要对该文件执行的操作。 kubectl 会自动检测每个文件的创建、更新和删除操作。 这使得配置可以在目录上工作，根据目录中配置文件对不同的对象执行不同的操作。
+例子
+处理 configs 目录中的所有对象配置文件，创建并更新活跃对象。 可以首先使用 diff 子命令查看将要进行的更改，然后在进行应用：
+kubectl diff -f configs/
+kubectl apply -f configs/
+
+递归处理目录：
+kubectl diff -R -f configs/
+kubectl apply -R -f configs/
 
 
 

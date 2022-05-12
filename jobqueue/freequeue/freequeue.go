@@ -2,7 +2,6 @@ package freequeue
 
 import (
 	"strconv"
-	"sync"
 )
 
 type FreeQueue struct {
@@ -10,7 +9,6 @@ type FreeQueue struct {
 	cap    int32
 
 	closeCh chan struct{}
-	wg      sync.WaitGroup
 }
 
 func NewFreeQueue(sz int32) *FreeQueue {
@@ -21,16 +19,33 @@ func NewFreeQueue(sz int32) *FreeQueue {
 	}
 	for i, _ := range fq.worker {
 		fq.worker[i] = NewWorker(sz)
-		go fq.worker[i].run(fq.closeCh, &fq.wg)
 	}
 	return fq
 }
 
-func (fq *FreeQueue) Push(key string, f func()) {
+func (fq *FreeQueue) Run() {
+	for i, _ := range fq.worker {
+		go fq.worker[i].run(fq.closeCh)
+	}
+}
+
+func (fq *FreeQueue) PushJob(key string, f func()) {
 	fq.worker[fq.getHashKey(key)].push(&tJob{
 		f:   f,
 		key: key,
 	})
+}
+
+func (fq *FreeQueue) Close() {
+	for _, _ = range fq.worker {
+		fq.closeCh <- struct{}{}
+	}
+}
+
+func (fq *FreeQueue) Wait() {
+	for _, w := range fq.worker {
+		w.Wait()
+	}
 }
 
 func (fq *FreeQueue) getHashKey(uid string) int32 {
