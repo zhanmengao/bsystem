@@ -36,6 +36,7 @@ kubectl replace -f nginx.yaml
 使用声明式对象配置时，用户对本地存储的对象配置文件进行操作，但是用户 未定义要对该文件执行的操作。 kubectl 会自动检测每个文件的创建、更新和删除操作。 这使得配置可以在目录上工作，根据目录中配置文件对不同的对象执行不同的操作。
 例子
 处理 configs 目录中的所有对象配置文件，创建并更新活跃对象。 可以首先使用 diff 子命令查看将要进行的更改，然后在进行应用：
+
 kubectl diff -f configs/
 kubectl apply -f configs/
 
