@@ -8,12 +8,13 @@ type orderWorker struct {
 
 func newOrderWorker() *orderWorker {
 	w := &orderWorker{
-		ch: make(chan *orderJob, 100),
+		ch: make(chan *orderJob, 1),
 	}
 	return w
 }
 
 func (w *orderWorker) work(doneCh chan<- *orderJobDone, closeCh <-chan bool, wg *sync.WaitGroup) {
+	defer wg.Done()
 	for {
 		select {
 		case j := <-w.ch:
@@ -25,7 +26,6 @@ func (w *orderWorker) work(doneCh chan<- *orderJobDone, closeCh <-chan bool, wg 
 			}
 		case <-closeCh:
 			w.clear(doneCh)
-			wg.Done()
 			return
 		}
 	}

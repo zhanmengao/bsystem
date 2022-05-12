@@ -1,22 +1,25 @@
 package antsqueue
 
 import (
+	"errors"
 	"github.com/panjf2000/ants/v2"
 	"sync"
 )
 
 type AntsQueue struct {
-	queue *ants.PoolWithFunc
-	job   chan func() //放func的channel
-	close chan struct{}
-	wg    sync.WaitGroup
+	isOpen bool
+	queue  *ants.PoolWithFunc
+	job    chan func() //放func的channel
+	close  chan struct{}
+	wg     sync.WaitGroup
 	//用户的请求列表
 }
 
 func NewAntsQueue(sz int) *AntsQueue {
 	ret := &AntsQueue{
-		job:   make(chan func(), sz),
-		close: make(chan struct{}, 0),
+		job:    make(chan func(), sz),
+		close:  make(chan struct{}, 0),
+		isOpen: true,
 	}
 	ret.queue, _ = ants.NewPoolWithFunc(sz, ret.do, ants.WithPanicHandler(panicHandler))
 	return ret
@@ -37,12 +40,17 @@ func (q *AntsQueue) Run() {
 		}
 	}
 }
-func (q *AntsQueue) PushJob(f func()) {
+func (q *AntsQueue) PushJob(f func()) error {
+	if !q.isOpen {
+		return errors.New("is close")
+	}
 	q.wg.Add(1)
 	q.job <- f
+	return nil
 }
 
 func (q *AntsQueue) Close() {
+	q.isOpen = false
 	if q.close != nil {
 		q.close <- struct{}{}
 	}

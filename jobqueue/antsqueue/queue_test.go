@@ -2,6 +2,7 @@ package antsqueue
 
 import (
 	"fmt"
+	"sync"
 	"sync/atomic"
 	"testing"
 	"time"
@@ -10,6 +11,8 @@ import (
 func TestAntsQueue(t *testing.T) {
 	var count int32 = 0
 	q := NewAntsQueue(1000)
+	addWg := sync.WaitGroup{}
+	addWg.Add(10000 * 1000)
 	go q.Run()
 	begin := time.Now()
 	for i := 0; i < 10000; i++ {
@@ -18,9 +21,11 @@ func TestAntsQueue(t *testing.T) {
 				q.PushJob(func() {
 					atomic.AddInt32(&count, 1)
 				})
+				addWg.Done()
 			}
 		}()
 	}
+	addWg.Wait()
 	q.Close()
 	q.Wait()
 	use := time.Now().Sub(begin)

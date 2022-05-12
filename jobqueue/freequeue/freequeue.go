@@ -1,13 +1,14 @@
 package freequeue
 
 import (
+	"errors"
 	"strconv"
 )
 
 type FreeQueue struct {
-	worker []*tWorker
-	cap    int32
-
+	worker  []*tWorker
+	cap     int32
+	isOpen  bool
 	closeCh chan struct{}
 }
 
@@ -16,6 +17,7 @@ func NewFreeQueue(sz int32) *FreeQueue {
 		worker:  make([]*tWorker, sz),
 		cap:     sz,
 		closeCh: make(chan struct{}, sz),
+		isOpen:  true,
 	}
 	for i, _ := range fq.worker {
 		fq.worker[i] = NewWorker(sz)
@@ -29,14 +31,19 @@ func (fq *FreeQueue) Run() {
 	}
 }
 
-func (fq *FreeQueue) PushJob(key string, f func()) {
+func (fq *FreeQueue) PushJob(key string, f func()) error {
+	if !fq.isOpen {
+		return errors.New("is close")
+	}
 	fq.worker[fq.getHashKey(key)].push(&tJob{
 		f:   f,
 		key: key,
 	})
+	return nil
 }
 
 func (fq *FreeQueue) Close() {
+	fq.isOpen = false
 	for _, _ = range fq.worker {
 		fq.closeCh <- struct{}{}
 	}

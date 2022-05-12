@@ -52,7 +52,6 @@ func NewOrderJobQueue(size int) (q *OrderJobQueue, err error) {
 		idleWorker: make([]chan *orderJob, 0, size), //空闲工作者队列
 
 		closed:  orderqStatRunning,
-		closeWg: sync.WaitGroup{},
 		closeCh: make(chan bool, size),
 	}
 	return
@@ -88,8 +87,6 @@ func (q *OrderJobQueue) PushJob(k string, cb func()) error {
 	var err error
 	select {
 	case q.ch <- j:
-	default:
-		err = ErrOrderQueueFull
 	}
 	return err
 }
@@ -99,8 +96,8 @@ func (q *OrderJobQueue) Size() int {
 	return q.size
 }
 
-// Close close queue
-func (q *OrderJobQueue) Close() {
+// CloseImmediate close queue
+func (q *OrderJobQueue) CloseImmediate() {
 	b := atomic.CompareAndSwapInt32(&q.closed, orderqStatRunning, orderqStatClosed)
 	if !b {
 		return
@@ -113,16 +110,15 @@ func (q *OrderJobQueue) Wait() {
 	q.closeWg.Wait()
 }
 
-// GracefulClose graceful close queue.
+// Close graceful close queue.
 // Queue exits when all jobs have done.
-func (q *OrderJobQueue) GracefulClose() {
+func (q *OrderJobQueue) Close() {
 	b := atomic.CompareAndSwapInt32(&q.closed, orderqStatRunning, orderqStatGracefulClosed)
 	if !b {
 		return
 	}
 	// q.size + 1, extra 1 is for "loop" goroutine
 	q.closeWg.Add(q.size + 1)
-	q.closeWg.Wait()
 }
 
 func (q *OrderJobQueue) closeQueue() {
@@ -169,7 +165,6 @@ func (q *OrderJobQueue) loop() {
 				// Get an idle worker to work
 				ch, err := q.getCh()
 				if err != nil {
-					//fmt.Println(fmt.Sprintf("order queue went to the fatal logic: q.blist, key: %s", j.key))
 				} else {
 					q.bList.Remove(e)
 					q.lockMap[j.key] = true
@@ -200,11 +195,8 @@ func (q *OrderJobQueue) doAJob(j *orderJob) {
 	// If the job's key locked, push job to backup list.
 	//尝试获取锁（一个布尔值），
 	if b := q.lockMap[j.key]; b {
-		if q.bList.Len() >= q.size {
-		} else {
-			//未能获取锁，将任务推到候补队列(list)，返回
-			q.bList.PushBack(j)
-		}
+		//未能获取锁，将任务推到候补队列(list)，返回
+		q.bList.PushBack(j)
 		return
 	}
 

@@ -10,8 +10,6 @@ type AntsJobQueue struct {
 	job   chan *UserRequestList //放func的channel
 	close chan struct{}
 	wg    sync.WaitGroup
-	//用户的请求列表
-	userRequest sync.Map
 }
 
 func NewAntsJobQueue(sz int) *AntsJobQueue {

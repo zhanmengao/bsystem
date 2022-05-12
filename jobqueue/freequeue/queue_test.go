@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"math/rand"
 	"strconv"
+	"sync"
 	"sync/atomic"
 	"testing"
 	"time"
@@ -31,7 +32,9 @@ func TestNewOrderJobQueue(t *testing.T) {
 func TestFrrQueue(t *testing.T) {
 	var count int32 = 0
 	q := NewFreeQueue(1000)
+	addWg := sync.WaitGroup{}
 	q.Run()
+	addWg.Add(10000 * 1000)
 	begin := time.Now()
 	for i := 0; i < 10000; i++ {
 		go func() {
@@ -39,9 +42,11 @@ func TestFrrQueue(t *testing.T) {
 				q.PushJob(Int2Str(int64(j)), func() {
 					atomic.AddInt32(&count, 1)
 				})
+				addWg.Done()
 			}
 		}()
 	}
+	addWg.Wait()
 	q.Close()
 	q.Wait()
 	use := time.Now().Sub(begin)
