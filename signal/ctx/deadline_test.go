@@ -1,4 +1,4 @@
-package ctx
+package main
 
 import (
 	"context"
@@ -31,6 +31,6 @@ func TestWithDeadline(t *testing.T) {
 	case <-time.After(1 * time.Second):
 		fmt.Println("overslept")
 	case <-ctx.Done():
-		fmt.Println(ctx.Err())
+		fmt.Println("ctx done: ", ctx.Err())
 	}
 }
