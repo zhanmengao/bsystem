@@ -1,0 +1,9 @@
+testclu:
+  hostips:
+    - 192.168.3.1
+    - 192.168.3.2
+    - 192.168.3.3
+  port: 1521
+  dbuser: system
+  passwd: 123456
+  service_name: testdb

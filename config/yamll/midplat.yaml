@@ -1,0 +1,207 @@
+basecfg:
+  platform : midplat_sv
+  log_level : trace
+  log_path : /data/logs/servers
+  worker_num : 5000
+  inner_timeout : 500
+  time_zone : 'UTC'
+  coordinator_addr : '127.0.0.1:2181'
+  monitor_proc_time : true
+  env : test
+  k8s : false
+  pushgateway : '172.25.16.6:9091'
+  kafka_addr : '127.0.0.1:12000'
+  flogd_addr : '172.16.16.5:80'
+  req_timeout : 10
+  gin_mode : 'debug'
+  mysql_limit : 500
+  sess_expire : 60000
+
+geoip:
+  geo_ip_path : /data/servers/data
+  geo_ip_country_data : GeoIP2-City.mmdb
+  geo_ip_isp_data : GeoIP2-ISP.mmdb
+  geo_ip_net_type_data : GeoIP2-Connection-Type.mmdb
+
+logsrv:
+  net:
+    tcp_port : 9090
+    http_port : 8080
+    grpc_port : 9090
+    udp_port : 9090
+  data_dir : /data/servers/data/logsrv
+  report_method : flogd
+
+fmssrv:
+  net:
+    tcp_port : 9091
+    http_port : 8081
+    grpc_port : 9091
+    udp_port : 9091
+  data_dir : /data/servers/data/fmssrv
+  report_method : flogd
+
+ftssrv:
+  net:
+    tcp_port : 9092
+    http_port : 8082
+    grpc_port : 9092
+    udp_port : 9092
+
+fimgate:
+  net:
+    tcp_port : 9093
+    http_port : 8083
+    grpc_port : 9093
+    udp_port : 9093
+  ws_port : 8084
+  conn_close : 60000
+
+fimsrv:
+  net:
+    tcp_port : 9095
+    http_port : 8085
+    grpc_port : 9095
+    udp_port : 9095
+  content_max_len : 1000
+
+gmsrv:
+  net:
+    tcp_port : 9096
+    http_port : 8086
+    grpc_port : 9096
+    udp_port : 9096
+  gm_secret : 111
+
+apisrv:
+  net:
+    tcp_port : 9097
+    http_port : 8087
+    grpc_port : 9097
+    udp_port : 9097
+  dirty_file : dirty
+  tencent_area : ap-guangzhou
+  tencent_secret_id : 222
+  tencent_secret_key : 333
+
+flssrv:
+  net:
+    tcp_port : 9098
+    http_port : 8088
+    grpc_port : 9098
+    udp_port : 9098
+
+fursrv:
+  net:
+    tcp_port : 9099
+    http_port : 8089
+    grpc_port : 9099
+    udp_port : 9099
+
+fpssrv:
+  net:
+    tcp_port : 9110
+    http_port : 8100
+    grpc_port : 9110
+    udp_port : 9110
+
+fcbsrv:
+  net:
+    tcp_port : 9111
+    http_port : 8101
+    grpc_port : 9111
+    udp_port : 9111
+
+ftmsrv:
+  net:
+    tcp_port : 9112
+    http_port : 8102
+    grpc_port : 9112
+    udp_port : 9112
+
+fossrv:
+  net:
+    tcp_port : 9113
+    http_port : 8103
+    grpc_port : 9113
+    udp_port : 9113
+
+fimdb:
+  net:
+    tcp_port : 9114
+    http_port : 8104
+    grpc_port : 9114
+    udp_port : 9114
+
+
+dbcfg:
+  FMSTask:
+    type : mysql
+    addr : [ 127.0.0.1:3306 ]
+    user : "pig"
+    password : "123456"
+    timeout_ms : 500
+    retry_num : 3
+    db_name : "db_midplat_global"
+  LogSrv:
+    type : mysql
+    addr : [ 127.0.0.1:3306 ]
+    user : "pig"
+    password : "123456"
+    timeout_ms : 500
+    retry_num : 3
+    db_name : "db_midplat_global"
+  FIMChat:
+    type : mysql
+    addr : [ 127.0.0.1:3306 ]
+    user : "pig"
+    password : "123456"
+    timeout_ms : 500
+    retry_num : 3
+    db_name : "db_midplat_global"
+  FLBUser:
+    type : mysql
+    addr : [ 127.0.0.1:3306 ]
+    user : "pig"
+    password : "123456"
+    timeout_ms : 500
+    retry_num : 3
+    db_name : "db_midplat_global"
+  FLBLogin:
+    type : mysql
+    addr : [ 127.0.0.1:3306 ]
+    user : "pig"
+    password : "123456"
+    timeout_ms : 500
+    retry_num : 3
+    db_name : "db_midplat_global"
+  Cache:
+    type : redis
+    addr : [ 127.0.0.1:6379 ]
+    timeout_ms : 500
+    retry_num : 3
+  FMS:
+    type : redis
+    addr : [ 127.0.0.1:6379 ]
+    timeout_ms : 500
+    retry_num : 3
+  FTSCache:
+    type : redis
+    addr : [ 127.0.0.1:6379 ]
+    timeout_ms : 500
+    retry_num : 3
+  FIM:
+    type : redis
+    addr : [ 127.0.0.1:6379 ]
+    timeout_ms : 500
+    retry_num : 3
+  APICache:
+    type : redis
+    addr : [ 127.0.0.1:6379 ]
+    timeout_ms : 500
+    retry_num : 3
+  FLS:
+    type : redis
+    addr : [ 127.0.0.1:6379 ]
+    timeout_ms : 500
+    retry_num : 3

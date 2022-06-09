@@ -1,0 +1,3 @@
+mysql:
+  rds_host: "rds_xxxxxx.com"
+  rds_port: 3306
