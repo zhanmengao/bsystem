@@ -1,0 +1,3 @@
+[2022-04-27 17:21:19.495 +0800]	ERROR	55899	xlog_test.go:25	main.TestLogger_Log	Error log	
+[2022-04-27 17:24:44.085 +0800]	ERROR	57652	xlog_test.go:25	main.TestLogger_Log	Error log	
+[2022-04-27 17:25:47.228 +0800]	ERROR	58188	xlog_test.go:25	main.TestLogger_Log	Error log	
