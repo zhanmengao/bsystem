@@ -1,0 +1,14 @@
+linters:
+  enable:
+    - misspell
+    - goimports
+    - revive
+    - gofmt
+
+linters-settings:
+  misspell:
+    locale: US
+    #ignore-words:
+    #  - someword
+  goimports:
+    local-prefixes: github.com/uptrace/opentelemetry-go-extra
