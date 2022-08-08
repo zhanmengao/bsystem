@@ -9,9 +9,9 @@ import (
 	"ttrace/jjaeger/def"
 )
 
-func CreateTracer(servieName string) (opentracing.Tracer, io.Closer, error) {
+func CreateTracer(serviceName string) (opentracing.Tracer, io.Closer, error) {
 	var cfg = jaegercfg.Configuration{
-		ServiceName: servieName,
+		ServiceName: serviceName,
 		Sampler: &jaegercfg.SamplerConfig{
 			Type:  jaeger.SamplerTypeConst,
 			Param: 1,
