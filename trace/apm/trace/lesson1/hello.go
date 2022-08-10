@@ -2,8 +2,8 @@ package main
 
 import (
 	"fmt"
-	"i-go/apm/trace/config"
 	"os"
+	"ttrace/jjaeger/ftracer"
 
 	"github.com/opentracing/opentracing-go"
 	"github.com/opentracing/opentracing-go/log"
@@ -19,7 +19,7 @@ func main() {
 	}
 
 	// 1.初始化 tracer
-	tracer, closer := config.NewTracer("hello")
+	tracer, closer, _ := ftracer.CreateTracer("hello")
 	defer closer.Close()
 	// 2.开始新的 Span （注意:必须要调用 Finish()方法span才会上传到后端）
 	span := tracer.StartSpan("say-hello")
