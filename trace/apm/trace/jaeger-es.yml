@@ -1,0 +1,25 @@
+version: '3.2'
+services:
+  # elasticsearch jaeger存储后端 单独部署
+  elasticsearch:
+    image: docker.elastic.co/elasticsearch/elasticsearch:7.8.0
+    container_name: jaeger-es
+    environment:
+      - discovery.type=single-node
+      # 开启内存锁定
+      - bootstrap.memory_lock=true
+      - "ES_JAVA_OPTS=-Xms512m -Xmx512m"
+    ulimits:
+      memlock:
+        soft: -1
+        hard: -1
+    volumes:
+      - ./data:/usr/share/elasticsearch/data
+      - ./logs:/usr/share/elasticsearch/logs
+    ports:
+      - 9201:9200
+
+networks:
+  default:
+    external:
+      name: jaeger
