@@ -8,7 +8,7 @@ import (
 	"trace/tracing"
 )
 
-var JaegerUdpEndpoint = "udp://127.0.0.1:8080"
+var JaegerUdpEndpoint = "localhost:6831"
 
 //创建tracer，生成root span
 func main() {
