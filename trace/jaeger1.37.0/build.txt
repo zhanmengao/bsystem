@@ -6,6 +6,14 @@ make install
 cd examples/hotrod
 go run ./main.go all
 
+yarn:v1.22.19
+https://github.com/yarnpkg/yarn/releases
+
+make build-ui
+
+go run -tags ui ./cmd/all-in-one/main.go
+
+
 $ docker run --rm -it \
   --link jaeger \
   -p8080-8083:8080-8083 \
