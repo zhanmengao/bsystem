@@ -151,16 +151,16 @@
     <ClCompile Include="..\C_Point\Day2\dm06_一级指针内存模型建立.c" />
     <ClCompile Include="..\C_Point\Day2\dm07_字符串做函数参数.c" />
     <ClCompile Include="..\C_Point\Day2\dm08_项目开发字符串模型strstr_while.c" />
-    <ClCompile Include="..\C_Point\Day4\结构体\dm01_结构体基本操作.c" />
-    <ClCompile Include="..\C_Point\Day4\结构体\dm02_结构体做函数参数.c" />
-    <ClCompile Include="..\C_Point\Day4\结构体\dm03_结构体做函数参数进阶.c" />
-    <ClCompile Include="..\C_Point\Day4\结构体\dm04_结构做函数参数进阶2.c" />
-    <ClCompile Include="..\C_Point\Day5\dm05_强化训练考试.c" />
-    <ClCompile Include="..\C_Point\Day5\dm05_结构体的深copy和浅copy.c" />
-    <ClCompile Include="..\C_Point\Day5\dm06_结构体的高级话题.c" />
-    <ClCompile Include="..\C_Point\Day5\结构体作业参考.c" />
     <ClCompile Include="..\C_Point\printf\printFormat.c" />
     <ClCompile Include="..\C_Point\printf\putgetChar.c" />
+    <ClCompile Include="dm01_结构体基本操作.c" />
+    <ClCompile Include="dm02_结构体做函数参数.c" />
+    <ClCompile Include="dm03_结构体做函数参数进阶.c" />
+    <ClCompile Include="dm04_结构做函数参数进阶2.c" />
+    <ClCompile Include="dm05_强化训练考试.c" />
+    <ClCompile Include="dm05_结构体的深copy和浅copy.c" />
+    <ClCompile Include="dm06_结构体的高级话题.c" />
+    <ClCompile Include="结构体作业参考.c" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\CClass\file.h" />

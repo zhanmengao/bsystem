@@ -1,19 +1,19 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 14
-VisualStudioVersion = 14.0.25420.1
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.32413.511
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Day8", "Day8_Function\Day8\Day8.vcxproj", "{9BE56537-5635-4CCA-8396-0C220BCF04B8}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Day8", "function\Day8\Day8.vcxproj", "{9BE56537-5635-4CCA-8396-0C220BCF04B8}"
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "mysocketclient", "Day8_Function\mysocketclient\mysocketclient.vcxproj", "{01F4298F-D415-4A73-884A-751BA92EA5A7}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "mysocketclient", "function\mysocketclient\mysocketclient.vcxproj", "{01F4298F-D415-4A73-884A-751BA92EA5A7}"
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "STD", "Day8_Function\STD\STD.vcxproj", "{BF9E1655-41D4-4CE9-9C1B-C41B1E1461A9}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "STD", "function\STD\STD.vcxproj", "{BF9E1655-41D4-4CE9-9C1B-C41B1E1461A9}"
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "动态库测试搭建", "Day8_Function\动态库测试搭建\动态库测试搭建.vcxproj", "{F2148769-D3A8-4570-983B-04AF6D38FD44}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "动态库测试搭建", "function\动态库测试搭建\动态库测试搭建.vcxproj", "{F2148769-D3A8-4570-983B-04AF6D38FD44}"
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "配置文件读写", "Day8_Function\配置文件读写\配置文件读写.vcxproj", "{4F7461BF-94F0-451A-A4CD-27AF4FD88656}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "配置文件读写", "function\配置文件读写\配置文件读写.vcxproj", "{4F7461BF-94F0-451A-A4CD-27AF4FD88656}"
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "文件加密案例", "Day8_Function\文件加密案例\文件加密案例.vcxproj", "{537CD96A-D596-45A3-BB84-EE6778E492D9}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "文件加密案例", "function\文件加密案例\文件加密案例.vcxproj", "{537CD96A-D596-45A3-BB84-EE6778E492D9}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -64,5 +64,8 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {E5D70E7C-2019-41B5-AB51-8A45928EC04A}
 	EndGlobalSection
 EndGlobal

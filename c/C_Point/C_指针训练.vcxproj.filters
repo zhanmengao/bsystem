@@ -10,9 +10,6 @@
     <Filter Include="数据类型">
       <UniqueIdentifier>{a929ce04-6ddb-42e6-b231-54267528c07e}</UniqueIdentifier>
     </Filter>
-    <Filter Include="printf">
-      <UniqueIdentifier>{d3823018-b2d3-45ad-aa75-158f28d23039}</UniqueIdentifier>
-    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Day1_内存4区\dm01_测试.c">
@@ -39,77 +36,67 @@
     <ClCompile Include="Day1_内存4区\dm08_指针铁律1.c">
       <Filter>Day1_内存四区</Filter>
     </ClCompile>
-    <ClCompile Include="Day2\dm01_习题.c">
-      <Filter>Day2_一级指针</Filter>
-    </ClCompile>
-    <ClCompile Include="Day2\dm02_铁律1强化.c">
-      <Filter>Day2_一级指针</Filter>
-    </ClCompile>
-    <ClCompile Include="Day2\dm03_间接赋值的技术推演.c">
-      <Filter>Day2_一级指针</Filter>
-    </ClCompile>
-    <ClCompile Include="Day2\dm04_指针的输入和输出特性.c">
-      <Filter>Day2_一级指针</Filter>
-    </ClCompile>
-    <ClCompile Include="printf\argv.cpp">
-      <Filter>printf</Filter>
-    </ClCompile>
-    <ClCompile Include="printf\minprintf.c">
-      <Filter>printf</Filter>
-    </ClCompile>
-    <ClCompile Include="printf\minscanf.c">
-      <Filter>printf</Filter>
-    </ClCompile>
-    <ClCompile Include="printf\printFormat.c">
-      <Filter>printf</Filter>
-    </ClCompile>
-    <ClCompile Include="printf\putgetChar.c">
-      <Filter>printf</Filter>
-    </ClCompile>
-    <ClCompile Include="printf\scanf.c">
-      <Filter>printf</Filter>
-    </ClCompile>
-    <ClCompile Include="printf\strspn.c">
-      <Filter>printf</Filter>
-    </ClCompile>
     <ClCompile Include="main.cpp" />
-    <ClCompile Include="bit\BitUtils.cpp">
+    <ClCompile Include="Day2_point1\dm01_习题.c">
+      <Filter>Day2_一级指针</Filter>
+    </ClCompile>
+    <ClCompile Include="Day2_point1\dm02_铁律1强化.c">
+      <Filter>Day2_一级指针</Filter>
+    </ClCompile>
+    <ClCompile Include="Day2_point1\dm03_间接赋值的技术推演.c">
+      <Filter>Day2_一级指针</Filter>
+    </ClCompile>
+    <ClCompile Include="Day2_point1\dm04_指针的输入和输出特性.c">
+      <Filter>Day2_一级指针</Filter>
+    </ClCompile>
+    <ClCompile Include="Day2_point1\dm05_字符串基本操作.c">
+      <Filter>Day2_一级指针</Filter>
+    </ClCompile>
+    <ClCompile Include="Day2_point1\dm06_一级指针内存模型建立.c">
+      <Filter>Day2_一级指针</Filter>
+    </ClCompile>
+    <ClCompile Include="Day2_point1\dm07_字符串做函数参数.c">
+      <Filter>Day2_一级指针</Filter>
+    </ClCompile>
+    <ClCompile Include="Day2_point1\dm08_项目开发字符串模型strstr_while.c">
+      <Filter>Day2_一级指针</Filter>
+    </ClCompile>
+    <ClCompile Include="..\bit\BitUtils.cpp">
       <Filter>数据类型</Filter>
     </ClCompile>
-    <ClCompile Include="bit\endian.c">
+    <ClCompile Include="..\bit\byte.cpp">
       <Filter>数据类型</Filter>
     </ClCompile>
-    <ClCompile Include="bit\main.cpp">
+    <ClCompile Include="..\bit\convert.cpp">
       <Filter>数据类型</Filter>
     </ClCompile>
-    <ClCompile Include="bit\showbit.c">
+    <ClCompile Include="..\bit\endian.c">
       <Filter>数据类型</Filter>
     </ClCompile>
-    <ClCompile Include="byte\convert.cpp">
+    <ClCompile Include="..\bit\endian_byte.c">
       <Filter>数据类型</Filter>
     </ClCompile>
-    <ClCompile Include="byte\endian.c">
+    <ClCompile Include="..\bit\main.cpp">
       <Filter>数据类型</Filter>
     </ClCompile>
-    <ClCompile Include="byte\showbyte.cpp">
+    <ClCompile Include="..\bit\showbit.c">
       <Filter>数据类型</Filter>
     </ClCompile>
-    <ClCompile Include="byte\byte.cpp">
+    <ClCompile Include="..\bit\showbyte.cpp">
       <Filter>数据类型</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="printf\SysDefine.h">
-      <Filter>printf</Filter>
-    </ClInclude>
-    <ClInclude Include="mstdio.h">
-      <Filter>printf</Filter>
-    </ClInclude>
-    <ClInclude Include="bit\BitUtils.h">
+    <ClInclude Include="..\bit\BitUtils.h">
       <Filter>数据类型</Filter>
     </ClInclude>
-    <ClInclude Include="byte\ByteUtils.h">
+    <ClInclude Include="..\bit\ByteUtils.h">
       <Filter>数据类型</Filter>
     </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="..\bit\CMakeLists.txt">
+      <Filter>数据类型</Filter>
+    </Text>
   </ItemGroup>
 </Project>

@@ -45,7 +45,7 @@
     <ClCompile Include="dm02_运算符重载的两种方法.cpp">
       <Filter>Day4_操作符重载</Filter>
     </ClCompile>
-    <ClCompile Include="实现全变为成员函数.cpp">
+    <ClCompile Include="..\实现全变为成员函数.cpp">
       <Filter>Other</Filter>
     </ClCompile>
   </ItemGroup>

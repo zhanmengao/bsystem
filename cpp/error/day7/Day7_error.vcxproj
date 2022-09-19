@@ -143,14 +143,14 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="..\error\dm02_异常的基本语法.cpp" />
-    <ClCompile Include="..\error\dm03_栈解旋unwinding.cpp" />
-    <ClCompile Include="..\error\dm04_异常类型_异常变量的生命周期.cpp" />
-    <ClCompile Include="..\error\dm05_异常的层次结构.cpp" />
-    <ClCompile Include="..\error\dm06_标准异常.cpp" />
+    <None Include="..\error\go\error_test.go" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="..\error\go\error_test.go" />
+    <ClCompile Include="dm02_异常的基本语法.cpp" />
+    <ClCompile Include="dm03_栈解旋unwinding.cpp" />
+    <ClCompile Include="dm04_异常类型_异常变量的生命周期.cpp" />
+    <ClCompile Include="dm05_异常的层次结构.cpp" />
+    <ClCompile Include="dm06_标准异常.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

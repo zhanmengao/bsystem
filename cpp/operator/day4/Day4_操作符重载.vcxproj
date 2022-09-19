@@ -142,6 +142,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="..\实现全变为成员函数.cpp" />
     <ClCompile Include="demo01_运算符重载快速入门.cpp" />
     <ClCompile Include="demo02_运算符重载的两种方法.cpp" />
     <ClCompile Include="demo04_重载=操作符.cpp" />
@@ -154,7 +155,6 @@
     <ClCompile Include="dm17_面向对象模型this指针练习.cpp" />
     <ClCompile Include="dm18_面向对象模型_全局函数成员函数.cpp" />
     <ClCompile Include="dm21_友元函数和友元类.cpp" />
-    <ClCompile Include="实现全变为成员函数.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

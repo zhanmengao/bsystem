@@ -142,14 +142,14 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="bit\BitUtils.cpp" />
-    <ClCompile Include="bit\endian.c" />
-    <ClCompile Include="bit\main.cpp" />
-    <ClCompile Include="bit\showbit.c" />
-    <ClCompile Include="byte\byte.cpp" />
-    <ClCompile Include="byte\convert.cpp" />
-    <ClCompile Include="byte\endian.c" />
-    <ClCompile Include="byte\showbyte.cpp" />
+    <ClCompile Include="..\bit\BitUtils.cpp" />
+    <ClCompile Include="..\bit\byte.cpp" />
+    <ClCompile Include="..\bit\convert.cpp" />
+    <ClCompile Include="..\bit\endian.c" />
+    <ClCompile Include="..\bit\endian_byte.c" />
+    <ClCompile Include="..\bit\main.cpp" />
+    <ClCompile Include="..\bit\showbit.c" />
+    <ClCompile Include="..\bit\showbyte.cpp" />
     <ClCompile Include="Day1_内存4区\dm01_测试.c" />
     <ClCompile Include="Day1_内存4区\dm02_学员学习的标准.c" />
     <ClCompile Include="Day1_内存4区\dm03_数据类型分析.c" />
@@ -158,24 +158,22 @@
     <ClCompile Include="Day1_内存4区\dm06_堆栈区的理解.c" />
     <ClCompile Include="Day1_内存4区\dm07_堆栈的属性测试.c" />
     <ClCompile Include="Day1_内存4区\dm08_指针铁律1.c" />
-    <ClCompile Include="Day2\dm01_习题.c" />
-    <ClCompile Include="Day2\dm02_铁律1强化.c" />
-    <ClCompile Include="Day2\dm03_间接赋值的技术推演.c" />
-    <ClCompile Include="Day2\dm04_指针的输入和输出特性.c" />
+    <ClCompile Include="Day2_point1\dm01_习题.c" />
+    <ClCompile Include="Day2_point1\dm02_铁律1强化.c" />
+    <ClCompile Include="Day2_point1\dm03_间接赋值的技术推演.c" />
+    <ClCompile Include="Day2_point1\dm04_指针的输入和输出特性.c" />
+    <ClCompile Include="Day2_point1\dm05_字符串基本操作.c" />
+    <ClCompile Include="Day2_point1\dm06_一级指针内存模型建立.c" />
+    <ClCompile Include="Day2_point1\dm07_字符串做函数参数.c" />
+    <ClCompile Include="Day2_point1\dm08_项目开发字符串模型strstr_while.c" />
     <ClCompile Include="main.cpp" />
-    <ClCompile Include="printf\argv.cpp" />
-    <ClCompile Include="printf\minprintf.c" />
-    <ClCompile Include="printf\minscanf.c" />
-    <ClCompile Include="printf\printFormat.c" />
-    <ClCompile Include="printf\putgetChar.c" />
-    <ClCompile Include="printf\scanf.c" />
-    <ClCompile Include="printf\strspn.c" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="bit\BitUtils.h" />
-    <ClInclude Include="byte\ByteUtils.h" />
-    <ClInclude Include="mstdio.h" />
-    <ClInclude Include="printf\SysDefine.h" />
+    <ClInclude Include="..\bit\BitUtils.h" />
+    <ClInclude Include="..\bit\ByteUtils.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="..\bit\CMakeLists.txt" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

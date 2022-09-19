@@ -58,13 +58,13 @@
     <ClCompile Include="dm16_重载重写重定义.cpp">
       <Filter>Day6_继承</Filter>
     </ClCompile>
-    <ClCompile Include="我的多态.cpp">
+    <ClCompile Include="..\继承中的构造析构.cpp">
       <Filter>Other</Filter>
     </ClCompile>
-    <ClCompile Include="兼容性原则.cpp">
+    <ClCompile Include="..\兼容性原则.cpp">
       <Filter>Other</Filter>
     </ClCompile>
-    <ClCompile Include="继承中的构造析构.cpp">
+    <ClCompile Include="..\我的多态.cpp">
       <Filter>Other</Filter>
     </ClCompile>
   </ItemGroup>

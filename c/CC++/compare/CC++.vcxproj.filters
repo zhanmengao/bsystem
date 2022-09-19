@@ -73,9 +73,6 @@
     <ClInclude Include="LIMIT.h">
       <Filter>MHead</Filter>
     </ClInclude>
-    <ClInclude Include="BuildFunction.h">
-      <Filter>Head</Filter>
-    </ClInclude>
     <ClInclude Include="extern C .h">
       <Filter>extern</Filter>
     </ClInclude>

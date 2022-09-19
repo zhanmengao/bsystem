@@ -78,6 +78,9 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="..\兼容性原则.cpp" />
+    <ClCompile Include="..\我的多态.cpp" />
+    <ClCompile Include="..\继承中的构造析构.cpp" />
     <ClCompile Include="demo13_类型兼容性原则遇上函数重写.cpp" />
     <ClCompile Include="dm01_继承的基本语法.cpp" />
     <ClCompile Include="dm02_单个类的访问控制.cpp" />
@@ -94,9 +97,6 @@
     <ClCompile Include="dm14_多态案例.cpp" />
     <ClCompile Include="dm15_虚析构函数.cpp" />
     <ClCompile Include="dm16_重载重写重定义.cpp" />
-    <ClCompile Include="兼容性原则.cpp" />
-    <ClCompile Include="我的多态.cpp" />
-    <ClCompile Include="继承中的构造析构.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

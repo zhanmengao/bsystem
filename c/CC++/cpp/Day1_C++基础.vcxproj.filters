@@ -75,8 +75,5 @@
     <ClInclude Include="C++Primer2变量与基本类型\Sales_data.h">
       <Filter>C++Primer变量与基本类型</Filter>
     </ClInclude>
-    <ClInclude Include="Array.h">
-      <Filter>C++Primer变量与基本类型</Filter>
-    </ClInclude>
   </ItemGroup>
 </Project>

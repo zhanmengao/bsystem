@@ -32,7 +32,6 @@
     <ClCompile Include="main.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Array.h" />
     <ClInclude Include="C++Primer2变量与基本类型\Sales_data.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
