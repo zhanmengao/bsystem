@@ -79,6 +79,11 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="..\New_Delete.cpp" />
+    <ClCompile Include="..\匿名对象.cpp" />
+    <ClCompile Include="..\对象初始化列表.cpp" />
+    <ClCompile Include="..\拷贝构造函数.cpp" />
+    <ClCompile Include="..\构造析构.cpp" />
     <ClCompile Include="dm01_类的构造和析构基础.cpp" />
     <ClCompile Include="dm02_构造函数的分类.cpp" />
     <ClCompile Include="dm03_显示初始化方案.cpp" />
@@ -96,11 +101,9 @@
     <ClCompile Include="dm15_static关键字.cpp" />
     <ClCompile Include="dm16_面向对象模型初探.cpp" />
     <ClCompile Include="dm17_面向对象模型this指针练习.cpp" />
-    <ClCompile Include="main.cpp" />
-    <ClCompile Include="匿名对象.cpp" />
-    <ClCompile Include="对象初始化列表.cpp" />
-    <ClCompile Include="拷贝构造函数.cpp" />
-    <ClCompile Include="构造析构.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\转移构造.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

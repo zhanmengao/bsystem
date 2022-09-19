@@ -143,7 +143,8 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="ClassPartital.cpp" />
+    <ClCompile Include="..\ClassPartital.cpp" />
+    <ClCompile Include="..\FuncPartitial.cpp" />
     <ClCompile Include="dm01_为什么会有函数模板和基本语法.cpp" />
     <ClCompile Include="dm02_函数模板当函数参数强化.cpp" />
     <ClCompile Include="dm03_函数模板遇上函数重载.cpp" />
@@ -154,13 +155,12 @@
     <ClCompile Include="dm08_复数类_所有函数都写在类的外部(在一个cpp中).cpp" />
     <ClCompile Include="dm09_复数类_所有函数都写在类的外部(h和cpp分开).cpp" />
     <ClCompile Include="dm10_类模板中的static关键字.cpp" />
-    <ClCompile Include="FuncPartitial.cpp" />
     <ClCompile Include="MyVector.cpp" />
     <ClCompile Include="MyVector_test.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Complex.h" />
-    <ClInclude Include="Complex.hpp" />
+    <ClInclude Include="..\Complex.h" />
+    <ClInclude Include="..\Complex.hpp" />
     <ClInclude Include="dm09_complex.h" />
     <ClInclude Include="MyVector.h" />
   </ItemGroup>
