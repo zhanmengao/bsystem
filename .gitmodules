@@ -1,0 +1,3 @@
+[submodule "trace/k6"]
+	path = trace/k6
+	url = git@github.com:grafana/k6.git
