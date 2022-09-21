@@ -1,15 +1,0 @@
-syntax = "proto3";
-package table;
-message BossShow {
-int32 Id  = 1; 
-string Desc  = 2; 
-int32 FakeObjID  = 3; 
-string Name  = 4; 
-string Detail  = 5; 
-string Tips  = 6; 
-string SkillDescTips  = 7; 
-int32 SkillID  = 8; 
-string BossInfoTexture  = 9; 
-int32 TweenDelay  = 10; 
-string Duration  = 11; 
-}

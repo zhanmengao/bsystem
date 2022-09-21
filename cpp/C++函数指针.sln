@@ -21,6 +21,8 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "New", "new\day3\Day3_构造
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "memory", "new\stdptr\stdptr.vcxproj", "{1D67D13D-C384-4A02-929C-1F3807080B67}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "move", "new\zerocopy\move.vcxproj", "{515E2F15-9CB3-4BB9-A538-463E658D7802}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Win32 = Debug|Win32
@@ -89,6 +91,14 @@ Global
 		{1D67D13D-C384-4A02-929C-1F3807080B67}.Release|Win32.Build.0 = Release|Win32
 		{1D67D13D-C384-4A02-929C-1F3807080B67}.Release|x64.ActiveCfg = Release|x64
 		{1D67D13D-C384-4A02-929C-1F3807080B67}.Release|x64.Build.0 = Release|x64
+		{515E2F15-9CB3-4BB9-A538-463E658D7802}.Debug|Win32.ActiveCfg = Debug|Win32
+		{515E2F15-9CB3-4BB9-A538-463E658D7802}.Debug|Win32.Build.0 = Debug|Win32
+		{515E2F15-9CB3-4BB9-A538-463E658D7802}.Debug|x64.ActiveCfg = Debug|x64
+		{515E2F15-9CB3-4BB9-A538-463E658D7802}.Debug|x64.Build.0 = Debug|x64
+		{515E2F15-9CB3-4BB9-A538-463E658D7802}.Release|Win32.ActiveCfg = Release|Win32
+		{515E2F15-9CB3-4BB9-A538-463E658D7802}.Release|Win32.Build.0 = Release|Win32
+		{515E2F15-9CB3-4BB9-A538-463E658D7802}.Release|x64.ActiveCfg = Release|x64
+		{515E2F15-9CB3-4BB9-A538-463E658D7802}.Release|x64.Build.0 = Release|x64
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
