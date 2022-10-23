@@ -58,6 +58,7 @@ Kubectl scale rc kubia --replicas=3：将pod数量扩容为3个
 Kubectl get pod kubia-zxzij -o yaml:查看pod的yaml定义
 Metadata：包括名称、命名空间、标签和关于该容器的其他信息。spec：包含pod内容的实际说明，例如pod的容器、卷和其他数据。status：包含运行中的pod的当前信息，例如pod所处的条件、每个容器的描述和状态，以及内部ip和其他基本信息。
 
+Kubectl explain pods：查看pod的minifest支持哪些属性。kubectl explain pod.spec：查看pod的spec支持哪些属性
 
 
 
