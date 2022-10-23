@@ -1,13 +1,67 @@
 
 curl -Lo minikube https://storage.googleapis.com/minikube/releases/v0.23.0/minikube-darwin-amd64 && chmod +x minikube && sudo mv minikube /usr/local/bin
 
-minikube start
+curl -LO https://storage.googleapis.com/minikube/releases/latest/minikube-darwin-arm64
+sudo install minikube-darwin-arm64 /usr/local/bin/minikube
+
+curl -LO https://storage.googleapis.com/minikube/releases/latest/minikube-linux-arm64
+sudo install minikube-linux-arm64 /usr/local/bin/minikube
+
+
+sudo apt-get install -y conntrack
+minikube start --force --driver=none
+# Run these commands as root
+###Install GO###
+git clone https://github.com/Mirantis/cri-dockerd.git
+sudo make deb
+
+wget https://storage.googleapis.com/golang/getgo/installer_linux
+chmod +x ./installer_linux
+./installer_linux
+source ~/.bash_profile
+
+cd cri-dockerd
+mkdir bin
+go build -o bin/cri-dockerd
+mkdir -p /usr/local/bin
+install -o root -g root -m 0755 bin/cri-dockerd /usr/local/bin/cri-dockerd
+cp -a packaging/systemd/* /etc/systemd/system
+sed -i -e 's,/usr/bin/cri-dockerd,/usr/local/bin/cri-dockerd,' /etc/systemd/system/cri-docker.service
+systemctl daemon-reload
+systemctl enable cri-docker.service
+systemctl enable --now cri-docker.socket
 
 curl -LO https://storage.googleapis.com/kubernetes-release/release/$(curl -s https://storage.googleapis.com/kubernetes-release/release/stable.txt)/bin/darwin/amd64/kubectl && chmod +x kubectl && sudo mv kubectl /usr/local/bin
 
 kubectl cluster-info
 
 minikube ssh
+
+kubectl run kubia --image=zhanmengao/kubia --port=8192 ：运行kubia容器，使用的镜像是image，端口为8192
+
+kubectl get pods:列出pod/-o wide请求显示其他列
+
+Kubectl describe pod pod名：显示pod详细信息
+
+Minikube dashboard：访问minikube的图形化界面
+
+Kubectl expose rc kubia --type=LoadBalancer --name kubia-http		创建一个外部的负载均衡服务对象（rc = replicationcontroller，它确保始终存在一个运行中的pod实例），而kubia-http则是网关职责
+
+Kubectl get services 列出服务
+
+Minikube service kubia-http	获取可以访问服务的ip和端口（通过网关）
+
+Kubectl get replicationcontrollers 列出保证存在一个运行中实例的pod对象
+
+Kubectl scale rc kubia --replicas=3：将pod数量扩容为3个
+
+Kubectl get pod kubia-zxzij -o yaml:查看pod的yaml定义
+Metadata：包括名称、命名空间、标签和关于该容器的其他信息。spec：包含pod内容的实际说明，例如pod的容器、卷和其他数据。status：包含运行中的pod的当前信息，例如pod所处的条件、每个容器的描述和状态，以及内部ip和其他基本信息。
+
+
+
+
+
 
 
 主机（Master）： 用于控制 Kubernetes 节点的计算机。所有任务分配都来自于此。

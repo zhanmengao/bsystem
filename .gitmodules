@@ -1,3 +1,6 @@
 [submodule "trace/k6"]
 	path = trace/k6
 	url = git@github.com:grafana/k6.git
+[submodule "k8s/cri-dockerd"]
+	path = k8s/cri-dockerd
+	url = https://github.com/Mirantis/cri-dockerd.git
