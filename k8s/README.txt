@@ -37,6 +37,9 @@ kubectl cluster-info
 
 minikube ssh
 
+docker tag kubia zhanmengao/kubia
+docker push zhanmengao/kubia
+
 kubectl run kubia --image=zhanmengao/kubia --port=8192 ：运行kubia容器，使用的镜像是image，端口为8192
 
 kubectl get pods:列出pod/-o wide请求显示其他列
