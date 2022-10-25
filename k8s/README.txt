@@ -1,4 +1,8 @@
 
+sudo docker build -t kubia .
+
+sudo docker run --name kubia-container -p 8192:8192 -d kubia
+
 curl -Lo minikube https://storage.googleapis.com/minikube/releases/v0.23.0/minikube-darwin-amd64 && chmod +x minikube && sudo mv minikube /usr/local/bin
 
 curl -LO https://storage.googleapis.com/minikube/releases/latest/minikube-darwin-arm64
@@ -40,6 +44,8 @@ minikube ssh
 docker tag kubia zhanmengao/kubia
 docker push zhanmengao/kubia
 
+docker run -p 8192:8192 zhanmengao/kubia
+
 kubectl run kubia --image=zhanmengao/kubia --port=8192 ：运行kubia容器，使用的镜像是image，端口为8192
 
 kubectl get pods:列出pod/-o wide请求显示其他列
@@ -58,12 +64,23 @@ Kubectl get replicationcontrollers 列出保证存在一个运行中实例的pod
 
 Kubectl scale rc kubia --replicas=3：将pod数量扩容为3个
 
-Kubectl get pod kubia-zxzij -o yaml:查看pod的yaml定义
+Kubectl get pod kubia-zxzij -o yaml:查看pod的yaml定义。yaml换成json就是查看json定义
 Metadata：包括名称、命名空间、标签和关于该容器的其他信息。spec：包含pod内容的实际说明，例如pod的容器、卷和其他数据。status：包含运行中的pod的当前信息，例如pod所处的条件、每个容器的描述和状态，以及内部ip和其他基本信息。
 
 Kubectl explain pods：查看pod的minifest支持哪些属性。kubectl explain pod.spec：查看pod的spec支持哪些属性
 
 
+Kubectl create -f kubia-manual.yaml：从yaml文件创建pod
+
+Docker logs 容器id：查看容器日志。在容器运行时，直接将日志记录到标准输出和标准错误，容器会将这些流重定向到文件。
+Kubectl logs pod名：查看pod日志。如果没有日志系统，在pod被删除后，它的日志也会随之消失。-c可以指定容器名称。
+
+Kubectl port-forward kubia-manual 8888:8080：配置端口转发，将机器的本地8888转发到kubia-manual pod的8080端口（常用于直连debug）
+
+Kubectl get pod --show-labels：一般get pods不会列出任何标签，我们可以使用选项来查看。
+Kubectl get pod -L createion_method,env：列出所有pod，只列出关心的标签
+
+Kubectl label pod kubia-manual create_method=manual：为现有的kubia-manual pod添加标签。修改现有标签，需要使用--overwrite选项
 
 
 
