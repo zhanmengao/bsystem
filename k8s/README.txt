@@ -82,6 +82,11 @@ Kubectl get pod -L createion_method,env：列出所有pod，只列出关心的�
 
 Kubectl label pod kubia-manual create_method=manual：为现有的kubia-manual pod添加标签。修改现有标签，需要使用--overwrite选项
 
+Kubectl get pod -l creation_method=manual：列出标签createion_method为manual的所有pod
+Kubectl get pod -l env：列出包含env标签的所有pod，无论其值为何
+Kubectl get pod -l '!env'：列出没有env标签的pod
+Kubectl get pod -l creation_method!=manual，kubectl get pod -l env in (prod,devel)，kubectl get pod -l env not in (prod,devel)
+
 
 
 
