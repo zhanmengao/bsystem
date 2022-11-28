@@ -1,0 +1,5 @@
+sudo docker build -t kubia .
+
+sudo docker run --name kubia-container -p 8192:8192 -d kubia
+
+sudo docker tag kubia zhanmengao/kubia   -->  docker run -p 8192:8192 zhanmengao/kubia
