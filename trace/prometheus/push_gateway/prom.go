@@ -20,6 +20,8 @@ var (
 	jobName      string
 	serverName   string
 	srvPlatform  string
+	mUserName    string
+	password     string
 )
 
 var collectors []prometheus.Collector
@@ -43,6 +45,11 @@ func InitPush(ctx context.Context, gatewayAddr, instance, srvName, platform stri
 
 	SetGateway(gatewayAddr)
 	go pushTick(ctx)
+}
+
+func UseBasicAuth(userName, passwd string) {
+	mUserName = userName
+	password = passwd
 }
 
 // SetGateway 修改上报的网关地址
@@ -83,7 +90,9 @@ func pushTick(ctx context.Context) {
 				return
 			}
 			cli := getPushCli()
-			cli.Push()
+			if err := cli.Push(); err != nil {
+				log.Println(err)
+			}
 		case <-closeCh:
 			return
 		}
@@ -92,6 +101,9 @@ func pushTick(ctx context.Context) {
 
 func getPushCli() *push.Pusher {
 	cli := push.New(gwAddr, jobName)
+	if mUserName != "" {
+		cli.BasicAuth(mUserName, password)
+	}
 	for _, c := range collectors {
 		cli.Collector(c)
 	}
