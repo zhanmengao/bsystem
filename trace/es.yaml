@@ -1,0 +1,94 @@
+admin:
+  http:
+    host-port: ':14240'
+
+http-server:
+  host-port: 14210
+
+collector:
+  num-workers: 0
+  queue-size: 0
+  queue-size-memory: 0
+  enable-span-size-metrics: false
+  http-server:
+    host-port: ':14168'
+  grpc-server:
+    host-port: ':14150'
+
+processor:
+  zipkin-compact:
+    workers: 10
+    server-queue-size: 1000
+    server-max-packet-size: 65000
+    server-socket-buffer-size: 0
+    server-host-port: ':5775'
+  jaeger-compact:
+    workers: 10
+    server-queue-size: 1000
+    server-max-packet-size: 65000
+    server-socket-buffer-size: 0
+    server-host-port: ':6831'
+  jaeger-binary:
+    workers: 10
+    server-queue-size: 1000
+    server-max-packet-size: 65000
+    server-socket-buffer-size: 0
+    server-host-port: ':6832'
+
+metrics-backend: 'prometheus'
+metrics-http-route: '/metrics'
+
+es:
+  enabled: true
+  version: '0'
+  username: ""
+  password: ""
+  token-file: ""
+  log-level: "debug"
+  create-index-templates: false
+  sniffer: false
+  sniffer-tls-enable: false
+  server-urls: "http://127.0.0.1:9200"
+  remote-read-clusters: ""
+  max-span-age: '72h'
+  max-doc-count: 10000
+  num-shards: 5
+  num-replicas: 1
+  bulk:
+    size: 5000000
+    workers: 1
+    actions: 1000
+    flush-internal: '200ms'
+  index-prefix: ""
+  index-date-separator: ''
+  tag-as-fields:
+    dot-replacement: '@'
+  send-get-body-as: 0
+
+
+es-archive:
+  enabled: true
+  version: '0'
+  username: ""
+  password: ""
+  token-file: ""
+  log-level: "debug"
+  create-index-templates: false
+  sniffer: false
+  sniffer-tls-enable: false
+  server-urls: "http://127.0.0.1:9200"
+  remote-read-clusters: ""
+  max-span-age: '72h'
+  max-doc-count: 10000
+  num-shards: 5
+  num-replicas: 1
+  bulk:
+    size: 5000000
+    workers: 1
+    actions: 1000
+    flush-internal: '200ms'
+  index-prefix: ""
+  index-date-separator: ''
+  tag-as-fields:
+    dot-replacement: '@'
+  send-get-body-as: 0

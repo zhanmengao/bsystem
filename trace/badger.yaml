@@ -1,0 +1,12 @@
+collector:
+  grpc-port: 14250
+  port: 14267
+  http-port: 14268
+  admin-http-port: 14269
+  zipkin:
+    host-port: ':9411'
+
+badger:
+  ephemeral: false
+  directory-key: /data/jaeger/badger/keys
+  directory-value: /data/jaeger/badger/values

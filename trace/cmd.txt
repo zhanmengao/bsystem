@@ -11,3 +11,9 @@ jaegertracing/all-in-one:1.14
 
 
 go get -u github.com/uber/jaeger-client-go/
+
+export SPAN_STORAGE_TYPE=badger
+/usr/local/service/jaeger-1.37.0-linux-amd64/jaeger-all-in-one --collector.zipkin.host-port=:9411 --badger.ephemeral=false --badger.directory-key=/data/jaeger/badger/keys --badger.directory-value=/data/jaeger/badger/values
+
+export SPAN_STORAGE_TYPE=elasticsearch
+/usr/local/service/jaeger-1.37.0-linux-amd64/jaeger-all-in-one --es.ephemeral=false --badger.directory-key=/data/jaeger/badger/keys --badger.directory-value=/data/jaeger/badger/values
