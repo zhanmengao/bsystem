@@ -7,9 +7,8 @@ import (
 	"os"
 	"os/signal"
 	"time"
-
-	"i-go/apm/trace/gin/middleware"
-	"i-go/apm/trace/gin/router"
+	"ttrace/apm/trace/gin/middleware"
+	"ttrace/apm/trace/gin/router"
 
 	"github.com/gin-gonic/gin"
 )

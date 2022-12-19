@@ -1,86 +1,23 @@
+主机（Master）
+ 用于控制 Kubernetes 节点的计算机。所有任务分配都来自于此。
 
-curl -Lo minikube https://storage.googleapis.com/minikube/releases/v0.23.0/minikube-darwin-amd64 && chmod +x minikube && sudo mv minikube /usr/local/bin
+节点（Node）
+负责执行请求和所分配任务的计算机。由 Kubernetes 主机负责对节点进行控制。
 
-curl -LO https://storage.googleapis.com/minikube/releases/latest/minikube-darwin-arm64
-sudo install minikube-darwin-arm64 /usr/local/bin/minikube
+容器集（Pod）
+被部署在单个节点上的，且包含一个或多个容器的容器组。同一容器集中的所有容器共享同一个 IP 地址、IPC、主机名称及其它资源。容器集会将网络和存储从底层容器中抽象出来。这样，您就能更加轻松地在集群中移动容器。
 
-curl -LO https://storage.googleapis.com/minikube/releases/latest/minikube-linux-arm64
-sudo install minikube-linux-arm64 /usr/local/bin/minikube
+复制控制器（Replication controller）
+用于控制应在集群某处运行的完全相同的容器集副本数量。
 
+服务（Service）
+将工作内容与容器集分离。Kubernetes 服务代理会自动将服务请求分发到正确的容器集——无论这个容器集会移到集群中的哪个位置，甚至可以被替换掉。
 
-sudo apt-get install -y conntrack
-minikube start --force --driver=none
-# Run these commands as root
-###Install GO###
-git clone https://github.com/Mirantis/cri-dockerd.git
-sudo make deb
+Kubelet
+运行在节点上的服务，可读取容器清单（container manifest），确保指定的容器启动并运行。
 
-wget https://storage.googleapis.com/golang/getgo/installer_linux
-chmod +x ./installer_linux
-./installer_linux
-source ~/.bash_profile
-
-cd cri-dockerd
-mkdir bin
-go build -o bin/cri-dockerd
-mkdir -p /usr/local/bin
-install -o root -g root -m 0755 bin/cri-dockerd /usr/local/bin/cri-dockerd
-cp -a packaging/systemd/* /etc/systemd/system
-sed -i -e 's,/usr/bin/cri-dockerd,/usr/local/bin/cri-dockerd,' /etc/systemd/system/cri-docker.service
-systemctl daemon-reload
-systemctl enable cri-docker.service
-systemctl enable --now cri-docker.socket
-
-curl -LO https://storage.googleapis.com/kubernetes-release/release/$(curl -s https://storage.googleapis.com/kubernetes-release/release/stable.txt)/bin/darwin/amd64/kubectl && chmod +x kubectl && sudo mv kubectl /usr/local/bin
-
-kubectl cluster-info
-
-minikube ssh
-
-docker tag kubia zhanmengao/kubia
-docker push zhanmengao/kubia
-
-kubectl run kubia --image=zhanmengao/kubia --port=8192 ：运行kubia容器，使用的镜像是image，端口为8192
-
-kubectl get pods:列出pod/-o wide请求显示其他列
-
-Kubectl describe pod pod名：显示pod详细信息
-
-Minikube dashboard：访问minikube的图形化界面
-
-Kubectl expose rc kubia --type=LoadBalancer --name kubia-http		创建一个外部的负载均衡服务对象（rc = replicationcontroller，它确保始终存在一个运行中的pod实例），而kubia-http则是网关职责
-
-Kubectl get services 列出服务
-
-Minikube service kubia-http	获取可以访问服务的ip和端口（通过网关）
-
-Kubectl get replicationcontrollers 列出保证存在一个运行中实例的pod对象
-
-Kubectl scale rc kubia --replicas=3：将pod数量扩容为3个
-
-Kubectl get pod kubia-zxzij -o yaml:查看pod的yaml定义
-Metadata：包括名称、命名空间、标签和关于该容器的其他信息。spec：包含pod内容的实际说明，例如pod的容器、卷和其他数据。status：包含运行中的pod的当前信息，例如pod所处的条件、每个容器的描述和状态，以及内部ip和其他基本信息。
-
-Kubectl explain pods：查看pod的minifest支持哪些属性。kubectl explain pod.spec：查看pod的spec支持哪些属性
-
-
-
-
-
-
-主机（Master）： 用于控制 Kubernetes 节点的计算机。所有任务分配都来自于此。
-
-节点（Node）：负责执行请求和所分配任务的计算机。由 Kubernetes 主机负责对节点进行控制。
-
-容器集（Pod）：被部署在单个节点上的，且包含一个或多个容器的容器组。同一容器集中的所有容器共享同一个 IP 地址、IPC、主机名称及其它资源。容器集会将网络和存储从底层容器中抽象出来。这样，您就能更加轻松地在集群中移动容器。
-
-复制控制器（Replication controller）：用于控制应在集群某处运行的完全相同的容器集副本数量。
-
-服务（Service）：将工作内容与容器集分离。Kubernetes 服务代理会自动将服务请求分发到正确的容器集——无论这个容器集会移到集群中的哪个位置，甚至可以被替换掉。
-
-Kubelet：运行在节点上的服务，可读取容器清单（container manifest），确保指定的容器启动并运行。
-
-kubectl： Kubernetes 的命令行配置工具。
+kubectl
+ Kubernetes 的命令行配置工具。
 
 指令式命令
 使用指令式命令时，用户可以在集群中的活动对象上进行操作。用户将操作传给 kubectl 命令作为参数或标志。
@@ -324,6 +261,7 @@ Service负载分发的策略有：RoundRobin和SessionAffinity
 
 简述Kubernetes Headless Service？
 在某些应用场景中，若需要人为指定负载均衡器，不使用Service提供的默认负载均衡的功能，或者应用程序希望知道属于同组服务的其他实例。Kubernetes提供了Headless Service来实现这种功能，即不为Service设置ClusterIP（入口IP地址），仅通过Label Selector将后端的Pod列表返回给调用的客户端。
+
 简述Kubernetes外部如何访问集群内的服务？
 对于Kubernetes，集群外的客户端默认情况，无法通过Pod的IP地址或者Service的虚拟IP地址:虚拟端口号进行访问。通常可以通过以下方式进行访问Kubernetes集群内的服务：
 映射Pod到物理机：将Pod端口号映射到宿主机，即在Pod中采用hostPort方式，以使客户端应用能够通过物理机访问容器应用。
