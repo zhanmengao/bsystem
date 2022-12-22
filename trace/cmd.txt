@@ -17,3 +17,32 @@ export SPAN_STORAGE_TYPE=badger
 
 export SPAN_STORAGE_TYPE=elasticsearch
 /usr/local/service/jaeger-1.37.0-linux-amd64/jaeger-all-in-one --es.ephemeral=false --badger.directory-key=/data/jaeger/badger/keys --badger.directory-value=/data/jaeger/badger/values
+
+
+___1jaege 99699 wangbiyu  cwd      DIR               1,14     1440             7509827 /Users/wangbiyu/bsystem/trace/jaeger1.37.0
+___1jaege 99699 wangbiyu  txt      REG               1,14 48835474             9078370 /private/var/folders/k5/8kq44rv11c5dypx073fktx080000gn/T/GoLand/___1jaeger
+___1jaege 99699 wangbiyu  txt      REG               1,14  2160688 1152921500312781028 /usr/lib/dyld
+___1jaege 99699 wangbiyu  txt      REG               1,14    46688             2789165 /Library/Preferences/Logging/.plist-cache.EvmeqqbS
+___1jaege 99699 wangbiyu    0u     CHR              16,17  0t12478                1599 /dev/ttys017
+___1jaege 99699 wangbiyu    1u     CHR              16,17  0t12478                1599 /dev/ttys017
+___1jaege 99699 wangbiyu    2u     CHR              16,17  0t12478                1599 /dev/ttys017
+___1jaege 99699 wangbiyu    3u  KQUEUE                                                 count=0, state=0xa
+___1jaege 99699 wangbiyu    4     PIPE 0xd85e6bb680b592f6    16384                     ->0xf050bc50eb7d930b
+___1jaege 99699 wangbiyu    5     PIPE 0xf050bc50eb7d930b    16384                     ->0xd85e6bb680b592f6
+___1jaege 99699 wangbiyu    6     PIPE 0x4b91da9b77cd4da7    16384                     ->0xc3c4532ac410de19
+___1jaege 99699 wangbiyu    7     PIPE 0xc3c4532ac410de19    16384                     ->0x4b91da9b77cd4da7
+___1jaege 99699 wangbiyu    8u    IPv6 0x3e423fd566040291      0t0                 TCP *:14240 (LISTEN)
+___1jaege 99699 wangbiyu    9u   systm 0x3e423fda337a7cf1      0t0                     [ctl com.apple.netsrc id 6 unit 8]
+___1jaege 99699 wangbiyu   10u    unix 0x3e423fd5662b3c01      0t0                     ->0x3e423fd5662b3d91
+___1jaege 99699 wangbiyu   11u    IPv4 0x3e423fdf0151c2a1      0t0                 UDP localhost:51372->localhost:ambit-lm
+___1jaege 99699 wangbiyu   12u    IPv4 0x3e423fd0a5ab6ee9      0t0                 TCP 192.168.10.5:56411->192.168.10.2:wap-wsp (ESTABLISHED)
+___1jaege 99699 wangbiyu   13u    IPv6 0x3e423fd566039951      0t0                 TCP *:14150 (LISTEN)
+___1jaege 99699 wangbiyu   14u    IPv6 0x3e423fd56603a031      0t0                 TCP *:14168 (LISTEN)
+___1jaege 99699 wangbiyu   15u    IPv4 0x3e423fd0a5720f39      0t0                 TCP localhost:56412->localhost:14150 (ESTABLISHED)
+___1jaege 99699 wangbiyu   16u    IPv6 0x3e423fdf0151c5b1      0t0                 UDP *:5775
+___1jaege 99699 wangbiyu   17u    IPv6 0x3e423fdf0151c8c1      0t0                 UDP *:ambit-lm
+___1jaege 99699 wangbiyu   18u    IPv6 0x3e423fdf0151cbd1      0t0                 UDP *:6832
+___1jaege 99699 wangbiyu   19u    IPv6 0x3e423fd56603bbb1      0t0                 TCP localhost:14150->localhost:56412 (ESTABLISHED)
+___1jaege 99699 wangbiyu   20u    IPv6 0x3e423fd56603a711      0t0                 TCP *:14210 (LISTEN)
+___1jaege 99699 wangbiyu   21u    IPv6 0x3e423fd56603adf1      0t0                 TCP *:16585 (LISTEN)
+___1jaege 99699 wangbiyu   22u    IPv6 0x3e423fd56603b4d1      0t0                 TCP *:16586 (LISTEN)

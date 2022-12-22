@@ -1,0 +1,45 @@
+badger:
+  ephemeral: false
+  directory-key: /data/jaeger/badger/keys
+  directory-value: /data/jaeger/badger/values
+
+admin:
+  http:
+    host-port: ':14140'
+
+http-server:
+  host-port: 14510
+
+collector:
+  http-server:
+    host-port: ':14168'
+  grpc-server:
+    host-port: ':14150'
+
+#  queryGRPCHostPort       = "query.grpc-server.host-port"
+#  queryGRPCHostPort       = "query.http-server.host-port"
+query:
+  grpc-server:
+    host-port: ':16585'
+  http-server:
+    host-port: ':16586'
+
+processor:
+  zipkin-compact:
+    server-host-port: ':5675'
+  jaeger-compact:
+    server-host-port: ':6731'
+  jaeger-binary:
+    server-host-port: ':6732'
+
+es:
+  enabled: true
+  version: '0'
+  username: ""
+  password: ""
+  token-file: ""
+  log-level: "error"
+  create-index-templates: false
+  sniffer: false
+  sniffer-tls-enable: false
+  server-urls: "http://192.168.10.7:9200"
