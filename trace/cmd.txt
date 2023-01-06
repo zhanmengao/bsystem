@@ -16,8 +16,21 @@ export SPAN_STORAGE_TYPE=badger
 /usr/local/service/jaeger-1.37.0-linux-amd64/jaeger-all-in-one --collector.zipkin.host-port=:9411 --badger.ephemeral=false --badger.directory-key=/data/jaeger/badger/keys --badger.directory-value=/data/jaeger/badger/values
 
 export SPAN_STORAGE_TYPE=elasticsearch
-/usr/local/service/jaeger-1.37.0-linux-amd64/jaeger-all-in-one --es.ephemeral=false --badger.directory-key=/data/jaeger/badger/keys --badger.directory-value=/data/jaeger/badger/values
+/usr/local/service/jaeger-1.37.0-linux-amd64/jaeger-all-in-one --es.server-urls="http://127.0.0.1:9200" --es.create-index-templates=false
 
+jaeger-all-in-one --es.server-urls="http://172.21.0.11:9200" --es.create-index-templates=false --es.username=elastic --es.password=26gZoUd3TLDhsb
+
+docker run -d --name jaeger \
+-e COLLECTOR_ZIPKIN_HTTP_PORT=9411 \
+-e SPAN_STORAGE_TYPE=elasticsearch \
+-p 5775:5775/udp \
+-p 6831:6831/udp \
+-p 6832:6832/udp \
+-p 5778:5778 \
+-p 16686:16686 \
+-p 14268:14268 \
+-p 9411:9411 \
+jaegertracing/all-in-one:1.14 --es-archive.server-urls="http://127.0.0.1:9200"
 
 ___1jaege 99699 wangbiyu  cwd      DIR               1,14     1440             7509827 /Users/wangbiyu/bsystem/trace/jaeger1.37.0
 ___1jaege 99699 wangbiyu  txt      REG               1,14 48835474             9078370 /private/var/folders/k5/8kq44rv11c5dypx073fktx080000gn/T/GoLand/___1jaeger
