@@ -18,7 +18,7 @@ export SPAN_STORAGE_TYPE=badger
 export SPAN_STORAGE_TYPE=elasticsearch
 /usr/local/service/jaeger-1.37.0-linux-amd64/jaeger-all-in-one --es.server-urls="http://127.0.0.1:9200" --es.create-index-templates=false
 
-jaeger-all-in-one --es.server-urls="http://172.21.0.11:9200" --es.create-index-templates=false --es.username=elastic --es.password=26gZoUd3TLDhsb
+jaeger-all-in-one --es.server-urls="http://172.21.0.11:9200" --es.create-index-templates=false --es.username=elastic --es.password=26gZoUd3TLDhsb --query.grpc.tls.enabled=false --query.http.tls.enabled=false
 
 docker run -d --name jaeger \
 -e COLLECTOR_ZIPKIN_HTTP_PORT=9411 \
