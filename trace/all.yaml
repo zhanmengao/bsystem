@@ -43,6 +43,7 @@ es:
   version: '0'
   username: ""
   password: ""
+  index-prefix: midplat
   token-file: ""
   log-level: "debug"
   create-index-templates: false
@@ -59,7 +60,6 @@ es:
     workers: 1
     actions: 1000
     flush-internal: '200ms'
-  index-prefix: ""
   index-date-separator: ''
   tag-as-fields:
     dot-replacement: '@'
