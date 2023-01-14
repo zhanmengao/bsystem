@@ -1,0 +1,16 @@
+QPS
+总：sum(rate(mergebuild_request_total{}[$__interval]))
+按命令字划分：sum(rate(mergebuild_request_total{}[$__interval]))by ( cmd )
+错误：sum(rate(mergebuild_request_error{code!~"10114",code!~"10056",code!~"10108",code!~"10102"}[1m]))by ( cmd,code )
+
+持续时间
+平均：
+sum(rate(mergebuild_request_duration_ms_sum{t_srv_name="gamesrv"}[1m])) by (cmd)
+/
+sum(rate(mergebuild_request_duration_ms_count{t_srv_name="gamesrv"}[1m])) by (cmd)
+
+TP95：
+histogram_quantile(0.95, sum(rate(midplat_request_duration_ms_bucket{t_environment="prod",srv_name="fimsrv"}[1m])) by (le,cmd))
+
+在线
+sum(ta_fim_online{t_environment="prod"} ) by (platform)
