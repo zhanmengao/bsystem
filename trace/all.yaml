@@ -73,7 +73,7 @@ es-archive:
   password: ""
   token-file: ""
   log-level: "debug"
-  create-index-templates: false
+  create-index-templates: true
   sniffer: false
   sniffer-tls-enable: false
   server-urls: "http://127.0.0.1:9200"

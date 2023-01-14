@@ -34,13 +34,11 @@ processor:
 
 es:
   enabled: true
-  version: '0'
+  version: '7.10.2'
   username: ""
   password: ""
   token-file: ""
   log-level: "error"
-  create-index-templates: false
-  sniffer: false
-  sniffer-tls-enable: false
+  create-index-templates: true
   server-urls: "http://192.168.10.7:9200"
   index-prefix: midplat
