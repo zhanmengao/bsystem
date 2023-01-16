@@ -14,3 +14,15 @@ histogram_quantile(0.95, sum(rate(midplat_request_duration_ms_bucket{t_environme
 
 在线
 sum(ta_fim_online{t_environment="prod"} ) by (platform)
+
+go routine数量
+sum(go_goroutines{t_srv_name!~""})by (t_instance_name,t_srv_name)
+
+堆使用
+sum(go_memstats_heap_inuse_bytes{})by(t_instance_name,t_srv_name)
+
+
+GC耗时（微秒）
+sum(rate(go_gc_duration_seconds_sum[1m]))by(t_instance_name,t_srv_name) 
+/ 
+sum(rate(go_gc_duration_seconds_count[1m]))by(t_instance_name,t_srv_name) * 1000000

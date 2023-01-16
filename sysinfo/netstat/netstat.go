@@ -2,10 +2,11 @@ package main
 
 import (
 	"net"
-	"time"
-	"strings"
 	"strconv"
+	"strings"
+	"time"
 )
+
 // 状态码值
 const (
 	TCP_ESTABLISHED = iota + 1
@@ -112,8 +113,8 @@ func parseRawSocketEntry(entry string) (*socketEntry, error) {
 	if err != nil {
 		return nil, err
 	}
-	se.uname = systemUsers[entryItems[7]] // socket user name
-	se.inode = entryItems[9]              // socket inode
+	se.uname = entryItems[7] // socket user name
+	se.inode = entryItems[9] // socket inode
 	return se, nil
 }
 
