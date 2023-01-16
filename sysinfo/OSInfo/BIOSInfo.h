@@ -15,7 +15,7 @@ vector<WMIBIOS> GetBIOSInfo()
 	return vec;
 }
 #else
-#include"../UBuntuSysInfo/Hardware.h"
+#include"../vmstat/Hardware.h"
 struct BIOSInfoC
 {
     char biosid[128];
