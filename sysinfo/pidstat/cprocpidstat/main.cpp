@@ -8,8 +8,9 @@
 
 int main(int argc,char *argv[]){
     int pid = atoi(argv[1]);
+    printf("begin watch %d cpu \n",pid);
     while (1){
-        printf("%f",get_proc_cpu(pid));
+        printf("%f\n",get_proc_cpu(pid));
         usleep(100000);
     }
     return 0;

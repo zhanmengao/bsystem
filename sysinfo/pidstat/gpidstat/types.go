@@ -5,8 +5,9 @@ type TCPUInfo struct {
 	User    float64
 	Sys     float64
 	Guest   float64
+	Wait    float64
 	Cpu     float64
-	CpuNum  int32
+	CpuNum  int
 	Command string
 }
 

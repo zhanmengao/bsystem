@@ -4,15 +4,14 @@ import (
 	"fmt"
 	"io/ioutil"
 	"log"
-	"os"
 	"os/exec"
 	"strconv"
 	"strings"
 	"time"
 )
 
-func CPUInfoByPidStat() (info *TCPUInfo, err error) {
-	cmd := exec.Command("pidstat", "-u", "-p", strconv.Itoa(os.Getpid()))
+func CPUInfoByPidStat(pid int) (info *TCPUInfo, err error) {
+	cmd := exec.Command("pidstat", "-u", "-p", strconv.Itoa(pid))
 	pidcpu, err := cmd.CombinedOutput()
 	if err != nil {
 		return
@@ -22,6 +21,13 @@ func CPUInfoByPidStat() (info *TCPUInfo, err error) {
 	for _, s := range ss {
 		log.Println(s)
 	}
+	info = &TCPUInfo{}
+	info.User, _ = strconv.ParseFloat(ss[2], 63)
+	info.Sys, _ = strconv.ParseFloat(ss[3], 63)
+	info.Guest, _ = strconv.ParseFloat(ss[4], 63)
+	info.Wait, _ = strconv.ParseFloat(ss[5], 63)
+	info.Cpu, _ = strconv.ParseFloat(ss[6], 63)
+	info.Command = ss[7]
 	return
 }
 
@@ -37,7 +43,7 @@ func CPUInfoByProc(pid int) float64 {
 
 	pcpu := 0.0
 	if 0 != totalcputime2-totalcputime1 {
-		pcpu = float64(100.0 * (procputime2 - procputime1) / (totalcputime2 - totalcputime1))
+		pcpu = 100.0 * float64(procputime2-procputime1) / float64(totalcputime2-totalcputime1)
 	}
 	return pcpu
 }
