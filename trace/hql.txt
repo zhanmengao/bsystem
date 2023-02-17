@@ -16,7 +16,7 @@ histogram_quantile(0.95, sum(rate(midplat_request_duration_ms_bucket{t_environme
 sum(ta_fim_online{t_environment="prod"} ) by (platform)
 
 go routine数量
-sum(go_goroutines{t_srv_name!~""})by (t_instance_name,t_srv_name)
+sum((go_goroutines{}))by (t_instance_name,t_srv_name)
 
 堆使用
 sum(go_memstats_heap_inuse_bytes{t_srv_name!~""})by(t_instance_name,t_srv_name)
