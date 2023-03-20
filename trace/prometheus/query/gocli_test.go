@@ -29,4 +29,9 @@ func TestQueryByCli(t *testing.T) {
 		v := vec[i]
 		t.Logf("val = %s \n", v.Value.String())
 	}
+	alerts, err := pmql.Alerts(ctx)
+	if err != nil {
+		t.Fatalf(err.Error())
+	}
+	t.Log(alerts)
 }
