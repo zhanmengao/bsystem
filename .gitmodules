@@ -4,3 +4,6 @@
 [submodule "k8s/cri-dockerd"]
 	path = k8s/cri-dockerd
 	url = https://github.com/Mirantis/cri-dockerd.git
+[submodule "trace/grafana"]
+	path = trace/grafana
+	url = git@github.com:grafana/grafana.git
