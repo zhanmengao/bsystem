@@ -8,7 +8,7 @@ type DataProcessor[T any] interface {
 	Save(data T) error
 }
 type DataProcessor2[T any] interface {
-	int | ~struct{ Data interface{} }
+	int | ~struct{ Data interface{} } //或
 
 	Process(data T) (newData T)
 	Save(data T) error
@@ -30,7 +30,4 @@ func TestCSV(t *testing.T) {
 	var processor DataProcessor[string] = CSVProcessor{}
 	processor.Process("name,age\nbob,12\njack,30")
 	_ = processor.Save("name,age\nbob,13\njack,31")
-
-	// 错误。CSVProcessor没有实现接口 DataProcessor[int]
-	//var processor2 DataProcessor[int] = CSVProcessor{}
 }
