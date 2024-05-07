@@ -1,0 +1,2 @@
+1、使用tsdb
+或自己搭建Remote Storge
